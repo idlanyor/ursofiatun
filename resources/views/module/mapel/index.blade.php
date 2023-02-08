@@ -10,7 +10,7 @@
                     class="btn btn-success btn-icon-split"
                 >
                     <span class="icon text-white-50">
-                board message    <i class="fas fa-plus"></i>
+                        <i class="fas fa-plus"></i>
                     </span>
                     <span class="text">Tambah Data Mata Pelajaran</span>
                 </a>
@@ -46,18 +46,6 @@
                                             </button>
                                             <button
                                                 type="button"
-                                                class="btn btn-primary btn-sm show-btn"
-                                                data-id="{{ $mapel->id_mata_pelajaran }}"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#showModal"
-                                            >
-                                                <i
-                                                    class="fas fa-eye"
-                                                    aria-hidden="true"
-                                                ></i>
-                                            </button>
-                                            <button
-                                                type="button"
                                                 class="btn btn-danger btn-sm delete-btn px-2"
                                                 data-id="{{ $mapel->id_mata_pelajaran }}"
                                                 data-bs-toggle="modal"
@@ -71,8 +59,8 @@
                                         </td>
                                         <td>{{ $mapel->kode_mapel }}</td>
                                         <td>{{ $mapel->nama_mapel }}</td>
-                                        <td>{{ $mapel->guru->nama ?? 'Tidak Ada' }}</td>
-                                        <td>{{ $mapel->kelas->nama_kelas ?? 'Tidak Ada' }}</td>
+                                        <td>{{ $mapel->guru->nama }}</td>
+                                        <td>{{ $mapel->kelas->nama_kelas }}</td>
 
                                     </tr>
                                 @endforeach
@@ -87,10 +75,10 @@
                         </tbody>
                     </table>
                 </div>
+                {{ $dataMapel->links() }}
             </div>
         </div>
     </div>
     @include('module.mapel.edit')
     @include('module.mapel.destroy')
-    @include('module.mapel.show')
 @endsection

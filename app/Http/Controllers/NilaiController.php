@@ -14,7 +14,7 @@ class NilaiController extends Controller
      */
     public function index()
     {
-        $dataNilai = Nilai::with('santri', 'mapel')->get();
+        $dataNilai = Nilai::sortBy('kelas_id')->with('santri', 'mapel')->paginate(10);
         return view('module.nilai.nilai-mapel', compact('dataNilai'));
     }
 

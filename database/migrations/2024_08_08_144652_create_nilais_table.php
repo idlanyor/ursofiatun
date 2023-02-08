@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('nilai', function (Blueprint $table) {
             $table->id('id_nilai');
-            $table->string('ulangan_1');
-            $table->string('ulangan_2');
-            $table->string('ulangan_3');
+            $table->string('ulangan_1')->nullable();
+            $table->string('ulangan_2')->nullable();
+            $table->string('ulangan_3')->nullable();
             $table->unsignedBigInteger('santri_id');
             $table->foreign('santri_id')->references('id_santri')->on('santri')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('kelas_id');

@@ -48,6 +48,7 @@
                         </tbody>
                     </table>
                 </div>
+                {{ $dataNilai->links() }}
             </div>
         </div>
     </div>

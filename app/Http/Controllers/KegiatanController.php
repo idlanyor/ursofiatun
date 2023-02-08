@@ -16,8 +16,8 @@ class KegiatanController extends Controller
     {
         $tahunAjaran = TahunAjaran::where('status', 'aktif')->get();
         $id_tahun_ajaran = $tahunAjaran->first()->id_tahun_ajaran;
-        $kegiatan = Kegiatan::with('tahunAjaran')->where('id_tahun_ajaran', $id_tahun_ajaran)->get();
-        return view('module.kegiatan.wrapper', compact('kegiatan','id_tahun_ajaran'));
+        $kegiatan = Kegiatan::with('tahunAjaran')->get();
+        return view('module.kegiatan.wrapper', compact('kegiatan', 'id_tahun_ajaran'));
     }
 
     /**

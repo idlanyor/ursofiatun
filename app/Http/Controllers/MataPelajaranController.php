@@ -15,7 +15,7 @@ class MataPelajaranController extends Controller
     {
         $guru = Guru::all();
         $kelas = Kelas::all();
-        $dataMapel = MataPelajaran::with(['guru', 'kelas'])->paginate(10);
+        $dataMapel = MataPelajaran::with('guru', 'kelas')->paginate(10);
         return view('module.mapel.index', compact('dataMapel', 'guru', 'kelas'));
     }
 
@@ -28,20 +28,26 @@ class MataPelajaranController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'kode_mapel' => 'required|string|max:255',
-            'nama_mapel' => 'required|string|max:255',
-            'guru_id' => 'required|integer|exists:guru,id_guru',
-            'kelas_id' => 'required|integer|exists:kelas,id',
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+        try {
+            $validator = Validator::make($request->all(), [
+                'kode_mapel' => 'required|string|max:255',
+                'nama_mapel' => 'required|string|max:255',
+                'guru_id' => 'required|integer|exists:guru,id_guru',
+                'kelas_id' => 'required|integer|exists:kelas,id',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json(['errors' => $validator->errors()], 422);
+            }
+
+            MataPelajaran::create($validator->validated());
+
+            return response()->json(['message' => 'Data berhasil disimpan'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Terjadi kesalahan nalika nyimpen data'], 500);
         }
-
-        MataPelajaran::create($validator->validated());
-
-        return response()->json(['message' => 'Data berhasil disimpan'], 200);
     }
+
 
     public function show(MataPelajaran $mataPelajaran)
     {
@@ -69,7 +75,7 @@ class MataPelajaranController extends Controller
                 return response()->json(['errors' => $validator->errors()], 422);
             }
 
-            $mataPelajaran->save();
+            $mataPelajaran->update($validator->validated());
 
             return response()->json(['success' => 'Data mapel berhasil diperbarui.']);
         } catch (\Throwable $th) {
@@ -79,9 +85,10 @@ class MataPelajaranController extends Controller
         }
     }
 
-    public function destroy(MataPelajaran $mataPelajaran)
+    public function destroy($id)
     {
         try {
+            $mataPelajaran = MataPelajaran::findOrFail($id);
             $mataPelajaran->delete();
             return response()->json(['success' => 'Data mapel berhasil dihapus.']);
         } catch (\Exception $e) {
