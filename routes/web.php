@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
         'update' => 'santri.update',
         'destroy' => 'santri.destroy',
     ]);
+    Route::get('/getsantri/{id}', [SantriController::class, 'getSantri']);
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

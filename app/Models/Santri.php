@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Santri extends Model
 {
     use HasFactory;
+    protected $table = 'santri';
+    protected $fillable = [
+        'nama',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'orang_tua',
+        'telepon',
+        'alamat'
+    ];
 }
