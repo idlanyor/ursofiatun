@@ -13,7 +13,8 @@ class GuruController extends Controller
      */
     public function index()
     {
-        //
+        $guru = Guru::all();
+        return view('module.guru.index', compact('guru'));
     }
 
     /**
@@ -29,7 +30,7 @@ class GuruController extends Controller
      */
     public function store(StoreGuruRequest $request)
     {
-        //
+        
     }
 
     /**
