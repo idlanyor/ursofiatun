@@ -31,6 +31,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-control" name="jenis_kelamin" id="editJenisKelamin" required>
+                            <option value="" disabled>Pilih Jenis Kelamin</option>
+                            <option value="L">Laki-laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                        <label for="editJenisKelamin">Jenis Kelamin</label>
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
@@ -78,6 +86,8 @@
                             .tempat_lahir;
                         document.getElementById('editTanggalLahir').value = data
                             .tanggal_lahir;
+                        document.getElementById('editJenisKelamin').value = data
+                            .jenis_kelamin;
                         document.getElementById('editOrangTua').value = data.orang_tua;
                         document.getElementById('editTelepon').value = data.telepon ||
                             ''; // nilai null menjadi string kosong
@@ -106,7 +116,7 @@
                 .then(response => {
                     var data = response.data;
                     if (data.success) {
-                        alert(data.success);
+                        toastr.success(data.success)
                         location.reload();
                     } else {
                         toastr.error('Terjadi kesalahan: ' + (data.error || 'Unknown error'));
@@ -118,7 +128,7 @@
                         var errorMessages = Object.values(errors).flat().join('\n');
                         toastr.error('Validasi error:\n' + errorMessages);
                     } else {
-                        console.log(error)
+                        console.log(error);
                         console.error('There was an error updating the data:', error);
                         toastr.error('Terjadi kesalahan saat memperbarui data santri.');
                     }

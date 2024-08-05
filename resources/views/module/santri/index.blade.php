@@ -26,31 +26,39 @@
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
-                            @php
-                                \Carbon\Carbon::setLocale('id'); // Set locale ke bahasa Indonesia
-                            @endphp
-                            @foreach ($dataSantri as $d)
+                            @if ($dataSantri->count())
+                                @foreach ($dataSantri as $index => $d)
+                                    <tr>
+                                        <td scope="row">{{ $index + 1 }}</td>
+                                        <td>{{ $d->nama }}</td>
+                                        <td>{{ $d->tempat_lahir }},
+                                            {{ \Carbon\Carbon::parse($d->tanggal_lahir)->translatedFormat('d F Y') }}</td>
+                                        <td>{{ $d->jenis_kelamin == 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>
+                                        <td>{{ $d->orang_tua }}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning btn-sm edit-btn"
+                                                data-bs-toggle="modal" data-bs-target="#editModal"
+                                                data-id="{{ $d->id }}">
+                                                <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-primary btn-sm show-btn"
+                                                data-id="{{ $d->id }}" data-bs-toggle="modal"
+                                                data-bs-target="#showModal">
+                                                <i class="fas fa-eye" aria-hidden="true"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-sm delete-btn px-2"
+                                                data-id="{{ $d->id }}" data-bs-toggle="modal"
+                                                data-bs-target="#destroyModal">
+                                                <i class="fas fa-trash" aria-hidden="true"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
                                 <tr>
-                                    <td scope="row">{{ $d->id }}</td>
-                                    <td>{{ $d->nama }}</td>
-                                    <td>{{ $d->tempat_lahir }},{{ \Carbon\Carbon::parse($d->tanggal_lahir)->translatedFormat('d F Y') }}
-                                    </td>
-                                    <td>{{ $d->jenis_kelamin }}</td>
-                                    <td>{{ $d->orang_tua }}</td>
-                                    <td>
-                                        <button type="button" class="btn btn-warning btn-sm edit-btn"
-                                            data-bs-toggle="modal" data-bs-target="#editModal"
-                                            data-id="{{ $d->id }}"><i class="fas fa-pencil-alt"
-                                                aria-hidden="true"></i></button>
-                                        <button type="button" class="btn btn-primary btn-sm show-btn"
-                                            data-id="{{ $d->id }}"><i class="fas fa-eye" data-bs-toggle="modal"
-                                                data-bs-target="#showModal" aria-hidden="true"></i></button>
-                                        <button type="button" class="btn btn-danger btn-sm delete-btn px-2"
-                                            data-bs-toggle="modal" data-bs-target="#destroyModal" data-id="{{ $d->id }}"
-                                            type="button"><i class="fas fa-trash" aria-hidden="true"></i></button>
-                                    </td>
+                                    <td colspan="6" class="text-center">Tidak Ada Data</td>
                                 </tr>
-                            @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>

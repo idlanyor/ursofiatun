@@ -13,6 +13,7 @@ class Santri extends Model
         'nama',
         'tempat_lahir',
         'tanggal_lahir',
+        'jenis_kelamin',
         'orang_tua',
         'telepon',
         'alamat'

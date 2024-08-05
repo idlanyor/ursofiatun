@@ -31,7 +31,7 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{route('santri.index')}}">Data Santri</a>
+                <a class="collapse-item" href="{{ route('santri.index') }}">Data Santri</a>
                 <a class="collapse-item" href="buttons.html">Data Guru</a>
                 <a class="collapse-item" href="buttons.html">Data Kelas</a>
                 <a class="collapse-item" href="buttons.html">Data Mata Pelajaran</a>

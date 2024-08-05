@@ -18,7 +18,6 @@ class SantriController extends Controller
         return view('module.santri.index', compact('dataSantri'));
     }
 
-
     /**
      * Show the form for creating a new resource.
      */
@@ -32,14 +31,40 @@ class SantriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'tempat_lahir' => 'required|string|max:255',
+            'tanggal_lahir' => 'required|date',
+            'jenis_kelamin' => 'required|in:L,P',
+            'orang_tua' => 'required|string|max:255',
+            'telepon' => 'nullable|string|max:15',
+            'alamat' => 'nullable|string|max:500',
+        ]);
+
+        try {
+            Santri::create([
+                'nama' => $request->nama,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tanggal_lahir' => Carbon::parse($request->tanggal_lahir)->format('Y-m-d'),
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'orang_tua' => $request->orang_tua,
+                'telepon' => $request->telepon,
+                'alamat' => $request->alamat,
+            ]);
+
+            return redirect()->route('santri.index')->with('success', 'Data santri berhasil disimpan.');
+        } catch (\Exception $e) {
+            Log::error('Error storing santri: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan pada server.');
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Santri $id)
+    public function show(Santri $santri)
     {
+        return response()->json($santri);
     }
 
     /**
@@ -50,42 +75,38 @@ class SantriController extends Controller
         return response()->json($santri);
     }
 
-
-    public function update(Request $request, $id)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Santri $santri)
     {
         $request->validate([
-            'nama' => 'required',
-            'tempat_lahir' => 'required',
+            'nama' => 'required|string|max:255',
+            'tempat_lahir' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date',
-            'orang_tua' => 'required',
-            'telepon' => 'nullable|string',
-            'alamat' => 'nullable|string',
+            'jenis_kelamin' => 'required|in:L,P',
+            'orang_tua' => 'required|string|max:255',
+            'telepon' => 'nullable|string|max:15',
+            'alamat' => 'nullable|string|max:500',
         ]);
 
         try {
-            $santri = Santri::find($id);
-            if ($santri) {
-                $santri->update([
-                    'nama' => $request->nama,
-                    'tempat_lahir' => $request->tempat_lahir,
-                    'tanggal_lahir' => Carbon::parse($request->tanggal_lahir)->format('Y-m-d'),
-                    'orang_tua' => $request->orang_tua,
-                    'telepon' => $request->telepon,
-                    'alamat' => $request->alamat,
-                ]);
+            $santri->update([
+                'nama' => $request->nama,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tanggal_lahir' => Carbon::parse($request->tanggal_lahir)->format('Y-m-d'),
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'orang_tua' => $request->orang_tua,
+                'telepon' => $request->telepon,
+                'alamat' => $request->alamat,
+            ]);
 
-                return response()->json(['success' => 'Data santri berhasil diupdate.']);
-            } else {
-                return response()->json(['error' => 'Santri not found'], 404);
-            }
+            return response()->json(['success' => 'Data santri berhasil diupdate.']);
         } catch (\Exception $e) {
             Log::error('Error updating santri: ' . $e->getMessage());
             return response()->json(['error' => 'Terjadi kesalahan pada server'], 500);
         }
     }
-
-
-
 
     /**
      * Remove the specified resource from storage.
@@ -96,6 +117,7 @@ class SantriController extends Controller
             $santri->delete();
             return response()->json(['success' => 'Data santri berhasil dihapus.']);
         } catch (\Exception $e) {
+            Log::error('Error deleting santri: ' . $e->getMessage());
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus data santri.'], 500);
         }
     }

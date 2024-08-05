@@ -31,6 +31,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-floating mb-3">
+                        <select disabled class="form-control" name="jenis_kelamin" id="showJenisKelamin" required>
+                            <option value="" disabled>Pilih Jenis Kelamin</option>
+                            <option value="L">Laki-laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                        <label for="showJenisKelamin">Jenis Kelamin</label>
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
