@@ -17,10 +17,11 @@ return new class extends Migration
             $table->string('nama');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
-            $table->enum('jenis_kelamin',['L','P']);
-            $table->string('orang_tua');
+            $table->enum('jenis_kelamin', ['L', 'P']);
             $table->string('alamat')->nullable();
             $table->string('telepon')->nullable();
+            $table->unsignedBigInteger('id_kelas');
+            $table->foreign('id_kelas')->references('id')->on('kelas')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

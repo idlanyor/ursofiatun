@@ -11,10 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('gurus', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        Schema::create('guru', function (Blueprint $table) {
+    $table->id('id_guru');
+    $table->string('nama');
+    $table->string('tempat_lahir');
+    $table->date('tanggal_lahir');
+    $table->enum('jenis_kelamin', ['L', 'P']);
+    $table->string('alamat')->nullable();
+    $table->string('telepon')->nullable();
+    $table->timestamps();
+});
+
     }
 
     /**
@@ -22,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('gurus');
+        Schema::dropIfExists('guru');
     }
 };
