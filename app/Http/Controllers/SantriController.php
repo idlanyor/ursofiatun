@@ -6,6 +6,7 @@ use App\Models\Santri;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class SantriController extends Controller
 {
@@ -31,32 +32,23 @@ class SantriController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'nama' => 'required|string|max:255',
             'tempat_lahir' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|in:L,P',
             'orang_tua' => 'required|string|max:255',
             'telepon' => 'nullable|string|max:15',
-            'alamat' => 'nullable|string|max:500',
+            'alamat' => 'nullable|string',
         ]);
 
-        try {
-            Santri::create([
-                'nama' => $request->nama,
-                'tempat_lahir' => $request->tempat_lahir,
-                'tanggal_lahir' => Carbon::parse($request->tanggal_lahir)->format('Y-m-d'),
-                'jenis_kelamin' => $request->jenis_kelamin,
-                'orang_tua' => $request->orang_tua,
-                'telepon' => $request->telepon,
-                'alamat' => $request->alamat,
-            ]);
-
-            return redirect()->route('santri.index')->with('success', 'Data santri berhasil disimpan.');
-        } catch (\Exception $e) {
-            Log::error('Error storing santri: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Terjadi kesalahan pada server.');
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
         }
+
+        Santri::create($validator->validated());
+
+        return response()->json(['message' => 'Data berhasil disimpan'], 200);
     }
 
     /**

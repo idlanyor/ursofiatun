@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('kelas', function (Blueprint $table) {
             $table->id();
             $table->string('nama_kelas');
-            $table->string('tahun_ajaran');
+            $table->unsignedBigInteger('id_tahun_ajaran');
+            $table->foreign('id_tahun_ajaran')
+                ->references('id')->on('tahun_ajaran')
+                ->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
