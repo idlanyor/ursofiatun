@@ -15,7 +15,7 @@ class SantriController extends Controller
      */
     public function index()
     {
-        $dataSantri = Santri::all();
+        $dataSantri = Santri::with('kelas')->get();
         return view('module.santri.index', compact('dataSantri'));
     }
 
@@ -33,13 +33,13 @@ class SantriController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama' => 'required|string|max:255',
-            'tempat_lahir' => 'required|string|max:255',
+            'nama' => 'required|string',
+            'tempat_lahir' => 'required|string',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|in:L,P',
-            'orang_tua' => 'required|string|max:255',
-            'telepon' => 'nullable|string|max:15',
             'alamat' => 'nullable|string',
+            'telepon' => 'nullable|string',
+            'id_kelas' => 'required|exists:kelas,id',
         ]);
 
         if ($validator->fails()) {
@@ -77,9 +77,8 @@ class SantriController extends Controller
             'tempat_lahir' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|in:L,P',
-            'orang_tua' => 'required|string|max:255',
-            'telepon' => 'nullable|string|max:15',
             'alamat' => 'nullable|string|max:500',
+            'telepon' => 'nullable|string|max:15',
         ]);
 
         try {
@@ -88,9 +87,8 @@ class SantriController extends Controller
                 'tempat_lahir' => $request->tempat_lahir,
                 'tanggal_lahir' => Carbon::parse($request->tanggal_lahir)->format('Y-m-d'),
                 'jenis_kelamin' => $request->jenis_kelamin,
-                'orang_tua' => $request->orang_tua,
-                'telepon' => $request->telepon,
                 'alamat' => $request->alamat,
+                'telepon' => $request->telepon,
             ]);
 
             return response()->json(['success' => 'Data santri berhasil diupdate.']);

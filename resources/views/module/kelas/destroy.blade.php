@@ -3,11 +3,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="deleteLabel">Hapus Santri</h1>
+                <h1 class="modal-title fs-5" id="deleteLabel">Hapus Kelas</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Anda yakin ingin menghapus data santri ini?</p>
+                <p>Anda yakin ingin menghapus data kelas ini?</p>
             </div>
             <div class="modal-footer">
                 <form id="destroyForm" method="POST">
@@ -31,7 +31,7 @@
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
                 var destroyForm = document.getElementById('destroyForm');
-                destroyForm.setAttribute('action', `/santri/${id}`);
+                destroyForm.setAttribute('action', `/kelas/${id}`);
                 var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
                 deleteModal.show();
             });
@@ -64,7 +64,7 @@
                             toastr.error('Validasi error:\n' + errorMessages);
                         } else {
                             console.error('There was an error deleting the data:', error);
-                            toastr.error('Terjadi kesalahan saat menghapus data santri.');
+                            toastr.error('Terjadi kesalahan saat menghapus data kelas.');
                         }
                     });
             } else {

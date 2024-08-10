@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="showLabel">Detail Santri</h1>
+                <h1 class="modal-title fs-5" id="showLabel">Detail Kelas</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -11,53 +11,18 @@
                     @csrf
                     @method('PUT')
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" disabled name="nama" id="showNama"
-                            placeholder="Nama Santri">
-                        <label for="showNama">Nama Santri</label>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" disabled name="tempat_lahir"
-                                    id="showTempatLahir" placeholder="Tempat Lahir">
-                                <label for="showTempatLahir">Tempat Lahir</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-floating mb-3">
-                                <input type="date" class="form-control" disabled name="tanggal_lahir"
-                                    id="showTanggalLahir" placeholder="Tanggal Lahir">
-                                <label for="showTanggalLahir">Tanggal Lahir</label>
-                            </div>
-                        </div>
+                        <input type="text" class="form-control" name="nama_kelas" id="showNamaKelas"
+                            placeholder="Nama Kelas">
+                        <label for="showNamaKelas">Nama Kelas</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <select disabled class="form-control" name="jenis_kelamin" id="showJenisKelamin" required>
-                            <option value="" disabled>Pilih Jenis Kelamin</option>
-                            <option value="L">Laki-laki</option>
-                            <option value="P">Perempuan</option>
+                        <select class="form-control" name="id_tahun_ajaran" id="showTahunAjaran" required>
+                            <option value="" disabled>Pilih Tahun Ajaran</option>
+                            @foreach ($tahunAjaran as $tahun)
+                                <option value="{{ $tahun->id }}">{{ $tahun->tahun_mulai }} - {{ $tahun->tahun_akhir }}</option>
+                            @endforeach
                         </select>
-                        <label for="showJenisKelamin">Jenis Kelamin</label>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" disabled name="orang_tua" id="showOrangTua"
-                                    placeholder="Orang Tua">
-                                <label for="showOrangTua">Orang Tua</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" disabled name="telepon" id="showTelepon"
-                                    placeholder="Telepon">
-                                <label for="showTelepon">Telepon</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <textarea name="alamat" id="showAlamat" cols="30" rows="10" class="form-control" disabled></textarea>
-                        <label for="showAlamat">Alamat</label>
+                        <label for="showTahunAjaran">Tahun Ajaran</label>
                     </div>
                 </form>
             </div>
@@ -73,24 +38,16 @@
         document.querySelectorAll('.show-btn').forEach(button => {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
-                axios.get(`/santri/${id}/edit`)
+                axios.get(`/kelas/${id}/edit`)
                     .then(response => {
                         var data = response.data;
-                        document.getElementById('showNama').value = data.nama;
-                        document.getElementById('showTempatLahir').value = data
-                            .tempat_lahir;
-                        document.getElementById('showTanggalLahir').value = data
-                            .tanggal_lahir;
-                        document.getElementById('showOrangTua').value = data.orang_tua;
-                        document.getElementById('showTelepon').value = data.telepon ||
-                            ''; // nilai null menjadi string kosong
-                        document.getElementById('showAlamat').value = data.alamat ||
-                            ''; // nilai null menjadi string kosong
-                        showForm.setAttribute('action', `/santri/${id}`);
+                        document.getElementById('showNamaKelas').value = data.nama_kelas;
+                        document.getElementById('showTahunAjaran').value = data.id_tahun_ajaran;
+                        showForm.setAttribute('action', `/kelas/${id}`);
                     })
                     .catch(error => {
                         console.error('There was an error fetching the data:', error);
-                        alert('Terjadi kesalahan saat mengambil data santri.');
+                        alert('Terjadi kesalahan saat mengambil data kelas.');
                     });
             });
         });

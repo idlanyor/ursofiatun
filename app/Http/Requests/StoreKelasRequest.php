@@ -11,7 +11,7 @@ class StoreKelasRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreKelasRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nama_kelas' => 'required|string|max:255',
+            'id_tahun_ajaran' => 'required|integer|exists:tahun_ajaran,id',
         ];
     }
 }

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\TahunAjaran;
 use App\Http\Requests\StoreKelasRequest;
 use App\Http\Requests\UpdateKelasRequest;
+use Illuminate\Http\Request;
 
 class KelasController extends Controller
 {
@@ -13,7 +15,9 @@ class KelasController extends Controller
      */
     public function index()
     {
-        //
+        $dataKelas = Kelas::with('tahunAjaran')->get();
+        $tahunAjaran = TahunAjaran::all();
+        return view('module.kelas.index', compact('dataKelas', 'tahunAjaran'));
     }
 
     /**
@@ -21,7 +25,8 @@ class KelasController extends Controller
      */
     public function create()
     {
-        //
+        $tahunAjaran = TahunAjaran::all();
+        return view('module.kelas.create', compact('tahunAjaran'));
     }
 
     /**
@@ -29,7 +34,8 @@ class KelasController extends Controller
      */
     public function store(StoreKelasRequest $request)
     {
-        //
+        $kelas = Kelas::create($request->validated());
+        return redirect()->route('kelas.index')->with('success', 'Data Kelas berhasil ditambahkan.');
     }
 
     /**
@@ -37,7 +43,7 @@ class KelasController extends Controller
      */
     public function show(Kelas $kelas)
     {
-        //
+        return view('module.kelas.show', compact('kelas'));
     }
 
     /**
@@ -45,7 +51,8 @@ class KelasController extends Controller
      */
     public function edit(Kelas $kelas)
     {
-        //
+        $tahunAjaran = TahunAjaran::all();
+        return view('module.kelas.edit', compact('kelas', 'tahunAjaran'));
     }
 
     /**
@@ -53,7 +60,8 @@ class KelasController extends Controller
      */
     public function update(UpdateKelasRequest $request, Kelas $kelas)
     {
-        //
+        $kelas->update($request->validated());
+        return redirect()->route('kelas.index')->with('success', 'Data Kelas berhasil diperbarui.');
     }
 
     /**
@@ -61,6 +69,16 @@ class KelasController extends Controller
      */
     public function destroy(Kelas $kelas)
     {
-        //
+        $kelas->delete();
+        return redirect()->route('kelas.index')->with('success', 'Data Kelas berhasil dihapus.');
+    }
+
+    /**
+     * Get the specified resource for AJAX requests.
+     */
+    public function getKelas($id)
+    {
+        $kelas = Kelas::with('tahunAjaran')->findOrFail($id);
+        return response()->json($kelas);
     }
 }
