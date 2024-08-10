@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\GuruController;
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SantriController;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +17,28 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     //Santri
     Route::resource('/santri', SantriController::class)->names([
+        'index' => 'santri.index',
+        'create' => 'santri.create',
+        'store' => 'santri.store',
+        'show' => 'santri.show',
+        'edit' => 'santri.edit',
+        'update' => 'santri.update',
+        'destroy' => 'santri.destroy',
+    ]);
+    Route::get('/getsantri/{id}', [SantriController::class, 'getSantri']);
+    //Guru
+    Route::resource('/santri', GuruController::class)->names([
+        'index' => 'santri.index',
+        'create' => 'santri.create',
+        'store' => 'santri.store',
+        'show' => 'santri.show',
+        'edit' => 'santri.edit',
+        'update' => 'santri.update',
+        'destroy' => 'santri.destroy',
+    ]);
+    Route::get('/getsantri/{id}', [SantriController::class, 'getSantri']);
+    //Kelas
+    Route::resource('/santri', KelasController::class)->names([
         'index' => 'santri.index',
         'create' => 'santri.create',
         'store' => 'santri.store',
