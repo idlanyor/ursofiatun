@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\TahunAjaran;
 
 class TahunAjaranSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class TahunAjaranSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        TahunAjaran::factory()->count(10)->create();
     }
 }

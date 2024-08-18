@@ -17,7 +17,9 @@ class TahunAjaranFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'tahun_mulai' => $this->faker->year(),
+            'tahun_akhir' => $this->faker->year(),
+            'status' => $this->faker->randomElement(['aktif', 'tidak aktif']),
         ];
     }
 }

@@ -17,7 +17,10 @@ class AbsensiFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'tanggal' => $this->faker->date(),
+            'jenis_absensi' => $this->faker->randomElement(['Hadir', 'Sakit', 'Izin', 'Alfa']),
+            'keterangan' => $this->faker->sentence(),
+            'santri_id' => \App\Models\Santri::factory(),
         ];
     }
 }

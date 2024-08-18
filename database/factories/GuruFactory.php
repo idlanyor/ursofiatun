@@ -17,7 +17,13 @@ class GuruFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nama' => $this->faker->name(),
+            'tempat_lahir' => $this->faker->city(),
+            'tanggal_lahir' => $this->faker->date(),
+            'jenis_kelamin' => $this->faker->randomElement(['L', 'P']),
+            'alamat' => $this->faker->address(),
+            'telepon' => $this->faker->phoneNumber(),
+            'id_user' => \App\Models\User::factory(),
         ];
     }
 }

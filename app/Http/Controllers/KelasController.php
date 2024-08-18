@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use App\Models\TahunAjaran;
-use App\Http\Requests\StoreKelasRequest;
-use App\Http\Requests\UpdateKelasRequest;
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
@@ -34,7 +32,7 @@ class KelasController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreKelasRequest $request)
+    public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'nama_kelas' => 'required|string|max:255',
@@ -72,7 +70,7 @@ class KelasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateKelasRequest $request, Kelas $kelas)
+    public function update(Request $request, Kelas $kelas)
     {
         $request->validate([
             'nama_kelas' => 'required|string|max:255',

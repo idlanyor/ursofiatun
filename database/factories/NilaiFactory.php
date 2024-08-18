@@ -17,7 +17,11 @@ class NilaiFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'ulangan_1' => $this->faker->randomFloat(2, 0, 100),
+            'ulangan_2' => $this->faker->randomFloat(2, 0, 100),
+            'ulangan_3' => $this->faker->randomFloat(2, 0, 100),
+            'santri_id' => \App\Models\Santri::factory(),
+            'mapel_id' => \App\Models\MataPelajaran::factory(),
         ];
     }
 }

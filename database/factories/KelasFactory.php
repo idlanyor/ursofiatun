@@ -17,7 +17,8 @@ class KelasFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nama_kelas' => $this->faker->word(),
+            'id_tahun_ajaran' => \App\Models\TahunAjaran::factory(),
         ];
     }
 }

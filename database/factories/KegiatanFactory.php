@@ -17,7 +17,10 @@ class KegiatanFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nama_kegiatan' => $this->faker->word(),
+            'penanggung_jawab' => $this->faker->name(),
+            'id_tahun_ajaran' => \App\Models\TahunAjaran::factory(),
+            'periode' => $this->faker->randomElement(['Mingguan', 'Bulanan', 'Tahunan']),
         ];
     }
 }

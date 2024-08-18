@@ -17,7 +17,10 @@ class OrangTuaFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nama' => $this->faker->name(),
+            'alamat' => $this->faker->address(),
+            'telepon' => $this->faker->phoneNumber(),
+            'santri_id' => \App\Models\Santri::factory(),
         ];
     }
 }
