@@ -1,5 +1,5 @@
 @extends('template.scaffold')
-@section('title', 'Data Santri')
+@section('title', 'Dashboard')
 @section('content')
 
     <!-- Earnings (Monthly) Card Example -->

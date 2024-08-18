@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editLabel">Edit Santri</h1>
+                <h1 class="modal-title fs-5" id="editLabel">Edit Guru</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -12,8 +12,8 @@
                     @method('PUT')
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="nama" id="editNama"
-                            placeholder="Nama Santri">
-                        <label for="editNama">Nama Santri</label>
+                            placeholder="Nama Guru">
+                        <label for="editNama">Nama Guru</label>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -42,9 +42,9 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="orang_tua" id="editOrangTua"
-                                    placeholder="Orang Tua">
-                                <label for="editOrangTua">Orang Tua</label>
+                                <input type="text" class="form-control" name="alamat" id="editAlamat"
+                                    placeholder="Alamat">
+                                <label for="editAlamat">Alamat</label>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -54,10 +54,6 @@
                                 <label for="editTelepon">Telepon</label>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <textarea name="alamat" id="editAlamat" cols="30" rows="10" class="form-control"></textarea>
-                        <label for="editAlamat">Alamat</label>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -78,7 +74,7 @@
         document.querySelectorAll('.edit-btn').forEach(button => {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
-                axios.get(`/santri/${id}/edit`)
+                axios.get(`/guru/${id}/edit`)
                     .then(response => {
                         var data = response.data;
                         document.getElementById('editNama').value = data.nama;
@@ -88,16 +84,15 @@
                             .tanggal_lahir;
                         document.getElementById('editJenisKelamin').value = data
                             .jenis_kelamin;
-                        document.getElementById('editOrangTua').value = data.orang_tua;
-                        document.getElementById('editTelepon').value = data.telepon ||
-                            ''; // nilai null menjadi string kosong
                         document.getElementById('editAlamat').value = data.alamat ||
                             ''; // nilai null menjadi string kosong
-                        editForm.setAttribute('action', `/santri/${id}`);
+                        document.getElementById('editTelepon').value = data.telepon ||
+                            ''; // nilai null menjadi string kosong
+                        editForm.setAttribute('action', `/guru/${id}`);
                     })
                     .catch(error => {
                         console.error('There was an error fetching the data:', error);
-                        toastr.error('Terjadi kesalahan saat mengambil data santri.');
+                        toastr.error('Terjadi kesalahan saat mengambil data guru.');
                     });
             });
         });
@@ -107,7 +102,7 @@
             var formData = new FormData(editForm);
             var id = editForm.getAttribute('action').split('/').pop();
 
-            axios.post(`/santri/${id}`, formData, {
+            axios.post(`/guru/${id}`, formData, {
                     headers: {
                         'X-CSRF-TOKEN': formData.get('_token'),
                         'X-HTTP-Method-Override': 'PUT'
@@ -130,7 +125,7 @@
                     } else {
                         console.log(error);
                         console.error('There was an error updating the data:', error);
-                        toastr.error('Terjadi kesalahan saat memperbarui data santri.');
+                        toastr.error('Terjadi kesalahan saat memperbarui data guru.');
                     }
                 });
         });

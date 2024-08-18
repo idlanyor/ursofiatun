@@ -3,64 +3,77 @@
 namespace App\Http\Controllers;
 
 use App\Models\MataPelajaran;
-use App\Http\Requests\StoreMataPelajaranRequest;
-use App\Http\Requests\UpdateMataPelajaranRequest;
+use App\Models\Guru;
+use App\Models\Kelas;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class MataPelajaranController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $guru = Guru::all();
+        $kelas = Kelas::all();
+        $dataMapel = MataPelajaran::with(['guru', 'kelas'])->get();
+        return view('module.mapel.index', compact('dataMapel', 'guru', 'kelas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $guru = Guru::all();
+        $kelas = Kelas::all();
+        return view('module.mapel.create', compact('guru', 'kelas'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreMataPelajaranRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'kode_mapel' => 'required|string|max:255',
+            'nama_mapel' => 'required|string|max:255',
+            'guru_id' => 'required|integer|exists:guru,id_guru',
+            'kelas_id' => 'required|integer|exists:kelas,id',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        MataPelajaran::create($validator->validated());
+
+        return response()->json(['message' => 'Data berhasil disimpan'], 200);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(MataPelajaran $mataPelajaran)
     {
-        //
+        return view('module.mapel.show', compact('mataPelajaran'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(MataPelajaran $mataPelajaran)
     {
-        //
+        $guru = Guru::all();
+        $kelas = Kelas::all();
+        return view('module.mapel.edit', compact('mataPelajaran', 'guru', 'kelas'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateMataPelajaranRequest $request, MataPelajaran $mataPelajaran)
+    public function update(Request $request, MataPelajaran $mataPelajaran)
     {
-        //
+        $mataPelajaran->update($request->validate([
+            'kode_mapel' => 'required|string|max:255',
+            'nama_mapel' => 'required|string|max:255',
+            'guru_id' => 'required|integer',
+            'kelas_id' => 'required|integer',
+        ]));
+        return redirect()->route('matapelajaran.index')->with('success', 'Mata Pelajaran berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(MataPelajaran $mataPelajaran)
     {
-        //
+         try {
+            $mataPelajaran->delete();
+            return response()->json(['success' => 'Data mapel berhasil dihapus.']);
+        } catch (\Exception $e) {
+            Log::error('Error deleting mapel: ' . $e->getMessage());
+            return response()->json(['error' => 'Terjadi kesalahan saat menghapus data mapel.'], 500);
+        }
     }
 }

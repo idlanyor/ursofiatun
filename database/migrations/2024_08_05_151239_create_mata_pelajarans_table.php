@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('mata_pelajaran', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_mapel');
+            $table->string('nama_mapel');
+            $table->unsignedBigInteger('guru_id');
+            $table->foreign('guru_id')->references('id_guru')->on('guru')->onDelete('cascade');
+            $table->unsignedBigInteger('kelas_id');
+            $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('cascade');
             $table->timestamps();
         });
     }

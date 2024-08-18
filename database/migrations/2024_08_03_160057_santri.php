@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->string('orang_tua');
             $table->string('alamat')->nullable();
             $table->string('telepon')->nullable();
             $table->unsignedBigInteger('id_kelas');

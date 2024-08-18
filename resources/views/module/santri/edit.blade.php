@@ -11,22 +11,19 @@
                     @csrf
                     @method('PUT')
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="nama" id="editNama"
-                            placeholder="Nama Santri">
+                        <input type="text" class="form-control" name="nama" id="editNama" placeholder="Nama Santri">
                         <label for="editNama">Nama Santri</label>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="tempat_lahir" id="editTempatLahir"
-                                    placeholder="Tempat Lahir">
+                                <input type="text" class="form-control" name="tempat_lahir" id="editTempatLahir" placeholder="Tempat Lahir">
                                 <label for="editTempatLahir">Tempat Lahir</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="date" class="form-control" name="tanggal_lahir" id="editTanggalLahir"
-                                    placeholder="Tanggal Lahir">
+                                <input type="date" class="form-control" name="tanggal_lahir" id="editTanggalLahir" placeholder="Tanggal Lahir">
                                 <label for="editTanggalLahir">Tanggal Lahir</label>
                             </div>
                         </div>
@@ -42,21 +39,19 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="orang_tua" id="editOrangTua"
-                                    placeholder="Orang Tua">
+                                <input type="text" class="form-control" name="orang_tua" id="editOrangTua" placeholder="Orang Tua">
                                 <label for="editOrangTua">Orang Tua</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="telepon" id="editTelepon"
-                                    placeholder="Telepon">
+                                <input type="text" class="form-control" name="telepon" id="editTelepon" placeholder="Telepon">
                                 <label for="editTelepon">Telepon</label>
                             </div>
                         </div>
                     </div>
                     <div class="form-floating mb-3">
-                        <textarea name="alamat" id="editAlamat" cols="30" rows="10" class="form-control"></textarea>
+                        <input type="text" class="form-control" name="alamat" id="editAlamat" placeholder="Alamat">
                         <label for="editAlamat">Alamat</label>
                     </div>
                     <div class="modal-footer">
@@ -82,17 +77,12 @@
                     .then(response => {
                         var data = response.data;
                         document.getElementById('editNama').value = data.nama;
-                        document.getElementById('editTempatLahir').value = data
-                            .tempat_lahir;
-                        document.getElementById('editTanggalLahir').value = data
-                            .tanggal_lahir;
-                        document.getElementById('editJenisKelamin').value = data
-                            .jenis_kelamin;
+                        document.getElementById('editTempatLahir').value = data.tempat_lahir;
+                        document.getElementById('editTanggalLahir').value = data.tanggal_lahir;
+                        document.getElementById('editJenisKelamin').value = data.jenis_kelamin;
                         document.getElementById('editOrangTua').value = data.orang_tua;
-                        document.getElementById('editTelepon').value = data.telepon ||
-                            ''; // nilai null menjadi string kosong
-                        document.getElementById('editAlamat').value = data.alamat ||
-                            ''; // nilai null menjadi string kosong
+                        document.getElementById('editTelepon').value = data.telepon || '';
+                        document.getElementById('editAlamat').value = data.alamat || '';
                         editForm.setAttribute('action', `/santri/${id}`);
                     })
                     .catch(error => {

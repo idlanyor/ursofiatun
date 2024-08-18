@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="showLabel">Detail Santri</h1>
+                <h1 class="modal-title fs-5" id="showLabel">Detail Guru</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -12,8 +12,8 @@
                     @method('PUT')
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" disabled name="nama" id="showNama"
-                            placeholder="Nama Santri">
-                        <label for="showNama">Nama Santri</label>
+                            placeholder="Nama Guru">
+                        <label for="showNama">Nama Guru</label>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -42,9 +42,9 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" disabled name="orang_tua" id="showOrangTua"
-                                    placeholder="Orang Tua">
-                                <label for="showOrangTua">Orang Tua</label>
+                                <input type="text" class="form-control" disabled name="alamat" id="showAlamat"
+                                    placeholder="Alamat">
+                                <label for="showAlamat">Alamat</label>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -54,10 +54,6 @@
                                 <label for="showTelepon">Telepon</label>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <textarea name="alamat" id="showAlamat" cols="30" rows="10" class="form-control" disabled></textarea>
-                        <label for="showAlamat">Alamat</label>
                     </div>
                 </form>
             </div>
@@ -73,7 +69,7 @@
         document.querySelectorAll('.show-btn').forEach(button => {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
-                axios.get(`/santri/${id}/edit`)
+                axios.get(`/guru/${id}/edit`)
                     .then(response => {
                         var data = response.data;
                         document.getElementById('showNama').value = data.nama;
@@ -81,16 +77,16 @@
                             .tempat_lahir;
                         document.getElementById('showTanggalLahir').value = data
                             .tanggal_lahir;
-                        document.getElementById('showOrangTua').value = data.orang_tua;
-                        document.getElementById('showTelepon').value = data.telepon ||
-                            ''; // nilai null menjadi string kosong
+                        document.getElementById('showJenisKelamin').value = data
+                            .jenis_kelamin;
                         document.getElementById('showAlamat').value = data.alamat ||
                             ''; // nilai null menjadi string kosong
-                        showForm.setAttribute('action', `/santri/${id}`);
+                        document.getElementById('showTelepon').value = data.telepon ||
+                            ''; // nilai null menjadi string kosong
                     })
                     .catch(error => {
                         console.error('There was an error fetching the data:', error);
-                        alert('Terjadi kesalahan saat mengambil data santri.');
+                        alert('Terjadi kesalahan saat mengambil data guru.');
                     });
             });
         });

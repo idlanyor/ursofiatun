@@ -1,4 +1,4 @@
-<!-- Modal show -->
+<!-- Modal Edit -->
 <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -11,18 +11,21 @@
                     @csrf
                     @method('PUT')
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="nama_kelas" id="showNamaKelas"
+                        <input disabled type="text" class="form-control" name="nama_kelas" id="showNamaKelas"
                             placeholder="Nama Kelas">
                         <label for="showNamaKelas">Nama Kelas</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <select class="form-control" name="id_tahun_ajaran" id="showTahunAjaran" required>
+                        <select disabled class="form-control" name="id_tahun_ajaran" id="showTahunAjaran" required>
                             <option value="" disabled>Pilih Tahun Ajaran</option>
                             @foreach ($tahunAjaran as $tahun)
                                 <option value="{{ $tahun->id }}">{{ $tahun->tahun_mulai }} - {{ $tahun->tahun_akhir }}</option>
                             @endforeach
                         </select>
                         <label for="showTahunAjaran">Tahun Ajaran</label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
@@ -33,6 +36,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        var showForm = document.getElementById('showForm');
         var showModal = new bootstrap.Modal(document.getElementById('showModal'));
 
         document.querySelectorAll('.show-btn').forEach(button => {
@@ -41,15 +45,16 @@
                 axios.get(`/kelas/${id}/edit`)
                     .then(response => {
                         var data = response.data;
-                        document.getElementById('showNamaKelas').value = data.nama_kelas;
-                        document.getElementById('showTahunAjaran').value = data.id_tahun_ajaran;
+                        document.getElementById('showNamaKelas').value = data.kelas.nama_kelas;
+                        document.getElementById('showTahunAjaran').value = data.kelas.id_tahun_ajaran;
                         showForm.setAttribute('action', `/kelas/${id}`);
                     })
                     .catch(error => {
                         console.error('There was an error fetching the data:', error);
-                        alert('Terjadi kesalahan saat mengambil data kelas.');
+                        toastr.error('Terjadi kesalahan saat mengambil data kelas.');
                     });
             });
         });
+
     });
 </script>

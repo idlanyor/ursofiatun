@@ -11,7 +11,6 @@ class TahunAjaran extends Model
 
     protected $table = 'tahun_ajaran';
 
-    protected $primaryKey = 'id';
 
     protected $fillable = [
         'tahun_mulai',

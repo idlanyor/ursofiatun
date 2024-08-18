@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id('id_kegiatan');
             $table->string('nama_kegiatan');
             $table->string('penanggung_jawab');
-            $table->string('peserta');
             $table->unsignedBigInteger('id_tahun_ajaran');
             $table->foreign('id_tahun_ajaran')->references('id')->on('tahun_ajaran')->onDelete('cascade')->onUpdate('cascade');
-            $table->enum('periode', ['Harian', 'Mingguan', 'Bulanan', 'Tahunan']);
+            $table->enum('periode', ['Mingguan', 'Bulanan', 'Tahunan']);
             $table->timestamps();
         });
     }

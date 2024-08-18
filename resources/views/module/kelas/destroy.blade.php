@@ -1,16 +1,16 @@
 <!-- Modal Hapus -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+<div class="modal fade" id="deleteModalKelas" tabindex="-1" aria-labelledby="deleteLabelKelas" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="deleteLabel">Hapus Kelas</h1>
+                <h1 class="modal-title fs-5" id="deleteLabelKelas">Hapus Kelas</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>Anda yakin ingin menghapus data kelas ini?</p>
             </div>
             <div class="modal-footer">
-                <form id="destroyForm" method="POST">
+                <form id="destroyFormKelas" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -23,29 +23,27 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var destroyForm = document.getElementById('destroyForm');
-        var destroyModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+        var destroyFormKelas = document.getElementById('destroyFormKelas');
+        var deleteModalKelas = new bootstrap.Modal(document.getElementById('deleteModalKelas'));
 
         // Modal Destroy
         document.querySelectorAll('.delete-btn').forEach(button => {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
-                var destroyForm = document.getElementById('destroyForm');
-                destroyForm.setAttribute('action', `/kelas/${id}`);
-                var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
-                deleteModal.show();
+                destroyFormKelas.setAttribute('action', `/kelas/${id}`);
+                deleteModalKelas.show();
             });
         });
         // Handle form submission for deleting
-        document.getElementById('destroyForm').addEventListener('submit', function(event) {
+        document.getElementById('destroyFormKelas').addEventListener('submit', function(event) {
             event.preventDefault();
-            var destroyForm = document.getElementById('destroyForm');
-            var actionUrl = destroyForm.getAttribute('action');
+            var destroyFormKelas = document.getElementById('destroyFormKelas');
+            var actionUrl = destroyFormKelas.getAttribute('action');
 
             if (actionUrl) {
                 axios.delete(actionUrl, {
                         headers: {
-                            'X-CSRF-TOKEN': destroyForm.querySelector('input[name="_token"]').value
+                            'X-CSRF-TOKEN': destroyFormKelas.querySelector('input[name="_token"]').value
                         }
                     })
                     .then(response => {

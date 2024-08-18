@@ -1,16 +1,16 @@
 <!-- Modal Hapus -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+<div class="modal fade" id="deleteModalMapel" tabindex="-1" aria-labelledby="deleteLabelMapel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="deleteLabel">Hapus Santri</h1>
+                <h1 class="modal-title fs-5" id="deleteLabelMapel">Hapus Mapel</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Anda yakin ingin menghapus data santri ini?</p>
+                <p>Anda yakin ingin menghapus data mapel ini?</p>
             </div>
             <div class="modal-footer">
-                <form id="destroyForm" method="POST">
+                <form id="destroyFormMapel" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -20,32 +20,30 @@
         </div>
     </div>
 </div>
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var destroyForm = document.getElementById('destroyForm');
-        var destroyModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+        var destroyFormMapel = document.getElementById('destroyFormMapel');
+        var deleteModalMapel = new bootstrap.Modal(document.getElementById('deleteModalMapel'));
 
         // Modal Destroy
         document.querySelectorAll('.delete-btn').forEach(button => {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
-                var destroyForm = document.getElementById('destroyForm');
-                destroyForm.setAttribute('action', `/santri/${id}`);
-                var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
-                deleteModal.show();
+                destroyFormMapel.setAttribute('action', `/matapelajaran/${id}`);
+                deleteModalMapel.show();
             });
         });
+        
         // Handle form submission for deleting
-        document.getElementById('destroyForm').addEventListener('submit', function(event) {
+        document.getElementById('destroyFormMapel').addEventListener('submit', function(event) {
             event.preventDefault();
-            var destroyForm = document.getElementById('destroyForm');
-            var actionUrl = destroyForm.getAttribute('action');
+            var destroyFormMapel = document.getElementById('destroyFormMapel');
+            var actionUrl = destroyFormMapel.getAttribute('action');
 
             if (actionUrl) {
                 axios.delete(actionUrl, {
                         headers: {
-                            'X-CSRF-TOKEN': destroyForm.querySelector('input[name="_token"]').value
+                            'X-CSRF-TOKEN': destroyFormMapel.querySelector('input[name="_token"]').value
                         }
                     })
                     .then(response => {
@@ -64,7 +62,7 @@
                             toastr.error('Validasi error:\n' + errorMessages);
                         } else {
                             console.error('There was an error deleting the data:', error);
-                            toastr.error('Terjadi kesalahan saat menghapus data santri.');
+                            toastr.error('Terjadi kesalahan saat menghapus data mapel.');
                         }
                     });
             } else {

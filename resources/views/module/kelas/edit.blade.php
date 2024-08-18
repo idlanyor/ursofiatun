@@ -1,13 +1,13 @@
 <!-- Modal Edit -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editModalKelas" tabindex="-1" aria-labelledby="editLabelKelas" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editLabel">Edit Kelas</h1>
+                <h1 class="modal-title fs-5" id="editLabelKelas">Edit Kelas</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="editForm">
+                <form id="editFormKelas">
                     @csrf
                     @method('PUT')
                     <div class="form-floating mb-3">
@@ -37,8 +37,8 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var editForm = document.getElementById('editForm');
-        var editModal = new bootstrap.Modal(document.getElementById('editModal'));
+        var editFormKelas = document.getElementById('editFormKelas');
+        var editModalKelas = new bootstrap.Modal(document.getElementById('editModalKelas'));
 
         document.querySelectorAll('.edit-btn').forEach(button => {
             button.addEventListener('click', function() {
@@ -46,9 +46,9 @@
                 axios.get(`/kelas/${id}/edit`)
                     .then(response => {
                         var data = response.data;
-                        document.getElementById('editNamaKelas').value = data.nama_kelas;
-                        document.getElementById('editTahunAjaran').value = data.id_tahun_ajaran;
-                        editForm.setAttribute('action', `/kelas/${id}`);
+                        document.getElementById('editNamaKelas').value = data.kelas.nama_kelas;
+                        document.getElementById('editTahunAjaran').value = data.kelas.id_tahun_ajaran;
+                        editFormKelas.setAttribute('action', `/kelas/${id}`);
                     })
                     .catch(error => {
                         console.error('There was an error fetching the data:', error);
@@ -57,10 +57,10 @@
             });
         });
 
-        editForm.addEventListener('submit', function(event) {
+        editFormKelas.addEventListener('submit', function(event) {
             event.preventDefault();
-            var formData = new FormData(editForm);
-            var id = editForm.getAttribute('action').split('/').pop();
+            var formData = new FormData(editFormKelas);
+            var id = editFormKelas.getAttribute('action').split('/').pop();
 
             axios.post(`/kelas/${id}`, formData, {
                     headers: {

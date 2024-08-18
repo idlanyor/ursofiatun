@@ -6,7 +6,9 @@ use App\Models\Kelas;
 use App\Models\TahunAjaran;
 use App\Http\Requests\StoreKelasRequest;
 use App\Http\Requests\UpdateKelasRequest;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class KelasController extends Controller
 {
@@ -34,25 +36,37 @@ class KelasController extends Controller
      */
     public function store(StoreKelasRequest $request)
     {
-        $kelas = Kelas::create($request->validated());
-        return redirect()->route('kelas.index')->with('success', 'Data Kelas berhasil ditambahkan.');
+        $validator = Validator::make($request->all(), [
+            'nama_kelas' => 'required|string|max:255',
+            'id_tahun_ajaran' => 'required|exists:tahun_ajaran,id',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        Kelas::create($validator->validated());
+
+        return response()->json(['message' => 'Data Kelas berhasil ditambahkan'], 200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Kelas $kelas)
+    public function show($id)
     {
-        return view('module.kelas.show', compact('kelas'));
+        $kelas = Kelas::with('tahunAjaran')->findOrFail($id);
+        return response()->json($kelas);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kelas $kelas)
+    public function edit($id)
     {
+        $kelas = Kelas::with('tahunAjaran')->findOrFail($id);
         $tahunAjaran = TahunAjaran::all();
-        return view('module.kelas.edit', compact('kelas', 'tahunAjaran'));
+        return response()->json(compact('kelas', 'tahunAjaran'));
     }
 
     /**
@@ -60,8 +74,18 @@ class KelasController extends Controller
      */
     public function update(UpdateKelasRequest $request, Kelas $kelas)
     {
-        $kelas->update($request->validated());
-        return redirect()->route('kelas.index')->with('success', 'Data Kelas berhasil diperbarui.');
+        $request->validate([
+            'nama_kelas' => 'required|string|max:255',
+            'id_tahun_ajaran' => 'required|exists:tahun_ajaran,id',
+        ]);
+
+        try {
+            $kelas->update($request->validated());
+            return response()->json(['success' => 'Data Kelas berhasil diperbarui.']);
+        } catch (\Exception $e) {
+            Log::error('Error updating kelas: ' . $e->getMessage());
+            return response()->json(['error' => 'Terjadi kesalahan pada server'], 500);
+        }
     }
 
     /**
@@ -69,8 +93,13 @@ class KelasController extends Controller
      */
     public function destroy(Kelas $kelas)
     {
-        $kelas->delete();
-        return redirect()->route('kelas.index')->with('success', 'Data Kelas berhasil dihapus.');
+        try {
+            $kelas->delete();
+            return response()->json(['success' => 'Data Kelas berhasil dihapus.']);
+        } catch (\Exception $e) {
+            Log::error('Error deleting kelas: ' . $e->getMessage());
+            return response()->json(['error' => 'Terjadi kesalahan saat menghapus data kelas.'], 500);
+        }
     }
 
     /**

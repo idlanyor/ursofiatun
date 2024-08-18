@@ -30,46 +30,39 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
-
-    <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a
-            class="nav-link collapsed"
-            href="#"
-            data-toggle="collapse"
-            data-target="#collapseTwo"
-            aria-expanded="true"
-            aria-controls="collapseTwo"
+            class="nav-link"
+            href="{{ route('kelas.index') }}"
         >
-            <i class="fas fa-fw fa-database"></i>
-            <span>Master data</span>
-        </a>
-        <div
-            id="collapseTwo"
-            class="collapse"
-            aria-labelledby="headingTwo"
-            data-parent="#accordionSidebar"
-        >
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a
-                    class="collapse-item"
-                    href="{{ route('santri.index') }}"
-                >Data Santri</a>
-                <a
-                    class="collapse-item"
-                    href="{{ route('guru.index') }}"
-                >Data Guru</a>
-                <a
-                    class="collapse-item"
-                    href="{{ route('kelas.index') }}"
-                >Data Kelas</a>
-                <a
-                    class="collapse-item"
-                    href="{{ route('matapelajaran.index') }}"
-                >Data Mata Pelajaran</a>
-            </div>
-        </div>
+            <i class="fas fa-fw fa-calendar-alt"></i>
+            <span>Kelas</span></a>
     </li>
+    <li class="nav-item">
+        <a
+            class="nav-link"
+            href="{{ route('guru.index') }}"
+        >
+            <i class="fas fa-fw fa-calendar-alt"></i>
+            <span>Guru</span></a>
+    </li>
+    <li class="nav-item">
+        <a
+            class="nav-link"
+            href="{{ route('santri.index') }}"
+        >
+            <i class="fas fa-fw fa-calendar-alt"></i>
+            <span>Data Santri</span></a>
+    </li>
+    <li class="nav-item">
+        <a
+            class="nav-link"
+            href="{{ route('matapelajaran.index') }}"
+        >
+            <i class="fas fa-fw fa-calendar-alt"></i>
+            <span>Mata Pelajaran</span></a>
+    </li>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider">

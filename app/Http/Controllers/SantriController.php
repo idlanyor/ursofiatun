@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Santri;
+use App\Models\Kelas;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -24,7 +25,9 @@ class SantriController extends Controller
      */
     public function create()
     {
-        return view('module.santri.create');
+        $dataKelas = Kelas::with('tahunAjaran')->get();
+        // dd($dataKelas);
+        return view('module.santri.create', compact('dataKelas'));
     }
 
     /**
@@ -37,6 +40,7 @@ class SantriController extends Controller
             'tempat_lahir' => 'required|string',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|in:L,P',
+            'orang_tua' => 'nullable|string',
             'alamat' => 'nullable|string',
             'telepon' => 'nullable|string',
             'id_kelas' => 'required|exists:kelas,id',
@@ -77,6 +81,7 @@ class SantriController extends Controller
             'tempat_lahir' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|in:L,P',
+            'orang_tua' => 'nullable|string',
             'alamat' => 'nullable|string|max:500',
             'telepon' => 'nullable|string|max:15',
         ]);
@@ -87,6 +92,7 @@ class SantriController extends Controller
                 'tempat_lahir' => $request->tempat_lahir,
                 'tanggal_lahir' => Carbon::parse($request->tanggal_lahir)->format('Y-m-d'),
                 'jenis_kelamin' => $request->jenis_kelamin,
+                'orang_tua' => $request->orang_tua,
                 'alamat' => $request->alamat,
                 'telepon' => $request->telepon,
             ]);
