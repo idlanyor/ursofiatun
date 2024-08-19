@@ -35,7 +35,7 @@
             class="nav-link"
             href="{{ route('kelas.index') }}"
         >
-            <i class="fas fa-fw fa-calendar-alt"></i>
+            <i class="fas fa-fw fa-school"></i>
             <span>Kelas</span></a>
     </li>
     <li class="nav-item">
@@ -43,7 +43,7 @@
             class="nav-link"
             href="{{ route('guru.index') }}"
         >
-            <i class="fas fa-fw fa-calendar-alt"></i>
+            <i class="fas fa-fw fa-chalkboard-teacher"></i>
             <span>Guru</span></a>
     </li>
     <li class="nav-item">
@@ -51,7 +51,7 @@
             class="nav-link"
             href="{{ route('santri.index') }}"
         >
-            <i class="fas fa-fw fa-calendar-alt"></i>
+            <i class="fas fa-fw fa-user-graduate"></i>
             <span>Data Santri</span></a>
     </li>
     <li class="nav-item">
@@ -59,7 +59,7 @@
             class="nav-link"
             href="{{ route('matapelajaran.index') }}"
         >
-            <i class="fas fa-fw fa-calendar-alt"></i>
+            <i class="fas fa-fw fa-book"></i>
             <span>Mata Pelajaran</span></a>
     </li>
 
