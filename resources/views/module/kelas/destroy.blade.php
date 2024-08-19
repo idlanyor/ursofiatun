@@ -1,5 +1,5 @@
 <!-- Modal Hapus -->
-<div class="modal fade" id="deleteModalKelas" tabindex="-1" aria-labelledby="deleteLabelKelas" aria-hidden="true">
+<div class="modal fade" id="destroyModalKelas" tabindex="-1" aria-labelledby="deleteLabelKelas" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -24,7 +24,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var destroyFormKelas = document.getElementById('destroyFormKelas');
-        var deleteModalKelas = new bootstrap.Modal(document.getElementById('deleteModalKelas'));
+        var deleteModalKelas = new bootstrap.Modal(document.getElementById('destroyModalKelas'));
 
         // Modal Destroy
         document.querySelectorAll('.delete-btn').forEach(button => {
@@ -43,7 +43,8 @@
             if (actionUrl) {
                 axios.delete(actionUrl, {
                         headers: {
-                            'X-CSRF-TOKEN': destroyFormKelas.querySelector('input[name="_token"]').value
+                            'X-CSRF-TOKEN': destroyFormKelas.querySelector('input[name="_token"]')
+                                .value
                         }
                     })
                     .then(response => {

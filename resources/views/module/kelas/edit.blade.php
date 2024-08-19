@@ -40,7 +40,7 @@
         var editFormKelas = document.getElementById('editFormKelas');
         var editModalKelas = new bootstrap.Modal(document.getElementById('editModalKelas'));
 
-        document.querySelectorAll('.edit-btn').forEach(button => {
+        document.querySelectorAll('.edit-kelas-btn').forEach(button => {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
                 axios.get(`/kelas/${id}/edit`)

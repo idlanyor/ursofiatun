@@ -36,9 +36,9 @@
                                         <td>
                                             <button
                                                 type="button"
-                                                class="btn btn-warning btn-sm edit-btn"
+                                                class="btn btn-warning btn-sm edit-kelas-btn"
                                                 data-bs-toggle="modal"
-                                                data-bs-target="#editModal"
+                                                data-bs-target="#editModalKelas"
                                                 data-id="{{ $d->id }}"
                                             >
                                                 <i
@@ -51,7 +51,7 @@
                                                 class="btn btn-primary btn-sm show-btn"
                                                 data-id="{{ $d->id }}"
                                                 data-bs-toggle="modal"
-                                                data-bs-target="#showModal"
+                                                data-bs-target="#showModalKelas"
                                             >
                                                 <i
                                                     class="fas fa-eye"
@@ -63,7 +63,7 @@
                                                 class="btn btn-danger btn-sm delete-btn px-2"
                                                 data-id="{{ $d->id }}"
                                                 data-bs-toggle="modal"
-                                                data-bs-target="#destroyModal"
+                                                data-bs-target="#destroyModalKelas"
                                             >
                                                 <i
                                                     class="fas fa-trash"

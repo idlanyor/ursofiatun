@@ -72,13 +72,17 @@ class KelasController extends Controller
      */
     public function update(Request $request, Kelas $kelas)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'nama_kelas' => 'required|string|max:255',
             'id_tahun_ajaran' => 'required|exists:tahun_ajaran,id',
         ]);
 
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
         try {
-            $kelas->update($request->validated());
+            $kelas->update($validator->validated());
             return response()->json(['success' => 'Data Kelas berhasil diperbarui.']);
         } catch (\Exception $e) {
             Log::error('Error updating kelas: ' . $e->getMessage());

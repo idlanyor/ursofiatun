@@ -1,5 +1,5 @@
 <!-- Modal Edit -->
-<div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="showModalKelas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -37,7 +37,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var showForm = document.getElementById('showForm');
-        var showModal = new bootstrap.Modal(document.getElementById('showModal'));
+        var showModalKelas = new bootstrap.Modal(document.getElementById('showModalKelas'));
 
         document.querySelectorAll('.show-btn').forEach(button => {
             button.addEventListener('click', function() {
