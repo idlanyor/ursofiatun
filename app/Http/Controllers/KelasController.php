@@ -70,7 +70,7 @@ class KelasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kelas $kelas)
+    public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
             'nama_kelas' => 'required|string|max:255',
@@ -82,6 +82,7 @@ class KelasController extends Controller
         }
 
         try {
+            $kelas = Kelas::findOrFail($id);
             $kelas->update($validator->validated());
             return response()->json(['success' => 'Data Kelas berhasil diperbarui.']);
         } catch (\Exception $e) {
@@ -93,9 +94,10 @@ class KelasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kelas $kelas)
+    public function destroy($id)
     {
         try {
+            $kelas = Kelas::findOrFail($id);
             $kelas->delete();
             return response()->json(['success' => 'Data Kelas berhasil dihapus.']);
         } catch (\Exception $e) {

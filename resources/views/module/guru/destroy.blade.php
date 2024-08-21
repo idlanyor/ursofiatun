@@ -1,16 +1,16 @@
 <!-- Modal Hapus -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+<div class="modal fade" id="deleteGuruModal" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="deleteLabel">Hapus Santri</h1>
+                <h1 class="modal-title fs-5" id="deleteLabel">Hapus Guru</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Anda yakin ingin menghapus data santri ini?</p>
+                <p>Anda yakin ingin menghapus data Guru ini?</p>
             </div>
             <div class="modal-footer">
-                <form id="destroyForm" method="POST">
+                <form id="destroyGuruForm" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -23,29 +23,29 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var destroyForm = document.getElementById('destroyForm');
-        var destroyModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+        var destroyGuruForm = document.getElementById('destroyGuruForm');
+        var destroyModal = new bootstrap.Modal(document.getElementById('deleteGuruModal'));
 
         // Modal Destroy
         document.querySelectorAll('.delete-btn').forEach(button => {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
-                var destroyForm = document.getElementById('destroyForm');
-                destroyForm.setAttribute('action', `/santri/${id}`);
-                var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
-                deleteModal.show();
+                var destroyGuruForm = document.getElementById('destroyGuruForm');
+                destroyGuruForm.setAttribute('action', `/guru/${id}`);
+                var deleteGuruModal = new bootstrap.Modal(document.getElementById('deleteGuruModal'));
+                deleteGuruModal.show();
             });
         });
         // Handle form submission for deleting
-        document.getElementById('destroyForm').addEventListener('submit', function(event) {
+        document.getElementById('destroyGuruForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            var destroyForm = document.getElementById('destroyForm');
-            var actionUrl = destroyForm.getAttribute('action');
+            var destroyGuruForm = document.getElementById('destroyGuruForm');
+            var actionUrl = destroyGuruForm.getAttribute('action');
 
             if (actionUrl) {
                 axios.delete(actionUrl, {
                         headers: {
-                            'X-CSRF-TOKEN': destroyForm.querySelector('input[name="_token"]').value
+                            'X-CSRF-TOKEN': destroyGuruForm.querySelector('input[name="_token"]').value
                         }
                     })
                     .then(response => {
@@ -64,7 +64,7 @@
                             toastr.error('Validasi error:\n' + errorMessages);
                         } else {
                             console.error('There was an error deleting the data:', error);
-                            toastr.error('Terjadi kesalahan saat menghapus data santri.');
+                            toastr.error('Terjadi kesalahan saat menghapus data Guru.');
                         }
                     });
             } else {

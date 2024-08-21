@@ -116,9 +116,10 @@ class GuruController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Guru $guru)
+    public function destroy($id)
     {
         try {
+            $guru = Guru::findOrFail($id);
             $guru->delete();
             return response()->json(['success' => 'Data guru berhasil dihapus.']);
         } catch (\Exception $e) {
