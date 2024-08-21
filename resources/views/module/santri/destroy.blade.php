@@ -10,7 +10,7 @@
                 <p>Anda yakin ingin menghapus data santri ini?</p>
             </div>
             <div class="modal-footer">
-                <form id="destroyForm" method="POST">
+                <form id="destroySantriForm" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -24,29 +24,29 @@
 @push('script')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var destroyForm = document.getElementById('destroyForm');
+            var destroySantriForm = document.getElementById('destroySantriForm');
             var destroyModal = new bootstrap.Modal(document.getElementById('deleteModal'));
 
             // Modal Destroy
             document.querySelectorAll('.delete-btn').forEach(button => {
                 button.addEventListener('click', function() {
                     var id = this.getAttribute('data-id');
-                    var destroyForm = document.getElementById('destroyForm');
-                    destroyForm.setAttribute('action', `/santri/${id}`);
+                    var destroySantriForm = document.getElementById('destroySantriForm');
+                    destroySantriForm.setAttribute('action', `/santri/${id}`);
                     var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
                     deleteModal.show();
                 });
             });
             // Handle form submission for deleting
-            document.getElementById('destroyForm').addEventListener('submit', function(event) {
+            document.getElementById('destroySantriForm').addEventListener('submit', function(event) {
                 event.preventDefault();
-                var destroyForm = document.getElementById('destroyForm');
-                var actionUrl = destroyForm.getAttribute('action');
+                var destroySantriForm = document.getElementById('destroySantriForm');
+                var actionUrl = destroySantriForm.getAttribute('action');
 
                 if (actionUrl) {
                     axios.delete(actionUrl, {
                             headers: {
-                                'X-CSRF-TOKEN': destroyForm.querySelector('input[name="_token"]').value
+                                'X-CSRF-TOKEN': destroySantriForm.querySelector('input[name="_token"]').value
                             }
                         })
                         .then(response => {
