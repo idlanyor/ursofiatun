@@ -90,9 +90,10 @@ class TahunAjaranController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TahunAjaran $tahunAjaran)
+    public function destroy($id)
     {
         try {
+            $tahunAjaran = TahunAjaran::find($id);
             $tahunAjaran->delete();
             return response()->json(['success' => 'Data tahun ajaran berhasil dihapus.']);
         } catch (\Exception $e) {
