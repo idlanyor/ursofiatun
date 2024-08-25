@@ -17,7 +17,8 @@ class SantriController extends Controller
     public function index()
     {
         $dataSantri = Santri::with('kelas')->get();
-        return view('module.santri.index', compact('dataSantri'));
+        $kelas = Kelas::all();
+        return view('module.santri.index', compact('dataSantri', 'kelas'));
     }
 
     /**
@@ -107,9 +108,10 @@ class SantriController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Santri $santri)
+    public function destroy($id)
     {
         try {
+            $santri = Santri::findOrFail($id);
             $santri->delete();
             return response()->json(['success' => 'Data santri berhasil dihapus.']);
         } catch (\Exception $e) {

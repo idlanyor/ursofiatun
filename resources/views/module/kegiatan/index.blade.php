@@ -88,7 +88,7 @@
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ],
                 "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.13.5/i18n/id.json"
+                    "url": "//cdn.datatables.net/plug-ins/1.13.5/i18n/Indonesian.json"
                 }
             });
         })

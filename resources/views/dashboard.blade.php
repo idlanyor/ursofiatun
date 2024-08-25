@@ -1,5 +1,12 @@
 @extends('template.scaffold')
 @section('title', 'Dashboard')
+@section('style')
+    <!-- FullCalendar CSS -->
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
+
+
+
+@endsection
 @section('content')
 
     <!-- Earnings (Monthly) Card Example -->
@@ -88,32 +95,13 @@
 
     <div class="row">
 
-        <!-- Area Chart -->
-        <div class="col-xl-8 col-lg-7">
+        <div class="col-md-6 col-sm-8 mb-4">
             <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                            aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Kalender Kegiatan</h6>
                 </div>
-                <!-- Card Body -->
                 <div class="card-body">
-                    <div class="chart-area">
-                        <canvas id="myAreaChart"></canvas>
-                    </div>
+                    <div id='calendar'></div>
                 </div>
             </div>
         </div>
@@ -308,13 +296,97 @@
 
         </div>
     </div>
+    <!-- Modal kegiatan kalender-->
+    <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventModalLabel">Tambah Kegiatan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="eventForm">
+                        <div class="mb-3">
+                            <label for="eventName" class="form-label">Nama Kegiatan</label>
+                            <input type="text" class="form-control" id="eventName"
+                                placeholder="Masukkan Nama Kegiatan">
+                        </div>
+                        <div class="mb-3">
+                            <label for="eventPerson" class="form-label">Penanggung Jawab</label>
+                            <input type="text" class="form-control" id="eventPerson"
+                                placeholder="Masukkan Penanggung Jawab">
+                        </div>
+                        <div class="mb-3">
+                            <label for="eventDate" class="form-label">Tanggal Pelaksanaan</label>
+                            <input type="text" class="form-control" id="eventDate" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="schoolYear" class="form-label">Tahun Ajaran</label>
+                            <input type="text" class="form-control" id="schoolYear"
+                                placeholder="Masukkan Tahun Ajaran">
+                        </div>
+                        <div class="mb-3">
+                            <label for="eventPeriod" class="form-label">Periode</label>
+                            <select class="form-control" id="eventPeriod">
+                                <option value="Mingguan">Mingguan</option>
+                                <option value="Bulanan">Bulanan</option>
+                                <option value="Tahunan">Tahunan</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 @endsection
-@section('script')
+@push('script')
     <!-- Page level plugins -->
     <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
 
     <!-- Page level custom scripts -->
     <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
-@endsection
+    <!-- FullCalendar JS -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                dateClick: function(info) {
+                    // Format tanggal menjadi 12 Mei 2001
+                    var options = {
+                        day: '2-digit',
+                        month: 'long',
+                        year: 'numeric'
+                    };
+                    var formattedDate = new Date(info.date).toLocaleDateString('id-ID', options);
+
+                    // Set nilai tanggal di input modal
+                    document.getElementById('eventDate').value = formattedDate;
+
+                    // Tampilkan modal
+                    var eventModal = new bootstrap.Modal(document.getElementById('eventModal'));
+                    eventModal.show();
+                },
+                events: [{
+                        title: 'Event 1',
+                        start: '2024-08-01'
+                    },
+                    {
+                        title: 'Event 2',
+                        start: '2024-08-10',
+                        end: '2024-08-12'
+                    }
+                ]
+            });
+            calendar.render();
+        });
+    </script>
+@endpush
