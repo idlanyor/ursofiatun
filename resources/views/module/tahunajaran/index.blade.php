@@ -5,12 +5,20 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h5>Data Tahun Ajaran</h5>
-                <a href="{{ route('tahunajaran.create') }}" class="btn btn-success btn-icon-split">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                    <span class="text">Tambah Data Tahun Ajaran</span>
-                </a>
+                <div>
+                    <a href="{{ route('tahunajaran.create') }}" class="btn btn-success btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span class="text">Tambah Data Tahun Ajaran</span>
+                    </a>
+                    <button id="deleteAllBtn" class="btn btn-danger btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-trash"></i>
+                        </span>
+                        <span class="text">Hapus Semua</span>
+                    </button>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive-xl">
@@ -66,3 +74,28 @@
     @include('module.tahunajaran.destroy')
     @include('module.tahunajaran.show')
 @endsection
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var deleteAllBtn = document.getElementById('deleteAllBtn');
+
+        deleteAllBtn.addEventListener('click', function() {
+            if (confirm('Apakah Anda yakin ingin menghapus semua data tahun ajaran?')) {
+                axios.delete('/tahunajaran/delete-all')
+                    .then(response => {
+                        var data = response.data;
+                        if (data.success) {
+                            toastr.success(data.success);
+                            location.reload();
+                        } else {
+                            toastr.error('Terjadi kesalahan: ' + (data.error || 'Unknown error'));
+                        }
+                    })
+                    .catch(error => {
+                        console.error('There was an error deleting all data:', error);
+                        toastr.error('Terjadi kesalahan saat menghapus semua data tahun ajaran.');
+                    });
+            }
+        });
+    });
+</script>

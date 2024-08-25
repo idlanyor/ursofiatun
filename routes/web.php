@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
         'destroy' => 'santri.destroy',
     ]);
     Route::get('/getsantri/{id}', [SantriController::class, 'getSantri']);
-    
+
     //Guru
     Route::resource('/guru', GuruController::class)->names([
         'index' => 'guru.index',
@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
     ]);
     Route::get('/getguru/{id}', [GuruController::class, 'getGuru']);
     Route::post('/guru/notify', [GuruController::class, 'notify']);
-    
+
     //Kelas
     Route::resource('/kelas', KelasController::class)->names([
         'index' => 'kelas.index',
@@ -112,6 +112,7 @@ Route::middleware('auth')->group(function () {
         'update' => 'tahunajaran.update',
         'destroy' => 'tahunajaran.destroy',
     ]);
+    Route::delete('/tahunajaran/delete-all', [TahunAjaranController::class, 'deleteAll'])->name('tahunajaran.deleteAll');
 
     // Orang Tua
     Route::resource('/orangtua', OrangTuaController::class)->names([

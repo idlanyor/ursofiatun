@@ -101,4 +101,18 @@ class TahunAjaranController extends Controller
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus data tahun ajaran.'], 500);
         }
     }
+
+    /**
+     * Delete all records from the tahun ajaran table.
+     */
+    public function deleteAll()
+    {
+        try {
+            TahunAjaran::truncate();
+            return response()->json(['success' => 'Semua data tahun ajaran berhasil dihapus.']);
+        } catch (\Exception $e) {
+            Log::error('Error deleting all tahun ajaran: ' . $e->getMessage());
+            return response()->json(['error' => 'Terjadi kesalahan saat menghapus semua data tahun ajaran.'], 500);
+        }
+    }
 }
