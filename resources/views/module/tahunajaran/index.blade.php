@@ -86,6 +86,7 @@
                         var data = response.data;
                         if (data.success) {
                             toastr.success(data.success);
+                            
                             location.reload();
                         } else {
                             toastr.error('Terjadi kesalahan: ' + (data.error || 'Unknown error'));
