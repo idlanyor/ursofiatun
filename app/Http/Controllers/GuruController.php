@@ -46,23 +46,6 @@ class GuruController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        // Buat user baru untuk guru
-        $user = User::create([
-            'nama' => $request->nama,
-            'username' => strtolower(str_replace(' ', '.', $request->nama)), // Buat username dari nama
-            'password' => Hash::make('gurugurucertain'), // Set password default
-            'role' => 'Guru', // Set role default
-        ]);
-
-        // Buat guru baru dengan id_user dari user yang baru dibuat
-        $guru = Guru::create(array_merge(
-            $validator->validated(),
-            ['id_user' => $user->id]
-        ));
-
-        // Kirim pesan WebSocket setelah data berhasil disimpan
-        // $this->sendWebSocketMessage('Data guru baru telah ditambahkan: ' . $guru->nama);
-
         return response()->json(['message' => 'Data berhasil disimpan'], 200);
     }
 
@@ -128,33 +111,4 @@ class GuruController extends Controller
         }
     }
 
-    /**
-     * Send a message via WebSocket.
-     */
-    protected function sendWebSocketMessage($message)
-    {
-        $socket = fsockopen('localhost', 8080, $errno, $errstr, 30);
-        if (!$socket) {
-            Log::error("WebSocket connection failed: $errstr ($errno)");
-            return;
-        }
-
-        fwrite($socket, $message);
-        fclose($socket);
-    }
-
-    /**
-     * Notify method to handle notifications.
-     */
-    public function notify(Request $request)
-    {
-        // Validasi pesan
-        $request->validate([
-            'message' => 'required|string',
-        ]);
-
-        // Logika untuk mengirim notifikasi (misalnya, menggunakan notifikasi atau event)
-        // Contoh: Notifikasi berhasil
-        return response()->json(['success' => true, 'message' => 'Notifikasi berhasil dikirim']);
-    }
 }

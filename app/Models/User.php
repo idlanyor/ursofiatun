@@ -20,8 +20,4 @@ class User extends Authenticatable
         'role',
     ];
     protected $hidden = ['password'];
-    public function guru()
-    {
-        return $this->hasOne(Guru::class, 'id');
-    }
 }

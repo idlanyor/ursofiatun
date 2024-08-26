@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-star-and-crescent"></i>
         </div>
@@ -13,8 +13,8 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('dashboard') }}">
+    <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('home') }}">
             <i class="fas fa-fw fa-home"></i>
             <span>Dashboard</span></a>
     </li>

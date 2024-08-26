@@ -20,6 +20,7 @@
         </div>
     </div>
 </div>
+@push('script')
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -73,3 +74,4 @@
         });
     })
 </script>
+@endpush

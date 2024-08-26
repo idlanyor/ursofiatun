@@ -93,8 +93,7 @@ class TahunAjaranController extends Controller
     public function destroy($id)
     {
         try {
-            $tahunAjaran = TahunAjaran::find($id);
-            $tahunAjaran->delete();
+            TahunAjaran::destroy($id);
             return response()->json(['success' => 'Data tahun ajaran berhasil dihapus.']);
         } catch (\Exception $e) {
             Log::error('Error deleting tahun ajaran: ' . $e->getMessage());
@@ -108,7 +107,7 @@ class TahunAjaranController extends Controller
     public function deleteAll()
     {
         try {
-            TahunAjaran::truncate();
+            $truncatedTA = TahunAjaran::where('status', 'tidak aktif')->delete();
             return response()->json(['success' => 'Semua data tahun ajaran berhasil dihapus.']);
         } catch (\Exception $e) {
             Log::error('Error deleting all tahun ajaran: ' . $e->getMessage());

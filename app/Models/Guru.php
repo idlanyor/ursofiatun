@@ -20,14 +20,6 @@ class Guru extends Model
         'jenis_kelamin',
         'alamat',
         'telepon',
-        'id_user',
     ];
 
-    /**
-     * Get the user associated with the guru.
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'id');
-    }
 }

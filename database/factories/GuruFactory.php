@@ -23,7 +23,6 @@ class GuruFactory extends Factory
             'jenis_kelamin' => $this->faker->randomElement(['L', 'P']),
             'alamat' => $this->faker->address(),
             'telepon' => $this->faker->phoneNumber(),
-            'id_user' => \App\Models\User::factory(),
         ];
     }
 }

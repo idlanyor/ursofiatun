@@ -19,8 +19,6 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ['L', 'P']);
             $table->string('alamat')->nullable();
             $table->string('telepon')->nullable();
-            $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

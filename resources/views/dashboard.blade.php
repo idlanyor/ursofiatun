@@ -2,14 +2,14 @@
 @section('title', 'Dashboard')
 @section('style')
     <!-- FullCalendar CSS -->
-    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
-
-
-
+    <link
+        href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css'
+        rel='stylesheet'
+    />
 @endsection
 @section('content')
 
-    <!-- Earnings (Monthly) Card Example -->
+    {{-- card kecil diatas --}}
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
@@ -17,7 +17,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             Jumlah Santri</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $jumlahSantri }} Orang</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -27,15 +27,15 @@
         </div>
     </div>
 
-    <!-- Earnings (Monthly) Card Example -->
+    {{-- card kecil diatas --}}
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-success shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Earnings (Annual)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                            Jumlah Guru</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $jumlahGuru }}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -45,22 +45,28 @@
         </div>
     </div>
 
-    <!-- Earnings (Monthly) Card Example -->
+    {{-- card kecil diatas --}}
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-info shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Jumlah Mapel
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $jumlahMataPelajaran }}</div>
                             </div>
                             <div class="col">
                                 <div class="progress progress-sm mr-2">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
-                                        aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div
+                                        class="progress-bar bg-info"
+                                        role="progressbar"
+                                        style="width: 50%"
+                                        aria-valuenow="50"
+                                        aria-valuemin="0"
+                                        aria-valuemax="100"
+                                    ></div>
                                 </div>
                             </div>
                         </div>
@@ -95,249 +101,203 @@
 
     <div class="row">
 
-        <div class="col-md-6 col-sm-8 mb-4">
+        <div class="col-md-12 mb-4">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Kalender Kegiatan</h6>
                 </div>
                 <div class="card-body">
-                    <div id='calendar'></div>
-                </div>
-            </div>
-        </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div id='calendar'></div>
 
-        <!-- Pie Chart -->
-        <div class="col-xl-4 col-lg-5">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                            aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
                         </div>
-                    </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                    <div class="chart-pie pt-4 pb-2">
-                        <canvas id="myPieChart"></canvas>
-                    </div>
-                    <div class="mt-4 text-center small">
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-primary"></i> Direct
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-success"></i> Social
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-info"></i> Referral
-                        </span>
+                        <div class="col-md-6">
+                            <div class="card mt-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <span class="fs-5 text-primary">Kegiatan</span>
+                                    <button
+                                        type="button"
+                                        class="btn btn-success btn-sm"
+                                    ><i class="fa fa-plus"></i> Kegiatan Baru</button>
+                                </div>
+                                <div class="card-body">
+                                    <ol class="list-group list-group-numbered">
+                                        @foreach ($kegiatan as $kegiatan)
+                                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                <div class="ms-2 me-auto">
+                                                    <div class="fw-bold">{{ $kegiatan->nama_kegiatan }} <span
+                                                            class="badge text-bg-primary rounded-pill"
+                                                        >{{ $kegiatan->periode }}</span></div>
+                                                    {{ $kegiatan->penanggung_jawab }}
+
+                                                </div>
+
+                                                <span class="badge text-bg-info rounded-pill p-2"> <i
+                                                        class="fa fa-pencil-alt"
+                                                    ></i> </span>
+                                                <span class="badge text-bg-danger rounded-pill p-2 ml-2"><i
+                                                        class="fa fa-trash"
+                                                    ></i></span>
+                                            </li>
+                                        @endforeach
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Content Row -->
-    <div class="row">
-
-        <!-- Content Column -->
-        <div class="col-lg-6 mb-4">
-
-            <!-- Project Card Example -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
-                </div>
-                <div class="card-body">
-                    <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span></h4>
-                    <div class="progress mb-4">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span></h4>
-                    <div class="progress mb-4">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span></h4>
-                    <div class="progress mb-4">
-                        <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span></h4>
-                    <div class="progress mb-4">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <h4 class="small font-weight-bold">Account Setup <span class="float-right">Complete!</span>
-                    </h4>
-                    <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Color System -->
-            <div class="row">
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-primary text-white shadow">
-                        <div class="card-body">
-                            Primary
-                            <div class="text-white-50 small">#4e73df</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-success text-white shadow">
-                        <div class="card-body">
-                            Success
-                            <div class="text-white-50 small">#1cc88a</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-info text-white shadow">
-                        <div class="card-body">
-                            Info
-                            <div class="text-white-50 small">#36b9cc</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-warning text-white shadow">
-                        <div class="card-body">
-                            Warning
-                            <div class="text-white-50 small">#f6c23e</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-danger text-white shadow">
-                        <div class="card-body">
-                            Danger
-                            <div class="text-white-50 small">#e74a3b</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-secondary text-white shadow">
-                        <div class="card-body">
-                            Secondary
-                            <div class="text-white-50 small">#858796</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-light text-black shadow">
-                        <div class="card-body">
-                            Light
-                            <div class="text-black-50 small">#f8f9fc</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-dark text-white shadow">
-                        <div class="card-body">
-                            Dark
-                            <div class="text-white-50 small">#5a5c69</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="col-lg-6 mb-4">
-
-            <!-- Illustrations -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                </div>
-                <div class="card-body">
-                    <div class="text-center">
-                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                            src="img/undraw_posting_photo.svg" alt="...">
-                    </div>
-                    <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow"
-                            href="https://undraw.co/">unDraw</a>, a
-                        constantly updated collection of beautiful svg images that you can use
-                        completely free and without attribution!</p>
-                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                        unDraw &rarr;</a>
-                </div>
-            </div>
-
-            <!-- Approach -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                </div>
-                <div class="card-body">
-                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                        CSS bloat and poor page performance. Custom CSS classes are used to create
-                        custom components and custom utility classes.</p>
-                    <p class="mb-0">Before working with this theme, you should become familiar with the
-                        Bootstrap framework, especially the utility classes.</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <!-- Modal kegiatan kalender-->
-    <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+    <div
+        class="modal fade"
+        id="eventModal"
+        tabindex="-1"
+        aria-labelledby="eventModalLabel"
+        aria-hidden="true"
+    >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="eventModalLabel">Tambah Kegiatan</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5
+                        class="modal-title"
+                        id="eventModalLabel"
+                    >Tambah Kegiatan</h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
                 </div>
                 <div class="modal-body">
                     <form id="eventForm">
-                        <div class="mb-3">
-                            <label for="eventName" class="form-label">Nama Kegiatan</label>
-                            <input type="text" class="form-control" id="eventName"
-                                placeholder="Masukkan Nama Kegiatan">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label
+                                        for="eventName"
+                                        class="form-label"
+                                    >Nama Kegiatan</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="eventName"
+                                        placeholder="Masukkan Nama Kegiatan"
+                                    >
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label
+                                        for="eventPerson"
+                                        class="form-label"
+                                    >Penanggung Jawab</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="eventPerson"
+                                        placeholder="Masukkan Penanggung Jawab"
+                                        required
+                                    >
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="eventPerson" class="form-label">Penanggung Jawab</label>
-                            <input type="text" class="form-control" id="eventPerson"
-                                placeholder="Masukkan Penanggung Jawab">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label
+                                        for="lamaKegiatan"
+                                        class="form-label"
+                                    >Lama Kegiatan (Hari)</label>
+                                    <input
+                                        type="number"
+                                        class="form-control"
+                                        id="lamaKegiatan"
+                                        placeholder="Masukkan Lama Kegiatan"
+                                        required
+                                    >
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label
+                                        for="schoolYear"
+                                        class="form-label"
+                                    >Tahun Ajaran</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="schoolYear"
+                                        placeholder="Masukkan Tahun Ajaran"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="mb-3">
-                            <label for="eventDate" class="form-label">Tanggal Pelaksanaan</label>
-                            <input type="text" class="form-control" id="eventDate" readonly>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label
+                                        for="eventDate"
+                                        class="form-label"
+                                    >Tanggal Pelaksanaan</label>
+                                    <input
+                                        type="date"
+                                        class="form-control"
+                                        id="eventDate"
+                                        disabled
+                                    >
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label
+                                        for="eventEndDate"
+                                        class="form-label"
+                                    >Tanggal Selesai</label>
+                                    <input
+                                        type="date"
+                                        class="form-control"
+                                        id="eventEndDate"
+                                        disabled
+                                    >
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label
+                                        for="eventPeriod"
+                                        class="form-label"
+                                    >Periode</label>
+                                    <select
+                                        class="form-control"
+                                        id="eventPeriod"
+                                    >
+                                        <option value="Mingguan">Mingguan</option>
+                                        <option value="Bulanan">Bulanan</option>
+                                        <option value="Tahunan">Tahunan</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="schoolYear" class="form-label">Tahun Ajaran</label>
-                            <input type="text" class="form-control" id="schoolYear"
-                                placeholder="Masukkan Tahun Ajaran">
-                        </div>
-                        <div class="mb-3">
-                            <label for="eventPeriod" class="form-label">Periode</label>
-                            <select class="form-control" id="eventPeriod">
-                                <option value="Mingguan">Mingguan</option>
-                                <option value="Bulanan">Bulanan</option>
-                                <option value="Tahunan">Tahunan</option>
-                            </select>
-                        </div>
+
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Simpan</button>
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >Close</button>
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                    >Simpan</button>
                 </div>
             </div>
         </div>
@@ -346,27 +306,35 @@
 
 @endsection
 @push('script')
-    <!-- Page level plugins -->
-    <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
     <!-- FullCalendar JS -->
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
+        var calendarEl = document.getElementById('calendar');
+        var calendar; // Deklarasi variabel kalender
+
+        function renderCalendar(locale, kegiatan) {
+            if (calendar) {
+                calendar.destroy(); // Hancurkan kalender yang ada
+            }
+            console.log(kegiatan)
+
+            var events = [];
+            kegiatan.forEach(function(event) {
+                events.push({
+                    title: event.nama_kegiatan,
+                    start: event.tanggal_pelaksanaan,
+                    end: event.tanggal_selesai,
+                    color: '#007bff',
+                });
+            });
+
+            calendar = new FullCalendar.Calendar(calendarEl, {
+                locale: locale,
                 initialView: 'dayGridMonth',
+                events: events,
                 dateClick: function(info) {
-                    // Format tanggal menjadi 12 Mei 2001
-                    var options = {
-                        day: '2-digit',
-                        month: 'long',
-                        year: 'numeric'
-                    };
-                    var formattedDate = new Date(info.date).toLocaleDateString('id-ID', options);
+                    var localDate = new Date(info.date.getTime() + (7 * 60 * 60 * 1000)); // Menambahkan 7 jam
+                    var formattedDate = localDate.toISOString().split('T')[0];
 
                     // Set nilai tanggal di input modal
                     document.getElementById('eventDate').value = formattedDate;
@@ -375,18 +343,23 @@
                     var eventModal = new bootstrap.Modal(document.getElementById('eventModal'));
                     eventModal.show();
                 },
-                events: [{
-                        title: 'Event 1',
-                        start: '2024-08-01'
-                    },
-                    {
-                        title: 'Event 2',
-                        start: '2024-08-10',
-                        end: '2024-08-12'
-                    }
-                ]
             });
             calendar.render();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/events') // Mengambil data events dari API
+                .then(response => response.json())
+                .then(data => renderCalendar('id', data)); // Render kalender Masehi dengan data dari API
+        });
+
+        document.getElementById('lamaKegiatan').addEventListener('input', function() {
+            var lamaKegiatan = this.value;
+            var tanggalPelaksanaan = document.getElementById('eventDate').value;
+            var tanggalSelesai = new Date(tanggalPelaksanaan);
+            tanggalSelesai.setDate(tanggalSelesai.getDate() + parseInt(lamaKegiatan));
+            var formattedEndDate = tanggalSelesai.toISOString().split('T')[0];
+            document.getElementById('eventEndDate').value = formattedEndDate;
         });
     </script>
 @endpush

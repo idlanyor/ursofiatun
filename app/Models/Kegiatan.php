@@ -19,6 +19,8 @@ class Kegiatan extends Model
         'nama_kegiatan',
         'penanggung_jawab',
         'periode',
+        'tanggal_pelaksanaan',
+        'tanggal_selesai',
         'id_tahun_ajaran',
     ];
 

@@ -17,26 +17,19 @@
                     <table class="table table-striped table-hover table-bordered align-middle">
                         <thead>
                             <tr>
+                                <th style="width: 150px">Aksi</th>
                                 <th style="width: 5%;">No</th>
                                 <th>Nama</th>
                                 <th>Tempat/Tgl Lahir</th>
                                 <th>JK</th>
                                 <th>Alamat</th>
                                 <th>Telepon</th>
-                                <th style="width: 150px">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
                             @if ($guru->count())
                                 @foreach ($guru as $index => $d)
                                     <tr>
-                                        <td scope="row">{{ $index + 1 }}</td>
-                                        <td>{{ $d->nama }}</td>
-                                        <td>{{ $d->tempat_lahir }},
-                                            {{ \Carbon\Carbon::parse($d->tanggal_lahir)->translatedFormat('d F Y') }}</td>
-                                        <td>{{ $d->jenis_kelamin == 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>
-                                        <td>{{ $d->alamat }}</td>
-                                        <td>{{ $d->telepon }}</td>
                                         <td>
                                             <button type="button" class="btn btn-warning btn-sm edit-btn"
                                                 data-bs-toggle="modal" data-bs-target="#editModal"
@@ -54,6 +47,14 @@
                                                 <i class="fas fa-trash" aria-hidden="true"></i>
                                             </button>
                                         </td>
+                                        <td scope="row">{{ $index + 1 }}</td>
+                                        <td>{{ $d->nama }}</td>
+                                        <td>{{ $d->tempat_lahir }},
+                                            {{ \Carbon\Carbon::parse($d->tanggal_lahir)->translatedFormat('d F Y') }}</td>
+                                        <td>{{ $d->jenis_kelamin == 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>
+                                        <td>{{ $d->alamat }}</td>
+                                        <td>{{ $d->telepon }}</td>
+                                        
                                     </tr>
                                 @endforeach
                             @else

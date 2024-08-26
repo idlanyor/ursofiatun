@@ -30,17 +30,17 @@ class UserController extends Controller
             'nama'=>'required|string',
             'username'=>'required|string|unique:users,username',
             'password'=>'required|string|confirmed',
-            'role'=>'required|string|in:admin,guru',
+            'role'=>'required|string|in:admin,pengurus',
         ]);
         $user = User::create([
             'nama'=>$request->nama,
             'username'=>$request->username,
             'password'=>bcrypt($request->password),
-            'role'=>$request->role, 
+            'role'=>$request->role,
         ]);
         return redirect()->route('login');
     }
-    
+
     public function login(Request $request){
         $request->validate([
             'username'=>'required|string',
@@ -49,10 +49,10 @@ class UserController extends Controller
         $credentials = $request->only('username', 'password');
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended(route('dashboard', absolute: false));
+            return redirect()->intended(route('home', absolute: false));
         }
         return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
+            'username' => 'Username atau kata sandi tidak sesuai.',
         ]);
     }
     public function logout(Request $request){

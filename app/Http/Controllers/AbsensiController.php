@@ -13,7 +13,8 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        //
+        $dataAbsensi = Absensi::with('santri')->get();
+        return view('module.absensi.index',compact('dataAbsensi'));
     }
 
     /**

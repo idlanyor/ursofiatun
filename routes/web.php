@@ -6,19 +6,16 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MataPelajaranController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\OrangTuaController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('home');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
+Route::get('/events', [DashboardController::class, 'getEvents']);
+// Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     //Santri
@@ -130,15 +127,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
