@@ -9,8 +9,8 @@
     <!-- Topbar Search -->
     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group">
-            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                aria-label="Search" aria-describedby="basic-addon2">
+            <input type="text" class="form-control bg-light border-0 small" placeholder="Cari..."
+                aria-label="Cari" aria-describedby="basic-addon2">
             <div class="input-group-append">
                 <button class="btn btn-primary" type="button">
                     <i class="fas fa-search fa-sm"></i>
@@ -33,8 +33,8 @@
                 aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100 navbar-search">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                            aria-label="Search" aria-describedby="basic-addon2">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Cari..."
+                            aria-label="Cari" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button">
                                 <i class="fas fa-search fa-sm"></i>
@@ -57,7 +57,7 @@
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                    Alerts Center
+                    Pusat Peringatan
                 </h6>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="mr-3">
@@ -66,9 +66,8 @@
                         </div>
                     </div>
                     <div>
-                        <div class="small text-gray-500">December 12, 2019</div>
-                        <span class="font-weight-bold">A new monthly report is ready to
-                            download!</span>
+                        <div class="small text-gray-500">12 Desember 2019</div>
+                        <span class="font-weight-bold">Laporan bulanan baru siap untuk diunduh!</span>
                     </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -78,8 +77,8 @@
                         </div>
                     </div>
                     <div>
-                        <div class="small text-gray-500">December 7, 2019</div>
-                        $290.29 has been deposited into your account!
+                        <div class="small text-gray-500">7 Desember 2019</div>
+                        $290.29 telah ditransfer ke akun Anda!
                     </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -89,12 +88,12 @@
                         </div>
                     </div>
                     <div>
-                        <div class="small text-gray-500">December 2, 2019</div>
-                        Spending Alert: We've noticed unusually high spending for your account.
+                        <div class="small text-gray-500">2 Desember 2019</div>
+                        Peringatan Pengeluaran: Kami telah melihat pengeluaran yang tidak biasa tinggi untuk akun Anda.
                     </div>
                 </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All
-                    Alerts</a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Tampilkan Semua
+                    Peringatan</a>
             </div>
         </li>
 
@@ -110,7 +109,7 @@
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header">
-                    Message Center
+                    Pusat Pesan
                 </h6>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-list-image mr-3">
@@ -118,8 +117,7 @@
                         <div class="status-indicator bg-success"></div>
                     </div>
                     <div class="font-weight-bold">
-                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                            problem I've been having.</div>
+                        <div class="text-truncate">Hai! Saya sedang bertanya-tanya apakah Anda dapat membantu saya dengan masalah yang saya hadapi.</div>
                         <div class="small text-gray-500">Emily Fowler · 58m</div>
                     </div>
                 </a>
@@ -129,8 +127,7 @@
                         <div class="status-indicator"></div>
                     </div>
                     <div>
-                        <div class="text-truncate">I have the photos that you ordered last month, how
-                            would you like them sent to you?</div>
+                        <div class="text-truncate">Saya memiliki foto yang Anda pesan bulan lalu, bagaimana Anda ingin mereka dikirim ke Anda?</div>
                         <div class="small text-gray-500">Jae Chun · 1d</div>
                     </div>
                 </a>
@@ -140,26 +137,23 @@
                         <div class="status-indicator bg-warning"></div>
                     </div>
                     <div>
-                        <div class="text-truncate">Last month's report looks great, I am very happy
-                            with
-                            the progress so far, keep up the good work!</div>
+                        <div class="text-truncate">Laporan bulan lalu terlihat bagus, saya sangat senang dengan kemajuan yang telah dicapai, teruskan pekerjaan yang baik!</div>
                         <div class="small text-gray-500">Morgan Alvarez · 2d</div>
                     </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-list-image mr-3">
-                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                            alt="...">
+                        {{-- <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                            alt="..."> --}}
                         <div class="status-indicator bg-success"></div>
                     </div>
                     <div>
-                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                            told me that people say this to all dogs, even if they aren't good...</div>
+                        <div class="text-truncate">Apakah saya anak yang baik? Alasannya saya bertanya adalah karena seseorang memberitahu saya bahwa orang-orang mengatakan ini kepada semua anjing, bahkan jika mereka tidak baik...</div>
                         <div class="small text-gray-500">Chicken the Dog · 2w</div>
                     </div>
                 </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Read More
-                    Messages</a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Baca Lebih Banyak
+                    Pesan</a>
             </div>
         </li>
 
@@ -169,29 +163,29 @@
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->nama }}</span>
                 <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
+                    Profil
                 </a>
                 <a class="dropdown-item" href="#">
                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Settings
+                    Pengaturan
                 </a>
                 <a class="dropdown-item" href="#">
                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Activity Log
+                    Log Aktivitas
                 </a>
                 <div class="dropdown-divider"></div>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="dropdown-item">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Logout
+                        Keluar
                     </button>
                 </form>
             </div>

@@ -11,11 +11,12 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $jumlahSantri = Santri::count();
-        $jumlahGuru = Guru::count();
-        $jumlahMataPelajaran = MataPelajaran::count();
-        $kegiatan = Kegiatan::all();
-        return view('dashboard', compact('jumlahSantri', 'jumlahGuru', 'jumlahMataPelajaran','kegiatan'));
+        return view('dashboard', [
+            'jumlahSantri' => Santri::count(),
+            'jumlahGuru' => Guru::count(),
+            'jumlahMataPelajaran' => MataPelajaran::count(),
+            'kegiatan' => Kegiatan::with('tahunAjaran')->get()
+        ]);
     }
 
     public function getEvents()

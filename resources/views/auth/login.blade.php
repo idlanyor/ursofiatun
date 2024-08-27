@@ -11,7 +11,6 @@
     >
         @csrf
 
-        <!-- Email Address -->
         <div>
             <x-input-label
                 for="username"

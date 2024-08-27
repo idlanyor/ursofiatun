@@ -14,7 +14,6 @@ use App\Http\Controllers\OrangTuaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
-Route::get('/events', [DashboardController::class, 'getEvents']);
 // Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -54,6 +53,8 @@ Route::middleware('auth')->group(function () {
         'destroy' => 'kelas.destroy',
     ]);
     Route::get('/getkelas/{id}', [KelasController::class, 'getKelas']);
+    Route::get('/events', [DashboardController::class, 'getEvents']);
+
 
     // Kegiatan
     Route::resource('/kegiatan', KegiatanController::class)->names([
@@ -65,6 +66,7 @@ Route::middleware('auth')->group(function () {
         'update' => 'kegiatan.update',
         'destroy' => 'kegiatan.destroy',
     ]);
+    Route::get('/getkegiatan/{id}', [KegiatanController::class, 'getKegiatan']);
 
     // Absensi
     Route::resource('/absensi', AbsensiController::class)->names([
@@ -109,7 +111,6 @@ Route::middleware('auth')->group(function () {
         'update' => 'tahunajaran.update',
         'destroy' => 'tahunajaran.destroy',
     ]);
-    Route::delete('/tahunajaran/delete-all', [TahunAjaranController::class, 'deleteAll'])->name('tahunajaran.deleteAll');
 
     // Orang Tua
     Route::resource('/orangtua', OrangTuaController::class)->names([

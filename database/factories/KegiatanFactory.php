@@ -21,8 +21,7 @@ class KegiatanFactory extends Factory
             'penanggung_jawab' => $this->faker->name(),
             'id_tahun_ajaran' => \App\Models\TahunAjaran::factory(),
             'periode' => $this->faker->randomElement(['Mingguan', 'Bulanan', 'Tahunan']),
-            'tanggal_pelaksanaan' => $tanggalPelaksanaan = $this->faker->dateTimeBetween('2024-01-01', '2024-12-31'),
-            'tanggal_selesai' => $this->faker->dateTimeBetween($tanggalPelaksanaan, '2024-12-31'),
+            'tanggal_pelaksanaan' =>$this->faker->dateTimeBetween('2024-01-01', '2024-12-31'),
         ];
     }
 }

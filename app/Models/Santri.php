@@ -28,4 +28,10 @@ class Santri extends Model
     {
         return $this->belongsTo(Kelas::class, 'id_kelas');
     }
+
+    // Tambahkan metode untuk eager loading
+    public static function withKelas()
+    {
+        return self::with('kelas');
+    }
 }
