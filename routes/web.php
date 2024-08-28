@@ -10,8 +10,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MataPelajaranController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\TahunAjaranController;
-use App\Http\Controllers\OrangTuaController;
 use App\Http\Controllers\PengaturanController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
@@ -114,6 +114,17 @@ Route::middleware('auth')->group(function () {
             'edit' => 'tahunajaran.edit',
             'update' => 'tahunajaran.update',
             'destroy' => 'tahunajaran.destroy',
+        ]);
+
+        // manajemen user
+        Route::resource('user', [UserController::class])->names([
+            'index' => 'user.index',
+            'create' => 'user.create',
+            'store' => 'user.store',
+            'show' => 'user.show',
+            'edit' => 'user.edit',
+            'update' => 'user.update',
+            'destroy' => 'user.destroy',
         ]);
     });
 
