@@ -10,12 +10,12 @@
                 <form id="editFormKelas">
                     @csrf
                     @method('PUT')
-                    <div class="form-floating mb-3">
+                    <div class="mb-3 form-floating">
                         <input type="text" class="form-control" name="nama_kelas" id="editNamaKelas"
                             placeholder="Nama Kelas">
                         <label for="editNamaKelas">Nama Kelas</label>
                     </div>
-                    <div class="form-floating mb-3">
+                    <div class="mb-3 form-floating">
                         <select class="form-control" name="id_tahun_ajaran" id="editTahunAjaran" required>
                             <option value="" disabled>Pilih Tahun Ajaran</option>
                             @foreach ($tahunAjaran as $tahun)

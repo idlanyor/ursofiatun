@@ -15,7 +15,7 @@ class KegiatanController extends Controller
      */
     public function index()
     {
-        //
+        return view('module.kegiatan.create');
     }
 
     /**

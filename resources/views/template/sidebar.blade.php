@@ -70,8 +70,8 @@
             <i class="fas fa-fw fa-user-cog"></i>
             <span>Akun</span></a>
     </li>
-    <li class="nav-item {{ request()->routeIs('tahunajaran.index') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('tahunajaran.index') }}">
+    <li class="nav-item {{ request()->routeIs('pengaturan.index') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('pengaturan.index') }}">
             <i class="fas fa-fw fa-cog"></i>
             <span>Pengaturan</span></a>
     </li>

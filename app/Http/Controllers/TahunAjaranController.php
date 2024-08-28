@@ -69,7 +69,7 @@ class TahunAjaranController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TahunAjaran $tahunAjaran)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'tahun_mulai' => 'required|integer',
@@ -78,6 +78,7 @@ class TahunAjaranController extends Controller
         ]);
 
         try {
+            $tahunAjaran = TahunAjaran::findOrFail($id);
             $tahunAjaran->update($request->only(['tahun_mulai', 'tahun_akhir', 'status']));
 
             return response()->json(['success' => 'Data tahun ajaran berhasil diupdate.']);
@@ -98,20 +99,6 @@ class TahunAjaranController extends Controller
         } catch (\Exception $e) {
             Log::error('Error deleting tahun ajaran: ' . $e->getMessage());
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus data tahun ajaran.'], 500);
-        }
-    }
-
-    /**
-     * Delete all records from the tahun ajaran table.
-     */
-    public function deleteAll()
-    {
-        try {
-            $truncatedTA = TahunAjaran::where('status', 'tidak aktif')->delete();
-            return response()->json(['success' => 'Semua data tahun ajaran berhasil dihapus.']);
-        } catch (\Exception $e) {
-            Log::error('Error deleting all tahun ajaran: ' . $e->getMessage());
-            return response()->json(['error' => 'Terjadi kesalahan saat menghapus semua data tahun ajaran.'], 500);
         }
     }
 }

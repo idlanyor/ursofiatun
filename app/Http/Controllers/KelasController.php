@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kelas;
 use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,7 +17,8 @@ class KelasController extends Controller
     public function index()
     {
         $dataKelas = Kelas::with('tahunAjaran')->get();
-        $tahunAjaran = TahunAjaran::all();
+        $tahunAjaran = TahunAjaran::where('status', 'aktif')->get();
+        // $tahunAjaran = TahunAjaran::all();
         return view('module.kelas.index', compact('dataKelas', 'tahunAjaran'));
     }
 

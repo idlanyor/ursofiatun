@@ -9,6 +9,6 @@ class SantriSeeder extends Seeder
 {
     public function run(): void
     {
-        Santri::factory()->count(50)->create(); // Menghasilkan 50 santri
+        Santri::factory()->count(10)->create(); // Menghasilkan 50 santri
     }
 }

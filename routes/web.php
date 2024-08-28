@@ -11,6 +11,7 @@ use App\Http\Controllers\MataPelajaranController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\OrangTuaController;
+use App\Http\Controllers\PengaturanController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
@@ -102,26 +103,20 @@ Route::middleware('auth')->group(function () {
     ]);
 
     // Tahun Ajaran
-    Route::resource('/tahunajaran', TahunAjaranController::class)->names([
-        'index' => 'tahunajaran.index',
-        'create' => 'tahunajaran.create',
-        'store' => 'tahunajaran.store',
-        'show' => 'tahunajaran.show',
-        'edit' => 'tahunajaran.edit',
-        'update' => 'tahunajaran.update',
-        'destroy' => 'tahunajaran.destroy',
-    ]);
 
-    // Orang Tua
-    Route::resource('/orangtua', OrangTuaController::class)->names([
-        'index' => 'orangtua.index',
-        'create' => 'orangtua.create',
-        'store' => 'orangtua.store',
-        'show' => 'orangtua.show',
-        'edit' => 'orangtua.edit',
-        'update' => 'orangtua.update',
-        'destroy' => 'orangtua.destroy',
-    ]);
+    Route::prefix('pengaturan')->group(function () {
+        Route::get('/', [PengaturanController::class, 'index'])->name('pengaturan.index');
+        Route::resource('tahun-ajaran', TahunAjaranController::class)->names([
+            'index' => 'tahunajaran.index',
+            'create' => 'tahunajaran.create',
+            'store' => 'tahunajaran.store',
+            'show' => 'tahunajaran.show',
+            'edit' => 'tahunajaran.edit',
+            'update' => 'tahunajaran.update',
+            'destroy' => 'tahunajaran.destroy',
+        ]);
+    });
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
