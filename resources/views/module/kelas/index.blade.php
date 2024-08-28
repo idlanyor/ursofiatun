@@ -17,22 +17,18 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive-xl">
-                    <table class="table table-striped table-hover table-bordered align-middle">
+                    <table id="dataKelasTable" class="table align-middle table-striped table-hover table-bordered">
                         <thead>
                             <tr>
-                                <th style="width: 5%;">No</th>
+                                <th style="width: 150px">#</th>
                                 <th>Nama Kelas</th>
                                 <th>Tahun Ajaran</th>
-                                <th style="width: 150px">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
                             @if ($dataKelas->count())
                                 @foreach ($dataKelas as $index => $d)
                                     <tr>
-                                        <td scope="row">{{ $index + 1 }}</td>
-                                        <td>{{ $d->nama_kelas }}</td>
-                                        <td>{{ $d->tahunAjaran->tahun_mulai }}/{{ $d->tahunAjaran->tahun_akhir }}</td>
                                         <td>
                                             <button
                                                 type="button"
@@ -60,7 +56,7 @@
                                             </button>
                                             <button
                                                 type="button"
-                                                class="btn btn-danger btn-sm delete-btn px-2"
+                                                class="px-2 btn btn-danger btn-sm delete-btn"
                                                 data-id="{{ $d->id }}"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#destroyModalKelas"
@@ -71,6 +67,9 @@
                                                 ></i>
                                             </button>
                                         </td>
+                                        <td>{{ $d->nama_kelas }}</td>
+                                        <td>{{ $d->tahunAjaran->tahun_mulai }}/{{ $d->tahunAjaran->tahun_akhir }}</td>
+
                                     </tr>
                                 @endforeach
                             @else
@@ -87,6 +86,37 @@
             </div>
         </div>
     </div>
+    <style>
+        .dt-buttons .btn {
+            margin-right: 5px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            $('#dataKelasTable').DataTable({
+                dom: 'Brftp',
+                buttons: [{
+                        extend: 'copy',
+                        text: 'Salin',
+                        className: 'btn btn-primary'
+                    },
+                    {
+                        extend: 'excel',
+                        text: 'Ekspor ke Excel',
+                        className: 'btn btn-success'
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Cetak',
+                        className: 'btn btn-info'
+                    }
+                ],
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.13.5/i18n/id.json"
+                }
+            });
+        })
+    </script>
     @include('module.kelas.edit')
     @include('module.kelas.destroy')
     @include('module.kelas.show')
