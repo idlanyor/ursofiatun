@@ -68,6 +68,7 @@ Route::middleware('auth')->group(function () {
         'destroy' => 'kegiatan.destroy',
     ]);
     Route::get('/getkegiatan/{id}', [KegiatanController::class, 'getKegiatan']);
+    Route::get('/all-kegiatan', [KegiatanController::class, 'getAllKegiatan']);
 
     // Absensi
     Route::resource('/absensi', AbsensiController::class)->names([

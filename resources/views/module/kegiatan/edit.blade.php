@@ -1,53 +1,27 @@
-<div
-    class="modal fade"
-    id="editKegiatanModal"
-    tabindex="-1"
-    aria-labelledby="editKegiatanModalLabel"
-    aria-hidden="true"
->
+<div class="modal fade" id="editKegiatanModal" tabindex="-1" aria-labelledby="editKegiatanModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form
-            id="editKegiatanForm"
-            method="POST"
-        >
+        <form id="editKegiatanForm" method="POST">
             @csrf
             @method('PUT')
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5
-                        class="modal-title"
-                        id="editKegiatanModalLabel"
-                    >Edit Kegiatan</h5>
-                    <button
-                        type="button"
-                        class="btn-close tombol-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Tutup"
-                    ></button>
+                    <h5 class="modal-title" id="editKegiatanModalLabel">Edit Kegiatan</h5>
+                    <button type="button" class="btn-close tombol-close" data-bs-dismiss="modal"
+                        aria-label="Tutup"></button>
                 </div>
                 <div class="modal-body">
 
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="namaKegiatanEdit"
-                                    name="nama_kegiatan"
-                                >
+                                <input type="text" class="form-control" id="namaKegiatanEdit" name="nama_kegiatan">
                                 <label for="namaKegiatanEdit">Nama Kegiatan</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="penanggungJawabEdit"
-                                    name="penanggung_jawab"
-                                    required
-                                >
+                                <input type="text" class="form-control" id="penanggungJawabEdit"
+                                    name="penanggung_jawab" required>
                                 <label for="penanggungJawabEdit">Penanggung Jawab</label>
                             </div>
                         </div>
@@ -55,24 +29,14 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input
-                                    type="date"
-                                    class="form-control"
-                                    id="tanggalPelaksanaanEdit"
-                                    name="tanggal_pelaksanaan"
-                                    required
-                                >
+                                <input type="date" class="form-control" id="tanggalPelaksanaanEdit"
+                                    name="tanggal_pelaksanaan" required>
                                 <label for="tanggalPelaksanaanEdit">Tanggal Pelaksanaan</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <select
-                                    class="form-control"
-                                    id="tahunAjaranEdit"
-                                    name="id_tahun_ajaran"
-                                    required
-                                >
+                                <select class="form-control" id="tahunAjaranEdit" name="id_tahun_ajaran" required>
                                     @foreach ($kegiatan as $k)
                                         <option value="{{ $k->tahunAjaran->id }}">{{ $k->tahunAjaran->tahun_mulai }} -
                                             {{ $k->tahunAjaran->tahun_akhir }}</option>
@@ -85,12 +49,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-floating mb-3">
-                                <select
-                                    class="form-control"
-                                    id="periodeEdit"
-                                    name="periode"
-                                    required
-                                >
+                                <select class="form-control" id="periodeEdit" name="periode" required>
                                     <option value="Mingguan">Mingguan</option>
                                     <option value="Bulanan">Bulanan</option>
                                     <option value="Tahunan">Tahunan</option>
@@ -101,10 +60,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button
-                        type="submit"
-                        class="btn btn-primary"
-                    >Simpan</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
         </form>
@@ -139,7 +95,7 @@
                             document.getElementById('tahunAjaranEdit').value = data
                                 .id_tahun_ajaran;
                             document.getElementById('tanggalPelaksanaanEdit').value = data
-                                .tanggal_pelaksanaan;
+                                .tanggal_pelaksanaan.split(' ')[0];
                             document.getElementById('periodeEdit').value = data.periode;
                         })
                         .catch(error => {
@@ -152,16 +108,17 @@
                         var formData = new FormData(editKegiatanForm);
 
                         axios.post(editKegiatanForm.action, formData)
-                            .then(response => {
+                            .then(async (response) => {
                                 console.log(response.data)
                                 toastr.success(response.data.message);
                                 editKegiatanModal.hide();
-                                window.location.reload();
+                                await updateKegiatanList();;
                             })
                             .catch(error => {
                                 console.log(error)
                                 alert(
-                                    'Terjadi kesalahan saat memperbarui data kegiatan.');
+                                    'Terjadi kesalahan saat memperbarui data kegiatan.'
+                                );
                             });
                     });
                 });

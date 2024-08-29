@@ -15,7 +15,8 @@ class KegiatanController extends Controller
      */
     public function index()
     {
-        return view('module.kegiatan.create');
+        $kegiatan = Kegiatan::with('tahunAjaran')->get();
+        return view('module.kegiatan.wrapper', compact('kegiatan'));
     }
 
     /**
@@ -94,9 +95,14 @@ class KegiatanController extends Controller
             return response()->json(['error' => $th->getMessage()], 500);
         }
     }
-     public function getKegiatan($id)
+    public function getKegiatan($id)
     {
         $kegiatan = Kegiatan::with('tahunAjaran')->findOrFail($id);
+        return response()->json($kegiatan);
+    }
+    public function getAllKegiatan()
+    {
+        $kegiatan = Kegiatan::with('tahunAjaran')->get();
         return response()->json($kegiatan);
     }
 }
