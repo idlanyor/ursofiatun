@@ -24,12 +24,13 @@ class Santri extends Model
         'id_kelas',
     ];
 
+    // Perbaikan relasi dengan kelas
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class, 'id_kelas');
+        return $this->belongsTo(Kelas::class, 'id_kelas', 'id_kelas');
     }
 
-    // Tambahkan metode untuk eager loading
+    // Tidak ada perubahan pada metode untuk eager loading
     public static function withKelas()
     {
         return self::with('kelas');

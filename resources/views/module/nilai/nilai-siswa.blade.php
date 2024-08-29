@@ -1,5 +1,5 @@
 @extends('template.scaffold')
-@section('title', 'Data Santri')
+@section('title', 'Data Nilai')
 @section('style')
     <style>
         .table td,
@@ -12,21 +12,21 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h5>Data Santri</h5>
+                <h5>Data Nilai</h5>
                 <a
-                    href="{{ route('santri.create') }}"
+                    href="{{ route('nilai.create') }}"
                     class="btn btn-success btn-icon-split"
                 >
                     <span class="icon text-white-50">
-                        <i class="fas fa-user-plus"></i>
+                        <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text">Tambah Data Santri</span>
+                    <span class="text">Tambah Data Nilai</span>
                 </a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table
-                        id="dataSantriTable"
+                        id="dataNilaiTable"
                         class="table table-striped table-hover table-bordered align-middle"
                     >
                         <thead>
@@ -36,18 +36,16 @@
                                     style="white-space: nowrap;"
                                 >#</th>
                                 <th style="width: 5%;">No</th>
-                                <th>Nama</th>
-                                <th>Tempat/Tgl Lahir</th>
-                                <th>Jenis Kelamin</th>
-                                <th>Alamat</th>
-                                <th>Telepon</th>
-                                <th>Orang Tua</th>
-                                <th>Kelas</th>
+                                <th>Nama Santri</th>
+                                <th>Mata Pelajaran</th>
+                                <th>Nilai Ulangan 1</th>
+                                <th>Nilai Ulangan 2</th>
+                                <th>Nilai Ulangan 3</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
-                            @if ($dataSantri->count())
-                                @foreach ($dataSantri as $index => $d)
+                            @if ($dataNilai->count())
+                                @foreach ($dataNilai as $index => $d)
                                     <tr>
                                         <td>
                                             <button
@@ -55,7 +53,7 @@
                                                 class="btn btn-warning btn-sm edit-btn"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#editModal"
-                                                data-id="{{ $d->id_santri }}"
+                                                data-id="{{ $d->id_nilai }}"
                                             >
                                                 <i
                                                     class="fas fa-pencil-alt"
@@ -67,7 +65,7 @@
                                                 class="btn btn-primary btn-sm show-btn"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#showModal"
-                                                data-id="{{ $d->id_santri }}"
+                                                data-id="{{ $d->id_nilai }}"
                                             >
                                                 <i
                                                     class="fas fa-eye"
@@ -79,7 +77,7 @@
                                                 class="btn btn-danger btn-sm delete-btn"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#deleteModal"
-                                                data-id="{{ $d->id_santri }}"
+                                                data-id="{{ $d->id_nilai }}"
                                             >
                                                 <i
                                                     class="fas fa-trash"
@@ -88,21 +86,17 @@
                                             </button>
                                         </td>
                                         <td scope="row">{{ $index + 1 }}</td>
-                                        <td>{{ $d->nama }}</td>
-                                        <td>{{ $d->tempat_lahir }},
-                                            {{ \Carbon\Carbon::parse($d->tanggal_lahir)->translatedFormat('d F Y') }}</td>
-                                        <td>{{ $d->jenis_kelamin == 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>
-                                        <td>{{ $d->alamat }}</td>
-                                        <td>{{ $d->telepon }}</td>
-                                        <td>{{ $d->orang_tua }}</td>
-                                        <td>{{ $d->kelas->nama_kelas }}</td>
-
+                                        <td>{{ $d->santri->nama }}</td>
+                                        <td>{{ $d->mapel->nama_mapel }}</td>
+                                        <td>{{ $d->ulangan_1 }}</td>
+                                        <td>{{ $d->ulangan_2 }}</td>
+                                        <td>{{ $d->ulangan_3 }}</td>
                                     </tr>
                                 @endforeach
                             @else
                                 <tr>
                                     <td
-                                        colspan="9"
+                                        colspan="8"
                                         class="text-center"
                                     >Tidak Ada Data</td>
                                 </tr>
@@ -120,7 +114,7 @@
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            $('#dataSantriTable').DataTable({
+            $('#dataNilaiTable').DataTable({
                 dom: 'Brftp',
                 buttons: [{
                         extend: 'copy',
@@ -144,7 +138,7 @@
             });
         })
     </script>
-    @include('module.santri.edit')
-    @include('module.santri.destroy')
-    @include('module.santri.show')
+    @include('module.nilai.edit')
+    @include('module.nilai.destroy')
+    @include('module.nilai.show')
 @endsection

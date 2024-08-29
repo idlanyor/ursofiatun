@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nilai;
-use App\Http\Requests\StoreNilaiRequest;
-use App\Http\Requests\UpdateNilaiRequest;
+use App\Models\MataPelajaran;
+use App\Models\Santri;
+use Illuminate\Support\Facades\Request;
 
 class NilaiController extends Controller
 {
@@ -13,7 +14,10 @@ class NilaiController extends Controller
      */
     public function index()
     {
-        //
+        $dataNilai = Nilai::with('santri', 'mapel')->get();
+        $mapel = MataPelajaran::all();
+        $santri = Santri::all();
+        return view('module.nilai.nilai-mapel', compact('dataNilai', 'mapel', 'santri'));
     }
 
     /**
@@ -27,7 +31,7 @@ class NilaiController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreNilaiRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -51,7 +55,7 @@ class NilaiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateNilaiRequest $request, Nilai $nilai)
+    public function update(Request $request, Nilai $nilai)
     {
         //
     }

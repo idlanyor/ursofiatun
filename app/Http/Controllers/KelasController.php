@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Santri;
 use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,10 +16,13 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $dataKelas = Kelas::with('tahunAjaran')->get();
+        $dataKelas = Kelas::with('tahunAjaran')->whereRelation('tahunAjaran', 'status', 'aktif')->get();
+        $jumlahSantriPerKelas = Santri::with('kelas')->get()->groupBy('id_kelas')->mapWithKeys(function ($group) {
+            return [$group->first()->id_kelas => $group->count()];
+        });
+
         $tahunAjaran = TahunAjaran::where('status', 'aktif')->get();
-        // $tahunAjaran = TahunAjaran::all();
-        return view('module.kelas.index', compact('dataKelas', 'tahunAjaran'));
+        return view('module.kelas.index', compact('dataKelas', 'tahunAjaran', 'jumlahSantriPerKelas'));
     }
 
     /**
@@ -38,7 +41,7 @@ class KelasController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nama_kelas' => 'required|string|max:255',
-            'id_tahun_ajaran' => 'required|exists:tahun_ajaran,id',
+            'id_tahun_ajaran' => 'required|exists:tahun_ajaran,id_tahun_ajaran',
         ]);
 
         if ($validator->fails()) {
@@ -76,7 +79,7 @@ class KelasController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nama_kelas' => 'required|string|max:255',
-            'id_tahun_ajaran' => 'required|exists:tahun_ajaran,id',
+            'id_tahun_ajaran' => 'required|exists:tahun_ajaran,id_tahun_ajaran',
         ]);
 
         if ($validator->fails()) {

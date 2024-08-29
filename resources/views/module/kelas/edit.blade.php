@@ -19,7 +19,7 @@
                         <select class="form-control" name="id_tahun_ajaran" id="editTahunAjaran" required>
                             <option value="" disabled>Pilih Tahun Ajaran</option>
                             @foreach ($tahunAjaran as $tahun)
-                                <option value="{{ $tahun->id }}">{{ $tahun->tahun_mulai }} - {{ $tahun->tahun_akhir }}</option>
+                                <option value="{{ $tahun->id_tahun_ajaran }}">{{ $tahun->tahun_mulai }} - {{ $tahun->tahun_akhir }}</option>
                             @endforeach
                         </select>
                         <label for="editTahunAjaran">Tahun Ajaran</label>

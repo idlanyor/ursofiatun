@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tahun_ajaran', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_tahun_ajaran');
             $table->year('tahun_mulai');
             $table->year('tahun_akhir');
             $table->enum('status', ['aktif', 'tidak aktif']);

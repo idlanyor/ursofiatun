@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\TahunAjaran;
+use App\Models\Santri;
 
 class Kelas extends Model
 {
@@ -12,7 +13,7 @@ class Kelas extends Model
 
     protected $table = 'kelas';
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_kelas';
 
     protected $fillable = [
         'nama_kelas',
@@ -22,5 +23,10 @@ class Kelas extends Model
     public function tahunAjaran()
     {
         return $this->belongsTo(TahunAjaran::class, 'id_tahun_ajaran');
+    }
+
+    public function santri()
+    {
+        return $this->hasMany(Santri::class, 'id_kelas');
     }
 }

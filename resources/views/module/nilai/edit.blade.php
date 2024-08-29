@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editLabel">Edit Santri</h1>
+                <h1 class="modal-title fs-5" id="editLabel">Edit Nilai</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -11,68 +11,37 @@
                     @csrf
                     @method('PUT')
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="nama" id="editNama"
-                            placeholder="Nama Santri">
-                        <label for="editNama">Nama Santri</label>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="tempat_lahir" id="editTempatLahir"
-                                    placeholder="Tempat Lahir">
-                                <label for="editTempatLahir">Tempat Lahir</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-floating mb-3">
-                                <input type="date" class="form-control" name="tanggal_lahir" id="editTanggalLahir"
-                                    placeholder="Tanggal Lahir">
-                                <label for="editTanggalLahir">Tanggal Lahir</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-floating mb-3">
-                                <select class="form-control" name="jenis_kelamin" id="editJenisKelamin" required>
-                                    <option value="" disabled>Pilih Jenis Kelamin</option>
-                                    <option value="L">Laki-laki</option>
-                                    <option value="P">Perempuan</option>
-                                </select>
-                                <label for="editJenisKelamin">Jenis Kelamin</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-floating mb-3">
-                                <select class="form-control" name="kelas" id="editKelas" required>
-                                    <option value="" disabled>Pilih Kelas</option>
-                                    @foreach ($kelas as $k)
-                                        <option value="{{ $k->id }}">{{ $k->nama_kelas }}</option>
-                                    @endforeach
-                                </select>
-                                <label for="editKelas">Kelas</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="orang_tua" id="editOrangTua"
-                                    placeholder="Orang Tua">
-                                <label for="editOrangTua">Orang Tua</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="telepon" id="editTelepon"
-                                    placeholder="Telepon">
-                                <label for="editTelepon">Telepon</label>
-                            </div>
-                        </div>
+                        <input type="text" class="form-control" name="ulangan_1" id="editUlangan1"
+                            placeholder="Nilai Ulangan 1">
+                        <label for="editUlangan1">Nilai Ulangan 1</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="alamat" id="editAlamat" placeholder="Alamat">
-                        <label for="editAlamat">Alamat</label>
+                        <input type="text" class="form-control" name="ulangan_2" id="editUlangan2"
+                            placeholder="Nilai Ulangan 2">
+                        <label for="editUlangan2">Nilai Ulangan 2</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="ulangan_3" id="editUlangan3"
+                            placeholder="Nilai Ulangan 3">
+                        <label for="editUlangan3">Nilai Ulangan 3</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-control" name="mapel_id" id="editMapel" required>
+                            <option value="" disabled>Pilih Mata Pelajaran</option>
+                            @foreach ($mapel as $m)
+                                <option value="{{ $m->id }}">{{ $m->nama_mapel }}</option>
+                            @endforeach
+                        </select>
+                        <label for="editMapel">Mata Pelajaran</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-control" name="santri_id" id="editSantri" required>
+                            <option value="" disabled>Pilih Santri</option>
+                            @foreach ($santri as $s)
+                                <option value="{{ $s->id_santri }}">{{ $s->nama }}</option>
+                            @endforeach
+                        </select>
+                        <label for="editSantri">Santri</label>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -93,26 +62,20 @@
         document.querySelectorAll('.edit-btn').forEach(button => {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
-                axios.get(`/santri/${id}/edit`)
+                axios.get(`/nilai/${id}/edit`)
                     .then(response => {
                         var data = response.data;
                         console.log(data);
-                        document.getElementById('editNama').value = data.nama;
-                        document.getElementById('editTempatLahir').value = data
-                            .tempat_lahir;
-                        document.getElementById('editTanggalLahir').value = data
-                            .tanggal_lahir;
-                        document.getElementById('editJenisKelamin').value = data
-                            .jenis_kelamin;
-                        document.getElementById('editKelas').value = data.id_kelas;
-                        document.getElementById('editOrangTua').value = data.orang_tua;
-                        document.getElementById('editTelepon').value = data.telepon || '';
-                        document.getElementById('editAlamat').value = data.alamat || '';
-                        editForm.setAttribute('action', `/santri/${id}`);
+                        document.getElementById('editUlangan1').value = data.ulangan_1;
+                        document.getElementById('editUlangan2').value = data.ulangan_2;
+                        document.getElementById('editUlangan3').value = data.ulangan_3;
+                        document.getElementById('editMapel').value = data.mapel_id;
+                        document.getElementById('editSantri').value = data.santri_id;
+                        editForm.setAttribute('action', `/nilai/${id}`);
                     })
                     .catch(error => {
                         console.error('There was an error fetching the data:', error);
-                        toastr.error('Terjadi kesalahan saat mengambil data santri.');
+                        toastr.error('Terjadi kesalahan saat mengambil data nilai.');
                     });
             });
         });
@@ -122,7 +85,7 @@
             var formData = new FormData(editForm);
             var id = editForm.getAttribute('action').split('/').pop();
 
-            axios.post(`/santri/${id}`, formData, {
+            axios.post(`/nilai/${id}`, formData, {
                     headers: {
                         'X-CSRF-TOKEN': formData.get('_token'),
                         'X-HTTP-Method-Override': 'PUT'
@@ -145,7 +108,7 @@
                     } else {
                         console.log(error);
                         console.error('There was an error updating the data:', error);
-                        toastr.error('Terjadi kesalahan saat memperbarui data santri.');
+                        toastr.error('Terjadi kesalahan saat memperbarui data nilai.');
                     }
                 });
         });

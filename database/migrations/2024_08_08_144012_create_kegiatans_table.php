@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama_kegiatan');
             $table->string('penanggung_jawab');
             $table->unsignedBigInteger('id_tahun_ajaran');
-            $table->foreign('id_tahun_ajaran')->references('id')->on('tahun_ajaran')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_tahun_ajaran')->references('id_tahun_ajaran')->on('tahun_ajaran')->onDelete('cascade')->onUpdate('cascade');
             $table->enum('periode', ['Mingguan', 'Bulanan', 'Tahunan']);
             $table->date('tanggal_pelaksanaan');
             $table->timestamps();

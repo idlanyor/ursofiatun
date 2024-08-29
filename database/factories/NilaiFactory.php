@@ -22,6 +22,7 @@ class NilaiFactory extends Factory
             'ulangan_3' => $this->faker->randomFloat(2, 0, 100),
             'santri_id' => \App\Models\Santri::factory(),
             'mapel_id' => \App\Models\MataPelajaran::factory(),
+            'kelas_id' => \App\Models\Kelas::factory(),
         ];
     }
 }

@@ -34,10 +34,6 @@
                     <div class="card mt-2">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <span class="fs-5 text-primary">Kegiatan</span>
-                            <button type="button" id="createKegiatanBtn" data-bs-toggle="modal"
-                                data-bs-target="#createKegiatanModal" class="btn btn-success btn-sm">
-                                <i class="fa fa-plus"></i> Kegiatan Baru
-                            </button>
                         </div>
                         <div class="card-body">
                             <div style="max-height: 300px; overflow-y: auto;">
@@ -77,7 +73,6 @@
 @include('module.kegiatan.create')
 @include('module.kegiatan.destroy')
 @include('module.kegiatan.edit')
-@include('module.kegiatan.createtahunan')
 
 @push('script')
     <!-- FullCalendar JS -->

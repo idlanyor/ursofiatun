@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kegiatan;
 use App\Http\Requests\StoreKegiatanRequest;
 use App\Http\Requests\UpdateKegiatanRequest;
+use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,6 +17,7 @@ class KegiatanController extends Controller
     public function index()
     {
         $kegiatan = Kegiatan::with('tahunAjaran')->get();
+        $tahunAjaran = TahunAjaran::where('status', 'aktif')->get();
         return view('module.kegiatan.wrapper', compact('kegiatan'));
     }
 
