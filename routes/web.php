@@ -68,6 +68,7 @@ Route::middleware('auth')->group(function () {
         'destroy' => 'kegiatan.destroy',
     ]);
     Route::get('/getkegiatan/{id}', [KegiatanController::class, 'getKegiatan']);
+    Route::get('/all-kegiatan', [KegiatanController::class, 'getAllKegiatan']);
 
     // Absensi
     Route::resource('/absensi', AbsensiController::class)->names([
@@ -117,7 +118,7 @@ Route::middleware('auth')->group(function () {
         ]);
 
         // manajemen user
-        Route::resource('user', [UserController::class])->names([
+        Route::resource('pengguna', UserController::class)->names([
             'index' => 'user.index',
             'create' => 'user.create',
             'store' => 'user.store',

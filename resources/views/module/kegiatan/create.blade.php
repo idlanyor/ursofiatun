@@ -1,4 +1,4 @@
-<div class="modal fade" id="createkegiatanT" tabindex="-1" aria-labelledby="createkegiatanTLabel" aria-hidden="true">
+<div class="modal fade" id="createKegiatanModal" tabindex="-1" aria-labelledby="createkegiatanTLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -24,11 +24,29 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Additional fields here -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" id="tanggalPelaksanaanT"
+                                    name="tanggal_pelaksanaan" required>
+                                <label for="tanggalPelaksanaanT">Tanggal Pelaksanaan</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <select class="form-control" id="tahunAjaranT" name="id_tahun_ajaran" required>
+                                    @foreach ($kegiatan as $k)
+                                        <option value="{{ $k->tahunAjaran->id }}">{{ $k->tahunAjaran->tahun_mulai }} -
+                                            {{ $k->tahunAjaran->tahun_akhir }}</option>
+                                    @endforeach
+                                </select>
+                                <label for="tahunAjaranT">Tahun Ajaran</label>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" id="saveKegiatanBtn">Simpan</button>
             </div>
         </div>
