@@ -54,6 +54,10 @@
         rel="stylesheet"
         href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css"
     >
+    <link
+        rel="stylesheet"
+        href="https://cdn.datatables.net/buttons/3.1.1/css/buttons.dataTables.min.css"
+    >
 
 
 
@@ -168,6 +172,7 @@
     <!-- DataTables JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/2.1.4/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.1.1/js/dataTables.buttons.min.js"></script>
 
     @stack('script')
 
