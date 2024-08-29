@@ -41,8 +41,29 @@
                         </div>
                         <div class="card-body">
                             <div style="max-height: 300px; overflow-y: auto;">
-                                <ol class="list-group list-group-numbered" id="kegiatanList">
-                                    <span>Kosong</span>
+                                <ol class="list-group list-group-numbered" >
+                                    @foreach ($kegiatan as $k)
+                                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div class="ms-2 me-auto">
+                                                <div class="fw-bold">
+                                                    {{ $k->nama_kegiatan }}
+                                                    <span
+                                                        class="badge text-bg-primary rounded-pill">{{ $k->penanggung_jawab }}</span>
+                                                </div>
+                                                {{ \Carbon\Carbon::parse($k->tanggal_pelaksanaan)->translatedFormat('l, d F Y') }}
+                                            </div>
+
+                                            <button class="badge btn text-bg-info rounded-pill p-2 btn-edit-kegiatan"
+                                                data-id="{{ $k->id_kegiatan }}" data-bs-toggle="modal">
+                                                <i class="fa fa-pencil-alt"></i>
+                                            </button>
+                                            <button
+                                                class="badge btn text-bg-danger rounded-pill p-2 ms-2 btn-destroy-kegiatan"
+                                                data-id="{{ $k->id_kegiatan }}" data-bs-toggle="modal">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </li>
+                                    @endforeach
                                 </ol>
                             </div>
                         </div>
@@ -118,54 +139,15 @@
     </script>
 
     <script>
-        async function updateKegiatanList() {
-            await axios.get('/all-kegiatan')
-                .then(response => {
-                    let kegiatanList = document.getElementById('kegiatanList');
-                    kegiatanList.innerHTML = ''; // Kosongkan daftar
-                    response.data.forEach(kegiatan => {
-                        let listItem = document.createElement('li');
-                        listItem.className =
-                            'list-group-item d-flex justify-content-between align-items-start';
-                        listItem.innerHTML = `
-                        <div class="ms-2 me-auto">
-                            <div class="fw-bold">
-                                ${kegiatan.nama_kegiatan}
-                                <span class="badge text-bg-primary rounded-pill">${kegiatan.penanggung_jawab}</span>
-                            </div>
-                            ${new Date(kegiatan.tanggal_pelaksanaan).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
-                        </div>
-                        <button class="badge btn text-bg-info rounded-pill p-2 btn-edit-kegiatan"
-                            data-id="${kegiatan.id_kegiatan}" data-bs-toggle="modal">
-                            <i class="fa fa-pencil-alt"></i>
-                        </button>
-                        <button class="badge btn text-bg-danger rounded-pill p-2 ms-2 btn-destroy-kegiatan"
-                            data-id="${kegiatan.id_kegiatan}" data-bs-toggle="modal">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    `;
-                        kegiatanList.appendChild(listItem);
-                    });
-                })
-                .catch(error => {
-                    console.error('Terjadi kesalahan saat mengambil data kegiatan:', error);
-                    toastr.error('Terjadi kesalahan saat mengambil data kegiatan.');
-                });
-        }
-        document.addEventListener('DOMContentLoaded', async function() {
-
-
+        document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('saveKegiatanBtn').addEventListener('click', function() {
                 const form = document.getElementById('createKegiatanForm');
                 const formData = new FormData(form);
                 axios.post('/kegiatan', formData)
-                    .then(async (response) => {
+                    .then(response => {
                         if (response.data.status) {
                             toastr.success(response.data.message);
-                            await updateKegiatanList(); // Refresh daftar kegiatan
-                            var eventModal = new bootstrap.Modal(document.getElementById(
-                                'createKegiatanModal'));
-                            eventModal.hide(); // Tutup modal
+                            location.reload();
                         } else {
                             toastr.error(response.data.message);
                         }
@@ -175,7 +157,6 @@
                         toastr.error('Terjadi kesalahan saat menambah kegiatan.');
                     });
             });
-            await updateKegiatanList();
         });
     </script>
 @endpush
