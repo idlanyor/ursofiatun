@@ -22,7 +22,7 @@ class AbsensiController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

@@ -17,7 +17,7 @@ class SantriController extends Controller
     public function index()
     {
         // Menggunakan eager loading untuk menghindari N+1 problem
-        $dataSantri = Santri::with(['kelas', 'kelas.tahunAjaran'])->get(); // {{ edit_1 }}
+        $dataSantri = Santri::with(['kelas', 'kelas.tahunAjaran'])->get();
         $kelas = Kelas::all();
         return view('module.santri.index', compact('dataSantri', 'kelas'));
     }
