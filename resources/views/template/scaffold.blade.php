@@ -52,6 +52,10 @@
     <!-- DataTables CSS -->
     <link
         rel="stylesheet"
+        href="https://cdn.datatables.net/2.1.4/css/dataTables.bootstrap5.min.css"
+    >
+    <link
+        rel="stylesheet"
         href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css"
     >
     <link
@@ -103,7 +107,7 @@
 
     <!-- Scroll to Top Button-->
     <a
-        class="scroll-to-top rounded"
+        class="rounded scroll-to-top"
         href="#page-top"
     >
         <i class="fas fa-angle-up"></i>
@@ -170,6 +174,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/2.1.4/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/2.1.4/js/dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.1.1/js/dataTables.buttons.min.js"></script>

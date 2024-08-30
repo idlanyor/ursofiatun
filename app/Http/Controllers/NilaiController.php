@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nilai;
-use App\Models\MataPelajaran;
-use App\Models\Santri;
+// use App\Models\MataPelajaran;
+// use App\Models\Santri;
 use Illuminate\Support\Facades\Request;
 
 class NilaiController extends Controller
@@ -15,9 +15,7 @@ class NilaiController extends Controller
     public function index()
     {
         $dataNilai = Nilai::with('santri', 'mapel')->get();
-        $mapel = MataPelajaran::all();
-        $santri = Santri::all();
-        return view('module.nilai.nilai-mapel', compact('dataNilai', 'mapel', 'santri'));
+        return view('module.nilai.nilai-mapel', compact('dataNilai'));
     }
 
     /**
