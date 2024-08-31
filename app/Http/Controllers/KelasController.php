@@ -30,7 +30,7 @@ class KelasController extends Controller
      */
     public function create()
     {
-        $tahunAjaran = TahunAjaran::all();
+        $tahunAjaran = TahunAjaran::where('status', 'aktif')->get();
         return view('module.kelas.create', compact('tahunAjaran'));
     }
 
@@ -118,5 +118,11 @@ class KelasController extends Controller
     {
         $kelas = Kelas::with('tahunAjaran')->findOrFail($id);
         return response()->json($kelas);
+    }
+    public function santriPerKelas($idKelas)
+    {
+        $santriPerKelas = Santri::where('id_kelas', $idKelas)->paginate(10);
+        $kelas = Kelas::all();
+        return view('module.kelas.santriperkelas', compact('santriPerKelas', 'kelas'));
     }
 }

@@ -45,18 +45,15 @@
                                                     aria-hidden="true"
                                                 ></i>
                                             </button>
-                                            <button
-                                                type="button"
-                                                class="btn btn-primary btn-sm show-btn"
-                                                data-id="{{ $d->id_kelas }}"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#showModalKelas"
+                                            <a
+                                                href="{{ route('kelas.santriperkelas', ['idKelas' => $d->id_kelas]) }}"
+                                                class="btn btn-primary btn-sm"
                                             >
                                                 <i
-                                                    class="fas fa-eye"
+                                                    class="fas fa-user-friends"
                                                     aria-hidden="true"
                                                 ></i>
-                                            </button>
+                                            </a>
                                             <button
                                                 type="button"
                                                 class="px-2 btn btn-danger btn-sm delete-btn"

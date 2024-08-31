@@ -14,16 +14,13 @@ class AbsensiController extends Controller
     public function index()
     {
         $dataAbsensi = Absensi::with('santri')->get();
-        return view('module.absensi.index',compact('dataAbsensi'));
+        return view('module.absensi.absensi-kelas', compact('dataAbsensi'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        
-    }
+    public function create() {}
 
     /**
      * Store a newly created resource in storage.

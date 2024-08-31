@@ -1,32 +1,61 @@
 <!-- Modal Edit -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div
+    class="modal fade"
+    id="editModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editLabel">Edit Santri</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h1
+                    class="modal-title fs-5"
+                    id="editLabel"
+                >Edit Santri</h1>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
             </div>
             <div class="modal-body">
                 <form id="editForm">
                     @csrf
                     @method('PUT')
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="nama" id="editNama"
-                            placeholder="Nama Santri">
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="nama"
+                            id="editNama"
+                            placeholder="Nama Santri"
+                        >
                         <label for="editNama">Nama Santri</label>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="tempat_lahir" id="editTempatLahir"
-                                    placeholder="Tempat Lahir">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="tempat_lahir"
+                                    id="editTempatLahir"
+                                    placeholder="Tempat Lahir"
+                                >
                                 <label for="editTempatLahir">Tempat Lahir</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="date" class="form-control" name="tanggal_lahir" id="editTanggalLahir"
-                                    placeholder="Tanggal Lahir">
+                                <input
+                                    type="date"
+                                    class="form-control"
+                                    name="tanggal_lahir"
+                                    id="editTanggalLahir"
+                                    placeholder="Tanggal Lahir"
+                                >
                                 <label for="editTanggalLahir">Tanggal Lahir</label>
                             </div>
                         </div>
@@ -34,8 +63,16 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <select class="form-control" name="jenis_kelamin" id="editJenisKelamin" required>
-                                    <option value="" disabled>Pilih Jenis Kelamin</option>
+                                <select
+                                    class="form-control"
+                                    name="jenis_kelamin"
+                                    id="editJenisKelamin"
+                                    required
+                                >
+                                    <option
+                                        value=""
+                                        disabled
+                                    >Pilih Jenis Kelamin</option>
                                     <option value="L">Laki-laki</option>
                                     <option value="P">Perempuan</option>
                                 </select>
@@ -44,39 +81,70 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <select class="form-control" name="kelas" id="editKelas" required>
-                                    <option value="" disabled>Pilih Kelas</option>
+                                <select
+                                    class="form-control"
+                                    name="kelas"
+                                    id="editNamaKelas"
+                                    required
+                                >
+                                    <option
+                                        value=""
+                                        disabled
+                                    >Pilih Kelas</option>
                                     @foreach ($kelas as $k)
-                                        <option value="{{ $k->id }}">{{ $k->nama_kelas }}</option>
+                                        <option value="{{ $k->id_kelas }}">{{ $k->nama_kelas }}</option>
                                     @endforeach
                                 </select>
-                                <label for="editKelas">Kelas</label>
+                                <label for="editNamaKelas">Kelas</label>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="orang_tua" id="editOrangTua"
-                                    placeholder="Orang Tua">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="orang_tua"
+                                    id="editOrangTua"
+                                    placeholder="Orang Tua"
+                                >
                                 <label for="editOrangTua">Orang Tua</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="telepon" id="editTelepon"
-                                    placeholder="Telepon">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="telepon"
+                                    id="editTelepon"
+                                    placeholder="Telepon"
+                                >
                                 <label for="editTelepon">Telepon</label>
                             </div>
                         </div>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="alamat" id="editAlamat" placeholder="Alamat">
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="alamat"
+                            id="editAlamat"
+                            placeholder="Alamat"
+                        >
                         <label for="editAlamat">Alamat</label>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                        >Close</button>
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >Update</button>
                     </div>
                 </form>
             </div>
@@ -104,7 +172,7 @@
                             .tanggal_lahir;
                         document.getElementById('editJenisKelamin').value = data
                             .jenis_kelamin;
-                        document.getElementById('editKelas').value = data.id_kelas;
+                        document.getElementById('editNamaKelas').value = data.id_kelas;
                         document.getElementById('editOrangTua').value = data.orang_tua;
                         document.getElementById('editTelepon').value = data.telepon || '';
                         document.getElementById('editAlamat').value = data.alamat || '';
