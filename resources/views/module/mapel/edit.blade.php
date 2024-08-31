@@ -23,16 +23,17 @@
                     <div class="form-floating mb-3">
                         <select class="form-control" name="guru_id" id="editGuruId" required>
                             <option value="" disabled>Pilih Guru</option>
-                            @foreach($guru as $guru)
+                            @foreach ($guru as $guru)
                                 <option value="{{ $guru->id_guru }}">{{ $guru->nama }}</option>
                             @endforeach
                         </select>
                         <label for="editGuruId">Guru</label>
                     </div>
                     <div class="form-floating mb-3">
+                    
                         <select class="form-control" name="kelas_id" id="editKelasId" required>
                             <option value="" disabled>Pilih Kelas</option>
-                            @foreach($kelas as $k)
+                            @foreach ($kelas as $k)
                                 <option value="{{ $k->id_kelas }}">{{ $k->nama_kelas }}</option>
                             @endforeach
                         </select>
@@ -57,7 +58,7 @@
         document.querySelectorAll('.edit-btn').forEach(button => {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
-                axios.get(`/matapelajaran/${id}/edit`)
+                axios.get(`/getmapel/${id}`)
                     .then(response => {
                         var data = response.data;
                         document.getElementById('editKodeMapel').value = data.kode_mapel;
@@ -68,7 +69,8 @@
                     })
                     .catch(error => {
                         console.error('There was an error fetching the data:', error);
-                        toastr.error('Terjadi kesalahan saat mengambil data mata pelajaran.');
+                        toastr.error(
+                            'Terjadi kesalahan saat mengambil data mata pelajaran.');
                     });
             });
         });
@@ -90,6 +92,7 @@
                         toastr.success(data.success)
                         location.reload();
                     } else {
+                        console.log(data)
                         toastr.error('Terjadi kesalahan: ' + (data.error || 'Unknown error'));
                     }
                 })

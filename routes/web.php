@@ -91,7 +91,7 @@ Route::middleware('auth')->group(function () {
         'update' => 'matapelajaran.update',
         'destroy' => 'matapelajaran.destroy',
     ]);
-    Route::get('/getmapel/{}', [MataPelajaranController::class, 'getAllMapel']);
+    Route::get('/getmapel/{id}', [MataPelajaranController::class, 'getMapel']);
 
     // Nilai
     Route::resource('/nilai', NilaiController::class)->names([
