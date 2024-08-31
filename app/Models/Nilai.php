@@ -29,4 +29,8 @@ class Nilai extends Model
     {
         return $this->belongsTo(MataPelajaran::class, 'mapel_id');
     }
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'kelas_id');
+    }
 }

@@ -1,5 +1,5 @@
 @extends('template.scaffold')
-@section('title', 'Data Nilai')
+@section('title', 'Data Nilai Santri per Kelas')
 @section('style')
     <style>
         .table td,
@@ -27,7 +27,7 @@
                 <div class="table-responsive">
                     <table
                         id="dataNilaiTable"
-                        class="table table-striped table-hover table-bordered align-middle"
+                        class="table align-middle table-striped table-hover table-bordered"
                     >
                         <thead>
                             <tr>
