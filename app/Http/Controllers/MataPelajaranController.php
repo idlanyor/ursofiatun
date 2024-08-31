@@ -15,7 +15,7 @@ class MataPelajaranController extends Controller
     {
         $guru = Guru::all();
         $kelas = Kelas::all();
-        $dataMapel = MataPelajaran::with(['guru', 'kelas'])->get();
+        $dataMapel = MataPelajaran::with(['guru', 'kelas'])->paginate(10);
         return view('module.mapel.index', compact('dataMapel', 'guru', 'kelas'));
     }
 
@@ -48,15 +48,16 @@ class MataPelajaranController extends Controller
         return view('module.mapel.show', compact('mataPelajaran'));
     }
 
-    public function edit(MataPelajaran $mataPelajaran)
+    public function edit()
     {
         $guru = Guru::all();
         $kelas = Kelas::all();
-        return view('module.mapel.edit', compact('mataPelajaran', 'guru', 'kelas'));
+        return view('module.mapel.edit', compact( 'guru', 'kelas'));
     }
 
-    public function update(Request $request, MataPelajaran $mataPelajaran)
+    public function update(Request $request,$id)
     {
+        $mataPelajaran = MataPelajaran::findOrFail($id);
         $mataPelajaran->update($request->validate([
             'kode_mapel' => 'required|string|max:255',
             'nama_mapel' => 'required|string|max:255',
@@ -68,12 +69,17 @@ class MataPelajaranController extends Controller
 
     public function destroy(MataPelajaran $mataPelajaran)
     {
-         try {
+        try {
             $mataPelajaran->delete();
             return response()->json(['success' => 'Data mapel berhasil dihapus.']);
         } catch (\Exception $e) {
             Log::error('Error deleting mapel: ' . $e->getMessage());
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus data mapel.'], 500);
         }
+    }
+
+    public function getAllMapel(){
+        $mapel = MataPelajaran::with('guru', 'kelas')->get();
+        return response()->json($mapel);
     }
 }

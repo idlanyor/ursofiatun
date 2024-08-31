@@ -35,14 +35,13 @@
                                     class="text-center"
                                     style="white-space: nowrap;"
                                 >#</th>
-                                <th style="width: 5%;">No</th>
                                 <th>Nama</th>
+                                <th>Kelas</th>
                                 <th>Tempat/Tgl Lahir</th>
                                 <th>Jenis Kelamin</th>
                                 <th>Alamat</th>
                                 <th>Telepon</th>
                                 <th>Orang Tua</th>
-                                <th>Kelas</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
@@ -87,15 +86,14 @@
                                                 ></i>
                                             </button>
                                         </td>
-                                        <td scope="row">{{ $index + 1 }}</td>
                                         <td>{{ $d->nama }}</td>
+                                        <td>{{ $d->kelas->nama_kelas }}</td>
                                         <td>{{ $d->tempat_lahir }},
                                             {{ \Carbon\Carbon::parse($d->tanggal_lahir)->translatedFormat('d F Y') }}</td>
                                         <td>{{ $d->jenis_kelamin == 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>
                                         <td>{{ $d->alamat }}</td>
                                         <td>{{ $d->telepon }}</td>
                                         <td>{{ $d->orang_tua }}</td>
-                                        <td>{{ $d->kelas->nama_kelas }}</td>
 
                                     </tr>
                                 @endforeach
@@ -109,6 +107,9 @@
                             @endif
                         </tbody>
                     </table>
+                    <div class="mt-3">
+                        {{ $dataSantri->links() }}
+                    </div>
                 </div>
             </div>
         </div>

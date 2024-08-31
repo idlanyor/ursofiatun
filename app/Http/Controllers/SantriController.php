@@ -17,8 +17,9 @@ class SantriController extends Controller
     public function index()
     {
         // Menggunakan eager loading untuk menghindari N+1 problem
-        $dataSantri = Santri::with(['kelas', 'kelas.tahunAjaran'])->get();
+        $dataSantri = Santri::with('kelas')->paginate(10);
         $kelas = Kelas::all();
+        // dd($dataSantri);
         return view('module.santri.index', compact('dataSantri', 'kelas'));
     }
 
@@ -28,7 +29,7 @@ class SantriController extends Controller
     public function create()
     {
         // Menggunakan eager loading untuk menghindari N+1 problem
-        $dataKelas = Kelas::with('tahunAjaran')->get(); // {{ edit_2 }}
+        $dataKelas = Kelas::with('tahunAjaran')->get();
         return view('module.santri.create', compact('dataKelas'));
     }
 

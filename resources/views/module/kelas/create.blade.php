@@ -35,9 +35,14 @@
                                     id="id_tahun_ajaran"
                                     required
                                 >
-                                    <option value="" disabled selected>Pilih Tahun Ajaran</option>
+                                    <option
+                                        value=""
+                                        disabled
+                                        selected
+                                    >Pilih Tahun Ajaran</option>
                                     @foreach ($tahunAjaran as $tahun)
-                                        <option value="{{ $tahun->id }}">{{ $tahun->tahun_mulai }} - {{ $tahun->tahun_akhir }}</option>
+                                        <option value="{{ $tahun->id_tahun_ajaran }}">{{ $tahun->tahun_mulai }} -
+                                            {{ $tahun->tahun_akhir }}</option>
                                     @endforeach
                                 </select>
                                 <label for="id_tahun_ajaran">Tahun Ajaran</label>
@@ -45,22 +50,22 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer text-muted d-flex justify-content-end mt-3">
-                        <button
-                            type="submit"
-                            class="btn btn-success btn-icon-split"
-                        >
-                            <span class="icon text-white-50">
-                                <i
-                                    class="fa fa-save"
-                                    aria-hidden="true"
-                                ></i>
-                            </span>
-                            <span class="text">Simpan</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="card-footer text-muted d-flex justify-content-end mt-3">
+                    <button
+                        type="submit"
+                        class="btn btn-success btn-icon-split"
+                    >
+                        <span class="icon text-white-50">
+                            <i
+                                class="fa fa-save"
+                                aria-hidden="true"
+                            ></i>
+                        </span>
+                        <span class="text">Simpan</span>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 

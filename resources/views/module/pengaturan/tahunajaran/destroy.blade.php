@@ -31,7 +31,7 @@
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
                 var destroyForm = document.getElementById('destroyForm');
-                destroyForm.setAttribute('action', `/tahunajaran/${id}`);
+                destroyForm.setAttribute('action', `/pengaturan/tahun-ajaran/${id}`);
                 var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
                 deleteModal.show();
             });

@@ -24,7 +24,7 @@
                         <select class="form-control" name="guru_id" id="editGuruId" required>
                             <option value="" disabled>Pilih Guru</option>
                             @foreach($guru as $guru)
-                                <option value="{{ $guru->id }}">{{ $guru->nama }}</option>
+                                <option value="{{ $guru->id_guru }}">{{ $guru->nama }}</option>
                             @endforeach
                         </select>
                         <label for="editGuruId">Guru</label>
@@ -32,8 +32,8 @@
                     <div class="form-floating mb-3">
                         <select class="form-control" name="kelas_id" id="editKelasId" required>
                             <option value="" disabled>Pilih Kelas</option>
-                            @foreach($kelas as $kelas)
-                                <option value="{{ $kelas->id }}">{{ $kelas->nama }}</option>
+                            @foreach($kelas as $k)
+                                <option value="{{ $k->id_kelas }}">{{ $k->nama_kelas }}</option>
                             @endforeach
                         </select>
                         <label for="editKelasId">Kelas</label>

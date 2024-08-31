@@ -97,6 +97,9 @@
                             @endif
                         </tbody>
                     </table>
+                    <div class="mt-3">
+                        {{ $guru->links() }}
+                    </div>
                 </div>
             </div>
         </div>

@@ -16,7 +16,7 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $dataKelas = Kelas::with('tahunAjaran')->whereRelation('tahunAjaran', 'status', 'aktif')->get();
+        $dataKelas = Kelas::with('tahunAjaran')->whereRelation('tahunAjaran', 'status', 'aktif')->paginate(10);
         $jumlahSantriPerKelas = Santri::with('kelas')->get()->groupBy('id_kelas')->mapWithKeys(function ($group) {
             return [$group->first()->id_kelas => $group->count()];
         });

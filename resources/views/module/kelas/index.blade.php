@@ -17,7 +17,10 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive-xl">
-                    <table id="dataKelasTable" class="table align-middle table-striped table-hover table-bordered">
+                    <table
+                        id="dataKelasTable"
+                        class="table align-middle table-striped table-hover table-bordered"
+                    >
                         <thead>
                             <tr>
                                 <th style="width: 150px">#</th>
@@ -68,7 +71,8 @@
                                             </button>
                                         </td>
                                         <td>{{ $d->nama_kelas }}</td>
-                                        <td>{{ $jumlahSantriPerKelas[$d->id_kelas] ?? 0 }}</td> <!-- Menampilkan jumlah santri -->
+                                        <td>{{ $jumlahSantriPerKelas[$d->id_kelas] ?? 0 }}</td>
+                                        <!-- Menampilkan jumlah santri -->
                                     </tr>
                                 @endforeach
                             @else
@@ -81,6 +85,7 @@
                             @endif
                         </tbody>
                     </table>
+                    {{ $dataKelas->links() }}
                 </div>
             </div>
         </div>

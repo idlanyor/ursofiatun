@@ -91,6 +91,7 @@ Route::middleware('auth')->group(function () {
         'update' => 'matapelajaran.update',
         'destroy' => 'matapelajaran.destroy',
     ]);
+    Route::get('/getmapel/{}', [MataPelajaranController::class, 'getAllMapel']);
 
     // Nilai
     Route::resource('/nilai', NilaiController::class)->names([
@@ -108,13 +109,13 @@ Route::middleware('auth')->group(function () {
     Route::prefix('pengaturan')->group(function () {
         Route::get('/', [PengaturanController::class, 'index'])->name('pengaturan.index');
         Route::resource('tahun-ajaran', TahunAjaranController::class)->names([
-            'index' => 'tahunajaran.index',
-            'create' => 'tahunajaran.create',
-            'store' => 'tahunajaran.store',
-            'show' => 'tahunajaran.show',
-            'edit' => 'tahunajaran.edit',
-            'update' => 'tahunajaran.update',
-            'destroy' => 'tahunajaran.destroy',
+            'index' => 'tahun-ajaran.index',
+            'create' => 'tahun-ajaran.create',
+            'store' => 'tahun-ajaran.store',
+            'show' => 'tahun-ajaran.show',
+            'edit' => 'tahun-ajaran.edit',
+            'update' => 'tahun-ajaran.update',
+            'destroy' => 'tahun-ajaran.destroy',
         ]);
 
         // manajemen user
