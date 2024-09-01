@@ -11,13 +11,11 @@ use App\Models\TahunAjaran;
 
 class DashboardController extends Controller
 {
-<<<<<<<<<<<<<<  ✨ Codeium Command ⭐  >>>>>>>>>>>>>>>>
     /**
      * Display a listing of the dashboard.
      *
      * @return \Illuminate\Http\Response
      */
-<<<<<<<  ed201422-9189-441d-9ffb-6156e62eff43  >>>>>>>
 
     public function index()
     {
