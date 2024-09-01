@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
         'destroy' => 'kelas.destroy',
     ]);
     Route::get('/getkelas/{id}', [KelasController::class, 'getKelas']);
-    Route::get('/kelas-santri/{idKelas}',[KelasController::class,'santriPerKelas'])->name('kelas.santriperkelas');    
+    Route::get('/kelas-santri/{idKelas}', [KelasController::class, 'santriPerKelas'])->name('kelas.santriperkelas');
 
 
     // Kegiatan
@@ -69,6 +69,7 @@ Route::middleware('auth')->group(function () {
     ]);
     Route::get('/getkegiatan/{id}', [KegiatanController::class, 'getKegiatan']);
     Route::get('/all-kegiatan', [KegiatanController::class, 'getAllKegiatan']);
+    Route::get('/events', [DashboardController::class, 'getEvents']);
 
     // Absensi
     Route::resource('/absensi', AbsensiController::class)->names([

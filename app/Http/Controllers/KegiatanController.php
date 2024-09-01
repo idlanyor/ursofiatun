@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kegiatan;
-use App\Http\Requests\StoreKegiatanRequest;
-use App\Http\Requests\UpdateKegiatanRequest;
 use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -16,9 +14,10 @@ class KegiatanController extends Controller
      */
     public function index()
     {
-        $kegiatan = Kegiatan::with('tahunAjaran')->get();
         $tahunAjaran = TahunAjaran::where('status', 'aktif')->get();
-        return view('module.kegiatan.wrapper', compact('kegiatan'));
+        $id_tahun_ajaran = $tahunAjaran->first()->id_tahun_ajaran;
+        $kegiatan = Kegiatan::with('tahunAjaran')->where('id_tahun_ajaran', $id_tahun_ajaran)->get();
+        return view('module.kegiatan.wrapper', compact('kegiatan','id_tahun_ajaran'));
     }
 
     /**
@@ -33,7 +32,7 @@ class KegiatanController extends Controller
     {
         Validator::make($request->all(), [
             'nama_kegiatan' => 'required|string|max:255',
-            'id_tahun_ajaran' => 'required|exists:tahun_ajaran,id',
+            'id_tahun_ajaran' => 'required|exists:tahun_ajaran,id_tahun_ajaran',
             'penanggung_jawab' => 'required|string|max:255',
             'periode' => 'required|in:Mingguan,Bulanan,Tahunan',
             'tanggal_pelaksanaan' => 'required|date',
@@ -70,7 +69,7 @@ class KegiatanController extends Controller
     {
         $validatedData = $request->validate([
             'nama_kegiatan' => 'required|string|max:255',
-            'id_tahun_ajaran' => 'required|exists:tahun_ajaran,id',
+            'id_tahun_ajaran' => 'required|exists:tahun_ajaran,id_tahun_ajaran',
             'penanggung_jawab' => 'required|string|max:255',
             'periode' => 'required|in:Mingguan,Bulanan,Tahunan',
             'tanggal_pelaksanaan' => 'required|date',

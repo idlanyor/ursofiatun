@@ -10,14 +10,14 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-floating mb-3">
+                            <div class="mb-3 form-floating">
                                 <input type="text" class="form-control" id="namaKegiatanT"
                                     placeholder="Masukkan Nama Kegiatan" required>
                                 <label for="namaKegiatanT">Nama Kegiatan</label>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-floating mb-3">
+                            <div class="mb-3 form-floating">
                                 <input type="text" class="form-control" id="penanggungJawabT"
                                     placeholder="Masukkan Penanggung Jawab" required>
                                 <label for="penanggungJawabT">Penanggung Jawab</label>
@@ -26,21 +26,21 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-floating mb-3">
+                            <div class="mb-3 form-floating">
                                 <input type="date" class="form-control" id="tanggalPelaksanaanT"
                                     name="tanggal_pelaksanaan" required>
                                 <label for="tanggalPelaksanaanT">Tanggal Pelaksanaan</label>
                             </div>
                         </div>
+                        <input type="hidden" name="id_tahun_ajaran" value="{{ $id_tahun_ajaran }}">
                         <div class="col-md-6">
-                            <div class="form-floating mb-3">
-                                <select class="form-control" id="tahunAjaranT" name="id_tahun_ajaran" required>
-                                    @foreach ($kegiatan as $k)
-                                        <option value="{{ $k->tahunAjaran->id }}">{{ $k->tahunAjaran->tahun_mulai }} -
-                                            {{ $k->tahunAjaran->tahun_akhir }}</option>
-                                    @endforeach
+                            <div class="mb-3 form-floating">
+                                <select class="form-control" id="periodeEdit" name="periode" required>
+                                    <option value="Mingguan">Mingguan</option>
+                                    <option value="Bulanan">Bulanan</option>
+                                    <option value="Tahunan">Tahunan</option>
                                 </select>
-                                <label for="tahunAjaranT">Tahun Ajaran</label>
+                                <label for="periodeEdit">Periode</label>
                             </div>
                         </div>
                     </div>

@@ -13,13 +13,13 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-floating mb-3">
+                            <div class="mb-3 form-floating">
                                 <input type="text" class="form-control" id="namaKegiatanEdit" name="nama_kegiatan">
                                 <label for="namaKegiatanEdit">Nama Kegiatan</label>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-floating mb-3">
+                            <div class="mb-3 form-floating">
                                 <input type="text" class="form-control" id="penanggungJawabEdit"
                                     name="penanggung_jawab" required>
                                 <label for="penanggungJawabEdit">Penanggung Jawab</label>
@@ -28,17 +28,18 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-floating mb-3">
+                            <div class="mb-3 form-floating">
                                 <input type="date" class="form-control" id="tanggalPelaksanaanEdit"
                                     name="tanggal_pelaksanaan" required>
                                 <label for="tanggalPelaksanaanEdit">Tanggal Pelaksanaan</label>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-floating mb-3">
+                            <div class="mb-3 form-floating">
                                 <select class="form-control" id="tahunAjaranEdit" name="id_tahun_ajaran" required>
                                     @foreach ($kegiatan as $k)
-                                        <option value="{{ $k->tahunAjaran->id }}">{{ $k->tahunAjaran->tahun_mulai }} -
+                                        <option value="{{ $k->tahunAjaran->id_tahun_ajaran }}">
+                                            {{ $k->tahunAjaran->tahun_mulai }} -
                                             {{ $k->tahunAjaran->tahun_akhir }}</option>
                                     @endforeach
                                 </select>
@@ -48,7 +49,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-floating mb-3">
+                            <div class="mb-3 form-floating">
                                 <select class="form-control" id="periodeEdit" name="periode" required>
                                     <option value="Mingguan">Mingguan</option>
                                     <option value="Bulanan">Bulanan</option>
@@ -112,7 +113,6 @@
                                 console.log(response.data)
                                 toastr.success(response.data.message);
                                 editKegiatanModal.hide();
-                                await updateKegiatanList();;
                             })
                             .catch(error => {
                                 console.log(error)
