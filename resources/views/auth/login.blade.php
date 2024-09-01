@@ -3,363 +3,201 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <meta
+        http-equiv="X-UA-Compatible"
+        content="ie=edge"
+    >
     <title>Log In | Siak Al - Falah</title>
     <style>
-        /* From Uiverse.io by Pinparker */
-        body {
-            width: 100%;
-            height: 100vh;
+        body{
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #4d4d4d;
+            min-height: 100vh;
+            background-color: #1e88e5;
+            background-image: linear-gradient(to top right, #1e88e5, #42a5f5);
         }
         .form {
+            position: relative;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            display: block;
-            padding: 2.2rem;
-            max-width: 350px;
-            background: linear-gradient(14deg,
-                    rgba(2, 0, 36, 0.8) 0%,
-                    rgba(24, 24, 65, 0.7) 66%,
-                    rgb(20, 76, 99) 100%),
-                radial-gradient(circle,
-                    rgba(2, 0, 36, 0.5) 0%,
-                    rgba(32, 15, 53, 0.2) 65%,
-                    rgba(14, 29, 28, 0.9) 100%);
-            border: 2px solid #fff;
-            -webkit-box-shadow: rgba(0, 212, 255) 0px 0px 50px -15px;
-            box-shadow: rgba(0, 212, 255) 0px 0px 50px -15px;
-            overflow: hidden;
-            z-index: +1;
-            border-radius: 8px;
+            border-radius: 0.75rem;
+            background-color: #fff;
+            color: rgb(97 97 97);
+            box-shadow: 20px 20px 30px rgba(0, 0, 0, .05);
+            width: 22rem;
+            background-clip: border-box;
         }
 
-        /*------input and submit section-------*/
+        .header {
+            position: relative;
+            background-clip: border-box;
+            background-color: #1e88e5;
+            background-image: linear-gradient(to top right, #1e88e5, #42a5f5);
+            margin: 10px;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            color: #fff;
+            box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000, rgba(33, 150, 243, .4);
+            height: 7rem;
+            letter-spacing: 0;
+            line-height: 1.375;
+            font-weight: 600;
+            font-size: 1.9rem;
+            font-family: Roboto, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .inputs {
+            padding: 1.5rem;
+            gap: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
 
         .input-container {
-            position: relative;
-        }
-
-        .input-container input,
-        .form button {
-            outline: none;
-            border: 2px solid #ffffff;
-            margin: 8px 0;
-            font-family: monospace;
-            border-radius: 4px;
-        }
-
-        .input-container input {
-            background-color: #fff;
-            padding: 6px;
-            font-size: 0.875rem;
-            line-height: 1.25rem;
-            width: 250px;
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-        }
-
-        .input-mail:focus::placeholder {
-            opacity: 0;
-            transition: opacity 0.9s;
-        }
-
-        .input-pwd:focus::placeholder {
-            opacity: 0;
-            transition: opacity 0.9s;
-        }
-
-        .submit {
-            position: relative;
-            display: block;
-            padding: 8px;
-            background: linear-gradient(90deg, #243949 0%, #517fa4 100%);
-            color: #ffffff;
-            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-            font-size: 0.875rem;
-            line-height: 1.25rem;
-            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            min-width: 200px;
             width: 100%;
-            text-transform: uppercase;
-            overflow: hidden;
+            height: 2.75rem;
+            position: relative;
         }
 
-        .submit:hover {
-            -webkit-transition: all 0.2s ease-out;
-            -moz-transition: all 0.2s ease-out;
-            transition: all 0.2s ease-out;
-            box-shadow: 4px 5px 17px -4px #ffffff;
+        .input {
+            border: 1px solid rgba(128, 128, 128, 0.61);
+            outline: 0;
+            color: rgb(69 90 100);
+            font-weight: 400;
+            font-size: .9rem;
+            line-height: 1.25rem;
+            padding: 0.75rem;
+            background-color: transparent;
+            border-radius: .375rem;
+            height: 100%;
+        }
+
+        .input:focus {
+            border: 1px solid #1e88e5;
+        }
+
+        .checkbox-container {
+            margin-left: -0.625rem;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .checkbox {
+            position: relative;
+            overflow: hidden;
+            padding: .55rem;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.027);
+            height: 35px;
+            width: 35px;
+        }
+
+        .checkbox input {
+            width: 100%;
+            height: 100%;
             cursor: pointer;
         }
 
-        .submit:hover::before {
-            -webkit-animation: sh02 0.5s 0s linear;
-            -moz-animation: sh02 0.5s 0s linear;
-            animation: sh02 0.5s 0s linear;
+        .checkbox-text {
+            cursor: pointer;
         }
 
-        .submit::before {
-            content: "";
-            display: block;
-            width: 0px;
-            height: 85%;
-            position: absolute;
-            top: 50%;
-            left: 0%;
-            opacity: 0;
-            background: #fff;
-            box-shadow: 0 0 50px 30px #fff;
-            -webkit-transform: skewX(-20deg);
-            -moz-transform: skewX(-20deg);
-            -ms-transform: skewX(-20deg);
-            -o-transform: skewX(-20deg);
-            transform: skewX(-20deg);
+        .sigin-btn {
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: .75rem;
+            line-height: 1rem;
+            text-align: center;
+            padding: .75rem 1.5rem;
+            background-color: #1e88e5;
+            background-image: linear-gradient(to top right, #1e88e5, #42a5f5);
+            border-radius: .5rem;
+            width: 100%;
+            outline: 0;
+            border: 0;
+            color: #fff;
         }
-
-        @keyframes sh02 {
-            from {
-                opacity: 0;
-                left: 0%;
-            }
-
-            50% {
-                opacity: 1;
-            }
-
-            to {
-                opacity: 0;
-                left: 100%;
-            }
-        }
-
-        /*--------signup section---------*/
 
         .signup-link {
-            color: #c0c0c0;
+            line-height: 1.5;
+            font-weight: 300;
             font-size: 0.875rem;
-            line-height: 1.25rem;
-            text-align: center;
-            font-family: monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .signup-link a {
-            color: #fff;
-            text-decoration: none;
+        .signup-link a,
+        .forget {
+            line-height: 1.5;
+            font-weight: 700;
+            font-size: .875rem;
+            margin-left: .25rem;
+            color: #1e88e5;
         }
 
-        .up:hover {
-            text-decoration: underline;
-        }
-
-        /*--------header section-----------*/
-
-        .form-title {
-            font-size: 1.25rem;
-            line-height: 1.75rem;
-            font-family: monospace;
+        .forget {
+            text-align: right;
             font-weight: 600;
-            text-align: center;
-            color: #fff;
-            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
-            animation-duration: 1.5s;
-            overflow: hidden;
-            transition: 0.12s;
-        }
-
-        .form-title span {
-            animation: flickering 2s linear infinite both;
-        }
-
-        .title-2 {
-            display: block;
-            margin-top: -0.5rem;
-            font-size: 2.1rem;
-            font-weight: 800;
-            font-family: Arial, Helvetica, sans-serif;
-            text-align: center;
-            -webkit-text-stroke: #fff 0.1rem;
-            letter-spacing: 0.2rem;
-            color: transparent;
-            position: relative;
-            text-shadow: 0px 0px 16px #cecece;
-        }
-
-        .title-2 span::before,
-        .title-2 span::after {
-            content: "—";
-        }
-
-        @keyframes flickering {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            41.99% {
-                opacity: 1;
-            }
-
-            42% {
-                opacity: 0;
-            }
-
-            43% {
-                opacity: 0;
-            }
-
-            43.01% {
-                opacity: 1;
-            }
-
-            47.99% {
-                opacity: 1;
-            }
-
-            48% {
-                opacity: 0;
-            }
-
-            49% {
-                opacity: 0;
-            }
-
-            49.01% {
-                opacity: 1;
-            }
-        }
-
-        /*---------shooting stars-----------*/
-
-        .bg-stars {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background-size: cover;
-            animation: animateBg 50s linear infinite;
-        }
-
-        @keyframes animateBg {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.2);
-            }
-        }
-
-        .star {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 4px;
-            height: 4px;
-            background: #fff;
-            border-radius: 50%;
-            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1),
-                0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.1);
-            animation: animate 3s linear infinite;
-        }
-
-        .star::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 300px;
-            height: 1px;
-            background: linear-gradient(90deg, #fff, transparent);
-        }
-
-        @keyframes animate {
-            0% {
-                transform: rotate(315deg) translateX(0);
-                opacity: 1;
-            }
-
-            70% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: rotate(315deg) translateX(-1000px);
-                opacity: 0;
-            }
-        }
-
-        .star:nth-child(1) {
-            top: 0;
-            right: 0;
-            left: initial;
-            animation-delay: 0s;
-            animation-duration: 1s;
-        }
-
-        .star:nth-child(2) {
-            top: 0;
-            right: 100px;
-            left: initial;
-            animation-delay: 0.2s;
-            animation-duration: 3s;
-        }
-
-        .star:nth-child(3) {
-            top: 0;
-            right: 220px;
-            left: initial;
-            animation-delay: 2.75s;
-            animation-duration: 2.75s;
-        }
-
-        .star:nth-child(4) {
-            top: 0;
-            right: -220px;
-            left: initial;
-            animation-delay: 1.6s;
-            animation-duration: 1.6s;
         }
     </style>
 </head>
 
 <body class="flex justify-center items-center w-screen h-screen">
-    <form class="form">
-        <div class="form-title"><span>Login</span></div>
-        <div class="title-2"><span>TP Al - Falah</span></div>
-        <div class="input-container">
-            <input placeholder="Email" type="email" class="input-mail" />
-            <span> </span>
+    <form class="form" method="POST" action="{{ route('login') }}">
+        @csrf
+        <div class="header">TP Al - Falah</div>
+        <div class="inputs">
+            <input
+                placeholder="Username"
+                class="input"
+                type="text"
+                name="username"
+                required
+            >
+            <input
+                placeholder="Password"
+                class="input"
+                type="password"
+                name="password"
+                required
+            >
+            <div class="checkbox-container">
+                <label class="checkbox">
+                    <input
+                        type="checkbox"
+                        id="checkbox"
+                        name="remember"
+                    >
+                </label>
+                <label
+                    for="checkbox"
+                    class="checkbox-text"
+                >Tetap masuk</label>
+            </div>
+            <button class="sigin-btn" type="submit">Masuk</button>
+            <a
+                class="forget"
+                href="#"
+            >Forget password ?</a>
+            <p class="signup-link">Belum punya akun? <a href="#">Daftar dulu</a></p>
         </div>
-
-        <section class="bg-stars">
-            <span class="star"></span>
-            <span class="star"></span>
-            <span class="star"></span>
-            <span class="star"></span>
-        </section>
-
-        <div class="input-container">
-            <input placeholder="Password" type="password" class="input-pwd" />
-        </div>
-        <button class="submit" type="submit">
-            <span class="sign-text">Sign in</span>
-        </button>
-
-        <p class="signup-link">
-            No account?
-            <a class="up" href="">Sign up!</a>
-        </p>
     </form>
 </body>
 

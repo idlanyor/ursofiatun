@@ -4,19 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Guru;
 use App\Models\Kegiatan;
+use App\Models\LogActivities;
 use App\Models\MataPelajaran;
 use App\Models\Santri;
 use App\Models\TahunAjaran;
 
 class DashboardController extends Controller
 {
+<<<<<<<<<<<<<<  ✨ Codeium Command ⭐  >>>>>>>>>>>>>>>>
+    /**
+     * Display a listing of the dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+<<<<<<<  ed201422-9189-441d-9ffb-6156e62eff43  >>>>>>>
+
     public function index()
     {
         $tahunAjaran = TahunAjaran::where('status', 'aktif')->get();
         $id_tahun_ajaran = $tahunAjaran->first()->id_tahun_ajaran;
-        // dd($id_tahun_ajaran);
         $kegiatan = Kegiatan::with('tahunAjaran')->get();
-        return view('module.kegiatan.wrapper', compact('kegiatan', 'id_tahun_ajaran'));
         return view('dashboard', [
             'jumlahSantri' => Santri::count(),
             'jumlahGuru' => Guru::count(),
@@ -26,10 +33,20 @@ class DashboardController extends Controller
         ]);
     }
 
+    /**
+     * Mengambil semua data events dari model Kegiatan
+     *
+     * @return \Illuminate\Http\Response
+     **/
     public function getEvents()
     {
         $events = Kegiatan::with('tahunAjaran')->get(); // Mengambil semua data events dari model Kegiatan
 
         return response()->json($events);
+    }
+
+    public function logs(){
+        $logs = LogActivities::with('user')->get();
+        return view('components.logs-activities',compact('logs'));
     }
 }

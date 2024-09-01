@@ -70,6 +70,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/getkegiatan/{id}', [KegiatanController::class, 'getKegiatan']);
     Route::get('/all-kegiatan', [KegiatanController::class, 'getAllKegiatan']);
     Route::get('/events', [DashboardController::class, 'getEvents']);
+    Route::get('/log-activities', [DashboardController::class, 'logs'])->name('log-activities');
 
     // Absensi
     Route::resource('/absensi', AbsensiController::class)->names([
