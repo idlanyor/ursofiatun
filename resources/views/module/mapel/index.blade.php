@@ -10,7 +10,7 @@
                     class="btn btn-success btn-icon-split"
                 >
                     <span class="icon text-white-50">
-                        <i class="fas fa-plus"></i>
+                board message    <i class="fas fa-plus"></i>
                     </span>
                     <span class="text">Tambah Data Mata Pelajaran</span>
                 </a>
