@@ -2,83 +2,124 @@
 @section('title', 'Dashboard')
 
 @section('content')
-
-    {{-- card kecil diatas --}}
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-primary shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Jumlah Santri</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $jumlahSantri }} Orang</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-users fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {{-- card kecil diatas --}}
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Jumlah Guru</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $jumlahGuru }}</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {{-- card kecil diatas --}}
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-info shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Jumlah Mapel
-                        </div>
-                        <div class="row no-gutters align-items-center">
-                            <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $jumlahMataPelajaran }}</div>
+    <div class="row">
+        <div class="mb-4 col-md-8">
+            <div class="py-2 shadow card border-left-primary">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center h5">
+                        <div class="mr-2 col-md-12">
+                            <div class="mb-0 text-gray-800">
+                                Selamat datang <span class="font-weight-bold">{{ Auth::user()->nama }}</span>
+                                Anda Login sebagai <span
+                                    class="font-weight-bold text-danger">{{ Str::title(Auth::user()->role) }}</span>
                             </div>
-                            <div class="col">
-                                <div class="progress progress-sm mr-2">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
-                                        aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-4 col-md-4">
+            <div class="py-2 shadow card border-left-primary">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="mr-2 col">
+                            @php
+                                use Carbon\Carbon;
+
+                                // Mendapatkan tanggal dan waktu saat ini
+                                $tanggal = Carbon::now();
+                            @endphp
+                            <div class="mb-0 text-muted">
+                                <span
+                                    class="font-weight-bold text-primary">{{ $tanggal->isoFormat('dddd, D MMMM YYYY') }}</span>
+                                <span class="fs-3" id="time-display">{{ $tanggal->format('H:i:s') }}
+                                    WIB</span><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {{-- card kecil diatas --}}
+        <div class="mb-4 col-xl-3 col-md-6">
+            <div class="py-2 shadow card border-left-primary h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="mr-2 col">
+                            <div class="mb-1 text-xs font-weight-bold text-primary text-uppercase">
+                                Jumlah Santri</div>
+                            <div class="mb-0 text-gray-800 h5 font-weight-bold">{{ $jumlahSantri }} Orang</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="text-gray-300 fas fa-users fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- card kecil diatas --}}
+        <div class="mb-4 col-xl-3 col-md-6">
+            <div class="py-2 shadow card border-left-success h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="mr-2 col">
+                            <div class="mb-1 text-xs font-weight-bold text-success text-uppercase">
+                                Jumlah Guru</div>
+                            <div class="mb-0 text-gray-800 h5 font-weight-bold">{{ $jumlahGuru }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="text-gray-300 fas fa-dollar-sign fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- card kecil diatas --}}
+        <div class="mb-4 col-xl-3 col-md-6">
+            <div class="py-2 shadow card border-left-info h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="mr-2 col">
+                            <div class="mb-1 text-xs font-weight-bold text-info text-uppercase">Jumlah Mapel
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="mr-3 mb-0 text-gray-800 h5 font-weight-bold">{{ $jumlahMataPelajaran }}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="mr-2 progress progress-sm">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
+                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        <div class="col-auto">
+                            <i class="text-gray-300 fas fa-clipboard-list fa-2x"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    {{-- card kecil diatas --}}
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-warning shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            Pending Requests</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+        {{-- card kecil diatas --}}
+        <div class="mb-4 col-xl-3 col-md-6">
+            <div class="py-2 shadow card border-left-warning h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="mr-2 col">
+                            <div class="mb-1 text-xs font-weight-bold text-warning text-uppercase">
+                                Pending Requests</div>
+                            <div class="mb-0 text-gray-800 h5 font-weight-bold">18</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="text-gray-300 fas fa-comments fa-2x"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -88,3 +129,22 @@
         @include('module.kegiatan.index')
     </div>
 @endsection
+@push('script')
+    <script>
+        // JavaScript untuk memperbarui waktu secara real-time
+        function updateTime() {
+            // Buat objek tanggal baru untuk mendapatkan waktu sekarang
+            var now = new Date();
+            var hours = now.getHours().toString().padStart(2, '0'); // Format jam dua digit
+            var minutes = now.getMinutes().toString().padStart(2, '0'); // Format menit dua digit
+            var seconds = now.getSeconds().toString().padStart(2, '0'); // Format detik dua digit
+
+            // Tampilkan waktu dalam format "HH.mm.ss"
+            var timeString = hours + ':' + minutes + ':' + seconds + ' WIB';
+            document.getElementById('time-display').textContent = timeString;
+        }
+
+        // Panggil fungsi updateTime setiap detik
+        setInterval(updateTime, 1000);
+    </script>
+@endpush

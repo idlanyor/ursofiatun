@@ -3,17 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-    <meta
-        http-equiv="X-UA-Compatible"
-        content="ie=edge"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Log In | Siak Al - Falah</title>
     <style>
-        body{
+        body {
+            font-family: sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -21,6 +16,7 @@
             background-color: #1e88e5;
             background-image: linear-gradient(to top right, #1e88e5, #42a5f5);
         }
+
         .form {
             position: relative;
             display: flex;
@@ -101,7 +97,6 @@
             border-radius: 999px;
             display: flex;
             align-items: center;
-            cursor: pointer;
             justify-content: center;
             background-color: rgba(0, 0, 0, 0.027);
             height: 35px;
@@ -111,12 +106,9 @@
         .checkbox input {
             width: 100%;
             height: 100%;
-            cursor: pointer;
         }
 
-        .checkbox-text {
-            cursor: pointer;
-        }
+
 
         .sigin-btn {
             text-transform: uppercase;
@@ -125,6 +117,7 @@
             line-height: 1rem;
             text-align: center;
             padding: .75rem 1.5rem;
+            cursor:grabbing;
             background-color: #1e88e5;
             background-image: linear-gradient(to top right, #1e88e5, #42a5f5);
             border-radius: .5rem;
@@ -164,38 +157,15 @@
         @csrf
         <div class="header">TP Al - Falah</div>
         <div class="inputs">
-            <input
-                placeholder="Username"
-                class="input"
-                type="text"
-                name="username"
-                required
-            >
-            <input
-                placeholder="Password"
-                class="input"
-                type="password"
-                name="password"
-                required
-            >
+            <input placeholder="Username" class="input" type="text" name="username" required>
+            <input placeholder="Password" class="input" type="password" name="password" required>
             <div class="checkbox-container">
                 <label class="checkbox">
-                    <input
-                        type="checkbox"
-                        id="checkbox"
-                        name="remember"
-                    >
+                    <input type="checkbox" id="checkbox" name="remember">
                 </label>
-                <label
-                    for="checkbox"
-                    class="checkbox-text"
-                >Tetap masuk</label>
+                <label for="checkbox" class="checkbox-text">Tetap masuk</label>
             </div>
             <button class="sigin-btn" type="submit">Masuk</button>
-            <a
-                class="forget"
-                href="#"
-            >Forget password ?</a>
             <p class="signup-link">Belum punya akun? <a href="#">Daftar dulu</a></p>
         </div>
     </form>

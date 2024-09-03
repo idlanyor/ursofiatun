@@ -11,14 +11,14 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3 form-floating">
-                                <input type="text" class="form-control" id="namaKegiatanT"
+                                <input type="text" class="form-control" name="nama_kegiatan" id="namaKegiatanT"
                                     placeholder="Masukkan Nama Kegiatan" required>
                                 <label for="namaKegiatanT">Nama Kegiatan</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3 form-floating">
-                                <input type="text" class="form-control" id="penanggungJawabT"
+                                <input type="text" name="penanggung_jawab" class="form-control" id="penanggungJawabT"
                                     placeholder="Masukkan Penanggung Jawab" required>
                                 <label for="penanggungJawabT">Penanggung Jawab</label>
                             </div>
