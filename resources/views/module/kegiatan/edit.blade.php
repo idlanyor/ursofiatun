@@ -113,6 +113,7 @@
                                 console.log(response.data)
                                 toastr.success(response.data.message);
                                 editKegiatanModal.hide();
+                                window.location.reload()
                             })
                             .catch(error => {
                                 console.log(error)

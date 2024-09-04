@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Log In | Siak Al - Falah</title>
+    <title>Log In | TP Al - Falah</title>
     <style>
+
         body {
             font-family: sans-serif;
             display: flex;
@@ -166,7 +167,7 @@
                 <label for="checkbox" class="checkbox-text">Tetap masuk</label>
             </div>
             <button class="sigin-btn" type="submit">Masuk</button>
-            <p class="signup-link">Belum punya akun? <a href="#">Daftar dulu</a></p>
+            <p class="signup-link">Belum punya akun? <a href="{{ route('register') }}">Daftar dulu</a></p>
         </div>
     </form>
 </body>
