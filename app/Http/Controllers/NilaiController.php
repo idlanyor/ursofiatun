@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MataPelajaran;
 use App\Models\Nilai;
-// use App\Models\MataPelajaran;
 // use App\Models\Santri;
 use Illuminate\Support\Facades\Request;
 
@@ -14,8 +14,8 @@ class NilaiController extends Controller
      */
     public function index()
     {
-        $dataNilai = Nilai::sortBy('kelas_id')->with('santri', 'mapel')->paginate(10);
-        return view('module.nilai.nilai-mapel', compact('dataNilai'));
+        $dataMapel = MataPelajaran::with('kelas')->orderBy('kelas_id', 'desc')->paginate(10);
+        return view('module.nilai.nilai-mapel', compact('dataMapel'));
     }
 
     /**

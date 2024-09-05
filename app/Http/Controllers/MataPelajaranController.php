@@ -33,7 +33,7 @@ class MataPelajaranController extends Controller
                 'kode_mapel' => 'required|string|max:255',
                 'nama_mapel' => 'required|string|max:255',
                 'guru_id' => 'required|integer|exists:guru,id_guru',
-                'kelas_id' => 'required|integer|exists:kelas,id',
+                'kelas_id' => 'required|integer|exists:kelas,id_kelas',
             ]);
 
             if ($validator->fails()) {

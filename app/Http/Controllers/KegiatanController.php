@@ -30,19 +30,18 @@ class KegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'nama_kegiatan' => 'required|string|max:255',
             'id_tahun_ajaran' => 'required|exists:tahun_ajaran,id_tahun_ajaran',
             'penanggung_jawab' => 'required|string|max:255',
             'periode' => 'required|in:Mingguan,Bulanan,Tahunan',
             'tanggal_pelaksanaan' => 'required|date',
         ]);
-        try {
-            Kegiatan::create($request->all());
-            return response()->json(['message' => 'Data berhasil ditambahkan'], 200);
-        } catch (\Throwable $th) {
-            return response()->json(['error' => $th->getMessage()], 500);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
         }
+        Kegiatan::create($validator->validated());
+        return response()->json(['message' => 'Data berhasil ditambahkan'], 200);
     }
 
     /**

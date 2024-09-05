@@ -60,12 +60,8 @@
                 const formData = new FormData(form);
                 axios.post('/kegiatan', formData)
                     .then(response => {
-                        if (response.data.status) {
-                            toastr.success(response.data.message);
-                            location.reload();
-                        } else {
-                            toastr.error(response.data.message);
-                        }
+                        toastr.success(response.data.message);
+                        location.reload();
                     })
                     .catch(error => {
                         console.error('Error creating  data:', error);

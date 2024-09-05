@@ -46,7 +46,7 @@ class SantriController extends Controller
             'orang_tua' => 'nullable|string',
             'alamat' => 'nullable|string',
             'telepon' => 'nullable|string',
-            'id_kelas' => 'required|exists:kelas,id',
+            'id_kelas' => 'required|exists:kelas,id_kelas',
         ]);
 
         if ($validator->fails()) {
@@ -87,6 +87,7 @@ class SantriController extends Controller
             'orang_tua' => 'nullable|string',
             'alamat' => 'nullable|string|max:500',
             'telepon' => 'nullable|string|max:15',
+            'kelas' => 'required|exists:kelas,id_kelas'
         ]);
 
         try {

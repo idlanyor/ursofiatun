@@ -46,6 +46,8 @@ class GuruController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
+        Guru::create($validator->validated());
+
         return response()->json(['message' => 'Data berhasil disimpan'], 200);
     }
 
@@ -110,5 +112,4 @@ class GuruController extends Controller
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus data guru.'], 500);
         }
     }
-
 }

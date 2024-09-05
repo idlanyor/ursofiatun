@@ -14,34 +14,34 @@
                     method="POST"
                 >
                     @csrf
-                    <div class="form-floating mb-3">
+                    <div class="mb-3 form-floating">
                         <input
                             type="text"
                             class="form-control"
                             name="kode_mapel"
                             id="kode_mapel"
                             placeholder="Kode Mata Pelajaran"
-                            
+
                         >
                         <label for="kode_mapel">Kode Mata Pelajaran</label>
                     </div>
-                    <div class="form-floating mb-3">
+                    <div class="mb-3 form-floating">
                         <input
                             type="text"
                             class="form-control"
                             name="nama_mapel"
                             id="nama_mapel"
                             placeholder="Nama Mata Pelajaran"
-                            
+
                         >
                         <label for="nama_mapel">Nama Mata Pelajaran</label>
                     </div>
-                    <div class="form-floating mb-3">
+                    <div class="mb-3 form-floating">
                         <select
                             class="form-control"
                             name="guru_id"
                             id="guru_id"
-                            
+
                         >
                             <option
                                 value=""
@@ -54,12 +54,12 @@
                         </select>
                         <label for="guru_id">Guru</label>
                     </div>
-                    <div class="form-floating mb-3">
+                    <div class="mb-3 form-floating">
                         <select
                             class="form-control"
                             name="kelas_id"
                             id="kelas_id"
-                            
+
                         >
                             <option
                                 value=""
@@ -67,12 +67,12 @@
                                 selected
                             >Pilih Kelas</option>
                             @foreach($kelas as $kelas)
-                                <option value="{{ $kelas->id }}">{{ $kelas->nama_kelas }}</option>
+                                <option value="{{ $kelas->id_kelas }}">{{ $kelas->nama_kelas }}</option>
                             @endforeach
                         </select>
                         <label for="kelas_id">Kelas</label>
                     </div>
-                    <div class="card-footer text-muted d-flex justify-content-end mt-3">
+                    <div class="mt-3 card-footer text-muted d-flex justify-content-end">
                         <button
                             type="submit"
                             class="btn btn-success btn-icon-split"

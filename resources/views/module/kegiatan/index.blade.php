@@ -3,9 +3,9 @@
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
 @endpush
 
-<div class="col-md-12 mb-4">
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
+<div class="mb-4 col-md-12">
+    <div class="mb-4 shadow card">
+        <div class="py-3 card-header">
             <h6 class="m-0 font-weight-bold text-primary">Kalender Kegiatan</h6>
         </div>
         <div class="card-body">
@@ -31,13 +31,13 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card mt-2">
+                    <div class="mt-2 card">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <span class="fs-5 text-primary">Kegiatan</span>
                         </div>
                         <div class="card-body">
                             <div style="max-height: 300px; overflow-y: auto;">
-                                <ol class="list-group list-group-numbered" >
+                                <ol class="list-group list-group-numbered">
                                     @foreach ($kegiatan as $k)
                                         <li class="list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto">
@@ -49,12 +49,12 @@
                                                 {{ \Carbon\Carbon::parse($k->tanggal_pelaksanaan)->translatedFormat('l, d F Y') }}
                                             </div>
 
-                                            <button class="badge btn text-bg-info rounded-pill p-2 btn-edit-kegiatan"
+                                            <button class="p-2 badge btn text-bg-info rounded-pill btn-edit-kegiatan"
                                                 data-id="{{ $k->id_kegiatan }}" data-bs-toggle="modal">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </button>
                                             <button
-                                                class="badge btn text-bg-danger rounded-pill p-2 ms-2 btn-destroy-kegiatan"
+                                                class="p-2 badge btn text-bg-danger rounded-pill ms-2 btn-destroy-kegiatan"
                                                 data-id="{{ $k->id_kegiatan }}" data-bs-toggle="modal">
                                                 <i class="fa fa-trash"></i>
                                             </button>
@@ -71,8 +71,8 @@
 </div>
 
 @include('module.kegiatan.create')
-@include('module.kegiatan.destroy')
 @include('module.kegiatan.edit')
+@include('module.kegiatan.destroy')
 
 @push('script')
     <!-- FullCalendar JS -->
@@ -130,28 +130,6 @@
                 .then(response => response.json())
                 .then(data => renderCalendar('id', data))
                 .catch(error => console.error('Error fetching events:', error));
-        });
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('saveKegiatanBtn').addEventListener('click', function() {
-                const form = document.getElementById('createKegiatanForm');
-                const formData = new FormData(form);
-                axios.post('/kegiatan', formData)
-                    .then(response => {
-                        if (response.data.status) {
-                            toastr.success(response.data.message);
-                            location.reload();
-                        } else {
-                            toastr.error(response.data.message);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error creating data:', error);
-                        toastr.error('Terjadi kesalahan saat menambah kegiatan.');
-                    });
-            });
         });
     </script>
 @endpush

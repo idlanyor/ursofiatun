@@ -150,6 +150,7 @@
             font-weight: 600;
         }
     </style>
+    
 </head>
 
 <body class="flex justify-center items-center w-screen h-screen">

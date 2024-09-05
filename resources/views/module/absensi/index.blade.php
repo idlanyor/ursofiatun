@@ -27,7 +27,7 @@
                 <div class="table-responsive">
                     <table
                         id="dataAbsensiTable"
-                        class="table table-striped table-hover table-bordered align-middle"
+                        class="table align-middle table-striped table-hover table-bordered"
                     >
                         <thead>
                             <tr>

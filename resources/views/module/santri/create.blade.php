@@ -13,7 +13,7 @@
                     method="POST"
                 >
                     @csrf
-                    <div class="form-floating mb-3">
+                    <div class="mb-3 form-floating">
                         <input
                             type="text"
                             class="form-control"
@@ -26,7 +26,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-floating mb-3">
+                            <div class="mb-3 form-floating">
                                 <input
                                     type="text"
                                     class="form-control"
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-floating mb-3">
+                            <div class="mb-3 form-floating">
                                 <input
                                     type="date"
                                     class="form-control"
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-floating mb-3">
+                    <div class="mb-3 form-floating">
                         <select
                             class="form-control"
                             name="jenis_kelamin"
@@ -71,7 +71,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-floating mb-3">
+                            <div class="mb-3 form-floating">
                                 <input
                                     type="text"
                                     class="form-control"
@@ -83,7 +83,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-floating mb-3">
+                            <div class="mb-3 form-floating">
                                 <input
                                     type="text"
                                     class="form-control"
@@ -95,7 +95,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-floating mb-3">
+                    <div class="mb-3 form-floating">
                         <input
                             type="text"
                             class="form-control"
@@ -105,7 +105,7 @@
                         >
                         <label for="alamat">Alamat</label>
                     </div>
-                    <div class="form-floating mb-3">
+                    <div class="mb-3 form-floating">
                         <select
                             class="form-control"
                             name="id_kelas"
@@ -118,12 +118,12 @@
                                 selected
                             >Pilih Kelas</option>
                             @foreach ($dataKelas as $kelas)
-                                <option value="{{ $kelas->id }}">{{ $kelas->nama_kelas }}</option>
+                                <option value="{{ $kelas->id_kelas }}">{{ $kelas->nama_kelas }}</option>
                             @endforeach
                         </select>
                         <label for="id_kelas">Kelas</label>
                     </div>
-                    <div class="card-footer text-muted d-flex justify-content-end mt-3">
+                    <div class="mt-3 card-footer text-muted d-flex justify-content-end">
                         <button
                             type="submit"
                             class="btn btn-success btn-icon-split"
@@ -155,8 +155,10 @@
                     dataType: 'json',
                     success: function(response) {
                         // Handle success
-                        alert('Data berhasil disimpan');
+                        // alert('Data berhasil disimpan');
+                        toastr.success('Data santri berhasil disimpan')
                         form[0].reset();
+                        window.location.href = "{{ route('santri.index') }}";
                     },
                     error: function(xhr) {
                         // Handle error

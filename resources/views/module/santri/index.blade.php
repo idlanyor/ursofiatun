@@ -1,13 +1,6 @@
 @extends('template.scaffold')
 @section('title', 'Data Santri')
-@section('style')
-    <style>
-        .table td,
-        .table th {
-            white-space: nowrap;
-        }
-    </style>
-@endsection
+
 @section('content')
     <div class="col-md-12">
         <div class="card">
@@ -27,7 +20,7 @@
                 <div class="table-responsive">
                     <table
                         id="dataSantriTable"
-                        class="table table-striped table-hover table-bordered align-middle"
+                        class="table align-middle table-striped table-hover table-bordered"
                     >
                         <thead>
                             <tr>
