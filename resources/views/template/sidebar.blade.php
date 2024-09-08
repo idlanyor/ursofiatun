@@ -1,13 +1,31 @@
+@push('style')
+    <style>
+        .sidebar-brand {
+            padding: 10px 0;
+            /* Atur padding biar nggak terlalu lebar */
+        }
+
+        .sidebar-brand-icon {
+            margin-right: 10px;
+            /* Kasih jarak antara ikon dan teks */
+        }
+
+        .sidebar-brand-text {
+            padding-left: 0;
+        }
+    </style>
+@endpush
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-star-and-crescent"></i>
+    <a class="sidebar-brand row align-items-center" href="{{ route('home') }}">
+        <div class="sidebar-brand-icon col-md-4">
+            <img src="{{ asset('alfalah.png') }}" width="100%" class="img-fluid">
         </div>
-        <div class="sidebar-brand-text mx-3">AL - FALAH</div>
+        <div class="sidebar-brand-text col-md-8 text-center">AL-FALAH</div>
     </a>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">

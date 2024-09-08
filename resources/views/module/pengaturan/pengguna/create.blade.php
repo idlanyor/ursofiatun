@@ -49,18 +49,21 @@
                         </select>
                         <div class="invalid-feedback"></div>
                     </div>
+
+                </div>
+                <div class="card-footer text-muted d-flex justify-content-end mt-3">
                     <button
-                    type="submit"
-                    class="btn btn-success btn-icon-split float-end"
-                >
-                    <span class="icon text-white-50">
-                        <i
-                            class="fa fa-save"
-                            aria-hidden="true"
-                        ></i>
-                    </span>
-                    <span class="text">Simpan</span>
-                </button>
+                        type="submit"
+                        class="btn btn-success btn-icon-split"
+                    >
+                        <span class="icon text-white-50">
+                            <i
+                                class="fa fa-save"
+                                aria-hidden="true"
+                            ></i>
+                        </span>
+                        <span class="text">Simpan</span>
+                    </button>
                 </div>
             </form>
         </div>

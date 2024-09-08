@@ -1,10 +1,16 @@
 @extends('template.scaffold')
 @section('title', 'Pengaturan Sistem')
 @section('content')
-    <div class="col-md-12">
-        @include('module.pengaturan.tahunajaran.create')
+    <div class="row">
+        <div class="col-md-6">
+            @include('module.pengaturan.tahunajaran.create')
+        </div>
+        <div class="col-md-6">
+            @include('module.pengaturan.tahunajaran.index')
+        </div>
     </div>
-    <div class="col-md-12">
-        @include('module.pengaturan.tahunajaran.index')
+    <div class="row">
+        <div class="col-md-6">
+        </div>
     </div>
 @endsection

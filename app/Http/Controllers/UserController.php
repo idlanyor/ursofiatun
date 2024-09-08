@@ -7,6 +7,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -25,26 +26,33 @@ class UserController extends Controller
     {
         //
     }
-    public function register(Request $request){
+    /**
+     * Register a new user.
+     */
+    public function register(Request $request)
+    {
         $request->validate([
-            'nama'=>'required|string',
-            'username'=>'required|string|unique:users,username',
-            'password'=>'required|string|confirmed',
-            'role'=>'required|string|in:admin,pengurus',
+            'nama' => 'required|string',
+            'username' => 'required|string|unique:users,username',
+            'password' => 'required|string|confirmed',
+            'role' => 'required|string|in:admin,pengurus',
         ]);
         $user = User::create([
-            'nama'=>$request->nama,
-            'username'=>$request->username,
-            'password'=>bcrypt($request->password),
-            'role'=>$request->role,
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'password' => bcrypt($request->password),
+            'role' => $request->role,
         ]);
         return redirect()->route('login');
     }
-
-    public function login(Request $request){
+    /**
+     * Log in the current user.
+     */
+    public function login(Request $request)
+    {
         $request->validate([
-            'username'=>'required|string',
-            'password'=>'required|string',
+            'username' => 'required|string',
+            'password' => 'required|string',
         ]);
         $credentials = $request->only('username', 'password');
         if (Auth::attempt($credentials)) {
@@ -55,7 +63,11 @@ class UserController extends Controller
             'username' => 'Username atau kata sandi tidak sesuai.',
         ]);
     }
-    public function logout(Request $request){
+    /**
+     * Log out the current user.
+     */
+    public function logout(Request $request)
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
@@ -67,38 +79,70 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->alll([
+            'nama' => 'required|string',
+            'username' => 'required|string|unique:users,username',
+            'password' => 'required|string|confirmed',
+            'role' => 'required|string|in:admin,pengurus',
+        ]));
 
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        User::create($validator->validated());;
+        return response()->json(['message' => 'Data berhasil disimpan.']);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show($id)
     {
-        //
+        $user = User::find($id);
+        return response()->json(['user' => $user->serialize()]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
-    {
-        //
-    }
+    public function edit(User $user) {}
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $validator = Validator::make($request->alll([
+            'nama' => 'required|string',
+            'username' => 'required|string|unique:users,username',
+            'password' => 'required|string|confirmed',
+            'role' => 'required|string|in:admin,pengurus',
+        ]));
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+        $user->update($validator->validated());
+        return response()->json(['message' => 'Data berhasil diperbarui.']);
+    }
+    /**
+     * Update the specified resource in storage.
+     */
+    public function updateRole($id, $role)
+    {
+        $user = User::find($id);
+        $user->update(['role' => $role]);
+        return response()->json(['message' => 'Role berhasil diperbarui.']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return response()->json(['message' => 'Data berhasil dihapus.']);
     }
 }
