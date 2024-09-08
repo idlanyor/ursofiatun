@@ -9,6 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Roynaldi">
     <meta name="author" content="Ursofiatun">
+    <link rel="shortcut icon" href="{{ asset('alfalah.png') }}" type="image/x-icon">
 
     <title>@yield('title')</title>
     <!-- Custom fonts for this template-->

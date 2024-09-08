@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="{{ asset('alfalah.png') }}" type="image/x-icon">
     <title>Log In | TP Al - Falah</title>
     <style>
-
         body {
             font-family: sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+        min-height: 100vh;
             background-color: #1e88e5;
             background-image: linear-gradient(to top right, #1e88e5, #42a5f5);
         }
@@ -118,7 +118,7 @@
             line-height: 1rem;
             text-align: center;
             padding: .75rem 1.5rem;
-            cursor:grabbing;
+            cursor: grabbing;
             background-color: #1e88e5;
             background-image: linear-gradient(to top right, #1e88e5, #42a5f5);
             border-radius: .5rem;
