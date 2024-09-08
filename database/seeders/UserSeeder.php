@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             'username' => 'idlanyor',
             'password' => Hash::make('ngeteh789'),
             'role' => 'admin',
+            'status' => 'aktif',
         ]);
 
         // User::factory()->count(5)->create();

@@ -43,8 +43,9 @@ class DashboardController extends Controller
         return response()->json($events);
     }
 
-    public function logs(){
+    public function logs()
+    {
         $logs = LogActivities::with('user')->get();
-        return view('components.logs-activities',compact('logs'));
+        return view('components.logs-activities', compact('logs'));
     }
 }

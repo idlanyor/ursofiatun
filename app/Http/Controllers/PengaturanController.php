@@ -13,7 +13,7 @@ class PengaturanController extends Controller
         // return view('module.pengaturan.index');
         $dataTahunAjaran = TahunAjaran::paginate(10);
         $dataUser = User::paginate(10);
-        return view('module.pengaturan.index', compact('dataTahunAjaran'));
+        return view('module.pengaturan.index', compact('dataTahunAjaran','dataUser'));
     }
     public function searchUser($query)
     {

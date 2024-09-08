@@ -10,7 +10,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
+            @include('module.pengaturan.pengguna.index')
         </div>
     </div>
 @endsection

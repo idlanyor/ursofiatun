@@ -4,6 +4,7 @@
                 id="tahunAjaranForm"
                 action="{{ route('tahun-ajaran.store') }}"
                 method="post"
+                class="mb-3"
             >
                 @csrf
                 <div class="card-header">Tambah Data Tahun Ajaran</div>

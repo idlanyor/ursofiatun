@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('keterangan');
             $table->unsignedBigInteger('santri_id');
             $table->foreign('santri_id')->references('id_santri')->on('santri')->onDelete('cascade');
+            $table->unsignedBigInteger('kelas_id');
+            $table->foreign('kelas_id')->references('id_kelas')->on('kelas')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
