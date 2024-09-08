@@ -71,7 +71,7 @@
                                 <td>{{ $d->nama }}</td>
                                 <td>{{ $d->username }}</td>
                                 <td>{{ Str::title($d->role) }}</td>
-                                <td>Aktif</td>
+                                <td>{{ $d->status }}</td>
 
                             </tr>
                         @endforeach

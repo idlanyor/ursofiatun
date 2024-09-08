@@ -20,14 +20,20 @@ class DashboardController extends Controller
     public function index()
     {
         $tahunAjaran = TahunAjaran::where('status', 'aktif')->get();
-        $id_tahun_ajaran = $tahunAjaran->first()->id_tahun_ajaran;
+        $id_tahun_ajaran = null;
+
+        if ($tahunAjaran->isNotEmpty()) {
+            $id_tahun_ajaran = $tahunAjaran->first()->id_tahun_ajaran;
+        }
+
         $kegiatan = Kegiatan::with('tahunAjaran')->get();
+
         return view('dashboard', [
             'jumlahSantri' => Santri::count(),
             'jumlahGuru' => Guru::count(),
             'jumlahMataPelajaran' => MataPelajaran::count(),
             'kegiatan' => $kegiatan,
-            'id_tahun_ajaran' => $id_tahun_ajaran
+            'id_tahun_ajaran' => $id_tahun_ajaran,
         ]);
     }
 

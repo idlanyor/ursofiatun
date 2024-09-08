@@ -35,15 +35,15 @@ class UserController extends Controller
             'nama' => 'required|string',
             'username' => 'required|string|unique:users,username',
             'password' => 'required|string|confirmed',
-            'role' => 'required|string|in:admin,pengurus',
         ]);
-        $user = User::create([
+        User::create([
             'nama' => $request->nama,
             'username' => $request->username,
             'password' => bcrypt($request->password),
-            'role' => $request->role,
+            'role' => 'pengurus',
+            'status' => 'pending',
         ]);
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
     }
     /**
      * Log in the current user.
@@ -84,6 +84,7 @@ class UserController extends Controller
             'username' => 'required|string|unique:users,username',
             'password' => 'required|string|confirmed',
             'role' => 'required|string|in:admin,pengurus',
+            'status' => 'required|string|in:aktif,nonaktif,pending',
         ]));
 
         if ($validator->fails()) {
@@ -119,6 +120,7 @@ class UserController extends Controller
             'username' => 'required|string|unique:users,username',
             'password' => 'required|string|confirmed',
             'role' => 'required|string|in:admin,pengurus',
+            'status' => 'required|string|in:aktif,nonaktif,pending',
         ]));
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);

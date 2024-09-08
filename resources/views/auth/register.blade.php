@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Log In | TP Al - Falah</title>
+    <title>Log In | TPQ Al - Falah</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <style>
         body {
             font-family: sans-serif;
@@ -150,23 +151,22 @@
             font-weight: 600;
         }
     </style>
-    
+
 </head>
 
 <body class="flex justify-center items-center w-screen h-screen">
     <form class="form" method="POST" action="{{ route('register') }}">
         @csrf
-        <div class="header">TP Al - Falah</div>
+        <div class="header">TPQ Al - Falah</div>
         <div class="inputs">
-            <input placeholder="Nama" class="input" type="text" name="nama" :value="old('nama')">
-            <span class="text-danger">{{ implode(', ', $errors->get('nama')) }}</span>
+            <input placeholder="Nama" class="input" type="text" name="nama" value="{{ old('nama') }}">
             <x-input-error :messages="$errors->get('nama')" class="text-danger" />
-            <input placeholder="Username" class="input" type="text" name="username">
+            <input placeholder="Username" class="input" type="text" name="username" value="{{ old('username') }}">
             <x-input-error :messages="$errors->get('username')" class="text-danger" />
-            <input placeholder="Password" class="input" type="password" name="password">
+            <input placeholder="Password" class="input" type="password" name="password" value="{{ old('password') }}">
             <x-input-error :messages="$errors->get('password')" class="text-danger" />
-            <input placeholder="Konfirmasi Password" class="input" type="password" name="password_confirmation"
-             autocomplete="new-password">
+            <input value="{{ old('password_confirmation') }}" placeholder="Konfirmasi Password" class="input" type="password" name="password_confirmation"
+                autocomplete="new-password">
             <x-input-error :messages="$errors->get('password_confirmation')" class="text-danger" />
             <button class="sigin-btn" type="submit">Daftar</button>
             <p class="signup-link">Sudah punya akun? <a href="{{ route('login') }}">Masuk</a></p>

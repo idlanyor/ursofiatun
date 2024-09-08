@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->enum('role', ['admin', 'pengurus']);
-            $table->enum('status', ['aktif', 'pending', 'nonaktif']);
+            $table->enum('status', ['aktif', 'pending', 'nonaktif'])->default('pending');
             $table->timestamps();
         });
     }
