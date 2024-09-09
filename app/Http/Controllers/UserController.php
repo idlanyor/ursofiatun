@@ -7,6 +7,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -143,8 +144,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
-        return response()->json(['message' => 'Data berhasil dihapus.']);
+        try {
+            $user = User::findOrFail($id);
+            $user->delete();
+            return response()->json(['success' => 'Data santri berhasil dihapus.']);
+        } catch (\Exception $e) {
+            Log::error('Error deleting santri: ' . $e->getMessage());
+            return response()->json(['error' => 'Terjadi kesalahan saat menghapus data santri.'], 500);
+        }
     }
 }

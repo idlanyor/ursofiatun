@@ -12,7 +12,7 @@
                 <h1
                     class="modal-title fs-5"
                     id="editLabel"
-                >Edit Tahun Ajaran</h1>
+                >Edit Pengguna</h1>
                 <button
                     type="button"
                     class="btn-close"
@@ -28,21 +28,33 @@
                         <input
                             type="text"
                             class="form-control"
-                            name="tahun_mulai"
-                            id="editTahunMulai"
-                            placeholder="Tahun Mulai"
+                            name="nama"
+                            id="editNama"
+                            placeholder="Nama"
                         >
-                        <label for="editTahunMulai">Tahun Mulai</label>
+                        <label for="editNama">Nama</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input
                             type="text"
                             class="form-control"
-                            name="tahun_akhir"
-                            id="editTahunAkhir"
-                            placeholder="Tahun Akhir"
+                            name="username"
+                            id="editUsername"
+                            placeholder="Username"
                         >
-                        <label for="editTahunAkhir">Tahun Akhir</label>
+                        <label for="editUsername">Username</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select
+                            class="form-select"
+                            name="role"
+                            id="editRole"
+                        >
+                            <option value="">Pilih Role</option>
+                            <option value="admin">Admin</option>
+                            <option value="pengurus">Pengurus</option>
+                        </select>
+                        <label for="editRole">Role</label>
                     </div>
                     <div class="form-floating mb-3">
                         <select
@@ -52,7 +64,8 @@
                         >
                             <option value="">Pilih Status</option>
                             <option value="aktif">Aktif</option>
-                            <option value="tidak aktif">Tidak Aktif</option>
+                            <option value="nonaktif">Nonaktif</option>
+                            <option value="pending">Pending</option>
                         </select>
                         <label for="editStatus">Status</label>
                     </div>
@@ -82,17 +95,18 @@
         document.querySelectorAll('.edit-btn').forEach(button => {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
-                axios.get(`/pengaturan/tahun-ajaran/${id}/edit`)
+                axios.get(`/pengguna/${id}/edit`)
                     .then(response => {
                         var data = response.data;
-                        document.getElementById('editTahunMulai').value = data.tahun_mulai;
-                        document.getElementById('editTahunAkhir').value = data.tahun_akhir;
+                        document.getElementById('editNama').value = data.nama;
+                        document.getElementById('editUsername').value = data.username;
+                        document.getElementById('editRole').value = data.role;
                         document.getElementById('editStatus').value = data.status;
-                        editForm.setAttribute('action', `/pengaturan/tahun-ajaran/${id}`);
+                        editForm.setAttribute('action', `/pengguna/${id}`);
                     })
                     .catch(error => {
                         console.error('There was an error fetching the data:', error);
-                        toastr.error('Terjadi kesalahan saat mengambil data tahun ajaran.');
+                        toastr.error('Terjadi kesalahan saat mengambil data pengguna.');
                     });
             });
         });
@@ -102,7 +116,7 @@
             var formData = new FormData(editForm);
             var id = editForm.getAttribute('action').split('/').pop();
 
-            axios.post(`/pengaturan/tahun-ajaran/${id}`, formData, {
+            axios.post(`/pengguna/${id}`, formData, {
                     headers: {
                         'X-CSRF-TOKEN': formData.get('_token'),
                         'X-HTTP-Method-Override': 'PUT'
@@ -125,7 +139,7 @@
                     } else {
                         console.log(error);
                         console.error('There was an error updating the data:', error);
-                        toastr.error('Terjadi kesalahan saat memperbarui data tahun ajaran.');
+                        toastr.error('Terjadi kesalahan saat memperbarui data pengguna.');
                     }
                 });
         });

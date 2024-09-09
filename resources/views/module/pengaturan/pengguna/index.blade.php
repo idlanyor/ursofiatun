@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header d-flex justify-content-between">
-        <h5>Data Tahun Ajaran</h5>
+        <h5>Data Akun Pengguna</h5>
         <div>
             <a
                 {{-- href="{{ route('tahunajaran.create') }}" --}}
@@ -57,10 +57,10 @@
                                     </button>
                                     <button
                                         type="button"
-                                        class="px-2 btn btn-danger btn-sm delete-btn"
+                                        class="px-2 btn btn-danger btn-sm destroyUserModal-btn"
                                         data-id="{{ $d->id_user }}"
                                         data-bs-toggle="modal"
-                                        data-bs-target="#destroyModal"
+                                        data-bs-target="#destroyUserModal"
                                     >
                                         <i
                                             class="fas fa-user-xmark"
@@ -92,5 +92,6 @@
 
 @include('module.pengaturan.tahunajaran.edit')
 @include('module.pengaturan.tahunajaran.show')
+@include('module.pengaturan.pengguna.destroy')
 @push('script')
 @endpush

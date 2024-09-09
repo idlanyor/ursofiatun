@@ -1,13 +1,13 @@
 <!-- Modal Hapus -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+<div class="modal fade" id="destroyUserModal" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="deleteLabel">Hapus Tahun Ajaran</h1>
+                <h1 class="modal-title fs-5" id="deleteLabel">Hapus Pengguna</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Anda yakin ingin menghapus data tahun ajaran ini?</p>
+                <p>Anda yakin ingin menghapus data pengguna ini?</p>
             </div>
             <div class="modal-footer">
                 <form id="destroyForm" method="POST">
@@ -24,16 +24,16 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var destroyForm = document.getElementById('destroyForm');
-        var destroyModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+        var destroyModal = new bootstrap.Modal(document.getElementById('destroyUserModal'));
 
         // Modal Destroy
-        document.querySelectorAll('.delete-btn').forEach(button => {
+        document.querySelectorAll('.destroyUserModal-btn').forEach(button => {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
                 var destroyForm = document.getElementById('destroyForm');
-                destroyForm.setAttribute('action', `/pengaturan/tahun-ajaran/${id}`);
-                var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
-                deleteModal.show();
+                destroyForm.setAttribute('action', `/pengaturan/pengguna/${id}`);
+                var destroyUserModal = new bootstrap.Modal(document.getElementById('destroyUserModal'));
+                destroyUserModal.show();
             });
         });
         // Handle form submission for deleting
@@ -64,7 +64,7 @@
                             toastr.error('Validasi error:\n' + errorMessages);
                         } else {
                             console.error('There was an error deleting the data:', error);
-                            toastr.error('Terjadi kesalahan saat menghapus data tahun ajaran.');
+                            toastr.error('Terjadi kesalahan saat menghapus data pengguna.');
                         }
                     });
             } else {
