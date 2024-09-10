@@ -1,17 +1,6 @@
 <div class="card">
-    <div class="card-header d-flex justify-content-between">
+    <div class="card-header d-flex justify-content-start">
         <h5>Data Tahun Ajaran</h5>
-        <div>
-            <a
-                {{-- href="{{ route('tahunajaran.create') }}" --}}
-                class="btn btn-success btn-icon-split"
-            >
-                <span class="icon text-white-50">
-                    <i class="fas fa-plus"></i>
-                </span>
-                <span class="text">Tambah Data</span>
-            </a>
-        </div>
     </div>
     <div class="card-body">
         <div class="table-responsive">
