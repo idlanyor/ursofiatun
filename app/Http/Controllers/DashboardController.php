@@ -4,18 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Guru;
 use App\Models\Kegiatan;
+use App\Models\Kelas;
 use App\Models\LogActivities;
-use App\Models\MataPelajaran;
 use App\Models\Santri;
 use App\Models\TahunAjaran;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
-    /**
-     * Display a listing of the dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function index()
     {
@@ -31,7 +27,8 @@ class DashboardController extends Controller
         return view('dashboard', [
             'jumlahSantri' => Santri::count(),
             'jumlahGuru' => Guru::count(),
-            'jumlahMataPelajaran' => MataPelajaran::count(),
+            'jumlahKelas' => Kelas::count(),
+            'userPending' => User::where('status', 'pending')->count(),
             'kegiatan' => $kegiatan,
             'id_tahun_ajaran' => $id_tahun_ajaran,
         ]);

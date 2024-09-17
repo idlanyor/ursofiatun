@@ -9,6 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Roynaldi">
     <meta name="author" content="Ursofiatun">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('alfalah.png') }}" type="image/x-icon">
 
     <title>@yield('title')</title>

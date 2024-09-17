@@ -13,11 +13,12 @@ use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\PengaturanController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\CheckUserStatus;
 
-Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
-// Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'verified', CheckUserStatus::class])->name('home');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', CheckUserStatus::class])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', CheckUserStatus::class, 'verified'])->name('dashboard');
     //Santri
     Route::resource('/santri', SantriController::class)->names([
         'index' => 'santri.index',
@@ -130,6 +131,7 @@ Route::middleware('auth')->group(function () {
             'update' => 'user.update',
             'destroy' => 'user.destroy',
         ]);
+        Route::put('/pengguna/{id}/update-status', [UserController::class, 'updateStatus'])->name('user.update.status');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

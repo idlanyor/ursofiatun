@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -92,7 +90,8 @@ class UserController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        User::create($validator->validated());;
+        User::create($validator->validated());
+        ;
         return response()->json(['message' => 'Data berhasil disimpan.']);
     }
 
@@ -108,7 +107,9 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user) {}
+    public function edit(User $user)
+    {
+    }
 
     /**
      * Update the specified resource in storage.
@@ -138,6 +139,22 @@ class UserController extends Controller
         $user->update(['role' => $role]);
         return response()->json(['message' => 'Role berhasil diperbarui.']);
     }
+    public function updateStatus(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        // Validasi input
+        $request->validate([
+            'status' => 'required|string|in:aktif,pending',
+        ]);
+
+        // Update status
+        $user->status = $request->input('status');
+        $user->save();
+
+        return response()->json(['message' => 'Status berhasil diperbarui.']);
+    }
+
 
     /**
      * Remove the specified resource from storage.

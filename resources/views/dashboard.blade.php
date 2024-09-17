@@ -8,11 +8,19 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center h5">
                         <div class="mr-2 col-md-12">
-                            <div class="mb-0 text-gray-800">
-                                Selamat datang <span class="font-weight-bold">{{ Auth::user()->nama }}</span>
-                                Anda Login sebagai <span
-                                    class="font-weight-bold text-danger">{{ Str::title(Auth::user()->role) }}</span>
-                            </div>
+                            @if (Auth::user()->status === 'pending')
+                                <div class="mb-0 text-gray-800">
+                                    Akun Anda masih dalam status <span class="font-weight-bold">pending</span>. Anda hanya
+                                    bisa mengakses dashboard.Silahkan
+                                    hubungi <span class="text-danger font-weight-bold">Admin</span> untuk mengaktifkan akun
+                                </div>
+                            @else
+                                <div class="mb-0 text-gray-800">
+                                    Selamat datang <span class="font-weight-bold">{{ Auth::user()->nama }}</span>
+                                    Anda Login sebagai <span
+                                        class="font-weight-bold text-danger">{{ Str::title(Auth::user()->role) }}</span>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -43,7 +51,7 @@
     </div>
     <div class="row">
         {{-- card kecil diatas --}}
-        <div class="mb-4 col-xl-3 col-md-6">
+        <a href="{{ route('santri.index') }}" class="mb-4 col-xl-3 col-md-6" style="text-decoration: none;">
             <div class="py-2 shadow card border-left-primary h-100">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -58,17 +66,17 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
 
         {{-- card kecil diatas --}}
-        <div class="mb-4 col-xl-3 col-md-6">
+        <a href="{{ route('guru.index') }}" class="mb-4 col-xl-3 col-md-6" style="text-decoration: none;">
             <div class="py-2 shadow card border-left-success h-100">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="mr-2 col">
                             <div class="mb-1 text-xs font-weight-bold text-success text-uppercase">
                                 Jumlah Guru</div>
-                            <div class="mb-0 text-gray-800 h5 font-weight-bold">{{ $jumlahGuru }}</div>
+                            <div class="mb-0 text-gray-800 h5 font-weight-bold">{{ $jumlahGuru }} Orang</div>
                         </div>
                         <div class="col-auto">
                             <i class="text-gray-300 fas fa-dollar-sign fa-2x"></i>
@@ -76,19 +84,19 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
 
         {{-- card kecil diatas --}}
-        <div class="mb-4 col-xl-3 col-md-6">
+        <a href="{{ route('kelas.index') }}" class="mb-4 col-xl-3 col-md-6" style="text-decoration: none;">
             <div class="py-2 shadow card border-left-info h-100">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="mr-2 col">
-                            <div class="mb-1 text-xs font-weight-bold text-info text-uppercase">Jumlah Mapel
+                            <div class="mb-1 text-xs font-weight-bold text-info text-uppercase">Jumlah Kelas
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="mr-3 mb-0 text-gray-800 h5 font-weight-bold">{{ $jumlahMataPelajaran }}
+                                    <div class="mr-3 mb-0 text-gray-800 h5 font-weight-bold">{{ $jumlahKelas }} Kelas
                                     </div>
                                 </div>
                                 <div class="col">
@@ -105,17 +113,18 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
 
         {{-- card kecil diatas --}}
-        <div class="mb-4 col-xl-3 col-md-6">
+        <a class="mb-4 col-xl-3 col-md-6" style="text-decoration: none;" class="card-link"
+            href="{{ route('pengaturan.index') }}">
             <div class="py-2 shadow card border-left-warning h-100">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="mr-2 col">
                             <div class="mb-1 text-xs font-weight-bold text-warning text-uppercase">
-                                Pending Requests</div>
-                            <div class="mb-0 text-gray-800 h5 font-weight-bold">18</div>
+                                Permintaan Pending</div>
+                            <div class="mb-0 text-gray-800 h5 font-weight-bold"> {{ $userPending }} </div>
                         </div>
                         <div class="col-auto">
                             <i class="text-gray-300 fas fa-comments fa-2x"></i>
@@ -123,11 +132,15 @@
                     </div>
                 </div>
             </div>
+        </a>
+    </div>
+    @if (Auth::user()->status === 'pending')
+        
+    @else
+        <div class="row">
+            @include('module.kegiatan.index')
         </div>
-    </div>
-    <div class="row">
-        @include('module.kegiatan.index')
-    </div>
+    @endif
 @endsection
 @push('script')
     <script>
