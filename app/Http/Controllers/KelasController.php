@@ -49,6 +49,7 @@ class KelasController extends Controller
         }
 
         Kelas::create($validator->validated());
+        // return view('module.kelas.index')->with(['message'], 'Data Kelas berhasil ditambahkan');
 
         return response()->json(['message' => 'Data Kelas berhasil ditambahkan'], 200);
     }

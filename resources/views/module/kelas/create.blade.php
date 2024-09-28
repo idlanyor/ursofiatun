@@ -72,32 +72,35 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
+
             $('#kelasForm').on('submit', function(event) {
                 event.preventDefault();
                 var form = $(this);
-                $.ajax({
-                    url: form.attr('action'),
+                axios({
                     method: form.attr('method'),
+                    url: form.attr('action'),
                     data: form.serialize(),
-                    dataType: 'json',
-                    success: function(response) {
-                        // Handle success
-                        toastr.success('Data berhasil disimpan');
-                        form[0].reset();
-                        window.location.href = "{{ route('kelas.index') }}";
-                    },
-                    error: function(xhr) {
-                        // Handle error
-                        if (xhr.status === 422) {
-                            var errors = xhr.responseJSON.errors;
-                            form.find('.is-invalid').removeClass('is-invalid');
-                            form.find('.invalid-feedback').text('');
-                            $.each(errors, function(key, value) {
-                                var input = form.find('[name="' + key + '"]');
-                                input.addClass('is-invalid');
-                                input.next('.invalid-feedback').text(value[0]);
-                            });
-                        }
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                })
+                .then(function(response) {
+                    // Handle success
+                    toastr.success('Data berhasil disimpan');
+                    form[0].reset();
+                    window.location.href = "{{ route('kelas.index') }}";
+                })
+                .catch(function(error) {
+                    // Handle error
+                    if (error.response.status === 422) {
+                        var errors = error.response.data.errors;
+                        form.find('.is-invalid').removeClass('is-invalid');
+                        form.find('.invalid-feedback').text('');
+                        $.each(errors, function(key, value) {
+                            var input = form.find('[name="' + key + '"]');
+                            input.addClass('is-invalid');
+                            input.next('.invalid-feedback').text(value[0]);
+                        });
                     }
                 });
             });
