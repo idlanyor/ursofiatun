@@ -16,19 +16,20 @@
     </style>
 @endpush
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand row align-items-center" href="{{ route('home') }}">
-        <div class="sidebar-brand-icon col-md-4">
-            <img src="{{ asset('alfalah.png') }}" width="100%" class="img-fluid">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
+        <div class="sidebar-brand-icon">
+            <img src="{{ asset('alfalah.png') }}" width="50" class="img-fluid">
         </div>
-        <div class="sidebar-brand-text col-md-8 text-center">AL-FALAH</div>
+        <div class="ml-2 sidebar-brand-text">AL-FALAH</div>
     </a>
 
 
+
     <!-- Divider -->
-    <hr class="sidebar-divider my-0">
+    <hr class="sidebar-divider">
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
@@ -95,7 +96,7 @@
     </li>
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        <button class="border-0 rounded-circle" id="sidebarToggle"></button>
     </div>
 </ul>
 <!-- End of Sidebar -->

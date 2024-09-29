@@ -14,19 +14,15 @@
 
     <title>@yield('title')</title>
     <!-- Custom fonts for this template-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet"
-        type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Quicksand:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="{{ asset('dist/fontawesome.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('dist/quicksand.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.1.4/css/sb-admin-2.min.css"
-        rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('dist/bs5.css') }}" href="{{ asset('dist/bs4.css') }}">
+    <link href="{{ asset('dist/sbadmin.css') }}" rel="stylesheet">
     <!-- Toastr CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="{{ asset('dist/toastr.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/perfectscrollbar.css') }}">
     <style>
         .table td,
         .table th {
@@ -40,7 +36,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" style="font-family: Quicksand">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -96,22 +92,22 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{ asset('dist/js/axios.js') }}"></script>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="{{ asset('dist/js/jquery.js') }}"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script src="{{ asset('dist/js/bs5.js') }}"></script>
+    <script src="{{ asset('dist/js/bs4.js') }}"></script>
     {{-- <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script> --}}
 
     <!-- Core plugin JavaScript-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="{{ asset('dist/js/jqeasing.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.1.4/js/sb-admin-2.min.js"></script>
+    <script src="{{ asset('dist/js/sbadmin.js') }}"></script>
     <!-- Toastr JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="{{asset('dist/js/toastr.js')}}"></script>
 
     @stack('script')
 
