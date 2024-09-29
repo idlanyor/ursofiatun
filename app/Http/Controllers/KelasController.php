@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\AbsensiBulan;
 use App\Models\Santri;
 use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
@@ -47,11 +48,17 @@ class KelasController extends Controller
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
+        $list_bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        $kelas = Kelas::create($validator->validated());
 
-        Kelas::create($validator->validated());
-        // return view('module.kelas.index')->with(['message'], 'Data Kelas berhasil ditambahkan');
-
-        return response()->json(['message' => 'Data Kelas berhasil ditambahkan'], 200);
+        foreach ($list_bulan as $lb) {
+            AbsensiBulan::create([
+                'id_tahun_ajaran' => TahunAjaran::where('status', 'aktif')->first()->id_tahun_ajaran,
+                'id_kelas' => $kelas->id_kelas,
+                'bulan' => $lb
+            ]);
+        }
+        return response()->json(['message' => 'Data Kelas berhasil ditambahkan', 'kelas' => $kelas], 200);
     }
 
     /**

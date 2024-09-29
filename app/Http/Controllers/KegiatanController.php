@@ -15,15 +15,23 @@ class KegiatanController extends Controller
     public function index()
     {
         $tahunAjaran = TahunAjaran::where('status', 'aktif')->get();
-        $id_tahun_ajaran = $tahunAjaran->first()->id_tahun_ajaran;
+        $id_tahun_ajaran = null;
+        if ($tahunAjaran->isNotEmpty()) {
+            $id_tahun_ajaran = $tahunAjaran->first()->id_tahun_ajaran;
+        }
         $kegiatan = Kegiatan::with('tahunAjaran')->get();
-        return view('module.kegiatan.wrapper', compact('kegiatan', 'id_tahun_ajaran'));
+        $mingguan = Kegiatan::with('tahunAjaran')->where('periode', 'Mingguan')->get();
+        $bulanan = Kegiatan::with('tahunAjaran')->where('periode', 'Bulanan')->get();
+        $tahunan = Kegiatan::with('tahunAjaran')->where('periode', 'Tahunan')->get();
+        return view('module.kegiatan.wrapper', compact('kegiatan', 'mingguan', 'bulanan', 'tahunan', 'id_tahun_ajaran'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request) {}
+    public function create(Request $request)
+    {
+    }
 
     /**
      * Store a newly created resource in storage.

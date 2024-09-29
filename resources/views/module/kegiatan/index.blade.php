@@ -33,29 +33,95 @@
                 <div class="col-md-6">
                     <div class="mt-2 card">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <span class="fs-5 text-primary">Kegiatan</span>
+                            <span class="fs-5 text-primary">Mingguan</span>
                         </div>
                         <div class="card-body">
                             <div style="max-height: 300px; overflow-y: auto;">
                                 <ol class="list-group list-group-numbered">
-                                    @foreach ($kegiatan as $k)
+                                    @foreach ($mingguan as $d)
                                         <li class="list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto">
                                                 <div class="fw-bold">
-                                                    {{ $k->nama_kegiatan }}
+                                                    {{ $d->nama_kegiatan }}
                                                     <span
-                                                        class="badge text-bg-primary rounded-pill">{{ $k->penanggung_jawab }}</span>
+                                                        class="badge text-bg-primary rounded-pill">{{ $d->penanggung_jawab }}</span>
                                                 </div>
-                                                {{ \Carbon\Carbon::parse($k->tanggal_pelaksanaan)->translatedFormat('l, d F Y') }}
+                                                {{ \Carbon\Carbon::parse($d->tanggal_pelaksanaan)->translatedFormat('l, d F Y') }}
                                             </div>
 
                                             <button class="p-2 badge btn text-bg-info rounded-pill btn-edit-kegiatan"
-                                                data-id="{{ $k->id_kegiatan }}" data-bs-toggle="modal">
+                                                data-id="{{ $d->id_kegiatan }}" data-bs-toggle="modal">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </button>
                                             <button
                                                 class="p-2 badge btn text-bg-danger rounded-pill ms-2 btn-destroy-kegiatan"
-                                                data-id="{{ $k->id_kegiatan }}" data-bs-toggle="modal">
+                                                data-id="{{ $d->id_kegiatan }}" data-bs-toggle="modal">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </li>
+                                    @endforeach
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-2 card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span class="fs-5 text-primary">Bulanan</span>
+                        </div>
+                        <div class="card-body">
+                            <div style="max-height: 300px; overflow-y: auto;">
+                                <ol class="list-group list-group-numbered">
+                                    @foreach ($bulanan as $d)
+                                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div class="ms-2 me-auto">
+                                                <div class="fw-bold">
+                                                    {{ $d->nama_kegiatan }}
+                                                    <span
+                                                        class="badge text-bg-primary rounded-pill">{{ $d->penanggung_jawab }}</span>
+                                                </div>
+                                                {{ \Carbon\Carbon::parse($d->tanggal_pelaksanaan)->translatedFormat('l, d F Y') }}
+                                            </div>
+
+                                            <button class="p-2 badge btn text-bg-info rounded-pill btn-edit-kegiatan"
+                                                data-id="{{ $d->id_kegiatan }}" data-bs-toggle="modal">
+                                                <i class="fa fa-pencil-alt"></i>
+                                            </button>
+                                            <button
+                                                class="p-2 badge btn text-bg-danger rounded-pill ms-2 btn-destroy-kegiatan"
+                                                data-id="{{ $d->id_kegiatan }}" data-bs-toggle="modal">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </li>
+                                    @endforeach
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-2 card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span class="fs-5 text-primary">Tahunan</span>
+                        </div>
+                        <div class="card-body">
+                            <div style="max-height: 300px; overflow-y: auto;">
+                                <ol class="list-group list-group-numbered">
+                                    @foreach ($tahunan as $d)
+                                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div class="ms-2 me-auto">
+                                                <div class="fw-bold">
+                                                    {{ $d->nama_kegiatan }}
+                                                    <span
+                                                        class="badge text-bg-primary rounded-pill">{{ $d->penanggung_jawab }}</span>
+                                                </div>
+                                                {{ \Carbon\Carbon::parse($d->tanggal_pelaksanaan)->translatedFormat('l, d F Y') }}
+                                            </div>
+
+                                            <button class="p-2 badge btn text-bg-info rounded-pill btn-edit-kegiatan"
+                                                data-id="{{ $d->id_kegiatan }}" data-bs-toggle="modal">
+                                                <i class="fa fa-pencil-alt"></i>
+                                            </button>
+                                            <button
+                                                class="p-2 badge btn text-bg-danger rounded-pill ms-2 btn-destroy-kegiatan"
+                                                data-id="{{ $d->id_kegiatan }}" data-bs-toggle="modal">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </li>

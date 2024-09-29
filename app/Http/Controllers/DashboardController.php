@@ -23,13 +23,18 @@ class DashboardController extends Controller
         }
 
         $kegiatan = Kegiatan::with('tahunAjaran')->get();
-
+        $mingguan = Kegiatan::with('tahunAjaran')->where('periode', 'Mingguan')->get();
+        $bulanan = Kegiatan::with('tahunAjaran')->where('periode', 'Bulanan')->get();
+        $tahunan = Kegiatan::with('tahunAjaran')->where('periode', 'Tahunan')->get();
         return view('dashboard', [
             'jumlahSantri' => Santri::count(),
             'jumlahGuru' => Guru::count(),
             'jumlahKelas' => Kelas::count(),
             'userPending' => User::where('status', 'pending')->count(),
             'kegiatan' => $kegiatan,
+            'mingguan' => $mingguan,
+            'bulanan' => $bulanan,
+            'tahunan' => $tahunan,
             'id_tahun_ajaran' => $id_tahun_ajaran,
         ]);
     }

@@ -20,13 +20,28 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Tanggal</th>
                                 <th>Kelas</th>
-                                <th>Nama Santri</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
-                            @if ($dataAbsensi->count())
+                            <tr>
+                                <td width="10%">
+                                    <button type="button" class="btn btn-warning btn-sm edit-btn" data-bs-toggle="modal"
+                                        data-bs-target="#editModal" data-id="">
+                                        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-sm show-btn" data-bs-toggle="modal"
+                                        data-bs-target="#showModal" data-id="">
+                                        <i class="fas fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm delete-btn" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal" data-id="">
+                                        <i class="fas fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                                <td>XII TKR</td>
+                            </tr>
+                            {{-- @if ($dataAbsensi->count())
                                 @foreach ($dataAbsensi as $index => $d)
                                     <tr>
                                         <td>
@@ -51,11 +66,11 @@
                                         <td>{{ $d->keterangan }}</td>
                                     </tr>
                                 @endforeach
-                            @else
-                                <tr>
-                                    <td colspan="6" class="text-center">Tidak Ada Data</td>
-                                </tr>
-                            @endif
+                            @else --}}
+                            {{-- <tr>
+                                <td colspan="6" class="text-center">Tidak Ada Data</td>
+                            </tr>
+                            @endif --}}
                         </tbody>
                     </table>
                 </div>
