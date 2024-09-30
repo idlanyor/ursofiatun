@@ -10,7 +10,8 @@
                         <div class="mr-2 col-md-12">
                             @if (Auth::user()->status === 'pending')
                                 <div class="mb-0 text-gray-800">
-                                    Akun Anda masih dalam status <span class="font-weight-bold">pending</span>. Anda hanya
+                                    Akun Anda masih dalam status <span
+                                        class="font-weight-bold">{{ Auth::user()->status }}</span>. Anda hanya
                                     bisa mengakses dashboard.Silahkan
                                     hubungi <span class="text-danger font-weight-bold">Admin</span> untuk mengaktifkan akun
                                 </div>
@@ -33,7 +34,6 @@
                         <div class="mr-2 col">
                             @php
                                 use Carbon\Carbon;
-
                                 // Mendapatkan tanggal dan waktu saat ini
                                 $tanggal = Carbon::now();
                             @endphp
@@ -135,7 +135,6 @@
         </a>
     </div>
     @if (Auth::user()->status === 'pending')
-        
     @else
         <div class="row">
             @include('module.kegiatan.index')

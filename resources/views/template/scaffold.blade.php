@@ -48,13 +48,17 @@
 
             <!-- Main Content -->
             <div id="content">
-
-                @include('template.topbar')
-                <div class="container-fluid">
-                    <div class="row">
-                        @yield('content')
+                @guest
+                    @yield('content-guest')
+                @endguest
+                @auth
+                    @include('template.topbar')
+                    <div class="container-fluid">
+                        <div class="row">
+                            @yield('content')
+                        </div>
                     </div>
-                </div>
+                @endauth
 
 
             </div>
@@ -107,7 +111,7 @@
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('dist/js/sbadmin.js') }}"></script>
     <!-- Toastr JavaScript -->
-    <script src="{{asset('dist/js/toastr.js')}}"></script>
+    <script src="{{ asset('dist/js/toastr.js') }}"></script>
 
     @stack('script')
 

@@ -55,12 +55,13 @@ class UserController extends Controller
         ]);
         $credentials = $request->only('username', 'password');
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended(route('home', absolute: false));
+            return $request->session()->regenerate();
+            // return redirect()->intended(route('home', absolute: false));
         }
-        return back()->withErrors([
-            'username' => 'Username atau kata sandi tidak sesuai.',
-        ]);
+        if ($request->username && $request->password) {
+            return response()->json(['message' => 'Username atau password salah.'], 401);
+        }
+        return response()->json(['message' => 'Username dan password harus diisi.'], 400);
     }
     /**
      * Log out the current user.

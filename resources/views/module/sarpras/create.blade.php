@@ -10,19 +10,19 @@
                 <div class="card-body">
                     @csrf
                     <div class="mb-3 form-floating">
-                        <input type="text" class="form-control" name="nama_barang" id="nama_barang"
-                            placeholder="Nama Barang" required>
+                        <input type="text" class="form-control input-field" name="nama_barang" id="nama_barang"
+                            placeholder="Nama Barang">
                         <label for="nama_barang">Nama Barang</label>
                     </div>
                     <div class="mb-3 form-floating">
-                        <input type="date" class="form-control" name="tanggal_pengadaan" id="tanggal_pengadaan"
-                            placeholder="Tanggal Pengadaan" required>
+                        <input type="date" class="form-control input-field" name="tanggal_pengadaan"
+                            id="tanggal_pengadaan" placeholder="Tanggal Pengadaan">
                         <label for="tanggal_pengadaan">Tanggal Pengadaan</label>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3 form-floating">
-                                <select class="form-control" name="kondisi" id="kondisi" required>
+                                <select class="form-control input-field" name="kondisi" id="kondisi">
                                     <option value="" disabled selected>Kondisi Barang</option>
                                     <option value="baik">Baik</option>
                                     <option value="rusak">Rusak</option>
@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3 form-floating">
-                                <input type="text" class="form-control" name="jumlah" id="jumlah"
+                                <input type="text" class="form-control input-field" name="jumlah" id="jumlah"
                                     placeholder="Jumlah">
                                 <label for="jumlah">Jumlah</label>
                             </div>
@@ -79,6 +79,14 @@
                                 var input = form.find('[name="' + key + '"]');
                                 input.addClass('is-invalid');
                                 input.next('.invalid-feedback').text(value[0]);
+
+                            });
+                            let formControl = document.querySelectorAll('.input-field')
+                            formControl.forEach(i => {
+                                i.addEventListener('focus',
+                                    () => {
+                                        i.classList.remove('is-invalid')
+                                    })
                             });
                         }
                     }

@@ -1,25 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="{{ asset('alfalah.png') }}" type="image/x-icon">
-    <title>Log In | TPQ Al - Falah</title>
+@extends('template.scaffold')
+@section('title', 'Login | TPQ Al - Falah')
+@push('style')
     <style>
         body {
-            font-family: sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #1e88e5;
-            background-image: linear-gradient(to top right, #1e88e5, #42a5f5);
+            font-family: quicksand, sans-serif;
+            /* background-color: #5bb2ff; */
+            /* background-image: linear-gradient(to top right, #7fd3fa, #4dbd89); */
         }
 
-        .form {
-            position: relative;
+        .form-container {
             display: flex;
             flex-direction: column;
             border-radius: 0.75rem;
@@ -27,233 +16,133 @@
             color: rgb(97 97 97);
             box-shadow: 20px 20px 30px rgba(0, 0, 0, .05);
             width: 22rem;
-            background-clip: border-box;
+            padding: 1.5rem;
         }
 
         .header {
-            position: relative;
-            background-clip: border-box;
-            background-color: #1e88e5;
-            background-image: linear-gradient(to top right, #1e88e5, #42a5f5);
-            margin: 10px;
+            background-color: #1ee5db;
+            background-image: linear-gradient(to top right, #208f1100, #1ba564);
             border-radius: 0.75rem;
-            overflow: hidden;
             color: #fff;
-            box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000, rgba(33, 150, 243, .4);
-            height: 7rem;
-            letter-spacing: 0;
-            line-height: 1.375;
+            text-align: center;
+            padding: 1.5rem 0;
             font-weight: 600;
             font-size: 1.9rem;
-            font-family: Roboto, sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .inputs {
-            padding: 1.5rem;
-            gap: 1rem;
-            display: flex;
-            flex-direction: column;
+        .form-control:focus {
+            border-color: #1e88e5;
+            box-shadow: 0 0 0 0.2rem rgba(30, 136, 229, 0.25);
         }
 
-        .input-container {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            min-width: 200px;
-            width: 100%;
-            height: 2.75rem;
-            position: relative;
+        .error-message {
+            font-size: 0.85rem;
+            color: #e74c3c;
+            margin-top: 0.25rem;
+            margin-bottom: 0.75rem;
+            padding-left: 0.5rem;
         }
-
-        .input {
-            border: 1px solid rgba(128, 128, 128, 0.61);
-            outline: 0;
-            color: rgb(69 90 100);
-            font-weight: 400;
-            font-size: .9rem;
-            line-height: 1.25rem;
-            padding: 0.75rem;
-            background-color: transparent;
-            border-radius: .375rem;
-            height: 100%;
-        }
-
-        .input:focus {
-            border: 1px solid #1e88e5;
-        }
-
-        .checkbox-container {
-            margin-left: -0.625rem;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .checkbox {
-            position: relative;
-            overflow: hidden;
-            padding: .55rem;
-            border-radius: 999px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: rgba(0, 0, 0, 0.027);
-            height: 35px;
-            width: 35px;
-        }
-
-        .checkbox input {
-            width: 100%;
-            height: 100%;
-        }
-
-
 
         .sigin-btn {
-            text-transform: uppercase;
-            font-weight: 700;
-            font-size: .75rem;
-            line-height: 1rem;
-            text-align: center;
-            padding: .75rem 1.5rem;
-            cursor: grabbing;
-            background-color: #1e88e5;
-            background-image: linear-gradient(to top right, #1e88e5, #42a5f5);
+            background-color: #34a59f;
+            background-image: linear-gradient(to top right, #208f1100, #1ba564);
             border-radius: .5rem;
-            width: 100%;
-            outline: 0;
-            border: 0;
             color: #fff;
+            font-weight: 700;
+            width: 100%;
+            text-transform: uppercase;
         }
 
         .signup-link {
-            line-height: 1.5;
-            font-weight: 300;
-            font-size: 0.875rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            text-align: center;
+            margin-top: 1rem;
         }
 
-        .signup-link a,
-        .forget {
-            line-height: 1.5;
-            font-weight: 700;
-            font-size: .875rem;
-            margin-left: .25rem;
+        .signup-link a {
             color: #1e88e5;
-        }
-
-        .forget {
-            text-align: right;
-            font-weight: 600;
+            text-decoration: none;
+            font-weight: 700;
         }
     </style>
-</head>
-
-<body class="flex justify-center items-center w-screen h-screen">
-    <form class="form" method="POST" action="{{ route('login') }}">
-        @csrf
-        <div class="header">TPQ Al - Falah</div>
-        <div class="inputs">
-            <input placeholder="Username" class="input" type="text" name="username" required>
-            <input placeholder="Password" class="input" type="password" name="password" required>
-            <div class="checkbox-container">
-                <label class="checkbox">
-                    <input type="checkbox" id="checkbox" name="remember">
-                </label>
-                <label for="checkbox" class="checkbox-text">Tetap masuk</label>
-            </div>
-            <button class="sigin-btn" type="submit">Masuk</button>
-            <p class="signup-link">Belum punya akun? <a href="{{ route('register') }}">Daftar dulu</a></p>
-        </div>
-    </form>
-</body>
-@push('script')
-    @if (session('success'))
-        <script>
-            toastr.success("{{ session('success') }}");
-        </script>
-    @endif
 @endpush
+@section('content-guest')
 
-</html>
-{{-- <x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status
-        class="mb-4"
-        :status="session('status')"
-    />
+    <div class="d-flex justify-content-center align-items-center w-100 h-100">
+        <form class="form-container" id="form-login" {{-- method="POST" action="{{ route('login') }}" --}}>
+            @csrf
+            <div class="header mb-5">TPQ Al - Falah</div>
 
-    <form
-        method="POST"
-        action="{{ route('login') }}"
-    >
-        @csrf
+            <!-- Input Username -->
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Username" name="username" value="{{ old('username') }}">
+                <x-input-error :messages="$errors->get('username')" class="error-message" />
+            </div>
 
-        <div>
-            <x-input-label
-                for="username"
-                :value="__('Username')"
-            />
-            <x-text-input
-                id="username"
-                class="block mt-1 w-full"
-                type="text"
-                name="username"
-                :value="old('username')"
-                autofocus
-                autocomplete="username"
-            />
-            <x-input-error
-                :messages="$errors->get('username')"
-                class="mt-2"
-            />
-        </div>
+            <!-- Input Password -->
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" name="password">
+                <x-input-error :messages="$errors->get('password')" class="error-message" />
+            </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label
-                for="password"
-                :value="__('Password')"
-            />
+            <!-- Input Role -->
+            <div class="form-group">
+                <select class="form-control" name="role">
+                    <option value="pengurus">Pengurus</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <x-input-error :messages="$errors->get('role')" class="error-message" />
+            </div>
 
-            <x-text-input
-                id="password"
-                class="block mt-1 w-full"
-                type="password"
-                name="password"
-                autocomplete="current-password"
-            />
+            <button type="submit" class="btn sigin-btn">Masuk</button>
 
-            <x-input-error
-                :messages="$errors->get('password')"
-                class="mt-2"
-            />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label
-                for="remember_me"
-                class="inline-flex items-center"
-            >
-                <input
-                    id="remember_me"
-                    type="checkbox"
-                    class="text-indigo-600 rounded border-gray-300 shadow-sm focus:ring-indigo-500"
-                    name="remember"
-                >
-                <span class="text-sm text-gray-600 ms-2">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex justify-end items-center mt-4">
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout> --}}
+            <p class="signup-link">Belum punya akun? <a href="{{ route('register') }}">Daftar dulu</a></p>
+        </form>
+    </div>
+@endsection
+@push('script')
+    <script>
+        $(document).ready(function() {
+            $('#form-login').submit(async function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                try {
+                    let response = await axios.post("{{ route('login') }}", formData)
+                    console.log(response.data)
+                    toastr.success("Login berhasil,Mengalihkan...")
+                    setTimeout(() => {
+                        window.location.href = "{{ route('home') }}"
+                    }, 1000)
+                } catch (e) {
+                    if (e.status === 422) {
+                        e.response.data.errors.username.forEach(e => {
+                            toastr.error(e)
+                        });
+                        e.response.data.errors.password.forEach(e => {
+                            toastr.error(e)
+                        });
+                    } else if (e.status === 401) {
+                        toastr.error(e.response.data.message)
+                    } else {
+                        toastr.error(
+                            "Terjadi kesalahan di sisi server,silahkan coba beberapa saat lagi")
+                    }
+                }
+                // $.ajax({
+                //     type: 'POST',
+                //     url: '{{ route('login') }}',
+                //     data: formData,
+                //     processData: false,
+                //     contentType: false,
+                //     success: function(response) {
+                //         console.log(response)
+                //         if (response.status == 'success') {
+                //             window.location.href = '{{ route('home') }}';
+                //         } else {
+                //             alert('Gagal login');
+                //         }
+                //     }
+                // });
+            });
+        });
+    </script>
+@endpush
