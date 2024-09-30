@@ -9,6 +9,7 @@ use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MataPelajaranController;
 use App\Http\Controllers\NilaiController;
+use App\Http\Controllers\SarprasController;
 use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\PengaturanController;
 use App\Http\Controllers\UserController;
@@ -82,6 +83,16 @@ Route::middleware(['auth', CheckUserStatus::class])->group(function () {
         'edit' => 'absensi.edit',
         'update' => 'absensi.update',
         'destroy' => 'absensi.destroy',
+    ]);
+    // Sarpras
+    Route::resource('/sarpras', SarprasController::class)->names([
+        'index' => 'sarpras.index',
+        'create' => 'sarpras.create',
+        'store' => 'sarpras.store',
+        'show' => 'sarpras.show',
+        'edit' => 'sarpras.edit',
+        'update' => 'sarpras.update',
+        'destroy' => 'sarpras.destroy',
     ]);
 
     // Mata Pelajaran

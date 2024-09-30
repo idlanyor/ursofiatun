@@ -58,8 +58,8 @@
     </div>
 </div>
 
-@include('module.pengaturan.tahunajaran.edit')
-@include('module.pengaturan.tahunajaran.show')
+@include('module.pengaturan.pengguna.edit')
+@include('module.pengaturan.pengguna.show')
 @include('module.pengaturan.pengguna.destroy')
 @push('script')
     <script>
@@ -70,7 +70,6 @@
                     // Ambil ID dan status dari data attribute
                     var userId = this.getAttribute('data-id');
                     var currentStatus = this.getAttribute('data-status');
-
                     // Tentukan status baru
                     var newStatus = currentStatus === 'aktif' ? 'pending' : 'aktif';
 

@@ -1,151 +1,60 @@
 @extends('template.scaffold')
-@section('title', 'Tambah Data Santri')
+@section('title', 'Tambah Data Sarpras')
 @section('content')
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h5>Tambah Data Santri</h5>
+                <h5>Tambah Sarana dan Prasarana</h5>
             </div>
-            <div class="card-body">
-                <form
-                    id="santriForm"
-                    action="{{ route('santri.store') }}"
-                    method="POST"
-                >
+            <form id="sarprasForm" action="{{ route('sarpras.store') }}" method="POST">
+                <div class="card-body">
                     @csrf
                     <div class="mb-3 form-floating">
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="nama"
-                            id="nama"
-                            placeholder="Nama Santri"
-                            required
-                        >
-                        <label for="nama">Nama Santri</label>
+                        <input type="text" class="form-control" name="nama_barang" id="nama_barang"
+                            placeholder="Nama Barang" required>
+                        <label for="nama_barang">Nama Barang</label>
+                    </div>
+                    <div class="mb-3 form-floating">
+                        <input type="date" class="form-control" name="tanggal_pengadaan" id="tanggal_pengadaan"
+                            placeholder="Tanggal Pengadaan" required>
+                        <label for="tanggal_pengadaan">Tanggal Pengadaan</label>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3 form-floating">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    name="tempat_lahir"
-                                    id="tempat_lahir"
-                                    placeholder="Tempat Lahir"
-                                    required
-                                >
-                                <label for="tempat_lahir">Tempat Lahir</label>
+                                <select class="form-control" name="kondisi" id="kondisi" required>
+                                    <option value="" disabled selected>Kondisi Barang</option>
+                                    <option value="baik">Baik</option>
+                                    <option value="rusak">Rusak</option>
+                                </select>
+                                <label for="kondisi">Kondisi Barang</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3 form-floating">
-                                <input
-                                    type="date"
-                                    class="form-control"
-                                    name="tanggal_lahir"
-                                    id="tanggal_lahir"
-                                    placeholder="Tanggal Lahir"
-                                    required
-                                >
-                                <label for="tanggal_lahir">Tanggal Lahir</label>
+                                <input type="text" class="form-control" name="jumlah" id="jumlah"
+                                    placeholder="Jumlah">
+                                <label for="jumlah">Jumlah</label>
                             </div>
                         </div>
                     </div>
-                    <div class="mb-3 form-floating">
-                        <select
-                            class="form-control"
-                            name="jenis_kelamin"
-                            id="jenis_kelamin"
-                            required
-                        >
-                            <option
-                                value=""
-                                disabled
-                                selected
-                            >Pilih Jenis Kelamin</option>
-                            <option value="L">Laki-laki</option>
-                            <option value="P">Perempuan</option>
-                        </select>
-                        <label for="jenis_kelamin">Jenis Kelamin</label>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3 form-floating">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    name="orang_tua"
-                                    id="orang_tua"
-                                    placeholder="Orang Tua"
-                                >
-                                <label for="orang_tua">Orang Tua</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3 form-floating">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    name="telepon"
-                                    id="telepon"
-                                    placeholder="Telepon"
-                                >
-                                <label for="telepon">Telepon</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3 form-floating">
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="alamat"
-                            id="alamat"
-                            placeholder="Alamat"
-                        >
-                        <label for="alamat">Alamat</label>
-                    </div>
-                    <div class="mb-3 form-floating">
-                        <select
-                            class="form-control"
-                            name="id_kelas"
-                            id="id_kelas"
-                            required
-                        >
-                            <option
-                                value=""
-                                disabled
-                                selected
-                            >Pilih Kelas</option>
-                            @foreach ($dataKelas as $kelas)
-                                <option value="{{ $kelas->id_kelas }}">{{ $kelas->nama_kelas }}</option>
-                            @endforeach
-                        </select>
-                        <label for="id_kelas">Kelas</label>
-                    </div>
-                    <div class="mt-3 card-footer text-muted d-flex justify-content-end">
-                        <button
-                            type="submit"
-                            class="btn btn-success btn-icon-split"
-                        >
-                            <span class="icon text-white-50">
-                                <i
-                                    class="fa fa-save"
-                                    aria-hidden="true"
-                                ></i>
-                            </span>
-                            <span class="text">Simpan</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="mt-3 card-footer text-muted d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fa fa-save" aria-hidden="true"></i>
+                        </span>
+                        <span class="text">Simpan</span>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#santriForm').on('submit', function(event) {
+            $('#sarprasForm').on('submit', function(event) {
                 event.preventDefault();
                 var form = $(this);
                 $.ajax({
@@ -156,9 +65,9 @@
                     success: function(response) {
                         // Handle success
                         // alert('Data berhasil disimpan');
-                        toastr.success('Data santri berhasil disimpan')
+                        toastr.success('Data sarpras berhasil disimpan')
                         form[0].reset();
-                        window.location.href = "{{ route('santri.index') }}";
+                        window.location.href = "{{ route('sarpras.index') }}";
                     },
                     error: function(xhr) {
                         // Handle error

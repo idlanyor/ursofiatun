@@ -70,6 +70,11 @@
             <i class="fas fa-fw fa-calendar-alt"></i>
             <span>Kegiatan</span></a>
     </li>
+    <li class="nav-item {{ request()->routeIs('sarpras.index') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('sarpras.index') }}">
+            <i class="fas fa-fw fa-calendar-alt"></i>
+            <span>Sarpras</span></a>
+    </li>
     <li class="nav-item {{ request()->routeIs('absensi.index') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('absensi.index') }}">
             <i class="fas fa-fw fa-tasks"></i>

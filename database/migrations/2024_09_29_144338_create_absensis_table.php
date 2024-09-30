@@ -13,9 +13,16 @@ return new class extends Migration {
         Schema::create('absensi', function (Blueprint $table) {
             $table->id('id_absensi');
             $table->unsignedBigInteger('santri_id');
-            $table->foreign('santri_id')->references('id_santri')->on('santri')->onDelete('cascade');
-            $table->unsignedBigInteger('absensi_bulan_id');
-            $table->foreign('absensi_bulan_id')->references('id_absensi_bulan')->on('absensi_bulan')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('santri_id')
+                ->references('id_santri')
+                ->on('santri')
+                ->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('absensi_kelas');
+            $table->foreign('absensi_kelas')
+                ->references('id_absensi_kelas')
+                ->on('absensi_kelas')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->string('1');
             $table->string('2');
             $table->string('3');
