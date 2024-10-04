@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use App\Models\AbsensiBulan;
+use App\Models\AbsensiKelas;
 use App\Models\Santri;
 use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
@@ -52,7 +53,7 @@ class KelasController extends Controller
         $kelas = Kelas::create($validator->validated());
 
         foreach ($list_bulan as $lb) {
-            AbsensiBulan::create([
+            AbsensiKelas::create([
                 'id_tahun_ajaran' => TahunAjaran::where('status', 'aktif')->first()->id_tahun_ajaran,
                 'id_kelas' => $kelas->id_kelas,
                 'bulan' => $lb

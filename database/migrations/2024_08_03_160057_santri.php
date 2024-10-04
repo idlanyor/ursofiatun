@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('telepon')->nullable();
             $table->unsignedBigInteger('id_kelas');
             $table->foreign('id_kelas')->references('id_kelas')->on('kelas')->onDelete('cascade')->onUpdate('cascade');
-            $table->timestamps();
         });
     }
 

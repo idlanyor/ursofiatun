@@ -54,7 +54,6 @@ return new class extends Migration {
             $table->string('29');
             $table->string('30');
             $table->string('31');
-            $table->timestamps();
         });
     }
 

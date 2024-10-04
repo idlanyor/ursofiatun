@@ -16,7 +16,6 @@ return new class extends Migration {
             $table->date('tanggal_pengadaan');
             $table->enum('kondisi', ['baik', 'rusak']);
             $table->integer('jumlah');
-            $table->timestamps();
         });
     }
 

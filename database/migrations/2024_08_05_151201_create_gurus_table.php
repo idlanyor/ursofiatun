@@ -19,7 +19,6 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ['L', 'P']);
             $table->string('alamat')->nullable();
             $table->string('telepon')->nullable();
-            $table->timestamps();
         });
     }
 

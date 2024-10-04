@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Absensi;
 use App\Http\Requests\StoreAbsensiRequest;
 use App\Http\Requests\UpdateAbsensiRequest;
+use App\Models\AbsensiKelas;
+use App\Models\Kelas;
+use App\Models\Santri;
 
 class AbsensiController extends Controller
 {
@@ -13,8 +16,11 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        $dataAbsensi = Absensi::with('santri')->get();
-        return view('module.absensi.absensi-kelas', compact('dataAbsensi'));
+        $kelas = Kelas::with('tahunAjaran')->whereRelation('tahunAjaran', 'status', 'aktif')->paginate(10);
+        $jumlahSantriPerKelas = Santri::with('kelas')->get()->groupBy('id_kelas')->mapWithKeys(function ($group) {
+            return [$group->first()->id_kelas => $group->count()];
+        });
+        return view('module.absensi.absensi-kelas', compact('kelas','jumlahSantriPerKelas'));
     }
 
     /**
@@ -35,7 +41,8 @@ class AbsensiController extends Controller
      */
     public function show(Absensi $absensi)
     {
-        //
+        $dataAbsensi = Absensi::with('santri')->get();
+        return view('module.absensi.absensi-santri');
     }
 
     /**

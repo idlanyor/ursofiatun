@@ -18,7 +18,6 @@ return new class extends Migration
         $table->string('ip_address');
         $table->string('route');
         $table->string('action');
-        $table->timestamps();
     });
     }
 

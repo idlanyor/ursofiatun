@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('password');
             $table->enum('role', ['admin', 'pengurus']);
             $table->enum('status', ['aktif', 'pending', 'nonaktif'])->default('pending');
-            $table->timestamps();
         });
     }
 

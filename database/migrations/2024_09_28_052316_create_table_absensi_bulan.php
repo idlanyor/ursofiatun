@@ -25,7 +25,6 @@ return new class extends Migration {
                 ->on('kelas')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->timestamps();
         });
     }
 

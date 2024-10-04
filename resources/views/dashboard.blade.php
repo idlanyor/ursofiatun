@@ -40,7 +40,7 @@
                             <div class="mb-0 text-muted">
                                 <span
                                     class="font-weight-bold text-primary">{{ $tanggal->isoFormat('dddd, D MMMM YYYY') }}</span>
-                                <span class="fs-3" id="time-display">{{ $tanggal->format('H:i:s') }}
+                                <br><span class="fs-3" id="time-display">{{ $tanggal->format('H:i:s') }}
                                     WIB</span><br>
                             </div>
                         </div>

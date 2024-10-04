@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreign('id_tahun_ajaran')
                 ->references('id_tahun_ajaran')->on('tahun_ajaran')
                 ->onDelete('cascade')->onUpdate('cascade');
-            $table->timestamps();
         });
     }
 

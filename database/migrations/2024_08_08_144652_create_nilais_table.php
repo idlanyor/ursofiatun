@@ -22,7 +22,6 @@ return new class extends Migration
             $table->foreign('kelas_id')->references('id_kelas')->on('kelas')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('mapel_id');
             $table->foreign('mapel_id')->references('id_mata_pelajaran')->on('mata_pelajaran')->onDelete('cascade')->onUpdate('cascade');
-            $table->timestamps();
         });
     }
 

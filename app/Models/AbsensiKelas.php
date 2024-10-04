@@ -15,4 +15,9 @@ class AbsensiKelas extends Model
         'id_kelas',
         'bulan'
     ];
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'id_tahun_ajaran');
+    }
 }

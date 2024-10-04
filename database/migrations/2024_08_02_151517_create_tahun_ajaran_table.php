@@ -16,7 +16,6 @@ return new class extends Migration
             $table->year('tahun_mulai');
             $table->year('tahun_akhir');
             $table->enum('status', ['aktif', 'tidak aktif']);
-            $table->timestamps();
         });
     }
 
