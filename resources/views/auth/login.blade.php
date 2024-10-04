@@ -87,8 +87,8 @@
             <!-- Input Role -->
             <div class="form-group">
                 <select class="form-control" name="role">
-                    <option value="pengurus">Pengurus</option>
                     <option value="admin">Admin</option>
+                    <option value="pengurus">Pengurus</option>
                 </select>
                 <x-input-error :messages="$errors->get('role')" class="error-message" />
             </div>
