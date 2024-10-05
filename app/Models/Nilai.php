@@ -10,7 +10,8 @@ class Nilai extends Model
     use HasFactory;
 
     protected $table = 'nilai';
-    protected $primaryKey = 'id_nilai';
+    public $timestamps = false;
+    protected $primaryKey =  'id_nilai';
 
     protected $fillable = [
         'ulangan_1',

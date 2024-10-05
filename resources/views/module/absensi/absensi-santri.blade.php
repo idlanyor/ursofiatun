@@ -5,6 +5,21 @@
         .table td,
         .table th {
             white-space: nowrap;
+            text-align: center;
+        }
+
+        .table td input[type="text"] {
+            width: 30px;
+            padding: 2px;
+            text-align: center;
+            border: 1px solid #ced4da;
+            background-color: green;
+            color: white;
+            border-radius: 4px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
         }
     </style>
 @endsection
@@ -13,123 +28,78 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h5>Data Absensi</h5>
-                <a
-                    href="{{ route('absensi.create') }}"
-                    class="btn btn-success btn-icon-split"
-                >
-                    <span class="icon text-white-50">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                    <span class="text">Tambah Data Absensi</span>
-                </a>
+                <div class="dropdown">
+                    <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Pilih Bulan
+                    </button>
+                    <ul class="dropdown-menu">
+                        @foreach ($absensiKelas as $d)
+                            <li><a class="dropdown-item" href="#">{{ $d->bulan }}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table
-                        id="dataAbsensiTable"
-                        class="table table-striped table-hover table-bordered align-middle"
-                    >
+                    <table id="dataAbsensiTable" class="table align-middle table-striped table-hover table-bordered">
                         <thead>
                             <tr>
-                                <th
-                                    class="text-center"
-                                    style="white-space: nowrap;"
-                                >#</th>
-                                <th style="width: 5%;">No</th>
-                                <th>Tanggal</th>
-                                <th>Jenis Absensi</th>
-                                <th>Keterangan</th>
                                 <th>Nama Santri</th>
+                                @for ($i = 1; $i <= 31; $i++)
+                                    <th>{{ $i }}</th>
+                                @endfor
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
-                            @if ($dataAbsensi->count())
-                                @foreach ($dataAbsensi as $index => $d)
-                                    <tr>
-                                        <td>
-                                            <button
-                                                type="button"
-                                                class="btn btn-warning btn-sm edit-btn"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#editModal"
-                                                data-id="{{ $d->id }}"
-                                            >
-                                                <i
-                                                    class="fas fa-pencil-alt"
-                                                    aria-hidden="true"
-                                                ></i>
-                                            </button>
-                                            <button
-                                                type="button"
-                                                class="btn btn-primary btn-sm show-btn"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#showModal"
-                                                data-id="{{ $d->id }}"
-                                            >
-                                                <i
-                                                    class="fas fa-eye"
-                                                    aria-hidden="true"
-                                                ></i>
-                                            </button>
-                                            <button
-                                                type="button"
-                                                class="btn btn-danger btn-sm delete-btn"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#deleteModal"
-                                                data-id="{{ $d->id }}"
-                                            >
-                                                <i
-                                                    class="fas fa-trash"
-                                                    aria-hidden="true"
-                                                ></i>
-                                            </button>
-                                        </td>
-                                        <td scope="row">{{ $index + 1 }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($d->tanggal)->format('d F Y') }}</td>
-                                        <td>{{ $d->jenis_absensi }}</td>
-                                        <td>{{ $d->keterangan }}</td>
-                                        <td>{{ $d->santri->nama }}</td>
-                                    </tr>
-                                @endforeach
-                            @else
+                            @foreach ($absensiSantri as $d)
                                 <tr>
-                                    <td
-                                        colspan="6"
-                                        class="text-center"
-                                    >Tidak Ada Data</td>
+                                    <td class="text-left">{{ $d->nama }}</td>
+                                    @for ($i = 1; $i <= 31; $i++)
+                                        <td>
+                                            <input type="text" list="jenis_absen" value="H" maxlength="1"
+                                                onfocus="this.value=''" oninput="changeBgInput(this, this.value)">
+                                        </td>
+                                    @endfor
                                 </tr>
-                            @endif
+                            @endforeach
                         </tbody>
                     </table>
+                    <datalist id="jenis_absen">
+                        <option value="H">
+                        <option value="S">
+                        <option value="I">
+                        <option value="A">
+                    </datalist>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // inisialisasi datatable versi 2.1.4
-            $('#dataAbsensiTable').DataTable({
-                dom: 'ftp',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ],
-                "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.13.5/i18n/id.json"
-                }
-            });
-
-            // $('#dataAbsensiTable').DataTable({
-            //     dom: 'Bfrtip',
-            //     buttons: [
-            //         'copy', 'csv', 'excel', 'pdf', 'print'
-            //     ],
-            //     "language": {
-            //         "url": "https://cdn.datatables.net/plug-ins/1.13.5/i18n/id.json"
-            //     }
-            // });
-        })
-    </script>
-    @include('module.absensi.edit')
-    @include('module.absensi.destroy')
-    @include('module.absensi.show')
 @endsection
+@push('style')
+    <script>
+        function changeBgInput(el, val) {
+            switch (val) {
+                case 'H':
+                    el.style.backgroundColor = 'green';
+                    el.style.color = 'white'; // Text color for H
+                    break;
+                case 'S':
+                    el.style.backgroundColor = 'yellow';
+                    el.style.color = 'black'; // Text color for S (yellow bg, so black text)
+                    break;
+                case 'I':
+                    el.style.backgroundColor = 'blue';
+                    el.style.color = 'white'; // Text color for I
+                    break;
+                case 'A':
+                    el.style.backgroundColor = 'red';
+                    el.style.color = 'white'; // Text color for A
+                    break;
+                default:
+                    el.style.backgroundColor = '';
+                    el.style.color = ''; // Reset text color
+                    break;
+            }
+        }
+    </script>
+@endpush

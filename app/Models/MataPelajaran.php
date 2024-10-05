@@ -10,7 +10,8 @@ class MataPelajaran extends Model
     use HasFactory;
 
     protected $table = 'mata_pelajaran';
-    protected $primaryKey = 'id_mata_pelajaran';
+    public $timestamps = false;
+    protected $primaryKey =  'id_mata_pelajaran';
 
 
     protected $fillable = [

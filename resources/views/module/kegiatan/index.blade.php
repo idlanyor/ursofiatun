@@ -11,122 +11,155 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
-                    <div id='calendar'></div>
-                    <div class="mt-4">
-                        <p><strong>Keterangan Warna:</strong></p>
-                        <div style="display: flex; align-items: center; flex-wrap: wrap;">
-                            <div style="display: flex; align-items: center; margin-right: 16px;">
-                                <div style="width: 20px; height: 20px; background-color: #109010;"></div>
-                                <span style="margin-left: 8px;">Tahunan</span>
-                            </div>
-                            <div style="display: flex; align-items: center; margin-right: 16px;">
-                                <div style="width: 20px; height: 20px; background-color: #000080;"></div>
-                                <span style="margin-left: 8px;">Bulanan</span>
-                            </div>
-                            <div style="display: flex; align-items: center; margin-right: 16px;">
-                                <div style="width: 20px; height: 20px; background-color: #db1514;"></div>
-                                <span style="margin-left: 8px;">Mingguan</span>
+                    <div class="card">
+                        <div class="card-body">
+                            <div id='calendar'></div>
+                            <div class="mt-4">
+                                <p><strong>Keterangan Warna:</strong></p>
+                                <div style="display: flex; align-items: center; flex-wrap: wrap;">
+                                    <div style="display: flex; align-items: center; margin-right: 16px;">
+                                        <div style="width: 20px; height: 20px; background-color: #109010;"></div>
+                                        <span style="margin-left: 8px;">Tahunan</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; margin-right: 16px;">
+                                        <div style="width: 20px; height: 20px; background-color: #000080;"></div>
+                                        <span style="margin-left: 8px;">Bulanan</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; margin-right: 16px;">
+                                        <div style="width: 20px; height: 20px; background-color: #db1514;"></div>
+                                        <span style="margin-left: 8px;">Mingguan</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="mt-2 card">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <span class="fs-5 text-primary">Mingguan</span>
-                        </div>
+                    <div class="card">
                         <div class="card-body">
-                            <div style="max-height: 300px; overflow-y: auto;">
-                                <ol class="list-group list-group-numbered">
-                                    @foreach ($mingguan as $d)
-                                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                                            <div class="ms-2 me-auto">
-                                                <div class="fw-bold">
-                                                    {{ $d->nama_kegiatan }}
-                                                    <span
-                                                        class="badge text-bg-primary rounded-pill">{{ $d->penanggung_jawab }}</span>
-                                                </div>
-                                                {{ \Carbon\Carbon::parse($d->tanggal_pelaksanaan)->translatedFormat('l, d F Y') }}
-                                            </div>
+                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                            aria-expanded="false" aria-controls="flush-collapseOne">
+                                            Mingguan
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseOne" class="accordion-collapse show"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div style="max-height: 300px; overflow-y: auto;">
+                                            <ol class="list-group list-group-numbered">
+                                                @foreach ($mingguan as $d)
+                                                    <li
+                                                        class="list-group-item d-flex justify-content-between align-items-start">
+                                                        <div class="ms-2 me-auto">
+                                                            <div class="fw-bold">
+                                                                {{ $d->nama_kegiatan }}
+                                                                <span
+                                                                    class="badge text-bg-primary rounded-pill">{{ $d->penanggung_jawab }}</span>
+                                                            </div>
+                                                            {{ \Carbon\Carbon::parse($d->tanggal_pelaksanaan)->translatedFormat('l, d F Y') }}
+                                                        </div>
 
-                                            <button class="p-2 badge btn text-bg-info rounded-pill btn-edit-kegiatan"
-                                                data-id="{{ $d->id_kegiatan }}" data-bs-toggle="modal">
-                                                <i class="fa fa-pencil-alt"></i>
-                                            </button>
-                                            <button
-                                                class="p-2 badge btn text-bg-danger rounded-pill ms-2 btn-destroy-kegiatan"
-                                                data-id="{{ $d->id_kegiatan }}" data-bs-toggle="modal">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </li>
-                                    @endforeach
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-2 card">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <span class="fs-5 text-primary">Bulanan</span>
-                        </div>
-                        <div class="card-body">
-                            <div style="max-height: 300px; overflow-y: auto;">
-                                <ol class="list-group list-group-numbered">
-                                    @foreach ($bulanan as $d)
-                                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                                            <div class="ms-2 me-auto">
-                                                <div class="fw-bold">
-                                                    {{ $d->nama_kegiatan }}
-                                                    <span
-                                                        class="badge text-bg-primary rounded-pill">{{ $d->penanggung_jawab }}</span>
-                                                </div>
-                                                {{ \Carbon\Carbon::parse($d->tanggal_pelaksanaan)->translatedFormat('l, d F Y') }}
-                                            </div>
+                                                        <button
+                                                            class="p-2 badge btn text-bg-info rounded-pill btn-edit-kegiatan"
+                                                            data-id="{{ $d->id_kegiatan }}" data-bs-toggle="modal">
+                                                            <i class="fa fa-pencil-alt"></i>
+                                                        </button>
+                                                        <button
+                                                            class="p-2 badge btn text-bg-danger rounded-pill ms-2 btn-destroy-kegiatan"
+                                                            data-id="{{ $d->id_kegiatan }}" data-bs-toggle="modal">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </li>
+                                                @endforeach
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                            aria-expanded="false" aria-controls="flush-collapseTwo">
+                                            Bulanan
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div style="max-height: 300px; overflow-y: auto;">
+                                            <ol class="list-group list-group-numbered">
+                                                @foreach ($bulanan as $d)
+                                                    <li
+                                                        class="list-group-item d-flex justify-content-between align-items-start">
+                                                        <div class="ms-2 me-auto">
+                                                            <div class="fw-bold">
+                                                                {{ $d->nama_kegiatan }}
+                                                                <span
+                                                                    class="badge text-bg-primary rounded-pill">{{ $d->penanggung_jawab }}</span>
+                                                            </div>
+                                                            {{ \Carbon\Carbon::parse($d->tanggal_pelaksanaan)->translatedFormat('l, d F Y') }}
+                                                        </div>
 
-                                            <button class="p-2 badge btn text-bg-info rounded-pill btn-edit-kegiatan"
-                                                data-id="{{ $d->id_kegiatan }}" data-bs-toggle="modal">
-                                                <i class="fa fa-pencil-alt"></i>
-                                            </button>
-                                            <button
-                                                class="p-2 badge btn text-bg-danger rounded-pill ms-2 btn-destroy-kegiatan"
-                                                data-id="{{ $d->id_kegiatan }}" data-bs-toggle="modal">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </li>
-                                    @endforeach
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-2 card">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <span class="fs-5 text-primary">Tahunan</span>
-                        </div>
-                        <div class="card-body">
-                            <div style="max-height: 300px; overflow-y: auto;">
-                                <ol class="list-group list-group-numbered">
-                                    @foreach ($tahunan as $d)
-                                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                                            <div class="ms-2 me-auto">
-                                                <div class="fw-bold">
-                                                    {{ $d->nama_kegiatan }}
-                                                    <span
-                                                        class="badge text-bg-primary rounded-pill">{{ $d->penanggung_jawab }}</span>
-                                                </div>
-                                                {{ \Carbon\Carbon::parse($d->tanggal_pelaksanaan)->translatedFormat('l, d F Y') }}
-                                            </div>
+                                                        <button
+                                                            class="p-2 badge btn text-bg-info rounded-pill btn-edit-kegiatan"
+                                                            data-id="{{ $d->id_kegiatan }}" data-bs-toggle="modal">
+                                                            <i class="fa fa-pencil-alt"></i>
+                                                        </button>
+                                                        <button
+                                                            class="p-2 badge btn text-bg-danger rounded-pill ms-2 btn-destroy-kegiatan"
+                                                            data-id="{{ $d->id_kegiatan }}" data-bs-toggle="modal">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </li>
+                                                @endforeach
+                                            </ol>
+                                        </div>
 
-                                            <button class="p-2 badge btn text-bg-info rounded-pill btn-edit-kegiatan"
-                                                data-id="{{ $d->id_kegiatan }}" data-bs-toggle="modal">
-                                                <i class="fa fa-pencil-alt"></i>
-                                            </button>
-                                            <button
-                                                class="p-2 badge btn text-bg-danger rounded-pill ms-2 btn-destroy-kegiatan"
-                                                data-id="{{ $d->id_kegiatan }}" data-bs-toggle="modal">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </li>
-                                    @endforeach
-                                </ol>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
+                                            aria-expanded="false" aria-controls="flush-collapseThree">
+                                            Tahunan
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div style="max-height: 300px; overflow-y: auto;">
+                                            <ol class="list-group list-group-numbered">
+                                                @foreach ($tahunan as $d)
+                                                    <li
+                                                        class="list-group-item d-flex justify-content-between align-items-start">
+                                                        <div class="ms-2 me-auto">
+                                                            <div class="fw-bold">
+                                                                {{ $d->nama_kegiatan }}
+                                                                <span
+                                                                    class="badge text-bg-primary rounded-pill">{{ $d->penanggung_jawab }}</span>
+                                                            </div>
+                                                            {{ \Carbon\Carbon::parse($d->tanggal_pelaksanaan)->translatedFormat('l, d F Y') }}
+                                                        </div>
+
+                                                        <button
+                                                            class="p-2 badge btn text-bg-info rounded-pill btn-edit-kegiatan"
+                                                            data-id="{{ $d->id_kegiatan }}" data-bs-toggle="modal">
+                                                            <i class="fa fa-pencil-alt"></i>
+                                                        </button>
+                                                        <button
+                                                            class="p-2 badge btn text-bg-danger rounded-pill ms-2 btn-destroy-kegiatan"
+                                                            data-id="{{ $d->id_kegiatan }}" data-bs-toggle="modal">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </li>
+                                                @endforeach
+                                            </ol>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

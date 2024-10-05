@@ -30,11 +30,10 @@
                                 @foreach ($kelas as $index => $d)
                                     <tr>
                                         <td>
-                                            <button type="button" class="btn btn-primary btn-sm show-btn"
-                                                data-bs-toggle="modal" data-bs-target="#showModal"
-                                                data-id="{{ $d->id }}">
+                                            <a type="button" class="btn btn-primary btn-sm show-btn"
+                                                href="{{ route('absensi.show', $d->id_kelas) }}">
                                                 <i class="fas fa-eye" aria-hidden="true"></i>
-                                            </button>
+                                            </a>
                                             <button type="button" class="btn btn-danger btn-sm delete-btn"
                                                 data-bs-toggle="modal" data-bs-target="#deleteModal"
                                                 data-id="{{ $d->id }}">

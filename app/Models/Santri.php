@@ -11,7 +11,8 @@ class Santri extends Model
 
     protected $table = 'santri';
 
-    protected $primaryKey = 'id_santri';
+    public $timestamps = false;
+    protected $primaryKey =  'id_santri';
 
     protected $fillable = [
         'nama',

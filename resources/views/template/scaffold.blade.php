@@ -22,7 +22,8 @@
     <link href="{{ asset('dist/sbadmin.css') }}" rel="stylesheet">
     <!-- Toastr CSS -->
     <link rel="stylesheet" href="{{ asset('dist/toastr.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/perfectscrollbar.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('dist/perfect-scrollbar.css') }}"> --}}
+    {{-- ngatur tabel --}}
     <style>
         .table td,
         .table th {
@@ -111,6 +112,7 @@
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('dist/js/sbadmin.js') }}"></script>
     <!-- Toastr JavaScript -->
+    {{-- <script src="{{ asset('dist/js/perfect-scrollbar.js') }}"></script> --}}
     <script src="{{ asset('dist/js/toastr.js') }}"></script>
 
     @stack('script')

@@ -20,7 +20,7 @@ class AbsensiController extends Controller
         $jumlahSantriPerKelas = Santri::with('kelas')->get()->groupBy('id_kelas')->mapWithKeys(function ($group) {
             return [$group->first()->id_kelas => $group->count()];
         });
-        return view('module.absensi.absensi-kelas', compact('kelas','jumlahSantriPerKelas'));
+        return view('module.absensi.absensi-kelas', compact('kelas', 'jumlahSantriPerKelas'));
     }
 
     /**
@@ -39,10 +39,13 @@ class AbsensiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Absensi $absensi)
+    public function show($id)
     {
-        $dataAbsensi = Absensi::with('santri')->get();
-        return view('module.absensi.absensi-santri');
+        $absensiKelas = AbsensiKelas::with('kelas')->where('id_kelas', $id)->get();
+        $absensiSantri = Santri::with('kelas')->where('id_kelas', $id)->get();
+        // dd($absensiSantri)
+        // dd($absensiKelas);
+        return view('module.absensi.absensi-santri', compact('absensiKelas', 'absensiSantri'));
     }
 
     /**

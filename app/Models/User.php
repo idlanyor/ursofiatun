@@ -10,7 +10,8 @@ class User extends Authenticatable
 {
     use HasFactory;
     use Notifiable;
-    protected $primaryKey = 'id_user';
+    public $timestamps = false;
+    protected $primaryKey =  'id_user';
     protected $guarded = ['id_user'];
     protected $fillable = [
         'id_user',
