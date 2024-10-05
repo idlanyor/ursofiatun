@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3 form-floating">
-                                <input type="text" class="form-control input-field" name="jumlah" id="jumlah"
+                                <input type="number" class="form-control input-field" name="jumlah" id="jumlah"
                                     placeholder="Jumlah">
                                 <label for="jumlah">Jumlah</label>
                             </div>
