@@ -1,5 +1,5 @@
 @extends('template.scaffold')
-@section('title', 'Data Nilai')
+@section('title', 'Data Nilai per Mata Pelajaran')
 @section('content')
     <div class="col-md-12">
         <div class="card">
@@ -17,7 +17,7 @@
                     <table id="dataNilaiTable" class="table align-middle table-striped table-hover table-bordered">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th width="10%">#</th>
                                 <th>Mata Pelajaran</th>
                                 <th>Kelas</th>
                             </tr>
@@ -26,16 +26,11 @@
                             @if ($dataMapel->count())
                                 @foreach ($dataMapel as $index => $d)
                                     <tr>
-                                        <td>
+                                        <td class="text-center">
                                             <a href="{{ route('nilai.create') }}" class="btn btn-primary btn-sm"
                                                 data-id="{{ $d->id_nilai }}">
                                                 <i class="fas fa-list-check" aria-hidden="true"></i>
                                             </a>
-                                            <button type="button" class="btn btn-danger btn-sm delete-btn"
-                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                                data-id="{{ $d->id_nilai }}">
-                                                <i class="fas fa-trash" aria-hidden="true"></i>
-                                            </button>
                                         </td>
                                         <td>{{ $d->nama_mapel }}</td>
                                         <td>{{ $d->kelas->nama_kelas }}</td>

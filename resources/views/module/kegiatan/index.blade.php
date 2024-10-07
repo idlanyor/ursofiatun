@@ -46,7 +46,7 @@
                                             Mingguan
                                         </button>
                                     </h2>
-                                    <div id="flush-collapseOne" class="accordion-collapse show"
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse"
                                         data-bs-parent="#accordionFlushExample">
                                         <div style="max-height: 300px; overflow-y: auto;">
                                             <ol class="list-group list-group-numbered">

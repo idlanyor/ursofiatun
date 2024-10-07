@@ -25,7 +25,6 @@
     {{-- <link rel="stylesheet" href="{{ asset('dist/perfect-scrollbar.css') }}"> --}}
     {{-- ngatur tabel --}}
     <style>
-        .table td,
         .table th {
             white-space: nowrap;
             text-align: center
@@ -42,22 +41,23 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        @include('template.sidebar')
-
+        @auth
+            @include('template.sidebar')
+        @endauth
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
             <div id="content">
                 @guest
+                   <div class="d-flex justify-content-center align-items-center" style="height: 100vh">
                     @yield('content-guest')
+                   </div>
                 @endguest
                 @auth
                     @include('template.topbar')
                     <div class="container-fluid">
-                        <div class="row">
-                            @yield('content')
-                        </div>
+                        @yield('content')
                     </div>
                 @endauth
 
