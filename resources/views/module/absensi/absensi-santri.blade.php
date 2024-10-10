@@ -105,30 +105,6 @@
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // inisialisasi datatable versi 2.1.4
-            $('#dataAbsensiTable').DataTable({
-                dom: 'ftp',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ],
-                "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.13.5/i18n/id.json"
-                }
-            });
-
-            // $('#dataAbsensiTable').DataTable({
-            //     dom: 'Bfrtip',
-            //     buttons: [
-            //         'copy', 'csv', 'excel', 'pdf', 'print'
-            //     ],
-            //     "language": {
-            //         "url": "https://cdn.datatables.net/plug-ins/1.13.5/i18n/id.json"
-            //     }
-            // });
-        })
-    </script>
     @include('module.absensi.edit')
     @include('module.absensi.destroy')
     @include('module.absensi.show')
