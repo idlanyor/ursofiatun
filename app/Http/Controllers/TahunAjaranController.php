@@ -14,7 +14,7 @@ class TahunAjaranController extends Controller
      */
     public function index()
     {
-        $dataTahunAjaran = TahunAjaran::all();
+        $dataTahunAjaran = TahunAjaran::paginate(2);
         return view('module.tahunajaran.index', compact('dataTahunAjaran'));
     }
 

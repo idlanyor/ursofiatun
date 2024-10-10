@@ -12,7 +12,7 @@
                                 <div class="mb-0 text-gray-800">
                                     Akun Anda masih dalam status <span
                                         class="font-weight-bold">{{ Auth::user()->status }}</span>. Anda hanya
-                                    bisa mengakses dashboard.Silahkan
+                                    bisa mengakses menu dashboard dan informasi akun.Silahkan
                                     hubungi <span class="text-danger font-weight-bold">Admin</span> untuk mengaktifkan akun
                                 </div>
                             @else
@@ -124,7 +124,7 @@
                         <div class="mr-2 col">
                             <div class="mb-1 text-xs font-weight-bold text-warning text-uppercase">
                                 Permintaan Pending</div>
-                            <div class="mb-0 text-gray-800 h5 font-weight-bold"> {{ $userPending }} </div>
+                            <div class="mb-0 text-gray-800 h5 font-weight-bold"> {{ $userPending }} permintaan</div>
                         </div>
                         <div class="col-auto">
                             <i class="text-gray-300 fas fa-comments fa-2x"></i>

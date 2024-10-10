@@ -61,24 +61,27 @@ class SantriController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Santri $santri)
+    public function show($id)
     {
+        $santri = Santri::findOrFail($id);
         return response()->json($santri);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Santri $santri)
+    public function edit($id)
     {
+        $santri = Santri::findOrFail($id);
         return response()->json($santri);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Santri $santri)
+    public function update(Request $request, $id)
     {
+        $santri = Santri::findOrFail($id);
         $request->validate([
             'nama' => 'required|string|max:255',
             'tempat_lahir' => 'required|string|max:255',
@@ -98,6 +101,7 @@ class SantriController extends Controller
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'orang_tua' => $request->orang_tua,
                 'alamat' => $request->alamat,
+                'id_kelas' => $request->kelas,
                 'telepon' => $request->telepon,
             ]);
 

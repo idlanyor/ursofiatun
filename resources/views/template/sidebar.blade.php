@@ -25,7 +25,7 @@
         </div>
         <div class="ml-2 sidebar-brand-text">AL-FALAH</div>
     </a>
-    <!-- Divider -->
+    {{-- <!-- Divider -->
     @guest
 
         <!-- Nav Item - Login -->
@@ -41,7 +41,7 @@
                 <i class="fas fa-fw fa-id-card"></i>
                 <span>Register</span></a>
         </li>
-    @endguest
+    @endguest --}}
 
     @auth
 

@@ -7,6 +7,7 @@ use App\Http\Requests\StoreAbsensiRequest;
 use App\Http\Requests\UpdateAbsensiRequest;
 // use App\Models\AbsensiKelas;
 use App\Models\Kelas;
+use App\Models\MataPelajaran;
 use App\Models\Santri;
 
 class AbsensiController extends Controller
@@ -20,8 +21,10 @@ class AbsensiController extends Controller
         $jumlahSantriPerKelas = Santri::with('kelas')->get()->groupBy('id_kelas')->mapWithKeys(function ($group) {
             return [$group->first()->id_kelas => $group->count()];
         });
-        
-        return view('module.absensi.absensi-kelas', compact('kelas','jumlahSantriPerKelas'));
+        $jumlahMapelPerKelas = MataPelajaran::with('kelas')->get()->groupBy('kelas_id')->mapWithKeys(function ($group) {
+            return [$group->first()->kelas_id => $group->count()];
+        });
+        return view('module.absensi.absensi-kelas', compact('kelas', 'jumlahSantriPerKelas', 'jumlahMapelPerKelas'));
     }
 
     /**
@@ -40,10 +43,13 @@ class AbsensiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Absensi $absensi)
+    public function show($id)
     {
-        $dataAbsensi = Absensi::with('santri')->get();
-        return view('module.absensi.absensi-santri');
+        $absensiKelas = AbsensiKelas::with('kelas')->where('id_kelas', $id)->get();
+        $absensiSantri = Santri::with('kelas')->where('id_kelas', $id)->get();
+        // dd($absensiSantri)
+        // dd($absensiKelas);
+        return view('module.absensi.absensi-santri', compact('absensiKelas', 'absensiSantri'));
     }
 
     /**

@@ -22,6 +22,9 @@ class CheckUserStatus
             'logout',
             'login',
             'register',
+            'profile.edit',
+            'profile.update',
+            'profile.destroy',
             // Tambahake rute liyane yen perlu
         ];
 
