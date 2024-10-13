@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Absensi;
 use App\Http\Requests\StoreAbsensiRequest;
 use App\Http\Requests\UpdateAbsensiRequest;
-use App\Models\AbsensiKelas;
+// use App\Models\AbsensiKelas;
 use App\Models\Kelas;
 use App\Models\MataPelajaran;
 use App\Models\Santri;
