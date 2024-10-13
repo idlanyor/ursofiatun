@@ -9,6 +9,8 @@ use App\Models\AbsensiKelas;
 use App\Models\Kelas;
 use App\Models\MataPelajaran;
 use App\Models\Santri;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AbsensiController extends Controller
 {
@@ -35,21 +37,38 @@ class AbsensiController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAbsensiRequest $request)
+    public function store(Request $request)
     {
-        //
+        $absensiData = [];
+        // dd($request->input('absensi_kelas_id'));
+        foreach ($request->input('absensi') as $santriId => $absensi) {
+            $data = [
+                'santri_id' => $santriId,
+                'absensi_kelas' => $request->input('absensi_kelas_id'),
+            ];
+
+            for ($i = 1; $i <= 31; $i++) {
+                $data[$i] = $absensi[$i] ?? 'H'; // Misal default 'H' untuk yang tidak diisi
+            }
+
+            $absensiData[] = $data;
+        }
+
+        DB::table('absensi')->insert($absensiData);
+
+        return redirect()->back()->with('success', 'Data absensi berhasil disimpan!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show($idAbsen)
     {
-        $absensiKelas = AbsensiKelas::with('kelas')->where('id_kelas', $id)->get();
-        $absensiSantri = Santri::with('kelas')->where('id_kelas', $id)->get();
+        $absensiKelas = AbsensiKelas::with('kelas')->where('id_kelas', $idAbsen)->get();
+        $absensiSantri = Santri::with('kelas')->where('id_kelas', $idAbsen)->get();
         // dd($absensiSantri)
         // dd($absensiKelas);
-        return view('module.absensi.absensi-santri', compact('absensiKelas', 'absensiSantri'));
+        return view('module.absensi.absensi-santri', compact('absensiKelas', 'absensiSantri', 'idAbsen'));
     }
 
     /**

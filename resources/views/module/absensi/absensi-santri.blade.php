@@ -40,37 +40,52 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="table-responsive">
-                    <table id="dataAbsensiTable" class="table align-middle table-striped table-hover table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Nama Santri</th>
-                                @for ($i = 1; $i <= 31; $i++)
-                                    <th>{{ $i }}</th>
-                                @endfor
-                            </tr>
-                        </thead>
-                        <tbody class="table-group-divider">
-                            @foreach ($absensiSantri as $d)
+                <form action="{{ route('absensi.store') }}" method="post">
+                    @csrf
+                    {{-- <input type="hidden" name="kelas_id" value="{{ $kelas->id_kelas }}"> --}}
+                    <input type="hidden" name="absensi_kelas_id" value="{{ $idAbsen }}">
+                    <div class="table-responsive">
+                        <table id="dataAbsensiTable" class="table align-middle table-striped table-hover table-bordered">
+                            <thead>
                                 <tr>
-                                    <td class="text-left">{{ $d->nama }}</td>
+                                    <th>Nama Santri</th>
                                     @for ($i = 1; $i <= 31; $i++)
-                                        <td>
-                                            <input type="text" list="jenis_absen" value="H" maxlength="1"
-                                                onfocus="this.value=''" oninput="changeBgInput(this, this.value)">
-                                        </td>
+                                        <th>{{ $i }}</th>
                                     @endfor
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <datalist id="jenis_absen">
-                        <option value="H">
-                        <option value="S">
-                        <option value="I">
-                        <option value="A">
-                    </datalist>
-                </div>
+                            </thead>
+                            <tbody class="table-group-divider">
+                                @foreach ($absensiSantri as $d)
+                                    <tr>
+                                        <td class="text-left">{{ $d->nama }}</td>
+                                        @for ($i = 1; $i <= 31; $i++)
+                                            <td>
+                                                <input type="text"
+                                                    name="absensi[{{ $d->santri_id }}][{{ $i }}]"
+                                                    list="jenis_absen" value="H" maxlength="1" onfocus="this.value=''"
+                                                    oninput="changeBgInput(this, this.value)">
+                                            </td>
+                                        @endfor
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <datalist id="jenis_absen">
+                            <option value="H">
+                            <option value="S">
+                            <option value="I">
+                            <option value="A">
+                        </datalist>
+                    </div>
+                    <div class="mt-3 float-end">
+                        <button type="submit" class="btn btn-primary btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-floppy-disk"></i>
+                            </span>
+                            <span class="text">Simpan</span>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
