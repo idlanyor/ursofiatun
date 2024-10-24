@@ -233,11 +233,11 @@
             </a>
             <!-- Dropdown - User Information -->
             <div class="shadow dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{ route('profile.edit') }}">
                     <i class="mr-2 text-gray-400 fas fa-user fa-sm fa-fw"></i>
                     Profil
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{ route('pengaturan.index') }}">
                     <i class="mr-2 text-gray-400 fas fa-cogs fa-sm fa-fw"></i>
                     Pengaturan
                 </a>
@@ -265,28 +265,26 @@
 
 </nav>
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-<form method="POST" action="{{ route('logout') }}">
-    @csrf
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Konfirmasi Keluar</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <span>Apakay anda yakin ingin <strong>keluar</strong> </span>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Konfirmasi Keluar</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <span>Apakah anda yakin ingin <strong>keluar</strong> </span>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary"
-                    data-bs-dismiss="modal">Batal</button>
-                <button class="btn btn-primary" type="submit">Keluar</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button class="btn btn-primary" type="submit">Keluar</button>
+                </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 </div>
 <!-- End of Topbar -->

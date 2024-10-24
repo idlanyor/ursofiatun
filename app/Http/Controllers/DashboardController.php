@@ -21,6 +21,7 @@ class DashboardController extends Controller
         if ($tahunAjaran->isNotEmpty()) {
             $id_tahun_ajaran = $tahunAjaran->first()->id_tahun_ajaran;
         }
+        // dd($id_tahun_ajaran);
 
         $kegiatan = Kegiatan::with('tahunAjaran')->get();
         $mingguan = Kegiatan::with('tahunAjaran')->where('periode', 'Mingguan')->get();

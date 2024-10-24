@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AbsensiKelas extends Model
 {
-    // use HasFactory;
+    use HasFactory;
     public $timestamps = false;
     protected $primaryKey =  'id_absensi_kelas';
     protected $table = 'absensi_kelas';

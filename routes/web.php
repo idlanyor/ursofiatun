@@ -84,6 +84,7 @@ Route::middleware(['auth', CheckUserStatus::class])->group(function () {
         'update' => 'absensi.update',
         'destroy' => 'absensi.destroy',
     ]);
+    Route::get('/dl', [AbsensiController::class, 'generatePDF']);
     // Route::get('/absensi/{id}/santri', [AbsensiController::class, 'showAbsensiSantri'])->name('absensi.show');
     // Sarpras
     Route::resource('/sarpras', SarprasController::class)->names([

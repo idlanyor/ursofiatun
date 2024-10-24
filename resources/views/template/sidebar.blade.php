@@ -105,7 +105,7 @@
 
 
         <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
+        {{-- <hr class="sidebar-divider d-none d-md-block">
         <li class="nav-item {{ request()->routeIs('profile.edit') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('profile.edit') }}">
                 <i class="fas fa-fw fa-user-cog"></i>
@@ -115,7 +115,7 @@
             <a class="nav-link" href="{{ route('pengaturan.index') }}">
                 <i class="fas fa-fw fa-cogs"></i>
                 <span>Pengaturan</span></a>
-        </li>
+        </li> --}}
     @endauth
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
