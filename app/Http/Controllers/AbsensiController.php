@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\AbsensiEvent;
 use App\Models\Absensi;
 use App\Http\Requests\StoreAbsensiRequest;
 use App\Http\Requests\UpdateAbsensiRequest;
@@ -41,36 +42,52 @@ class AbsensiController extends Controller
      */
     public function store(Request $request)
     {
-        $absensiData = [];
+        // $absensiData = [];
         // dd($request->input('absensi_kelas_id'));
+
         foreach ($request->input('absensi') as $santriId => $absensi) {
+            // Data untuk setiap santri
             $data = [
-                'santri_id' => $santriId,
-                'absensi_kelas' => $request->input('absensi_kelas_id'),
+                'santri_id' => strval($santriId),
+                'absensi_kelas' => strval($request->input('absensi_kelas_id')),
             ];
 
             for ($i = 1; $i <= 31; $i++) {
                 $data[$i] = $absensi[$i] ?? 'H'; // Misal default 'H' untuk yang tidak diisi
             }
 
-            $absensiData[] = $data;
+            // Gunakan `updateOrCreate` untuk mencegah duplikat
+            Absensi::updateOrCreate(
+                [
+                    'santri_id' => $santriId, // Syarat pencarian berdasarkan `santri_id`
+                    'absensi_kelas' => $request->input('absensi_kelas_id') // dan `absensi_kelas`
+                ],
+                $data // Data yang akan diisi jika tidak ditemukan, atau diupdate jika ditemukan
+            );
+            event(new AbsensiEvent(
+                data: $data
+            ));
         }
 
-        DB::table('absensi')->insert($absensiData);
+
 
         return redirect()->back()->with('success', 'Data absensi berhasil disimpan!');
     }
+
 
     /**
      * Display the specified resource.
      */
     public function show($idAbsen)
     {
+        // dd(Absensi::all());
+
         $absensiKelas = AbsensiKelas::with('kelas')->where('id_kelas', $idAbsen)->get();
-        $absensiSantri = Santri::with('kelas')->where('id_kelas', $idAbsen)->get();
+        $santri = Santri::with('kelas')->where('id_kelas', $idAbsen)->get();
+        $absensiSantri = Absensi::with(['absensiKelas', 'santri'])->where('santri_id', $idAbsen)->get();
         // dd($absensiSantri)
-        // dd($absensiKelas);
-        return view('module.absensi.absensi-santri', compact('absensiKelas', 'absensiSantri', 'idAbsen'));
+        return response()->json(compact('absensiKelas', 'absensiSantri', 'santri', 'idAbsen'));
+        // return view('module.absensi.absensi-santri', compact('absensiKelas', 'absensiSantri','santri', 'idAbsen'));
     }
 
     /**
@@ -78,7 +95,7 @@ class AbsensiController extends Controller
      */
     public function edit(Absensi $absensi)
     {
-        //
+        return view('module.absensi.absensi-santri');
     }
 
     /**
@@ -112,12 +129,14 @@ class AbsensiController extends Controller
             ['nama' => 'Et', 'absensi' => ['H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H']],
             // Tambah data santri lainnya...
         ];
+        dd($santri);
 
         $bulan = 'Oktober';
         $tahun_ajaran = '2023/2024';
+        $kelas = 'XII TKR';
 
         // Load view ke dalam PDF
-        $pdf = PDF::loadView('pdf.absensi', compact('santri', 'bulan', 'tahun_ajaran'))
+        $pdf = PDF::loadView('pdf.absensi', compact('santri', 'bulan', 'tahun_ajaran', 'kelas'))
             ->setPaper([0, 0, 595.276, 935.433], 'landscape')
             ->setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
             ->setOption('margin-top', 5)

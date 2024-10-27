@@ -76,7 +76,7 @@
     <div class="title">DATA ABSENSI SANTRI TPQ AL FALAH</div>
     <p style="text-align: center;">BULAN {{ $bulan }}</p>
     <p style="text-align: center;">TAHUN AJARAN {{ $tahun_ajaran }}</p>
-    <p style="text-align: left;">Kelas : XI Akuntansi</p>
+    <p style="text-align: left;">Kelas : {{ $kelas }}</p>
     <table>
         <thead>
             <tr class="header-row">

@@ -13,16 +13,7 @@ return new class extends Migration {
         Schema::create('absensi', function (Blueprint $table) {
             $table->id('id_absensi');
             $table->unsignedBigInteger('santri_id');
-            $table->foreign('santri_id')
-                ->references('id_santri')
-                ->on('santri')
-                ->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('absensi_kelas');
-            $table->foreign('absensi_kelas')
-                ->references('id_absensi_kelas')
-                ->on('absensi_kelas')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
             $table->string('1');
             $table->string('2');
             $table->string('3');
@@ -54,6 +45,15 @@ return new class extends Migration {
             $table->string('29');
             $table->string('30');
             $table->string('31');
+            $table->foreign('santri_id')
+                ->references('id_santri')
+                ->on('santri')
+                ->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('absensi_kelas')
+                ->references('id_absensi_kelas')
+                ->on('absensi_kelas')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

@@ -29,22 +29,19 @@
             <div class="card-header d-flex justify-content-between">
                 <h5>Data Absensi</h5>
                 <div class="dropdown">
-                    <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Pilih Bulan
-                    </button>
-                    <ul class="dropdown-menu">
-                        @foreach ($absensiKelas as $d)
+                    <select class="form-select" id="pilih-bulan">
+                        {{-- @foreach ($absensiKelas as $d)
                             <li><a class="dropdown-item" href="#">{{ $d->bulan }}</a></li>
-                        @endforeach
-                    </ul>
+                        @endforeach --}}
+                    </select>
                 </div>
             </div>
             <div class="card-body">
                 <form action="{{ route('absensi.store') }}" method="post">
                     @csrf
                     {{-- <input type="hidden" name="kelas_id" value="{{ $kelas->id_kelas }}"> --}}
-                    <input type="hidden" name="absensi_kelas_id" value="{{ $idAbsen }}">
-                    <div class="table-responsive">
+                    {{-- <input type="hidden" name="absensi_kelas_id" value="{{ $idAbsen }}"> --}}
+                    {{-- <div class="table-responsive">
                         <table id="dataAbsensiTable" class="table align-middle table-striped table-hover table-bordered">
                             <thead>
                                 <tr>
@@ -55,15 +52,22 @@
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
-                                @foreach ($absensiSantri as $d)
+                                @foreach ($santri as $ds)
                                     <tr>
-                                        <td class="text-left">{{ $d->nama }}</td>
+                                        <td class="text-left">{{ $ds->nama }}</td>
+                                        <input type="hidden" name="santri_id" value="{{ $ds->id_santri }}">
                                         @for ($i = 1; $i <= 31; $i++)
+                                            @php
+                                                // Ambil nilai absensi untuk tiap tanggal dari database, defaultnya 'H' jika tidak ada
+                                                $attendanceValue =
+                                                    $absensiSantri->where('santri_id', $ds->id_santri)->first()[$i] ??
+                                                    'I';
+                                            @endphp
                                             <td>
                                                 <input type="text"
-                                                    name="absensi[{{ $d->santri_id }}][{{ $i }}]"
-                                                    list="jenis_absen" value="H" maxlength="1" onfocus="this.value=''"
-                                                    oninput="changeBgInput(this, this.value)">
+                                                    name="absensi[{{ $ds->id_santri }}][{{ $i }}]"
+                                                    list="jenis_absen" value="{{ $attendanceValue }}" maxlength="1"
+                                                    onfocus="this.value=''" oninput="changeBgInput(this, this.value)">
                                             </td>
                                         @endfor
                                     </tr>
@@ -76,7 +80,7 @@
                             <option value="I">
                             <option value="A">
                         </datalist>
-                    </div>
+                    </div> --}}
                     <div class="mt-3 float-end">
                         <button type="submit" class="btn btn-primary btn-icon-split">
                             <span class="icon text-white-50">
@@ -90,6 +94,21 @@
         </div>
     </div>
 @endsection
+@push('script')
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', async () => {
+            let data = await axios.get(`/absensi/${1}`)
+            // console.log(data);
+            const pilihBulan = document.getElementById('pilih-bulan');
+            await data.data.absensiKelas.forEach((e) => {
+                const option = document.createElement('option');
+                option.value = e.bulan
+                option.textContent = e.bulan.toUpperCase()
+                pilihBulan.appendChild(option);
+            })
+        })
+    </script>
+@endpush
 @push('style')
     <script>
         function changeBgInput(el, val) {
