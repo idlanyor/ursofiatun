@@ -37,50 +37,11 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('absensi.store') }}" method="post">
+                <form id="absensiForm">
                     @csrf
-                    {{-- <input type="hidden" name="kelas_id" value="{{ $kelas->id_kelas }}"> --}}
-                    {{-- <input type="hidden" name="absensi_kelas_id" value="{{ $idAbsen }}"> --}}
-                    {{-- <div class="table-responsive">
-                        <table id="dataAbsensiTable" class="table align-middle table-striped table-hover table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Nama Santri</th>
-                                    @for ($i = 1; $i <= 31; $i++)
-                                        <th>{{ $i }}</th>
-                                    @endfor
-                                </tr>
-                            </thead>
-                            <tbody class="table-group-divider">
-                                @foreach ($santri as $ds)
-                                    <tr>
-                                        <td class="text-left">{{ $ds->nama }}</td>
-                                        <input type="hidden" name="santri_id" value="{{ $ds->id_santri }}">
-                                        @for ($i = 1; $i <= 31; $i++)
-                                            @php
-                                                // Ambil nilai absensi untuk tiap tanggal dari database, defaultnya 'H' jika tidak ada
-                                                $attendanceValue =
-                                                    $absensiSantri->where('santri_id', $ds->id_santri)->first()[$i] ??
-                                                    'I';
-                                            @endphp
-                                            <td>
-                                                <input type="text"
-                                                    name="absensi[{{ $ds->id_santri }}][{{ $i }}]"
-                                                    list="jenis_absen" value="{{ $attendanceValue }}" maxlength="1"
-                                                    onfocus="this.value=''" oninput="changeBgInput(this, this.value)">
-                                            </td>
-                                        @endfor
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        <datalist id="jenis_absen">
-                            <option value="H">
-                            <option value="S">
-                            <option value="I">
-                            <option value="A">
-                        </datalist>
-                    </div> --}}
+                    <div id="tableContainer" class="table-responsive">
+                        <!-- Tabel akan diisi oleh JavaScript -->
+                    </div>
                     <div class="mt-3 float-end">
                         <button type="submit" class="btn btn-primary btn-icon-split">
                             <span class="icon text-white-50">
@@ -97,16 +58,95 @@
 @push('script')
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', async () => {
-            let data = await axios.get(`/absensi/${1}`)
-            // console.log(data);
             const pilihBulan = document.getElementById('pilih-bulan');
-            await data.data.absensiKelas.forEach((e) => {
+            const tableContainer = document.getElementById('tableContainer');
+            const absensiForm = document.getElementById('absensiForm');
+
+            let data = await axios.get(`/absensi/${1}`);
+
+            // Mengisi pilihan bulan
+            data.data.absensiKelas.forEach((e) => {
                 const option = document.createElement('option');
-                option.value = e.bulan
-                option.textContent = e.bulan.toUpperCase()
+                option.value = e.bulan;
+                option.textContent = e.bulan.toUpperCase();
                 pilihBulan.appendChild(option);
-            })
-        })
+            });
+
+            // Fungsi untuk memuat data absensi
+            async function loadAbsensiData(bulan) {
+                try {
+                    const response = await axios.get(`/absensi/data/${bulan}`);
+                    const { santri, absensiSantri } = response.data;
+
+                    let tableHTML = `
+                        <table id="dataAbsensiTable" class="table align-middle table-striped table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nama Santri</th>
+                                    ${Array.from({length: 31}, (_, i) => `<th>${i + 1}</th>`).join('')}
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
+                    `;
+
+                    santri.forEach(ds => {
+                        tableHTML += `
+                            <tr>
+                                <td class="text-left">${ds.nama}</td>
+                                <input type="hidden" name="santri_id" value="${ds.id_santri}">
+                        `;
+
+                        for (let i = 1; i <= 31; i++) {
+                            const attendanceValue = absensiSantri.find(a => a.santri_id === ds.id_santri)?.[i] || 'I';
+                            tableHTML += `
+                                <td>
+                                    <input type="text"
+                                        name="absensi[${ds.id_santri}][${i}]"
+                                        list="jenis_absen" value="${attendanceValue}" maxlength="1"
+                                        onfocus="this.value=''" oninput="changeBgInput(this, this.value)">
+                                </td>
+                            `;
+                        }
+
+                        tableHTML += `</tr>`;
+                    });
+
+                    tableHTML += `
+                            </tbody>
+                        </table>
+                        <datalist id="jenis_absen">
+                            <option value="H">
+                            <option value="S">
+                            <option value="I">
+                            <option value="A">
+                        </datalist>
+                    `;
+
+                    tableContainer.innerHTML = tableHTML;
+                } catch (error) {
+                    console.error('Error loading absensi data:', error);
+                }
+            }
+
+            // Memuat data awal
+            loadAbsensiData(pilihBulan.value);
+
+            // Event listener untuk perubahan bulan
+            pilihBulan.addEventListener('change', () => loadAbsensiData(pilihBulan.value));
+
+            // Event listener untuk pengiriman form
+            absensiForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                try {
+                    const formData = new FormData(absensiForm);
+                    await axios.post('{{ route('absensi.store') }}', formData);
+                    alert('Data absensi berhasil disimpan');
+                } catch (error) {
+                    console.error('Error saving absensi data:', error);
+                    alert('Terjadi kesalahan saat menyimpan data absensi');
+                }
+            });
+        });
     </script>
 @endpush
 @push('style')
