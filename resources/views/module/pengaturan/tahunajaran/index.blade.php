@@ -19,29 +19,15 @@
                         @foreach ($dataTahunAjaran as $index => $d)
                             <tr>
                                 <td>
-                                    <button
-                                        type="button"
-                                        class="btn btn-warning btn-sm edit-btn"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#editModal"
-                                        data-id="{{ $d->id_tahun_ajaran }}"
-                                    >
-                                        <i
-                                            class="fas fa-pencil-alt"
-                                            aria-hidden="true"
-                                        ></i>
+                                    <button type="button" class="btn btn-warning btn-sm edit-ta-btn"
+                                        data-bs-toggle="modal" data-bs-target="#editTahunAjaranModal"
+                                        data-id="{{ $d->id_tahun_ajaran }}">
+                                        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                                     </button>
-                                    <button
-                                        type="button"
-                                        class="btn btn-danger btn-sm delete-btn px-2"
-                                        data-id="{{ $d->id_tahun_ajaran }}"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#destroyModal"
-                                    >
-                                        <i
-                                            class="fas fa-trash"
-                                            aria-hidden="true"
-                                        ></i>
+                                    <button type="button" class="btn btn-danger btn-sm delete-ta-btn px-2"
+                                        data-id="{{ $d->id_tahun_ajaran }}" data-bs-toggle="modal"
+                                        data-bs-target="#deleteTAModal">
+                                        <i class="fas fa-trash" aria-hidden="true"></i>
                                     </button>
                                 </td>
                                 <td>{{ $d->tahun_mulai }}</td>
@@ -52,10 +38,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td
-                                colspan="5"
-                                class="text-center"
-                            >Tidak Ada Data</td>
+                            <td colspan="5" class="text-center">Tidak Ada Data</td>
                         </tr>
                     @endif
                 </tbody>
@@ -66,6 +49,6 @@
 </div>
 
 @include('module.pengaturan.tahunajaran.edit')
-@include('module.pengaturan.tahunajaran.show')
+@include('module.pengaturan.tahunajaran.destroy')
 @push('script')
 @endpush

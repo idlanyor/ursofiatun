@@ -79,8 +79,8 @@ Route::middleware(['auth', CheckUserStatus::class])->group(function () {
         'index' => 'absensi.index',
         'create' => 'absensi.create',
         'store' => 'absensi.store',
-        'show' => 'absensi.edit',
-        'edit' => 'absensi.show',
+        'edit' => 'absensi.edit',
+        'show' => 'absensi.show',
         'update' => 'absensi.update',
         'destroy' => 'absensi.destroy',
     ]);

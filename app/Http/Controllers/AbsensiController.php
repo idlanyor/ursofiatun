@@ -12,7 +12,7 @@ use App\Models\MataPelajaran;
 use App\Models\Santri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 
 class AbsensiController extends Controller
@@ -35,7 +35,9 @@ class AbsensiController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create() {}
+    public function create()
+    {
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -86,16 +88,20 @@ class AbsensiController extends Controller
         $santri = Santri::with('kelas')->where('id_kelas', $idAbsen)->get();
         $absensiSantri = Absensi::with(['absensiKelas', 'santri'])->where('santri_id', $idAbsen)->get();
         // dd($absensiSantri)
-        return response()->json(compact('absensiKelas', 'absensiSantri', 'santri', 'idAbsen'));
-        // return view('module.absensi.absensi-santri', compact('absensiKelas', 'absensiSantri','santri', 'idAbsen'));
+        // return response()->json(compact('absensiKelas', 'absensiSantri', 'santri', 'idAbsen'));
+        return view('module.absensi.absensi-santri', compact('absensiKelas', 'absensiSantri', 'santri', 'idAbsen'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Absensi $absensi)
+    public function edit($idAbsen)
     {
-        return view('module.absensi.absensi-santri');
+        $absensiKelas = AbsensiKelas::with('kelas')->where('id_kelas', $idAbsen)->get();
+        // $santri = Santri::with('kelas')->where('id_kelas', $idAbsen)->get();
+        // $absensiSantri = Absensi::with(['absensiKelas', 'santri'])->where('santri_id', $idAbsen)->get();
+        // dd($absensiSantri)
+        return response()->json(compact('absensiKelas', 'idAbsen'));
     }
 
     /**

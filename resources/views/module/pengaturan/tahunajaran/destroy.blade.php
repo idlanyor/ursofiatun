@@ -1,5 +1,5 @@
 <!-- Modal Hapus -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+<div class="modal fade" id="deleteTAModal" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,7 +10,7 @@
                 <p>Anda yakin ingin menghapus data tahun ajaran ini?</p>
             </div>
             <div class="modal-footer">
-                <form id="destroyForm" method="POST">
+                <form id="destroyTAForm" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -23,29 +23,29 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var destroyForm = document.getElementById('destroyForm');
-        var destroyModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+        var destroyTAForm = document.getElementById('destroyTAForm');
+        var destroyModal = new bootstrap.Modal(document.getElementById('deleteTAModal'));
 
         // Modal Destroy
-        document.querySelectorAll('.delete-btn').forEach(button => {
+        document.querySelectorAll('.delete-ta-btn').forEach(button => {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
-                var destroyForm = document.getElementById('destroyForm');
-                destroyForm.setAttribute('action', `/pengaturan/tahun-ajaran/${id}`);
-                var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
-                deleteModal.show();
+                var destroyTAForm = document.getElementById('destroyTAForm');
+                destroyTAForm.setAttribute('action', `/pengaturan/tahun-ajaran/${id}`);
+                var deleteTAModal = new bootstrap.Modal(document.getElementById('deleteTAModal'));
+                deleteTAModal.show();
             });
         });
         // Handle form submission for deleting
-        document.getElementById('destroyForm').addEventListener('submit', function(event) {
+        document.getElementById('destroyTAForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            var destroyForm = document.getElementById('destroyForm');
-            var actionUrl = destroyForm.getAttribute('action');
+            var destroyTAForm = document.getElementById('destroyTAForm');
+            var actionUrl = destroyTAForm.getAttribute('action');
 
             if (actionUrl) {
                 axios.delete(actionUrl, {
                         headers: {
-                            'X-CSRF-TOKEN': destroyForm.querySelector('input[name="_token"]').value
+                            'X-CSRF-TOKEN': destroyTAForm.querySelector('input[name="_token"]').value
                         }
                     })
                     .then(response => {
