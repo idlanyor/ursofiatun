@@ -75,15 +75,15 @@ Route::middleware(['auth', CheckUserStatus::class])->group(function () {
     Route::get('/log-activities', [DashboardController::class, 'logs'])->name('log-activities');
 
     // Absensi
-    Route::resource('/absensi', AbsensiController::class)->names([
-        'index' => 'absensi.index',
-        'create' => 'absensi.create',
-        'store' => 'absensi.store',
-        'edit' => 'absensi.edit',
-        'show' => 'absensi.show',
-        'update' => 'absensi.update',
-        'destroy' => 'absensi.destroy',
-    ]);
+    // Route::resource('/absensi', AbsensiController::class)->names([
+    //     'index' => 'absensi.index',
+    //     'create' => 'absensi.create',
+    //     'store' => 'absensi.store',
+    //     'edit' => 'absensi.edit',
+    //     'show' => 'absensi.show',
+    //     'update' => 'absensi.update',
+    //     'destroy' => 'absensi.destroy',
+    // ]);
     Route::get('/dl', [AbsensiController::class, 'generatePDF']);
     // Route::get('/absensi/{id}/santri', [AbsensiController::class, 'showAbsensiSantri'])->name('absensi.show');
     // Sarpras
@@ -110,15 +110,11 @@ Route::middleware(['auth', CheckUserStatus::class])->group(function () {
     Route::get('/getmapel/{id}', [MataPelajaranController::class, 'getMapel']);
 
     // Nilai
-    Route::resource('/nilai', NilaiController::class)->names([
-        'index' => 'nilai.index',
-        'create' => 'nilai.create',
-        'store' => 'nilai.store',
-        'show' => 'nilai.show',
-        'edit' => 'nilai.edit',
-        'update' => 'nilai.update',
-        'destroy' => 'nilai.destroy',
-    ]);
+    Route::prefix('nilai')->group(function () {
+        Route::get('/', [NilaiController::class, 'index'])->name('nilai.index');
+        Route::get('/kelas/{id_kelas}', [NilaiController::class, 'inputNilai'])->name('nilai.input');
+        Route::post('/store', [NilaiController::class, 'store'])->name('nilai.store');
+    });
 
     // Tahun Ajaran
 
@@ -150,6 +146,12 @@ Route::middleware(['auth', CheckUserStatus::class])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::prefix('absensi')->group(function () {
+        Route::get('/kelas', [AbsensiController::class, 'index'])->name('absensi.index');
+        Route::get('/harian/{id_kelas}', [AbsensiController::class, 'showHarian'])->name('absensi.harian');
+        Route::post('/harian/store', [AbsensiController::class, 'storeHarian'])->name('absensi.harian.store');
+    });
 });
 
 require __DIR__ . '/auth.php';

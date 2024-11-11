@@ -32,9 +32,6 @@
                                 <th>Kelas</th>
                                 <th>Tempat/Tgl Lahir</th>
                                 <th>Jenis Kelamin</th>
-                                <th>Alamat</th>
-                                <th>Telepon</th>
-                                <th>Orang Tua</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
@@ -84,9 +81,6 @@
                                         <td>{{ $d->tempat_lahir }},
                                             {{ \Carbon\Carbon::parse($d->tanggal_lahir)->translatedFormat('d F Y') }}</td>
                                         <td>{{ $d->jenis_kelamin == 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>
-                                        <td>{{ $d->alamat }}</td>
-                                        <td>{{ $d->telepon }}</td>
-                                        <td>{{ $d->orang_tua }}</td>
 
                                     </tr>
                                 @endforeach

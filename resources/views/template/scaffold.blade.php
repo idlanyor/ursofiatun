@@ -46,13 +46,20 @@
         @endauth
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
+            <!-- Setelah navbar, tambahkan: -->
+            @if (session('error'))
+                <div class="container mt-3">
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                </div>
+            @endif
             <!-- Main Content -->
             <div id="content">
                 @guest
-                   <div class="d-flex justify-content-center align-items-center" style="height: 100vh">
-                    @yield('content-guest')
-                   </div>
+                    <div class="d-flex justify-content-center align-items-center" style="height: 100vh">
+                        @yield('content-guest')
+                    </div>
                 @endguest
                 @auth
                     @include('template.topbar')
@@ -114,6 +121,7 @@
     <!-- Toastr JavaScript -->
     {{-- <script src="{{ asset('dist/js/perfect-scrollbar.js') }}"></script> --}}
     <script src="{{ asset('dist/js/toastr.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @stack('script')
 

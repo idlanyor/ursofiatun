@@ -2,67 +2,96 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MataPelajaran;
+use App\Models\Kelas;
 use App\Models\Nilai;
-// use App\Models\Santri;
-use Illuminate\Support\Facades\Request;
+use App\Models\Santri;
+use App\Models\MataPelajaran;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NilaiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $dataMapel = MataPelajaran::with('kelas')->orderBy('kelas_id', 'desc')->paginate(10);
-        return view('module.nilai.nilai-mapel', compact('dataMapel'));
+        $kelasList = Kelas::withCount('santri')->get();
+        $mapelList = MataPelajaran::all();
+
+        return view('module.nilai.index', compact('kelasList', 'mapelList'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function inputNilai($id_kelas)
     {
-        //
+        try {
+            $kelas = Kelas::findOrFail($id_kelas);
+            $santriList = Santri::where('id_kelas', $id_kelas)->get();
+            $mapelList = MataPelajaran::all();
+
+            // Ambil nilai yang sudah ada
+            $mapel_id = request()->query('mapel_id');
+            $nilaiData = collect();
+
+            if ($mapel_id) {
+                $nilaiData = Nilai::where('kelas_id', $id_kelas)
+                    ->where('mapel_id', $mapel_id)
+                    ->get();
+            }
+
+            return view('module.nilai.input', compact(
+                'kelas',
+                'santriList',
+                'mapelList',
+                'nilaiData',
+                'mapel_id'
+            ));
+
+        } catch (\Exception $e) {
+            return redirect()->route('nilai.index')
+                           ->with('error', 'Kelas tidak ditemukan');
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
-    }
+        try {
+            DB::beginTransaction();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Nilai $nilai)
-    {
-        //
-    }
+            $request->validate([
+                'kelas_id' => 'required|exists:kelas,id_kelas',
+                'mapel_id' => 'required|exists:mata_pelajaran,id_mata_pelajaran',
+                'nilai' => 'required|array',
+                'nilai.*.ulangan_1' => 'nullable|numeric|min:0|max:100',
+                'nilai.*.ulangan_2' => 'nullable|numeric|min:0|max:100',
+                'nilai.*.ulangan_3' => 'nullable|numeric|min:0|max:100',
+            ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Nilai $nilai)
-    {
-        //
-    }
+            foreach ($request->nilai as $santriId => $nilaiData) {
+                Nilai::updateOrCreate(
+                    [
+                        'santri_id' => $santriId,
+                        'kelas_id' => $request->kelas_id,
+                        'mapel_id' => $request->mapel_id,
+                    ],
+                    [
+                        'ulangan_1' => $nilaiData['ulangan_1'] ?? null,
+                        'ulangan_2' => $nilaiData['ulangan_2'] ?? null,
+                        'ulangan_3' => $nilaiData['ulangan_3'] ?? null,
+                    ]
+                );
+            }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Nilai $nilai)
-    {
-        //
-    }
+            DB::commit();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Nilai $nilai)
-    {
-        //
+            return response()->json([
+                'success' => true,
+                'message' => 'Nilai berhasil disimpan'
+            ]);
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json([
+                'success' => false,
+                'message' => 'Terjadi kesalahan saat menyimpan nilai'
+            ], 500);
+        }
     }
 }

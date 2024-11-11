@@ -27,13 +27,11 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h5>Data Absensi {{ $absensiKelasBulan->bulan }} </h5>
+                <h5>Data Absensi {{ request()->query('bulan') }} </h5>
                 <div class="dropdown">
                     <select class="form-select" id="pilih-bulan">
-                        @foreach ($bulanList as $bulan)
-                            <option value="{{ $bulan }}" {{ $absensiKelasBulan->bulan == $bulan ? 'selected' : '' }}>
-                                {{ strtoupper($bulan) }}
-                            </option>
+                        @foreach ($absensiKelas as $d)
+                            <option value="{{ $d->bulan }}">{{ strtoupper($d->bulan) }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -42,39 +40,31 @@
                 <form id="absensiForm">
                     @csrf
                     <div id="tableContainer" class="table-responsive">
-                        <input type="hidden" name="absensi_kelas_id" value="{{ $absensiKelasBulan->id }}">
+                        <input type="hidden" name="absensi_kelas_id" value="{{ $absensiKelasBulan->id_absensi_kelas }}">
                         <table id="dataAbsensiTable" class="table align-middle table-striped table-hover table-bordered">
                             <thead>
                                 <tr>
                                     <th>Nama Santri</th>
-                                    @foreach($tanggalAbsensi as $tanggal)
-                                        <th>{{ $tanggal }}</th>
-                                    @endforeach
+                                    @for ($i = 1; $i <= 31; $i++)
+                                        <th>{{ $i }}</th>
+                                    @endfor
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
-                                @foreach ($santriList as $santri)
+                                @foreach ($santri as $s)
                                     <tr>
-                                        <td class="text-left">{{ $santri->nama }}</td>
-                                        @foreach($tanggalAbsensi as $tanggal)
+                                        <td class="text-left">{{ $s->nama }}</td>
+                                        <input type="hidden" name="santri_id" value="{{ $s->id_santri }}">
+                                        @for ($i = 1; $i <= 31; $i++)
                                             <td>
-                                                @php
-                                                    $absensi = $absensiData->where('santri_id', $santri->id)
-                                                                         ->where('tanggal', $tanggal)
-                                                                         ->first();
-                                                    $nilai = $absensi ? $absensi->status : 'H';
-                                                @endphp
                                                 <input type="text"
-                                                    name="absensi[{{ $santri->id }}][{{ $tanggal }}]"
+                                                    name="absensi[{{ $s->id_santri }}][{{ $i }}]"
                                                     list="jenis_absen"
-                                                    value="{{ $nilai }}"
-                                                    maxlength="1"
-                                                    style="background-color: {{ $nilai == 'H' ? 'green' : ($nilai == 'S' ? 'yellow' : ($nilai == 'I' ? 'blue' : ($nilai == 'A' ? 'red' : ''))) }};
-                                                           color: {{ in_array($nilai, ['H','I','A']) ? 'white' : 'black' }}"
-                                                    onfocus="this.value=''"
+                                                    value="{{ $absensiSantri->where('santri_id', $s->id_santri)->first()->{$i} ?? 'H' }}"
+                                                    maxlength="1" onfocus="this.value=''"
                                                     oninput="changeBgInput(this, this.value)">
                                             </td>
-                                        @endforeach
+                                        @endfor
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -104,31 +94,27 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const pilihBulan = document.getElementById('pilih-bulan');
+            // const bulanTitle = document.getElementById('bulanTitle');
             const absensiForm = document.getElementById('absensiForm');
 
+            // Set initial bulan title
+            // bulanTitle.textContent = pilihBulan.value;
+
+            // Event listener untuk perubahan bulan
             pilihBulan.addEventListener('change', () => {
-                window.location.href = `{{ route('absensi.show', $absensiKelasBulan->kelas_id) }}?bulan=${pilihBulan.value}`;
+                window.location.href = `{{ route('absensi.show', $idAbsen) }}?bulan=${pilihBulan.value}`;
             });
 
+            // Event listener untuk pengiriman form
             absensiForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 try {
                     const formData = new FormData(absensiForm);
                     await axios.post('{{ route('absensi.store') }}', formData);
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Berhasil',
-                        text: 'Data absensi berhasil disimpan'
-                    }).then(() => {
-                        window.location.reload();
-                    });
+                    alert('Data absensi berhasil disimpan');
                 } catch (error) {
-                    console.error('Error:', error);
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Gagal',
-                        text: 'Terjadi kesalahan saat menyimpan data absensi'
-                    });
+                    console.error('Error saving absensi data:', error);
+                    alert('Terjadi kesalahan saat menyimpan data absensi');
                 }
             });
         });
@@ -138,7 +124,6 @@
 @push('style')
     <script>
         function changeBgInput(el, val) {
-            val = val.toUpperCase();
             switch (val) {
                 case 'H':
                     el.style.backgroundColor = 'green';
@@ -161,7 +146,6 @@
                     el.style.color = '';
                     break;
             }
-            el.value = val;
         }
     </script>
 @endpush
