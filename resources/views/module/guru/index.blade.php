@@ -13,15 +13,26 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h5>Data Guru</h5>
-                <a
-                    href="{{ route('guru.create') }}"
-                    class="btn btn-success btn-icon-split"
-                >
-                    <span class="icon text-white-50">
-                        <i class="fas fa-user-plus"></i>
-                    </span>
-                    <span class="text">Tambah Data Guru</span>
-                </a>
+                <div class="d-flex gap-2">
+                    <a href="{{ route('guru.export') }}" class="btn btn-success btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-file-export"></i>
+                        </span>
+                        <span class="text">Export Excel</span>
+                    </a>
+                    <button type="button" class="btn btn-info btn-icon-split" data-bs-toggle="modal" data-bs-target="#importModal">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-file-import"></i>
+                        </span>
+                        <span class="text">Import Excel</span>
+                    </button>
+                    <a href="{{ route('template.guru.download') }}" class="btn btn-secondary btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-download"></i>
+                        </span>
+                        <span class="text">Download Template</span>
+                    </a>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -121,4 +132,67 @@
     @include('module.guru.edit')
     @include('module.guru.destroy')
     @include('module.guru.show')
+
+    <!-- Tambahkan Modal Import -->
+    <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="importModalLabel">Import Data Guru</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="importForm" action="{{ route('guru.import') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="file" class="form-label">Pilih File Excel</label>
+                            <input type="file" class="form-control" id="file" name="file" accept=".xlsx,.xls" required>
+                        </div>
+                        <div class="alert alert-info">
+                            <small>
+                                <p>Catatan:</p>
+                                <ul class="mb-0">
+                                    <li>Gunakan template yang sudah disediakan</li>
+                                    <li>Pastikan format tanggal sesuai (YYYY-MM-DD)</li>
+                                    <li>Jenis kelamin hanya L atau P</li>
+                                </ul>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{{ route('template.guru.download') }}" class="btn btn-secondary">
+                            <i class="fas fa-download"></i> Download Template
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-file-import"></i> Import
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @push('script')
+    <script>
+        document.getElementById('importForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+
+            axios.post(this.action, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(response => {
+                if (response.data.success) {
+                    toastr.success(response.data.success);
+                    location.reload();
+                }
+            })
+            .catch(error => {
+                toastr.error(error.response.data.error || 'Terjadi kesalahan saat import data');
+            });
+        });
+    </script>
+    @endpush
 @endsection

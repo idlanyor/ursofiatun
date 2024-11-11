@@ -13,6 +13,7 @@ use App\Http\Controllers\SarprasController;
 use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\PengaturanController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TemplateController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckUserStatus;
 
@@ -74,16 +75,7 @@ Route::middleware(['auth', CheckUserStatus::class])->group(function () {
     Route::get('/events', [DashboardController::class, 'getEvents']);
     Route::get('/log-activities', [DashboardController::class, 'logs'])->name('log-activities');
 
-    // Absensi
-    // Route::resource('/absensi', AbsensiController::class)->names([
-    //     'index' => 'absensi.index',
-    //     'create' => 'absensi.create',
-    //     'store' => 'absensi.store',
-    //     'edit' => 'absensi.edit',
-    //     'show' => 'absensi.show',
-    //     'update' => 'absensi.update',
-    //     'destroy' => 'absensi.destroy',
-    // ]);
+
     Route::get('/dl', [AbsensiController::class, 'generatePDF']);
     // Route::get('/absensi/{id}/santri', [AbsensiController::class, 'showAbsensiSantri'])->name('absensi.show');
     // Sarpras
@@ -152,6 +144,14 @@ Route::middleware(['auth', CheckUserStatus::class])->group(function () {
         Route::get('/harian/{id_kelas}', [AbsensiController::class, 'showHarian'])->name('absensi.harian');
         Route::post('/harian/store', [AbsensiController::class, 'storeHarian'])->name('absensi.harian.store');
     });
+    Route::get('/datasantri/export', [SantriController::class, 'exportSantri'])->name('santri.export');
+    Route::post('/santri/import', [SantriController::class, 'import'])->name('santri.import');
+    Route::get('/template/santri/download', [TemplateController::class, 'downloadTemplateSantri'])->name('template.santri.download');
+
+    Route::get('/dataguru/export', [GuruController::class, 'export'])->name('guru.export');
+    Route::post('/guru/import', [GuruController::class, 'import'])->name('guru.import');
+    Route::get('/template/guru/download', [GuruController::class, 'downloadTemplate'])->name('template.guru.download');
 });
+
 
 require __DIR__ . '/auth.php';

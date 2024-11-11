@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use App\Exports\GuruExport;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class GuruController extends Controller
 {
@@ -111,5 +115,94 @@ class GuruController extends Controller
             Log::error('Error deleting guru: ' . $e->getMessage());
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus data guru.'], 500);
         }
+    }
+
+    public function export()
+    {
+        try {
+            $export = new GuruExport();
+            return $export->export();
+        } catch (\Exception $e) {
+            return back()->with('error', 'Terjadi kesalahan saat export data: ' . $e->getMessage());
+        }
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls'
+        ]);
+
+        try {
+            $file = $request->file('file');
+            $spreadsheet = IOFactory::load($file);
+            $worksheet = $spreadsheet->getActiveSheet();
+            $rows = $worksheet->toArray();
+
+            // Skip header row
+            array_shift($rows);
+
+            foreach ($rows as $row) {
+                if (!empty($row[0])) {
+                    Guru::create([
+                        'nama' => $row[0],
+                        'tempat_lahir' => $row[1],
+                        'tanggal_lahir' => $row[2],
+                        'jenis_kelamin' => $row[3],
+                        'alamat' => $row[4],
+                        'telepon' => $row[5],
+                    ]);
+                }
+            }
+
+            return response()->json(['success' => 'Data guru berhasil diimport.']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Terjadi kesalahan saat import data: ' . $e->getMessage()], 500);
+        }
+    }
+
+    public function downloadTemplate()
+    {
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        // Set judul kolom
+        $sheet->setCellValue('A1', 'nama');
+        $sheet->setCellValue('B1', 'tempat_lahir');
+        $sheet->setCellValue('C1', 'tanggal_lahir');
+        $sheet->setCellValue('D1', 'jenis_kelamin');
+        $sheet->setCellValue('E1', 'alamat');
+        $sheet->setCellValue('F1', 'telepon');
+
+        // Contoh data
+        $sheet->setCellValue('A2', 'Ahmad');
+        $sheet->setCellValue('B2', 'Jakarta');
+        $sheet->setCellValue('C2', '2000-01-01');
+        $sheet->setCellValue('D2', 'L');
+        $sheet->setCellValue('E2', 'Jl. Contoh No. 123');
+        $sheet->setCellValue('F2', '08123456789');
+
+        // Atur lebar kolom
+        foreach(range('A','F') as $column) {
+            $sheet->getColumnDimension($column)->setAutoSize(true);
+        }
+
+        // Header style
+        $headerStyle = [
+            'font' => ['bold' => true, 'color' => ['rgb' => 'FFFFFF']],
+            'fill' => [
+                'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                'startColor' => ['rgb' => '4e73df'],
+            ],
+        ];
+        $sheet->getStyle('A1:F1')->applyFromArray($headerStyle);
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="template_import_guru.xlsx"');
+        header('Cache-Control: max-age=0');
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save('php://output');
+        exit;
     }
 }

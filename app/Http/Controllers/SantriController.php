@@ -8,6 +8,10 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use App\Imports\SantriImport;
+use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class SantriController extends Controller
 {
@@ -125,5 +129,78 @@ class SantriController extends Controller
             Log::error('Error deleting santri: ' . $e->getMessage());
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus data santri.'], 500);
         }
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
+        try {
+            Excel::import(new SantriImport, $request->file('file'));
+            return response()->json(['success' => 'Data santri berhasil diimport.']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Terjadi kesalahan saat import data: ' . $e->getMessage()], 500);
+        }
+    }
+
+    public function exportSantri()
+    {
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        // Set judul kolom
+        $sheet->setCellValue('A1', 'Nama');
+        $sheet->setCellValue('B1', 'Tempat Lahir');
+        $sheet->setCellValue('C1', 'Tanggal Lahir');
+        $sheet->setCellValue('D1', 'Jenis Kelamin');
+        $sheet->setCellValue('E1', 'Kelas');
+        $sheet->setCellValue('F1', 'Orang Tua');
+        $sheet->setCellValue('G1', 'Telepon');
+        $sheet->setCellValue('H1', 'Alamat');
+
+        // Ambil data santri
+        $dataSantri = Santri::with('kelas')->get();
+
+        $row = 2;
+        foreach($dataSantri as $santri) {
+            $sheet->setCellValue('A'.$row, $santri->nama);
+            $sheet->setCellValue('B'.$row, $santri->tempat_lahir);
+            $sheet->setCellValue('C'.$row, $santri->tanggal_lahir);
+            $sheet->setCellValue('D'.$row, $santri->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan');
+            $sheet->setCellValue('E'.$row, $santri->kelas->nama_kelas);
+            $sheet->setCellValue('F'.$row, $santri->orang_tua);
+            $sheet->setCellValue('G'.$row, $santri->telepon);
+            $sheet->setCellValue('H'.$row, $santri->alamat);
+            $row++;
+        }
+
+        // Atur lebar kolom otomatis
+        foreach(range('A','H') as $column) {
+            $sheet->getColumnDimension($column)->setAutoSize(true);
+        }
+
+        // Atur style header
+        $headerStyle = [
+            'font' => [
+                'bold' => true,
+                'color' => ['rgb' => 'FFFFFF'],
+            ],
+            'fill' => [
+                'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                'startColor' => ['rgb' => '4e73df'],
+            ],
+        ];
+        $sheet->getStyle('A1:H1')->applyFromArray($headerStyle);
+
+        // Set header untuk download
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="data_santri_'.date('Y-m-d').'.xlsx"');
+        header('Cache-Control: max-age=0');
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save('php://output');
+        exit;
     }
 }
