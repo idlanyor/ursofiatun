@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\AbsensiExport;
+use Carbon\Carbon;
 
 
 class AbsensiController extends Controller
@@ -28,9 +29,7 @@ class AbsensiController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-    }
+    public function create() {}
 
     /**
      * Store a newly created resource in storage.
@@ -87,8 +86,18 @@ class AbsensiController extends Controller
 
         // Daftar bulan untuk dropdown
         $bulanList = [
-            'januari', 'februari', 'maret', 'april', 'mei', 'juni',
-            'juli', 'agustus', 'september', 'oktober', 'november', 'desember'
+            'januari',
+            'februari',
+            'maret',
+            'april',
+            'mei',
+            'juni',
+            'juli',
+            'agustus',
+            'september',
+            'oktober',
+            'november',
+            'desember'
         ];
 
         return view('module.absensi.absensi-santri', compact(
@@ -128,29 +137,31 @@ class AbsensiController extends Controller
         //
     }
 
-    public function generatePDF()
+    public function generatePDF($id_kelas, $bulan)
     {
-        $santri = [
-            ['nama' => 'Lorem', 'absensi' => ['H', 'H', 'H', 'I', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H']],
-            ['nama' => 'Ipsum', 'absensi' => ['H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H']],
-            ['nama' => 'Dolor', 'absensi' => ['H', 'H', 'H', 'S', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H']],
-            ['nama' => 'Sit', 'absensi' => ['H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H']],
-            ['nama' => 'Amet', 'absensi' => ['H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H']],
-            ['nama' => 'Constecterur', 'absensi' => ['H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H']],
-            ['nama' => 'Adiplicising', 'absensi' => ['H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H']],
-            ['nama' => 'Elit', 'absensi' => ['H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H']],
-            ['nama' => 'Rum', 'absensi' => ['H', 'H', 'H', 'A', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H']],
-            ['nama' => 'Et', 'absensi' => ['H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H']],
-            // Tambah data santri lainnya...
-        ];
-        dd($santri);
+        $santriList = Santri::where('id_kelas', $id_kelas)->get();
+        $kelas = Kelas::find($id_kelas);
+        $tahunAjaran = $kelas->tahunAjaran()->where('status', 'aktif')->first();
+        $tahun_ajaran = $tahunAjaran ? $tahunAjaran->tahun_ajaran : 'Tidak Diketahui';
 
-        $bulan = 'Oktober';
-        $tahun_ajaran = '2023/2024';
-        $kelas = 'XII TKR';
+        $data = [];
+        foreach ($santriList as $santri) {
+            $absensiData = Absensi::where('id_santri', $santri->id_santri)
+                ->whereHas('absensiKelas', function ($query) use ($bulan) {
+                    $query->where('bulan', $bulan);
+                })
+                ->get()
+                ->pluck('status')
+                ->toArray();
+
+            $data[] = [
+                'nama' => $santri->nama,
+                'absensi' => $absensiData,
+            ];
+        }
 
         // Load view ke dalam PDF
-        $pdf = PDF::loadView('pdf.absensi', compact('santri', 'bulan', 'tahun_ajaran', 'kelas'))
+        $pdf = PDF::loadView('pdf.absensi', compact('data', 'bulan', 'tahun_ajaran', 'kelas->nama_kelas'))
             ->setPaper([0, 0, 595.276, 935.433], 'landscape')
             ->setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
             ->setOption('margin-top', 5)
@@ -193,7 +204,7 @@ class AbsensiController extends Controller
             ));
         } catch (\Exception $e) {
             return redirect()->route('absensi.index')
-                           ->with('error', 'Kelas tidak ditemukan');
+                ->with('error', 'Kelas tidak ditemukan');
         }
     }
 
@@ -233,7 +244,6 @@ class AbsensiController extends Controller
                 'success' => true,
                 'message' => 'Data absensi berhasil disimpan'
             ]);
-
         } catch (\Illuminate\Validation\ValidationException $e) {
             DB::rollback();
             return response()->json([
@@ -241,7 +251,6 @@ class AbsensiController extends Controller
                 'message' => 'Data tidak valid',
                 'errors' => $e->errors()
             ], 422);
-
         } catch (\Exception $e) {
             DB::rollback();
             return response()->json([
@@ -251,9 +260,9 @@ class AbsensiController extends Controller
         }
     }
 
-    public function exportExcel($idKelas, $bulan)
+    public function exportExcel($idKelas, $bulan, $tahun)
     {
-        return Excel::download(new AbsensiExport($idKelas, $bulan), 'absensi.xlsx');
+        return Excel::download(new AbsensiExport($idKelas, $bulan, $tahun), 'absensi.xlsx');
     }
 
     // Mendapatkan rekap absensi per kelas per bulan
@@ -268,7 +277,8 @@ class AbsensiController extends Controller
         }
 
         return Absensi::where('id_absensi_kelas', $absensiKelas->id_absensi_kelas)
-            ->select('id_santri',
+            ->select(
+                'id_santri',
                 DB::raw('COUNT(CASE WHEN status = "H" THEN 1 END) as hadir'),
                 DB::raw('COUNT(CASE WHEN status = "S" THEN 1 END) as sakit'),
                 DB::raw('COUNT(CASE WHEN status = "I" THEN 1 END) as izin'),
@@ -281,11 +291,40 @@ class AbsensiController extends Controller
     // Mendapatkan detail absensi santri per bulan
     public function getDetailSantri($idSantri, $bulan)
     {
-        return Absensi::whereHas('absensiKelas', function($query) use ($bulan) {
-                $query->where('bulan', $bulan);
-            })
+        return Absensi::whereHas('absensiKelas', function ($query) use ($bulan) {
+            $query->where('bulan', $bulan);
+        })
             ->where('id_santri', $idSantri)
             ->orderBy('tanggal')
             ->get();
+    }
+
+    public function export($id_kelas, Request $request)
+    {
+        $bulan = $request->query('bulan', date('m'));
+        $tahun = $request->query('tahun', date('Y'));
+        $format = $request->query('format', 'xlsx');
+
+        $namaBulan = Carbon::createFromDate($tahun, $bulan, 1)->locale('id')->format('F');
+        $namaKelas = Kelas::find($id_kelas)->nama_kelas;
+        $fileName = "Absensi Kelas {$namaKelas} - {$namaBulan} {$tahun}";
+
+        if ($format === 'pdf') {
+            $export = new AbsensiExport($id_kelas, $bulan, $tahun);
+            $data = [
+                'absensi' => $export->collection(),
+                'kelas' => $namaKelas,
+                'bulan' => $namaBulan,
+                'tahun' => $tahun
+            ];
+
+            $pdf = PDF::loadView('module.absensi.pdf', $data);
+            return $pdf->download($fileName . '.pdf');
+        }
+
+        return Excel::download(
+            new AbsensiExport($id_kelas, $bulan, $tahun),
+            $fileName . '.xlsx'
+        );
     }
 }

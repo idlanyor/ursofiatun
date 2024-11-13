@@ -1,55 +1,26 @@
 <!-- Modal Edit -->
-<div
-    class="modal fade"
-    id="editModal"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
->
+<div class="modal fade" id="editPenggunaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1
-                    class="modal-title fs-5"
-                    id="editLabel"
-                >Edit Pengguna</h1>
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                ></button>
+                <h1 class="modal-title fs-5" id="editLabel">Edit Pengguna</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="editForm">
+                <form id="editPenggunaForm">
                     @csrf
                     @method('PUT')
                     <div class="form-floating mb-3">
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="nama"
-                            id="editNama"
-                            placeholder="Nama"
-                        >
+                        <input type="text" class="form-control" name="nama" id="editNama" placeholder="Nama">
                         <label for="editNama">Nama</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="username"
-                            id="editUsername"
-                            placeholder="Username"
-                        >
+                        <input type="text" class="form-control" name="username" id="editUsername"
+                            placeholder="Username">
                         <label for="editUsername">Username</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <select
-                            class="form-select"
-                            name="role"
-                            id="editRole"
-                        >
+                        <select class="form-select" name="role" id="editRole">
                             <option value="">Pilih Role</option>
                             <option value="admin">Admin</option>
                             <option value="pengurus">Pengurus</option>
@@ -57,11 +28,7 @@
                         <label for="editRole">Role</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <select
-                            class="form-select"
-                            name="status"
-                            id="editStatus"
-                        >
+                        <select class="form-select" name="status" id="editStatus">
                             <option value="">Pilih Status</option>
                             <option value="aktif">Aktif</option>
                             <option value="nonaktif">Nonaktif</option>
@@ -70,15 +37,8 @@
                         <label for="editStatus">Status</label>
                     </div>
                     <div class="modal-footer">
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                        >Close</button>
-                        <button
-                            type="submit"
-                            class="btn btn-primary"
-                        >Update</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
             </div>
@@ -89,20 +49,20 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var editForm = document.getElementById('editForm');
-        var editModal = new bootstrap.Modal(document.getElementById('editModal'));
+        var editPenggunaForm = document.getElementById('editPenggunaForm');
+        var editPenggunaModal = new bootstrap.Modal(document.getElementById('editPenggunaModal'));
 
         document.querySelectorAll('.edit-btn').forEach(button => {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
-                axios.get(`/pengguna/${id}/edit`)
+                axios.get(`/pengaturan/pengguna/${id}`)
                     .then(response => {
                         var data = response.data;
                         document.getElementById('editNama').value = data.nama;
                         document.getElementById('editUsername').value = data.username;
                         document.getElementById('editRole').value = data.role;
                         document.getElementById('editStatus').value = data.status;
-                        editForm.setAttribute('action', `/pengguna/${id}`);
+                        editPenggunaForm.setAttribute('action', `/pengguna/${id}`);
                     })
                     .catch(error => {
                         console.error('There was an error fetching the data:', error);
@@ -111,12 +71,12 @@
             });
         });
 
-        editForm.addEventListener('submit', function(event) {
+        editPenggunaForm.addEventListener('submit', function(event) {
             event.preventDefault();
-            var formData = new FormData(editForm);
-            var id = editForm.getAttribute('action').split('/').pop();
+            var formData = new FormData(editPenggunaForm);
+            var id = editPenggunaForm.getAttribute('action').split('/').pop();
 
-            axios.post(`/pengguna/${id}`, formData, {
+            axios.post(`/pengaturan/pengguna/${id}`, formData, {
                     headers: {
                         'X-CSRF-TOKEN': formData.get('_token'),
                         'X-HTTP-Method-Override': 'PUT'

@@ -2,7 +2,7 @@
 <nav class="mb-4 bg-white shadow navbar navbar-expand navbar-light topbar sticky-top">
 
     <!-- Sidebar Toggle (Topbar) -->
-    <button id="sidebarToggleTop" class="mr-3 btn btn-link d-md-none rounded-circle">
+    <button id="sidebarToggleTop" class="mr-3 btn btn-link rounded-circle">
         <i class="fa fa-bars"></i>
     </button>
 
@@ -186,7 +186,7 @@
                     <div class="mr-3 dropdown-list-image">
                         <img
                             class="rounded-circle"
-                            src="{{ asset('img/undraw_profile_3.svg') }}"
+                            src="{/{ asset('img/undraw_profile_3.svg') }}"
                             alt="..."
                         >
                         <div class="status-indicator bg-warning"></div>

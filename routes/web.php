@@ -143,6 +143,7 @@ Route::middleware(['auth', CheckUserStatus::class])->group(function () {
         Route::get('/kelas', [AbsensiController::class, 'index'])->name('absensi.index');
         Route::get('/harian/{id_kelas}', [AbsensiController::class, 'showHarian'])->name('absensi.harian');
         Route::post('/harian/store', [AbsensiController::class, 'storeHarian'])->name('absensi.harian.store');
+        Route::get('/export/{id_kelas}', [AbsensiController::class, 'export'])->name('absensi.export');
     });
     Route::get('/datasantri/export', [SantriController::class, 'exportSantri'])->name('santri.export');
     Route::post('/santri/import', [SantriController::class, 'import'])->name('santri.import');

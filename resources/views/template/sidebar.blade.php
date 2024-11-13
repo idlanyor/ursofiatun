@@ -2,12 +2,10 @@
     <style>
         .sidebar-brand {
             padding: 10px 0;
-            /* Atur padding biar nggak terlalu lebar */
         }
 
         .sidebar-brand-icon {
             margin-right: 10px;
-            /* Kasih jarak antara ikon dan teks */
         }
 
         .sidebar-brand-text {
@@ -16,7 +14,7 @@
     </style>
 @endpush
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">

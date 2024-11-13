@@ -8,6 +8,33 @@
             <div class="d-flex gap-2">
                 <input type="date" id="tanggal" class="form-control" value="{{ $tanggal }}" max="{{ date('Y-m-d') }}">
                 <button class="btn btn-primary" onclick="loadAbsensi()">Tampilkan</button>
+                <div class="dropdown">
+                    <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Download Laporan
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="{{ route('absensi.export', [
+                                'id_kelas' => $kelas->id_kelas,
+                                'bulan' => date('m', strtotime($tanggal)),
+                                'tahun' => date('Y', strtotime($tanggal)),
+                                'format' => 'xlsx'
+                            ]) }}">
+                                Excel
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('absensi.export', [
+                                'id_kelas' => $kelas->id_kelas,
+                                'bulan' => date('m', strtotime($tanggal)),
+                                'tahun' => date('Y', strtotime($tanggal)),
+                                'format' => 'pdf'
+                            ]) }}">
+                                PDF
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="card-body">

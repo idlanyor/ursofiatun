@@ -8,7 +8,7 @@
             <table class="table align-middle table-striped table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th>Aksi</th>
+                        <th>#</th>
                         <th>Nama</th>
                         <th>Username</th>
                         <th>Role</th>
@@ -26,17 +26,16 @@
                                         data-id="{{ $d->id_user }}" data-status="{{ $d->status }}">
                                         <i class="fas {{ $d->status == 'aktif' ? 'fa-user-slash' : 'fa-user-check' }}"
                                             aria-hidden="true"></i>
-                                        {{ $d->status == 'aktif' ? 'Nonaktifkan Akun' : 'Aktifkan Akun' }}
                                     </button>
 
                                     <button type="button" class="btn btn-info btn-sm edit-btn" data-bs-toggle="modal"
-                                        data-bs-target="#editModal" data-id="{{ $d->id_user }}">
-                                        <i class="fas fa-user-pen" aria-hidden="true"></i> Edit Akun
+                                        data-bs-target="#editPenggunaModal" data-id="{{ $d->id_user }}">
+                                        <i class="fas fa-user-pen" aria-hidden="true"></i>
                                     </button>
                                     <button type="button" class="px-2 btn btn-danger btn-sm destroyUserModal-btn"
                                         data-id="{{ $d->id_user }}" data-bs-toggle="modal"
                                         data-bs-target="#destroyUserModal">
-                                        <i class="fas fa-user-xmark" aria-hidden="true"></i> Hapus Akun
+                                        <i class="fas fa-user-xmark" aria-hidden="true"></i>
                                     </button>
                                 </td>
                                 <td>{{ $d->nama }}</td>
@@ -59,7 +58,7 @@
 </div>
 
 @include('module.pengaturan.pengguna.edit')
-@include('module.pengaturan.pengguna.show')
+@include('module.pengaturan.pengguna.reset')
 @include('module.pengaturan.pengguna.destroy')
 @push('script')
     <script>
@@ -88,9 +87,7 @@
                         .then(response => response.json())
                         .then(data => {
                             if (data.message) {
-                                // Beri tahu pengguna tentang perubahan status
                                 toastr.success(data.message);
-                                // Refresh halaman atau bagian tabel
                                 location.reload();
                             }
                         })
