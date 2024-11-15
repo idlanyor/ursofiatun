@@ -229,7 +229,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 text-gray-600 d-none d-lg-inline small">{{ Auth::user()->nama }}</span>
-                <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
+                <img class="img-profile rounded-circle" src="https://api.dicebear.com/9.x/adventurer-neutral/svg?seed={{ Auth::user()->nama }}">
             </a>
             <!-- Dropdown - User Information -->
             <div class="shadow dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="userDropdown">

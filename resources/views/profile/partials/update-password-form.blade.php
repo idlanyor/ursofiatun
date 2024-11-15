@@ -1,11 +1,11 @@
 <section>
     <header>
         <h2 class="h5 font-weight-bold text-dark">
-            {{ __('Update Password') }}
+            {{ __('Ubah Password') }}
         </h2>
 
         <p class="text-muted">
-            {{ __('Ensure your account is using a long, random password to stay secure.') }}
+            {{ __('Pastikan akun Anda menggunakan password yang panjang dan acak untuk tetap aman.') }}
         </p>
     </header>
 
@@ -14,7 +14,7 @@
         @method('put')
 
         <div class="mb-3">
-            <label for="current_password" class="form-label">{{ __('Current Password') }}</label>
+            <label for="current_password" class="form-label">{{ __('Password Saat Ini') }}</label>
             <input id="current_password" name="current_password" type="password" class="form-control"
                 autocomplete="current-password">
             @error('current_password')
@@ -23,7 +23,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="password" class="form-label">{{ __('New Password') }}</label>
+            <label for="password" class="form-label">{{ __('Password Baru') }}</label>
             <input id="password" name="password" type="password" class="form-control" autocomplete="new-password">
             @error('password')
                 <div class="mt-2 text-danger">{{ $message }}</div>
@@ -31,7 +31,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="password_confirmation" class="form-label">{{ __('Confirm Password') }}</label>
+            <label for="password_confirmation" class="form-label">{{ __('Konfirmasi Password') }}</label>
             <input id="password_confirmation" name="password_confirmation" type="password" class="form-control"
                 autocomplete="new-password">
             @error('password_confirmation')
@@ -40,11 +40,11 @@
         </div>
 
         <div class="gap-4 d-flex align-items-center">
-            <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+            <button type="submit" class="btn btn-primary">{{ __('Simpan') }}</button>
 
             @if (session('status') === 'password-updated')
                 <p class="mb-0 text-success small">
-                    {{ __('Saved.') }}
+                    {{ __('Tersimpan.') }}
                 </p>
             @endif
         </div>
