@@ -10,41 +10,15 @@
                     <img src="https://api.dicebear.com/9.x/adventurer-neutral/svg?seed={{ Auth::user()->nama }}"
                         alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                     <h5 class="my-3 fw-bold">{{ Auth::user()->nama }}</h5>
-                    <p class="mb-1">{{ Str::title(Auth::user()->role) }} - {{ Auth::user()->status }}</p>
-                    <div class="mb-2 d-flex justify-content-center">
+                    <p class="mb-1">{{ Auth::user()->username }} <br> {{ Auth::user()->email }}</p>
+                    <div class="mb-2 mt-3 d-flex justify-content-center">
                         <button type="button" data-bs-toggle="modal" data-bs-target="#updateProfileModal"
                             class="btn btn-primary">Perbarui Profil</button>
-                        <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger ms-1">Hapus
-                            Akun</button>
+
                     </div>
                 </div>
             </div>
-            <div class="mb-4 card mb-lg-0">
-                <div class="p-0 card-body">
-                    <ul class="list-group list-group-flush rounded-3">
-                        <li class="p-3 list-group-item d-flex justify-content-between align-items-center">
-                            <i class="fas fa-globe fa-lg text-warning"></i>
-                            <p class="mb-0">{{ Auth::user()->soc_website }}</p>
-                        </li>
-                        <li class="p-3 list-group-item d-flex justify-content-between align-items-center">
-                            <i class="fab fa-github fa-lg text-body"></i>
-                            <p class="mb-0">{{ Auth::user()->soc_github }}</p>
-                        </li>
-                        <li class="p-3 list-group-item d-flex justify-content-between align-items-center">
-                            <i class="fab fa-x-twitter fa-lg" style="color: #2c1800;"></i>
-                            <p class="mb-0">{{ Auth::user()->soc_x }}</p>
-                        </li>
-                        <li class="p-3 list-group-item d-flex justify-content-between align-items-center">
-                            <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                            <p class="mb-0">{{ Auth::user()->soc_ig }}</p>
-                        </li>
-                        <li class="p-3 list-group-item d-flex justify-content-between align-items-center">
-                            <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                            <p class="mb-0">{{ Auth::user()->soc_fb }}</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+
         </div>
         <div class="col-lg-8">
             <div class="mb-4 card">
@@ -75,18 +49,48 @@
                             <p class="mb-0 text-muted">{{ Auth::user()->alamat }}</p>
                         </div>
                     </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="mb-0">Email</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-4 card mb-lg-0">
+                        <div class="p-0 card-body">
+                            <ul class="list-group list-group-flush rounded-3">
+                                <li class="p-3 list-group-item d-flex justify-content-between align-items-center">
+                                    <i class="fas fa-globe fa-lg text-warning"></i>
+                                    <p class="mb-0">{{ Auth::user()->soc_website }}</p>
+                                </li>
+                                <li class="p-3 list-group-item d-flex justify-content-between align-items-center">
+                                    <i class="fab fa-github fa-lg text-body"></i>
+                                    <p class="mb-0">{{ Auth::user()->soc_github }}</p>
+                                </li>
+                                <li class="p-3 list-group-item d-flex justify-content-between align-items-center">
+                                    <i class="fab fa-x-twitter fa-lg" style="color: #2c1800;"></i>
+                                    <p class="mb-0">{{ Auth::user()->soc_x }}</p>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="mb-0 text-muted">{{ Auth::user()->email }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-4 card mb-lg-0">
+                        <div class="p-0 card-body">
+                            <ul class="list-group list-group-flush rounded-3">
+                                <li class="p-3 list-group-item d-flex justify-content-between align-items-center">
+                                    <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                                    <p class="mb-0">{{ Auth::user()->soc_ig }}</p>
+                                </li>
+                                <li class="p-3 list-group-item d-flex justify-content-between align-items-center">
+                                    <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                                    <p class="mb-0">{{ Auth::user()->soc_fb }}</p>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            {{-- update password --}}
+            {{-- <div class="row">
                 <div class="col-md-12">
                     <div class="mb-4 card mb-md-0">
                         <div class="card-body">
@@ -137,7 +141,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 
@@ -225,40 +229,42 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
+        let id = {{ Js::from(Auth::user()->id_user) }}
+        console.log('isd', id)
         document.addEventListener('DOMContentLoaded', function() {
             const updateProfileForm = document.getElementById('updateProfileForm');
             const updatePasswordForm = document.getElementById('updatePasswordForm');
             const updateProfileModal = new bootstrap.Modal(document.getElementById('updateProfileModal'));
-            
+
             updateProfileForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const formData = new FormData(updateProfileForm);
 
                 axios.post(`/pengaturan/pengguna/${id}`, formData, {
-                    headers: {
-                        'X-CSRF-TOKEN': formData.get('_token'),
-                        'X-HTTP-Method-Override': 'PATCH'
-                    }
-                })
-                .then(response => {
-                    if (response.data?.message) {
-                        toastr.success(response.data.message);
-                        location.reload();
-                    }
-                })
-                .catch(error => {
-                    if (error.response && error.response.status === 422) {
-                        const errors = error.response.data.errors;
-                        Object.keys(errors).forEach(field => {
-                            const errorElement = document.getElementById(`${field}_error`);
-                            if (errorElement) {
-                                errorElement.textContent = errors[field][0];
-                            }
-                        });
-                    } else {
-                        toastr.error('Terjadi kesalahan saat memperbarui profil.');
-                    }
-                });
+                        headers: {
+                            'X-CSRF-TOKEN': formData.get('_token'),
+                            'X-HTTP-Method-Override': 'PATCH'
+                        }
+                    })
+                    .then(response => {
+                        if (response.data?.message) {
+                            toastr.success(response.data.message);
+                            location.reload();
+                        }
+                    })
+                    .catch(error => {
+                        if (error.response && error.response.status === 422) {
+                            const errors = error.response.data.errors;
+                            Object.keys(errors).forEach(field => {
+                                const errorElement = document.getElementById(`${field}_error`);
+                                if (errorElement) {
+                                    errorElement.textContent = errors[field][0];
+                                }
+                            });
+                        } else {
+                            toastr.error('Terjadi kesalahan saat memperbarui profil.');
+                        }
+                    });
             });
 
             updatePasswordForm.addEventListener('submit', function(e) {
@@ -267,31 +273,31 @@
                 var id = updatePasswordForm.getAttribute('action').split('/').pop();
 
                 axios.post(`/pengaturan/pengguna/${id}`, formData, {
-                    headers: {
-                        'X-CSRF-TOKEN': formData.get('_token'),
-                        'X-HTTP-Method-Override': 'PUT'
-                    }
-                })
-                .then(response => {
-                    document.getElementById('success_message').style.display = 'block';
-                    updatePasswordForm.reset();
-                    setTimeout(() => {
-                        document.getElementById('success_message').style.display = 'none';
-                    }, 3000);
-                })
-                .catch(error => {
-                    if (error.response && error.response.status === 422) {
-                        const errors = error.response.data.errors;
-                        Object.keys(errors).forEach(field => {
-                            const errorElement = document.getElementById(`${field}_error`);
-                            if (errorElement) {
-                                errorElement.textContent = errors[field][0];
-                            }
-                        });
-                    } else {
-                        toastr.error('Terjadi kesalahan saat memperbarui kata sandi.');
-                    }
-                });
+                        headers: {
+                            'X-CSRF-TOKEN': formData.get('_token'),
+                            'X-HTTP-Method-Override': 'PUT'
+                        }
+                    })
+                    .then(response => {
+                        document.getElementById('success_message').style.display = 'block';
+                        updatePasswordForm.reset();
+                        setTimeout(() => {
+                            document.getElementById('success_message').style.display = 'none';
+                        }, 3000);
+                    })
+                    .catch(error => {
+                        if (error.response && error.response.status === 422) {
+                            const errors = error.response.data.errors;
+                            Object.keys(errors).forEach(field => {
+                                const errorElement = document.getElementById(`${field}_error`);
+                                if (errorElement) {
+                                    errorElement.textContent = errors[field][0];
+                                }
+                            });
+                        } else {
+                            toastr.error('Terjadi kesalahan saat memperbarui kata sandi.');
+                        }
+                    });
             });
         });
     </script>
