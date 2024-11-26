@@ -49,7 +49,7 @@ class SarprasController extends Controller
     public function show(string $id)
     {
         $sarpras = Sarpras::find($id);
-        return response()->json(['sarpras' => $sarpras]);
+        return response()->json($sarpras);
     }
 
     /**
@@ -57,8 +57,9 @@ class SarprasController extends Controller
      */
     public function edit(string $id)
     {
-        $sarpras = Sarpras::find($id);
-        return response()->json(['sarpras' => $sarpras]);
+
+        $sarpras = Sarpras::findOrFail($id);
+        return response()->json($sarpras);
     }
 
     /**
