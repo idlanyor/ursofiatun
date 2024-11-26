@@ -144,10 +144,12 @@
                     .then(response => {
                         if (response.data.success) {
                             toastr.success(response.data.success);
+                            console.log(response.data)
                             location.reload();
                         }
                     })
                     .catch(error => {
+                        console.log(error)
                         toastr.error(error.response.data.error || 'Terjadi kesalahan saat import data');
                     });
             });

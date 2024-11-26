@@ -12,6 +12,7 @@ use App\Imports\SantriImport;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Illuminate\Support\Facades\DB;
 
 class SantriController extends Controller
 {
@@ -138,10 +139,27 @@ class SantriController extends Controller
         ]);
 
         try {
-            Excel::import(new SantriImport, $request->file('file'));
+            DB::beginTransaction();
+
+            $import = new SantriImport;
+            Excel::import($import, $request->file('file'));
+
+            if (!empty($import->getErrors())) {
+                DB::rollBack();
+                return response()->json([
+                    'error' => 'Terjadi kesalahan validasi data:',
+                    'details' => $import->getErrors()
+                ], 422);
+            }
+
+            DB::commit();
             return response()->json(['success' => 'Data santri berhasil diimport.']);
+            
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Terjadi kesalahan saat import data: ' . $e->getMessage()], 500);
+            DB::rollBack();
+            return response()->json([
+                'error' => 'Terjadi kesalahan saat import data: ' . $e->getMessage()
+            ], 500);
         }
     }
 
