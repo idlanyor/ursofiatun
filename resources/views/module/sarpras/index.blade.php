@@ -31,12 +31,12 @@
                                     <tr>
                                         <td>
                                             <button type="button" class="btn btn-primary btn-sm edit-btn"
-                                                data-bs-toggle="modal" data-bs-target="#editModal"
+                                                data-bs-toggle="modal" data-bs-target="#editSarprasModal"
                                                 data-id="{{ $d->id_sarpras }}">
                                                 <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                                             </button>
                                             <button type="button" class="btn btn-danger btn-sm delete-btn"
-                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                data-bs-toggle="modal" data-bs-target="#deleteSarprasModal"
                                                 data-id="{{ $d->id_sarpras }}">
                                                 <i class="fas fa-trash" aria-hidden="true"></i>
                                             </button>

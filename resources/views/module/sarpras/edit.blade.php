@@ -1,9 +1,9 @@
 <!-- Modal Edit -->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editSarprasModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editLabel">Edit Santri</h1>
+                <h1 class="modal-title fs-5" id="editLabel">Edit Sarpras</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -77,12 +77,12 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var editForm = document.getElementById('editForm');
-        var editModal = new bootstrap.Modal(document.getElementById('editModal'));
+        var editSarprasModal = new bootstrap.Modal(document.getElementById('editSarprasModal'));
 
         document.querySelectorAll('.edit-btn').forEach(button => {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
-                axios.get(`/santri/${id}/edit`)
+                axios.get(`/sarpras/${id}/edit`)
                     .then(response => {
                         var data = response.data;
                         console.log(data);
@@ -98,11 +98,11 @@
                         document.getElementById('editOrangTua').value = data.orang_tua;
                         document.getElementById('editTelepon').value = data.telepon || '';
                         document.getElementById('editAlamat').value = data.alamat || '';
-                        editForm.setAttribute('action', `/santri/${id}`);
+                        editForm.setAttribute('action', `/sarpras/${id}`);
                     })
                     .catch(error => {
                         console.error('There was an error fetching the data:', error);
-                        toastr.error('Terjadi kesalahan saat mengambil data santri.');
+                        toastr.error('Terjadi kesalahan saat mengambil data sarpras.');
                     });
             });
         });
@@ -112,7 +112,7 @@
             var formData = new FormData(editForm);
             var id = editForm.getAttribute('action').split('/').pop();
 
-            axios.post(`/santri/${id}`, formData, {
+            axios.post(`/sarpras/${id}`, formData, {
                     headers: {
                         'X-CSRF-TOKEN': formData.get('_token'),
                         'X-HTTP-Method-Override': 'PUT'
@@ -135,7 +135,7 @@
                     } else {
                         console.log(error);
                         console.error('There was an error updating the data:', error);
-                        toastr.error('Terjadi kesalahan saat memperbarui data santri.');
+                        toastr.error('Terjadi kesalahan saat memperbarui data sarpras.');
                     }
                 });
         });
