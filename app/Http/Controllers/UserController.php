@@ -32,11 +32,13 @@ class UserController extends Controller
     {
         $request->validate([
             'nama' => 'required|string',
+            'email' => 'nullable|email',
             'username' => 'required|string|unique:users,username',
             'password' => 'required|string|confirmed',
         ]);
         User::create([
             'nama' => $request->nama,
+            'email' => $request->email,
             'username' => $request->username,
             'password' => bcrypt($request->password),
             'role' => 'pengurus',
@@ -79,20 +81,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->alll([
+        $validatedData = $request->validate([
             'nama' => 'required|string',
+            'email' => 'nullable|email',
+            'soc_website' => 'nullable|string',
+            'soc_github' => 'nullable|string',
+            'soc_x' => 'nullable|string',
+            'soc_ig' => 'nullable|string',
+            'soc_fb' => 'nullable|string',
+            'alamat' => 'nullable|string',
+            'notelp' => 'nullable|string',
             'username' => 'required|string|unique:users,username',
             'password' => 'required|string|confirmed',
             'role' => 'required|string|in:admin,pengurus',
             'status' => 'required|string|in:aktif,nonaktif,pending',
-        ]));
+        ]);
 
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
+        $validatedData['password'] = bcrypt($validatedData['password']);
+        User::create($validatedData);
 
-        User::create($validator->validated());
-        ;
         return response()->json(['message' => 'Data berhasil disimpan.']);
     }
 
@@ -102,34 +109,69 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return response()->json(['user' => $user->serialize()]);
+        return response()->json($user);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
-    {
-    }
+    public function edit(User $user) {}
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
-        $validator = Validator::make($request->alll([
-            'nama' => 'required|string',
-            'username' => 'required|string|unique:users,username',
-            'password' => 'required|string|confirmed',
-            'role' => 'required|string|in:admin,pengurus',
-            'status' => 'required|string|in:aktif,nonaktif,pending',
-        ]));
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+        try {
+            $user = User::find($id);
+
+            // Validasi hanya field yang ada dalam request
+            $rules = [];
+            if ($request->has('nama')) {
+                $rules['nama'] = 'required|string';
+            }
+            if ($request->has('email')) {
+                $rules['email'] = 'nullable|email';
+            }
+            if ($request->has('soc_website')) {
+                $rules['soc_website'] = 'nullable|string';
+            }
+            if ($request->has('soc_github')) {
+                $rules['soc_github'] = 'nullable|string';
+            }
+            if ($request->has('soc_x')) {
+                $rules['soc_x'] = 'nullable|string';
+            }
+            if ($request->has('soc_ig')) {
+                $rules['soc_ig'] = 'nullable|string';
+            }
+            if ($request->has('soc_fb')) {
+                $rules['soc_fb'] = 'nullable|string';
+            }
+            if ($request->has('alamat')) {
+                $rules['alamat'] = 'nullable|string';
+            }
+            if ($request->has('notelp')) {
+                $rules['notelp'] = 'nullable|string';
+            }
+            if ($request->has('username')) {
+                $rules['username'] = 'required|string|unique:users,username,'.$id.',id_user';
+            }
+            if ($request->has('role')) {
+                $rules['role'] = 'required|string|in:admin,pengurus';
+            }
+            if ($request->has('status')) {
+                $rules['status'] = 'required|string|in:aktif,nonaktif,pending';
+            }
+
+            $validatedData = $request->validate($rules);
+            $user->update($validatedData);
+
+            return response()->json(['message' => 'Data berhasil diperbarui.']);
+        } catch (\Exception $e) {
+            Log::error('Error updating user: ' . $e->getMessage());
+            return response()->json(['error' => 'Terjadi kesalahan pada server'], 500);
         }
-        $user->update($validator->validated());
-        return response()->json(['message' => 'Data berhasil diperbarui.']);
     }
     /**
      * Update the specified resource in storage.

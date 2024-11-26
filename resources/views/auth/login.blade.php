@@ -2,10 +2,10 @@
 @section('title', 'Login | TPQ Al - Falah')
 @push('style')
     <style>
-        body {
+        div #content {
             font-family: quicksand, sans-serif;
-            /* background-color: #5bb2ff; */
-            /* background-image: linear-gradient(to top right, #7fd3fa, #4dbd89); */
+            background-color: #5bb2ff !important;
+            background-image: linear-gradient(to top right, #7fd3fa, #4dbd89) !important;
         }
 
         .form-container {

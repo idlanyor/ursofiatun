@@ -14,12 +14,19 @@ class User extends Authenticatable
     protected $primaryKey =  'id_user';
     protected $guarded = ['id_user'];
     protected $fillable = [
-        'id_user',
         'nama',
+        'email',
+        'soc_website',
+        'soc_github',
+        'soc_x',
+        'soc_ig',
+        'soc_fb',
+        'alamat',
+        'notelp',
         'username',
         'password',
         'role',
-        'status',
+        'status'
     ];
     protected $hidden = ['password'];
 }

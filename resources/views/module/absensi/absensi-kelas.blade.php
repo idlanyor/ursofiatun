@@ -21,7 +21,7 @@
                             <tr>
                                 <th width="10%">#</th>
                                 <th>Kelas</th>
-                                <th>Jumlah Siswa</th>
+                                <th>Jumlah Santri</th>
                                 <th>Jumlah Mapel</th>
                             </tr>
                         </thead>
@@ -32,7 +32,7 @@
                                     <tr>
                                         <td>
                                             <a type="button" class="btn btn-primary btn-sm show-btn"
-                                                href="{{ route('absensi.show', $d->id_kelas) }}">
+                                                href="{{ route('absensi.show', $d->id_kelas). '?bulan=Januari' }}">
                                                 <i class="fas fa-table" aria-hidden="true"></i>
                                             </a>
                                         </td>

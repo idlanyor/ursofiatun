@@ -12,13 +12,17 @@ class AbsensiKelas extends Model
     protected $primaryKey =  'id_absensi_kelas';
     protected $table = 'absensi_kelas';
     protected $fillable = [
-        'id_tahun_ajaran',
         'id_kelas',
         'bulan'
     ];
 
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class, 'id_tahun_ajaran');
+        return $this->belongsTo(Kelas::class, 'id_kelas', 'id_kelas');
+    }
+
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class, 'id_absensi_kelas', 'id_absensi_kelas');
     }
 }

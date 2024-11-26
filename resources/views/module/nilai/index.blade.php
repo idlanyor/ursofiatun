@@ -4,7 +4,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h5>Pilih Kelas untuk Absensi</h5>
+            <h5>Input Nilai Santri</h5>
         </div>
         <div class="card-body">
             <div class="row">
@@ -14,8 +14,10 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $kelas->nama_kelas }}</h5>
                             <p class="card-text">Jumlah Santri: {{ $kelas->santri_count }}</p>
-                            <a href="{{ route('absensi.harian', ['id_kelas' => $kelas->id_kelas]) }}"
-                               class="btn btn-primary">Isi Absensi</a>
+                            <div class="d-grid">
+                                <a href="{{ route('nilai.input', ['id_kelas' => $kelas->id_kelas]) }}"
+                                   class="btn btn-primary">Input Nilai</a>
+                            </div>
                         </div>
                     </div>
                 </div>

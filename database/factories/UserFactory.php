@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -26,7 +25,7 @@ class UserFactory extends Factory
         return [
             'nama' => $this->faker->name(),
             'username' => $this->faker->unique()->userName(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => static::$password ??= Hash::make('ngeteh789'),
             'role' => $this->faker->randomElement(['admin', 'pengurus']),
         ];
     }

@@ -14,6 +14,14 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id('id_user');
             $table->string('nama');
+            $table->string('email')->nullable(true);
+            $table->string('soc_website')->default('Tidak Ada/Belum Diatur');
+            $table->string('soc_github')->default('Tidak Ada/Belum Diatur');
+            $table->string('soc_x')->default('Tidak Ada/Belum Diatur');
+            $table->string('soc_ig')->default('Tidak Ada/Belum Diatur');
+            $table->string('soc_fb')->default('Tidak Ada/Belum Diatur');
+            $table->string('alamat')->default('Tidak Ada/Belum Diatur');
+            $table->string('notelp')->default('Tidak Ada/Belum Diatur');
             $table->string('username')->unique();
             $table->string('password');
             $table->enum('role', ['admin', 'pengurus']);

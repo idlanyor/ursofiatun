@@ -17,7 +17,6 @@ class CheckUserStatus
      */
     public function handle(Request $request, Closure $next)
     {
-        // Daftar rute sing ora perlu dipriksa status
         $excludedRoutes = [
             'logout',
             'login',
@@ -25,10 +24,8 @@ class CheckUserStatus
             'profile.edit',
             'profile.update',
             'profile.destroy',
-            // Tambahake rute liyane yen perlu
         ];
 
-        // Mbandingake rute saiki karo rute sing dikecualikan
         if (in_array($request->route()->getName(), $excludedRoutes)) {
             return $next($request);
         }
@@ -37,7 +34,6 @@ class CheckUserStatus
             $user = Auth::user();
 
             if ($user->status === 'pending') {
-                // Redirect menyang dashboard lan tambahi pesan warning
                 if ($request->route()->getName() !== 'dashboard') {
                     return redirect()->route('dashboard');
                 }

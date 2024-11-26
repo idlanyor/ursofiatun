@@ -2,7 +2,7 @@
 <nav class="mb-4 bg-white shadow navbar navbar-expand navbar-light topbar sticky-top">
 
     <!-- Sidebar Toggle (Topbar) -->
-    <button id="sidebarToggleTop" class="mr-3 btn btn-link d-md-none rounded-circle">
+    <button id="sidebarToggleTop" class="mr-3 btn btn-link rounded-circle">
         <i class="fa fa-bars"></i>
     </button>
 
@@ -186,7 +186,7 @@
                     <div class="mr-3 dropdown-list-image">
                         <img
                             class="rounded-circle"
-                            src="{{ asset('img/undraw_profile_3.svg') }}"
+                            src="{/{ asset('img/undraw_profile_3.svg') }}"
                             alt="..."
                         >
                         <div class="status-indicator bg-warning"></div>
@@ -229,7 +229,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 text-gray-600 d-none d-lg-inline small">{{ Auth::user()->nama }}</span>
-                <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
+                <img class="img-profile rounded-circle" src="https://api.dicebear.com/9.x/adventurer-neutral/svg?seed={{ Auth::user()->nama }}">
             </a>
             <!-- Dropdown - User Information -->
             <div class="shadow dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="userDropdown">
