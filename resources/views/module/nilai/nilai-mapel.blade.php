@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h5>Data Nilai</h5>
-                <a href="{{ route('nilai.create') }}" class="btn btn-success btn-icon-split">
+                <a href="{{ route('nilai.create') }}" class="btn btn-sm btn-success btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
@@ -27,7 +27,7 @@
                                 @foreach ($dataMapel as $index => $d)
                                     <tr>
                                         <td class="text-center">
-                                            <a href="{{ route('nilai.create') }}" class="btn btn-primary btn-sm"
+                                            <a href="{{ route('nilai.create') }}" class="btn btn-sm btn-primary btn-sm"
                                                 data-id="{{ $d->id_nilai }}">
                                                 <i class="fas fa-list-check" aria-hidden="true"></i>
                                             </a>

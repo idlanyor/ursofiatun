@@ -7,9 +7,9 @@
             <h5>Absensi Harian Kelas {{ $kelas->nama_kelas }}</h5>
             <div class="d-flex gap-2">
                 <input type="date" id="tanggal" class="form-control" value="{{ $tanggal }}" max="{{ date('Y-m-d') }}">
-                <button class="btn btn-primary" onclick="loadAbsensi()">Tampilkan</button>
+                <button class="btn btn-sm btn-primary" onclick="loadAbsensi()">Tampilkan</button>
                 <div class="dropdown">
-                    <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <button class="btn btn-sm btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown">
                         Download Laporan
                     </button>
                     <ul class="dropdown-menu">
@@ -67,22 +67,22 @@
                                         <input type="radio" class="btn-check" name="status[{{ $santri->id_santri }}]"
                                                id="hadir{{ $santri->id_santri }}" value="H"
                                                {{ $status == 'H' ? 'checked' : '' }}>
-                                        <label class="btn btn-outline-success" for="hadir{{ $santri->id_santri }}">Hadir</label>
+                                        <label class="btn btn-sm btn-outline-success" for="hadir{{ $santri->id_santri }}">Hadir</label>
 
                                         <input type="radio" class="btn-check" name="status[{{ $santri->id_santri }}]"
                                                id="sakit{{ $santri->id_santri }}" value="S"
                                                {{ $status == 'S' ? 'checked' : '' }}>
-                                        <label class="btn btn-outline-warning" for="sakit{{ $santri->id_santri }}">Sakit</label>
+                                        <label class="btn btn-sm btn-outline-warning" for="sakit{{ $santri->id_santri }}">Sakit</label>
 
                                         <input type="radio" class="btn-check" name="status[{{ $santri->id_santri }}]"
                                                id="izin{{ $santri->id_santri }}" value="I"
                                                {{ $status == 'I' ? 'checked' : '' }}>
-                                        <label class="btn btn-outline-info" for="izin{{ $santri->id_santri }}">Izin</label>
+                                        <label class="btn btn-sm btn-outline-info" for="izin{{ $santri->id_santri }}">Izin</label>
 
                                         <input type="radio" class="btn-check" name="status[{{ $santri->id_santri }}]"
                                                id="alpha{{ $santri->id_santri }}" value="A"
                                                {{ $status == 'A' ? 'checked' : '' }}>
-                                        <label class="btn btn-outline-danger" for="alpha{{ $santri->id_santri }}">Alpha</label>
+                                        <label class="btn btn-sm btn-outline-danger" for="alpha{{ $santri->id_santri }}">Alpha</label>
                                     </div>
                                 </td>
                                 <td>
@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="mt-3">
-                    <button type="submit" class="btn btn-primary">Simpan Absensi</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Simpan Absensi</button>
                 </div>
             </form>
         </div>

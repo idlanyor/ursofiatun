@@ -77,7 +77,7 @@
                         </datalist>
                     </div>
                     <div class="mt-3 float-end">
-                        <button type="submit" class="btn btn-primary btn-icon-split">
+                        <button type="submit" class="btn btn-sm btn-primary btn-icon-split">
                             <span class="icon text-white-50">
                                 <i class="fas fa-floppy-disk"></i>
                             </span>

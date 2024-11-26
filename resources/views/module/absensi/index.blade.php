@@ -15,7 +15,7 @@
                             <h5 class="card-title">{{ $kelas->nama_kelas }}</h5>
                             <p class="card-text">Jumlah Santri: {{ $kelas->santri_count }}</p>
                             <a href="{{ route('absensi.harian', ['id_kelas' => $kelas->id_kelas]) }}"
-                               class="btn btn-primary">Isi Absensi</a>
+                               class="btn btn-sm btn-primary">Isi Absensi</a>
                         </div>
                     </div>
                 </div>

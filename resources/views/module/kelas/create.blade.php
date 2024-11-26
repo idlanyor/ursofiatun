@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-muted d-flex justify-content-end mt-3">
-                    <button type="submit" class="btn btn-success btn-icon-split">
+                    <button type="submit" class="btn btn-sm btn-success btn-icon-split">
                         <span class="icon text-white-50">
                             <i class="fa fa-save" aria-hidden="true"></i>
                         </span>

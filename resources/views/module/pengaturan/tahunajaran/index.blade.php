@@ -19,12 +19,12 @@
                         @foreach ($dataTahunAjaran as $index => $d)
                             <tr>
                                 <td>
-                                    <button type="button" class="btn btn-warning btn-sm edit-ta-btn"
+                                    <button type="button" class="btn btn-sm btn-warning btn-sm edit-ta-btn"
                                         data-bs-toggle="modal" data-bs-target="#editTahunAjaranModal"
                                         data-id="{{ $d->id_tahun_ajaran }}">
                                         <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                                     </button>
-                                    <button type="button" class="btn btn-danger btn-sm delete-ta-btn px-2"
+                                    <button type="button" class="btn btn-sm btn-danger btn-sm delete-ta-btn px-2"
                                         data-id="{{ $d->id_tahun_ajaran }}" data-bs-toggle="modal"
                                         data-bs-target="#deleteTAModal">
                                         <i class="fas fa-trash" aria-hidden="true"></i>

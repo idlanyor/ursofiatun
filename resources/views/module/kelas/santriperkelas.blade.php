@@ -36,7 +36,7 @@
                                         <td>
                                             <button
                                                 type="button"
-                                                class="btn btn-warning btn-sm edit-btn"
+                                                class="btn btn-sm btn-warning btn-sm edit-btn"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#editModal"
                                                 data-id="{{ $d->id_santri }}"
@@ -48,7 +48,7 @@
                                             </button>
                                             <button
                                                 type="button"
-                                                class="btn btn-primary btn-sm show-btn"
+                                                class="btn btn-sm btn-primary btn-sm show-btn"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#showModal"
                                                 data-id="{{ $d->id_santri }}"
@@ -60,7 +60,7 @@
                                             </button>
                                             <button
                                                 type="button"
-                                                class="btn btn-danger btn-sm delete-btn"
+                                                class="btn btn-sm btn-danger btn-sm delete-btn"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#deleteModal"
                                                 data-id="{{ $d->id_santri }}"

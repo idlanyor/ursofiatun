@@ -13,7 +13,7 @@
                     <p class="mb-1">{{ Auth::user()->username }} <br> {{ Auth::user()->email }}</p>
                     <div class="mb-2 mt-3 d-flex justify-content-center">
                         <button type="button" data-bs-toggle="modal" data-bs-target="#updateProfileModal"
-                            class="btn btn-primary">Perbarui Profil</button>
+                            class="btn btn-sm btn-primary">Perbarui Profil</button>
 
                     </div>
                 </div>
@@ -132,7 +132,7 @@
                                 </div>
 
                                 <div class="gap-4 d-flex align-items-center">
-                                    <button type="submit" class="btn btn-primary">{{ __('Simpan') }}</button>
+                                    <button type="submit" class="btn btn-sm btn-primary">{{ __('Simpan') }}</button>
                                     <p class="mb-0 text-success small" id="success_message" style="display: none;">
                                         {{ __('Tersimpan.') }}
                                     </p>
@@ -219,8 +219,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-sm btn-primary">Simpan Perubahan</button>
                     </div>
                 </form>
             </div>

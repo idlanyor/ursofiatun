@@ -47,7 +47,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="saveKegiatanBtn">Simpan</button>
+                <button type="button" class="btn btn-sm btn-primary" id="saveKegiatanBtn">Simpan</button>
             </div>
         </div>
     </div>

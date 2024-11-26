@@ -28,11 +28,11 @@
                                             aria-hidden="true"></i>
                                     </button>
 
-                                    <button type="button" class="btn btn-info btn-sm edit-btn" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-sm btn-info btn-sm edit-btn" data-bs-toggle="modal"
                                         data-bs-target="#editPenggunaModal" data-id="{{ $d->id_user }}">
                                         <i class="fas fa-user-pen" aria-hidden="true"></i>
                                     </button>
-                                    <button type="button" class="px-2 btn btn-danger btn-sm destroyUserModal-btn"
+                                    <button type="button" class="px-2 btn btn-sm btn-danger btn-sm destroyUserModal-btn"
                                         data-id="{{ $d->id_user }}" data-bs-toggle="modal"
                                         data-bs-target="#destroyUserModal">
                                         <i class="fas fa-user-xmark" aria-hidden="true"></i>

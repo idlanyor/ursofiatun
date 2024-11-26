@@ -6,7 +6,7 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex justify-content-between align-items-center">
         <h6 class="m-0 font-weight-bold text-primary">Daftar Nilai Santri</h6>
-        <a href="{{ route('nilai.create') }}" class="btn btn-primary btn-sm">
+        <a href="{{ route('nilai.create') }}" class="btn btn-sm btn-primary btn-sm">
             <i class="fas fa-plus"></i> Tambah Nilai
         </a>
     </div>
@@ -47,13 +47,13 @@
                             @endphp
                         </td>
                         <td>
-                            <a href="{{ route('nilai.edit', $n->id_nilai) }}" class="btn btn-warning btn-sm">
+                            <a href="{{ route('nilai.edit', $n->id_nilai) }}" class="btn btn-sm btn-warning btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>
                             <form action="{{ route('nilai.destroy', $n->id_nilai) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">
+                                <button type="submit" class="btn btn-sm btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </form>
@@ -65,4 +65,4 @@
         </div>
     </div>
 </div>
-@endsection 
+@endsection

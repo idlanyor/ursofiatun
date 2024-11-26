@@ -40,7 +40,7 @@
                             <label for="kelas_id">Kelas</label>
                         </div>
                         <div class="mt-3 card-footer text-muted d-flex justify-content-end">
-                            <button type="submit" class="btn btn-success btn-icon-split">
+                            <button type="submit" class="btn btn-sm btn-success btn-icon-split">
                                 <span class="icon text-white-50">
                                     <i class="fa fa-save" aria-hidden="true"></i>
                                 </span>
@@ -84,7 +84,7 @@
                             });
                         }
                     }
-                    
+
                 });
             });
         });

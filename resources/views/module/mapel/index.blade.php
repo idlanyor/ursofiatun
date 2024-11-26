@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h5>Data Mapel</h5>
-                <a href="{{ route('matapelajaran.create') }}" class="btn btn-success btn-icon-split">
+                <a href="{{ route('matapelajaran.create') }}" class="btn btn-sm btn-success btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
@@ -30,12 +30,12 @@
                                 @foreach ($dataMapel as $index => $mapel)
                                     <tr>
                                         <td>
-                                            <button type="button" class="btn btn-warning btn-sm edit-btn"
+                                            <button type="button" class="btn btn-sm btn-warning btn-sm edit-btn"
                                                 data-bs-toggle="modal" data-bs-target="#editModal"
                                                 data-id="{{ $mapel->id_mata_pelajaran }}">
                                                 <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                                             </button>
-                                            <button type="button" class="px-2 btn btn-danger btn-sm delete-btn"
+                                            <button type="button" class="px-2 btn btn-sm btn-danger btn-sm delete-btn"
                                                 data-id="{{ $mapel->id_mata_pelajaran }}" data-bs-toggle="modal"
                                                 data-bs-target="#destroyModal">
                                                 <i class="fas fa-trash" aria-hidden="true"></i>

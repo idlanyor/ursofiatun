@@ -31,7 +31,7 @@
                                 @foreach ($kelas as $index => $d)
                                     <tr>
                                         <td>
-                                            <a type="button" class="btn btn-primary btn-sm show-btn"
+                                            <a type="button" class="btn btn-sm btn-primary btn-sm show-btn"
                                                 href="{{ route('absensi.show', $d->id_kelas). '?bulan=Januari' }}">
                                                 <i class="fas fa-table" aria-hidden="true"></i>
                                             </a>

@@ -16,7 +16,7 @@
                             <p class="card-text">Jumlah Santri: {{ $kelas->santri_count }}</p>
                             <div class="d-grid">
                                 <a href="{{ route('nilai.input', ['id_kelas' => $kelas->id_kelas]) }}"
-                                   class="btn btn-primary">Input Nilai</a>
+                                   class="btn btn-sm btn-primary">Input Nilai</a>
                             </div>
                         </div>
                     </div>

@@ -6,26 +6,26 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <div class="d-flex gap-2">
-                    <a href="{{ route('santri.export') }}" class="btn btn-success btn-icon-split">
+                    <a href="{{ route('santri.export') }}" class="btn btn-sm btn-success btn-icon-split">
                         <span class="icon text-white-50">
                             <i class="fas fa-file-export"></i>
                         </span>
                         <span class="text">Export Excel</span>
                     </a>
-                    <button type="button" class="btn btn-info btn-icon-split" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-sm btn-info btn-icon-split" data-bs-toggle="modal"
                         data-bs-target="#importModal">
                         <span class="icon text-white-50">
                             <i class="fas fa-file-import"></i>
                         </span>
                         <span class="text">Import Excel</span>
                     </button>
-                    <a href="{{ route('template.santri.download') }}" class="btn btn-secondary btn-icon-split">
+                    <a href="{{ route('template.santri.download') }}" class="btn btn-sm btn-secondary btn-icon-split">
                         <span class="icon text-white-50">
                             <i class="fas fa-download"></i>
                         </span>
                         <span class="text">Download Template</span>
                     </a>
-                    <a href="{{ route('santri.create') }}" class="btn btn-success btn-icon-split">
+                    <a href="{{ route('santri.create') }}" class="btn btn-sm btn-success btn-icon-split">
                         <span class="icon text-white-50">
                             <i class="fas fa-user-plus"></i>
                         </span>
@@ -50,17 +50,17 @@
                                 @foreach ($dataSantri as $index => $d)
                                     <tr>
                                         <td>
-                                            <button type="button" class="btn btn-warning btn-sm edit-btn"
+                                            <button type="button" class="btn btn-sm btn-warning btn-sm edit-btn"
                                                 data-bs-toggle="modal" data-bs-target="#editModal"
                                                 data-id="{{ $d->id_santri }}">
                                                 <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                                             </button>
-                                            <button type="button" class="btn btn-primary btn-sm show-btn"
+                                            <button type="button" class="btn btn-sm btn-primary btn-sm show-btn"
                                                 data-bs-toggle="modal" data-bs-target="#showModal"
                                                 data-id="{{ $d->id_santri }}">
                                                 <i class="fas fa-eye" aria-hidden="true"></i>
                                             </button>
-                                            <button type="button" class="btn btn-danger btn-sm delete-btn"
+                                            <button type="button" class="btn btn-sm btn-danger btn-sm delete-btn"
                                                 data-bs-toggle="modal" data-bs-target="#deleteModal"
                                                 data-id="{{ $d->id_santri }}">
                                                 <i class="fas fa-trash" aria-hidden="true"></i>
@@ -117,10 +117,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="{{ route('template.santri.download') }}" class="btn btn-secondary">
+                        <a href="{{ route('template.santri.download') }}" class="btn btn-sm btn-secondary">
                             <i class="fas fa-download"></i> Download Template
                         </a>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-sm btn-primary">
                             <i class="fas fa-file-import"></i> Import
                         </button>
                     </div>

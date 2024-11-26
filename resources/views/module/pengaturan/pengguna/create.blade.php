@@ -54,7 +54,7 @@
                 <div class="card-footer text-muted d-flex justify-content-end mt-3">
                     <button
                         type="submit"
-                        class="btn btn-success btn-icon-split"
+                        class="btn btn-sm btn-success btn-icon-split"
                     >
                         <span class="icon text-white-50">
                             <i

@@ -40,7 +40,7 @@
         </div>
 
         <div class="gap-4 d-flex align-items-center">
-            <button type="submit" class="btn btn-primary">{{ __('Simpan') }}</button>
+            <button type="submit" class="btn btn-sm btn-primary">{{ __('Simpan') }}</button>
 
             @if (session('status') === 'password-updated')
                 <p class="mb-0 text-success small">

@@ -126,7 +126,7 @@
                     <div class="mt-3 card-footer text-muted d-flex justify-content-end">
                         <button
                             type="submit"
-                            class="btn btn-success btn-icon-split"
+                            class="btn btn-sm btn-success btn-icon-split"
                         >
                             <span class="icon text-white-50">
                                 <i

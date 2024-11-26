@@ -10,7 +10,7 @@
     </header>
 
     <!-- Delete Button -->
-    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeletionModal">
+    <button type="button" class="btn btn-sm btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeletionModal">
         {{ __('Delete Account') }}
     </button>
 
@@ -44,9 +44,9 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"
+                        <button type="button" class="btn btn-sm btn-secondary"
                             data-bs-dismiss="modal">{{ __('Cancel') }}</button>
-                        <button type="submit" class="btn btn-danger">{{ __('Delete Account') }}</button>
+                        <button type="submit" class="btn btn-sm btn-danger">{{ __('Delete Account') }}</button>
                     </div>
                 </form>
             </div>

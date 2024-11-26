@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h5>Data Sarpras</h5>
-                <a href="{{ route('sarpras.create') }}" class="btn btn-success btn-icon-split">
+                <a href="{{ route('sarpras.create') }}" class="btn btn-sm btn-success btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-user-plus"></i>
                     </span>
@@ -30,12 +30,12 @@
                                 @foreach ($dataSarpras as $index => $d)
                                     <tr>
                                         <td>
-                                            <button type="button" class="btn btn-primary btn-sm edit-btn"
+                                            <button type="button" class="btn btn-sm btn-primary btn-sm edit-btn"
                                                 data-bs-toggle="modal" data-bs-target="#editSarprasModal"
                                                 data-id="{{ $d->id_sarpras }}">
                                                 <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                                             </button>
-                                            <button type="button" class="btn btn-danger btn-sm delete-btn"
+                                            <button type="button" class="btn btn-sm btn-danger btn-sm delete-btn"
                                                 data-bs-toggle="modal" data-bs-target="#deleteSarprasModal"
                                                 data-id="{{ $d->id_sarpras }}">
                                                 <i class="fas fa-trash" aria-hidden="true"></i>

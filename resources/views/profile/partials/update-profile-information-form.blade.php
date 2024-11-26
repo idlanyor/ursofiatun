@@ -37,7 +37,7 @@
                     <p class="text-muted small">
                         {{ __('Your email address is unverified.') }}
 
-                        <button form="send-verification" class="p-0 btn btn-link">
+                        <button form="send-verification" class="p-0 btn btn-sm btn-link">
                             {{ __('Click here to re-send the verification email.') }}
                         </button>
                     </p>
@@ -52,7 +52,7 @@
         </div>
 
         <div class="gap-4 d-flex align-items-center">
-            <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+            <button type="submit" class="btn btn-sm btn-primary">{{ __('Save') }}</button>
 
             @if (session('status') === 'profile-updated')
                 <p class="mb-0 text-success small">

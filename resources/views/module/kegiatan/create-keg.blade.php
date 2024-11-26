@@ -69,7 +69,7 @@
             <div class="card-footer">
                 <button
                     type="submit"
-                    class="float-right btn btn-primary"
+                    class="float-right btn btn-sm btn-primary"
                 >Simpan</button>
             </div>
         </form>

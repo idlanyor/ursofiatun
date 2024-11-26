@@ -2,7 +2,7 @@
 <nav class="mb-4 bg-white shadow navbar navbar-expand navbar-light topbar sticky-top">
 
     <!-- Sidebar Toggle (Topbar) -->
-    <button id="sidebarToggleTop" class="mr-3 btn btn-link rounded-circle">
+    <button id="sidebarToggleTop" class="mr-3 btn btn-sm btn-link rounded-circle">
         <i class="fa fa-bars"></i>
     </button>
 
@@ -18,7 +18,7 @@
             >
             <div class="input-group-append">
                 <button
-                    class="btn btn-primary"
+                    class="btn btn-sm btn-primary"
                     type="button"
                 >
                     <i class="fas fa-search fa-sm"></i>
@@ -43,7 +43,7 @@
                         <input type="text" class="border-0 form-control bg-light small" placeholder="Cari..."
                             aria-label="Cari" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
+                            <button class="btn btn-sm btn-primary" type="button">
                                 <i class="fas fa-search fa-sm"></i>
                             </button>
                         </div>
@@ -280,8 +280,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button class="btn btn-primary" type="submit">Keluar</button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button class="btn btn-sm btn-primary" type="submit">Keluar</button>
                 </div>
             </div>
         </div>

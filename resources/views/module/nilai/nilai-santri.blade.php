@@ -15,7 +15,7 @@
                 <h5>Data Nilai</h5>
                 <a
                     href="{{ route('nilai.create') }}"
-                    class="btn btn-success btn-icon-split"
+                    class="btn btn-sm btn-success btn-icon-split"
                 >
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
@@ -50,7 +50,7 @@
                                         <td>
                                             <button
                                                 type="button"
-                                                class="btn btn-warning btn-sm edit-btn"
+                                                class="btn btn-sm btn-warning btn-sm edit-btn"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#editModal"
                                                 data-id="{{ $d->id_nilai }}"
@@ -62,7 +62,7 @@
                                             </button>
                                             <button
                                                 type="button"
-                                                class="btn btn-primary btn-sm show-btn"
+                                                class="btn btn-sm btn-primary btn-sm show-btn"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#showModal"
                                                 data-id="{{ $d->id_nilai }}"
@@ -74,7 +74,7 @@
                                             </button>
                                             <button
                                                 type="button"
-                                                class="btn btn-danger btn-sm delete-btn"
+                                                class="btn btn-sm btn-danger btn-sm delete-btn"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#deleteModal"
                                                 data-id="{{ $d->id_nilai }}"
@@ -119,17 +119,17 @@
                 buttons: [{
                         extend: 'copy',
                         text: 'Salin',
-                        className: 'btn btn-primary'
+                        className: 'btn btn-sm btn-primary'
                     },
                     {
                         extend: 'excel',
                         text: 'Ekspor ke Excel',
-                        className: 'btn btn-success'
+                        className: 'btn btn-sm btn-success'
                     },
                     {
                         extend: 'print',
                         text: 'Cetak',
-                        className: 'btn btn-info'
+                        className: 'btn btn-sm btn-info'
                     }
                 ],
                 "language": {

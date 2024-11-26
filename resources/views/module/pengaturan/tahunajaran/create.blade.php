@@ -52,7 +52,7 @@
                     </div>
                     <button
                     type="submit"
-                    class="btn btn-success btn-icon-split float-end"
+                    class="btn btn-sm btn-success btn-icon-split float-end"
                 >
                     <span class="icon text-white-50">
                         <i

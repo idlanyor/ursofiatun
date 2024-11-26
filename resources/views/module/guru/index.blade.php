@@ -14,19 +14,19 @@
             <div class="card-header d-flex justify-content-between">
                 <h5>Data Guru</h5>
                 <div class="d-flex gap-2">
-                    <a href="{{ route('guru.export') }}" class="btn btn-success btn-icon-split">
+                    <a href="{{ route('guru.export') }}" class="btn btn-sm btn-success btn-icon-split">
                         <span class="icon text-white-50">
                             <i class="fas fa-file-export"></i>
                         </span>
                         <span class="text">Export Excel</span>
                     </a>
-                    <button type="button" class="btn btn-info btn-icon-split" data-bs-toggle="modal" data-bs-target="#importModal">
+                    <button type="button" class="btn btn-sm btn-info btn-icon-split" data-bs-toggle="modal" data-bs-target="#importModal">
                         <span class="icon text-white-50">
                             <i class="fas fa-file-import"></i>
                         </span>
                         <span class="text">Import Excel</span>
                     </button>
-                    <a href="{{ route('template.guru.download') }}" class="btn btn-secondary btn-icon-split">
+                    <a href="{{ route('template.guru.download') }}" class="btn btn-sm btn-secondary btn-icon-split">
                         <span class="icon text-white-50">
                             <i class="fas fa-download"></i>
                         </span>
@@ -54,7 +54,7 @@
                                         <td>
                                             <button
                                                 type="button"
-                                                class="btn btn-warning btn-sm edit-btn"
+                                                class="btn btn-sm btn-warning btn-sm edit-btn"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#editModal"
                                                 data-id="{{ $d->id_guru }}"
@@ -66,7 +66,7 @@
                                             </button>
                                             <button
                                                 type="button"
-                                                class="btn btn-primary btn-sm show-btn"
+                                                class="btn btn-sm btn-primary btn-sm show-btn"
                                                 data-id="{{ $d->id_guru }}"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#showModal"
@@ -78,7 +78,7 @@
                                             </button>
                                             <button
                                                 type="button"
-                                                class="px-2 btn btn-danger btn-sm delete-btn"
+                                                class="px-2 btn btn-sm btn-danger btn-sm delete-btn"
                                                 data-id="{{ $d->id_guru }}"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#destroyModal"
@@ -160,10 +160,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="{{ route('template.guru.download') }}" class="btn btn-secondary">
+                        <a href="{{ route('template.guru.download') }}" class="btn btn-sm btn-secondary">
                             <i class="fas fa-download"></i> Download Template
                         </a>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-sm btn-primary">
                             <i class="fas fa-file-import"></i> Import
                         </button>
                     </div>

@@ -15,7 +15,7 @@
                         </option>
                     @endforeach
                 </select>
-                <button class="btn btn-primary" onclick="loadNilai()">Tampilkan</button>
+                <button class="btn btn-sm btn-primary" onclick="loadNilai()">Tampilkan</button>
             </div>
         </div>
         <div class="card-body">
@@ -76,7 +76,7 @@
                 </div>
 
                 <div class="mt-3">
-                    <button type="submit" class="btn btn-primary">Simpan Nilai</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Simpan Nilai</button>
                 </div>
             </form>
             @else
