@@ -15,7 +15,7 @@
 
         <div class="mb-3">
             <label for="current_password" class="form-label">{{ __('Password Saat Ini') }}</label>
-            <input id="current_password" name="current_password" type="password" class="form-control"
+            <input id="current_password" name="current_password" type="password" class="form-control form-control-sm"
                 autocomplete="current-password">
             @error('current_password')
                 <div class="mt-2 text-danger">{{ $message }}</div>
@@ -24,7 +24,7 @@
 
         <div class="mb-3">
             <label for="password" class="form-label">{{ __('Password Baru') }}</label>
-            <input id="password" name="password" type="password" class="form-control" autocomplete="new-password">
+            <input id="password" name="password" type="password" class="form-control form-control-sm" autocomplete="new-password">
             @error('password')
                 <div class="mt-2 text-danger">{{ $message }}</div>
             @enderror
@@ -32,7 +32,7 @@
 
         <div class="mb-3">
             <label for="password_confirmation" class="form-label">{{ __('Konfirmasi Password') }}</label>
-            <input id="password_confirmation" name="password_confirmation" type="password" class="form-control"
+            <input id="password_confirmation" name="password_confirmation" type="password" class="form-control form-control-sm"
                 autocomplete="new-password">
             @error('password_confirmation')
                 <div class="mt-2 text-danger">{{ $message }}</div>

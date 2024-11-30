@@ -11,12 +11,12 @@
                     @csrf
                     @method('PUT')
                     <div class="mb-3 form-floating">
-                        <input type="text" class="form-control" name="nama_kelas" id="editNamaKelas"
+                        <input type="text" class="form-control form-control-sm" name="nama_kelas" id="editNamaKelas"
                             placeholder="Nama Kelas">
                         <label for="editNamaKelas">Nama Kelas</label>
                     </div>
                     <div class="mb-3 form-floating">
-                        <select class="form-control" name="id_tahun_ajaran" id="editTahunAjaran" required>
+                        <select class="form-control form-control-sm" name="id_tahun_ajaran" id="editTahunAjaran" required>
                             <option value="" disabled>Pilih Tahun Ajaran</option>
                             @foreach ($tahunAjaran as $tahun)
                                 <option value="{{ $tahun->id_tahun_ajaran }}">{{ $tahun->tahun_mulai }} - {{ $tahun->tahun_akhir }}</option>

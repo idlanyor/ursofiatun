@@ -11,17 +11,17 @@
                     @csrf
                     @method('PUT')
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" disabled name="tahun_mulai" id="showTahunMulai"
+                        <input type="text" class="form-control form-control-sm" disabled name="tahun_mulai" id="showTahunMulai"
                             placeholder="Tahun Mulai">
                         <label for="showTahunMulai">Tahun Mulai</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" disabled name="tahun_akhir" id="showTahunAkhir"
+                        <input type="text" class="form-control form-control-sm" disabled name="tahun_akhir" id="showTahunAkhir"
                             placeholder="Tahun Akhir">
                         <label for="showTahunAkhir">Tahun Akhir</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" disabled name="status" id="showStatus"
+                        <input type="text" class="form-control form-control-sm" disabled name="status" id="showStatus"
                             placeholder="Status">
                         <label for="showStatus">Status</label>
                     </div>

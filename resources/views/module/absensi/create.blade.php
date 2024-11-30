@@ -16,7 +16,7 @@
                     <div class="form-floating mb-3">
                         <input
                             type="date"
-                            class="form-control"
+                            class="form-control form-control-sm"
                             name="tanggal"
                             id="tanggal"
                             placeholder="Tanggal"
@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-floating mb-3">
                         <select
-                            class="form-control"
+                            class="form-control form-control-sm"
                             name="jenis_absensi"
                             id="jenis_absensi"
                             required
@@ -45,7 +45,7 @@
                     </div>
                     <div class="form-floating mb-3">
                         <textarea
-                            class="form-control"
+                            class="form-control form-control-sm"
                             name="keterangan"
                             id="keterangan"
                             placeholder="Keterangan"
@@ -54,7 +54,7 @@
                     </div>
                     <div class="form-floating mb-3">
                         <select
-                            class="form-control"
+                            class="form-control form-control-sm"
                             name="santri_id"
                             id="santri_id"
                             required

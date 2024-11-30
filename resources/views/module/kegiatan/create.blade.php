@@ -11,14 +11,14 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3 form-floating">
-                                <input type="text" class="form-control" name="nama_kegiatan" id="namaKegiatanT"
+                                <input type="text" class="form-control form-control-sm" name="nama_kegiatan" id="namaKegiatanT"
                                     placeholder="Masukkan Nama Kegiatan" required>
                                 <label for="namaKegiatanT">Nama Kegiatan</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3 form-floating">
-                                <input type="text" name="penanggung_jawab" class="form-control" id="penanggungJawabT"
+                                <input type="text" name="penanggung_jawab" class="form-control form-control-sm" id="penanggungJawabT"
                                     placeholder="Masukkan Penanggung Jawab" required>
                                 <label for="penanggungJawabT">Penanggung Jawab</label>
                             </div>
@@ -27,7 +27,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3 form-floating">
-                                <input type="date" class="form-control" id="tanggalPelaksanaanT"
+                                <input type="date" class="form-control form-control-sm" id="tanggalPelaksanaanT"
                                     name="tanggal_pelaksanaan" required>
                                 <label for="tanggalPelaksanaanT">Tanggal Pelaksanaan</label>
                             </div>
@@ -35,7 +35,7 @@
                         <input type="hidden" name="id_tahun_ajaran" value="{{ $id_tahun_ajaran }}">
                         <div class="col-md-6">
                             <div class="mb-3 form-floating">
-                                <select class="form-control" id="periodeEdit" name="periode" required>
+                                <select class="form-control form-control-sm" id="periodeEdit" name="periode" required>
                                     <option value="Mingguan">Mingguan</option>
                                     <option value="Bulanan">Bulanan</option>
                                     <option value="Tahunan">Tahunan</option>

@@ -35,7 +35,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="dataSantriTable" class="table align-middle table-striped table-hover table-bordered">
+                    <table id="dataSantriTable" class="table table-sm align-middle table-striped table-hover table-bordered">
                         <thead>
                             <tr>
                                 <th class="text-center" style="white-space: nowrap;">#</th>
@@ -101,7 +101,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="file" class="form-label">Pilih File Excel</label>
-                            <input type="file" class="form-control" id="file" name="file" accept=".xlsx,.xls"
+                            <input type="file" class="form-control form-control-sm" id="file" name="file" accept=".xlsx,.xls"
                                 required>
                         </div>
                         <div class="alert alert-info">

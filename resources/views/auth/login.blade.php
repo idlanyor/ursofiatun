@@ -74,19 +74,19 @@
 
             <!-- Input Username -->
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Username" name="username" value="{{ old('username') }}">
+                <input type="text" class="form-control form-control-sm" placeholder="Username" name="username" value="{{ old('username') }}">
                 <x-input-error :messages="$errors->get('username')" class="error-message" />
             </div>
 
             <!-- Input Password -->
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" name="password">
+                <input type="password" class="form-control form-control-sm" placeholder="Password" name="password">
                 <x-input-error :messages="$errors->get('password')" class="error-message" />
             </div>
 
             <!-- Input Role -->
             <div class="form-group">
-                <select class="form-control" name="role">
+                <select class="form-control form-control-sm" name="role">
                     <option value="admin">Admin</option>
                     <option value="pengurus">Pengurus</option>
                 </select>

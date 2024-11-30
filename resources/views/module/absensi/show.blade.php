@@ -9,25 +9,25 @@
             <div class="modal-body">
                 <form id="showForm">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="nama" id="showNama" placeholder="Nama Santri" readonly>
+                        <input type="text" class="form-control form-control-sm" name="nama" id="showNama" placeholder="Nama Santri" readonly>
                         <label for="showNama">Nama Santri</label>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="tempat_lahir" id="showTempatLahir" placeholder="Tempat Lahir" readonly>
+                                <input type="text" class="form-control form-control-sm" name="tempat_lahir" id="showTempatLahir" placeholder="Tempat Lahir" readonly>
                                 <label for="showTempatLahir">Tempat Lahir</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="date" class="form-control" name="tanggal_lahir" id="showTanggalLahir" placeholder="Tanggal Lahir" readonly>
+                                <input type="date" class="form-control form-control-sm" name="tanggal_lahir" id="showTanggalLahir" placeholder="Tanggal Lahir" readonly>
                                 <label for="showTanggalLahir">Tanggal Lahir</label>
                             </div>
                         </div>
                     </div>
                     <div class="form-floating mb-3">
-                        <select class="form-control" name="jenis_kelamin" id="showJenisKelamin" disabled>
+                        <select class="form-control form-control-sm" name="jenis_kelamin" id="showJenisKelamin" disabled>
                             <option value="" disabled>Pilih Jenis Kelamin</option>
                             <option value="L">Laki-laki</option>
                             <option value="P">Perempuan</option>
@@ -37,19 +37,19 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="orang_tua" id="showOrangTua" placeholder="Orang Tua" readonly>
+                                <input type="text" class="form-control form-control-sm" name="orang_tua" id="showOrangTua" placeholder="Orang Tua" readonly>
                                 <label for="showOrangTua">Orang Tua</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="telepon" id="showTelepon" placeholder="Telepon" readonly>
+                                <input type="text" class="form-control form-control-sm" name="telepon" id="showTelepon" placeholder="Telepon" readonly>
                                 <label for="showTelepon">Telepon</label>
                             </div>
                         </div>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="alamat" id="showAlamat" placeholder="Alamat" readonly>
+                        <input type="text" class="form-control form-control-sm" name="alamat" id="showAlamat" placeholder="Alamat" readonly>
                         <label for="showAlamat">Alamat</label>
                     </div>
                 </form>

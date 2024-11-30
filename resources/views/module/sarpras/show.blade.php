@@ -9,15 +9,15 @@
             <div class="modal-body">
                 <form id="showForm">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="nama_barang" id="showNamaBarang" placeholder="Nama Barang" readonly>
+                        <input type="text" class="form-control form-control-sm" name="nama_barang" id="showNamaBarang" placeholder="Nama Barang" readonly>
                         <label for="showNamaBarang">Nama Barang</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="date" class="form-control" name="tanggal_pengadaan" id="showTanggalPengadaan" placeholder="Tanggal Pengadaan" readonly>
+                        <input type="date" class="form-control form-control-sm" name="tanggal_pengadaan" id="showTanggalPengadaan" placeholder="Tanggal Pengadaan" readonly>
                         <label for="showTanggalPengadaan">Tanggal Pengadaan</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <select class="form-control" name="kondisi" id="showKondisi" disabled>
+                        <select class="form-control form-control-sm" name="kondisi" id="showKondisi" disabled>
                             <option value="" disabled>Pilih Kondisi</option>
                             <option value="baik">Baik</option>
                             <option value="rusak">Rusak</option>
@@ -25,7 +25,7 @@
                         <label for="showKondisi">Kondisi</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="number" class="form-control" name="jumlah" id="showJumlah" placeholder="Jumlah" readonly>
+                        <input type="number" class="form-control form-control-sm" name="jumlah" id="showJumlah" placeholder="Jumlah" readonly>
                         <label for="showJumlah">Jumlah</label>
                     </div>
                 </form>

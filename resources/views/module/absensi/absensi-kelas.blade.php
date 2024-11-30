@@ -16,7 +16,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="dataAbsensiTable" class="table align-middle table-striped table-hover table-bordered">
+                    <table id="dataAbsensiTable" class="table table-sm align-middle table-striped table-hover table-bordered">
                         <thead>
                             <tr>
                                 <th width="10%">#</th>

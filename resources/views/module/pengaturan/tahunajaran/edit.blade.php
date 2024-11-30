@@ -10,12 +10,12 @@
                 <form id="editTAForm">
                     @csrf
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="tahun_mulai" id="editTahunMulai"
+                        <input type="text" class="form-control form-control-sm" name="tahun_mulai" id="editTahunMulai"
                             placeholder="Tahun Mulai">
                         <label for="editTahunMulai">Tahun Mulai</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="tahun_akhir" id="editTahunAkhir"
+                        <input type="text" class="form-control form-control-sm" name="tahun_akhir" id="editTahunAkhir"
                             placeholder="Tahun Akhir">
                         <label for="editTahunAkhir">Tahun Akhir</label>
                     </div>

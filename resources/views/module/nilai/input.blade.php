@@ -26,7 +26,7 @@
                 <input type="hidden" name="mapel_id" value="{{ $mapel_id }}">
 
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-sm table-bordered">
                         <thead>
                             <tr>
                                 <th width="5%">No</th>
@@ -46,21 +46,21 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $santri->nama }}</td>
                                 <td>
-                                    <input type="number" class="form-control nilai-input"
+                                    <input type="number" class="form-control form-control-sm nilai-input"
                                            name="nilai[{{ $santri->id_santri }}][ulangan_1]"
                                            value="{{ $nilai?->ulangan_1 }}"
                                            min="0" max="100"
                                            data-row="{{ $index }}">
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control nilai-input"
+                                    <input type="number" class="form-control form-control-sm nilai-input"
                                            name="nilai[{{ $santri->id_santri }}][ulangan_2]"
                                            value="{{ $nilai?->ulangan_2 }}"
                                            min="0" max="100"
                                            data-row="{{ $index }}">
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control nilai-input"
+                                    <input type="number" class="form-control form-control-sm nilai-input"
                                            name="nilai[{{ $santri->id_santri }}][ulangan_3]"
                                            value="{{ $nilai?->ulangan_3 }}"
                                            min="0" max="100"

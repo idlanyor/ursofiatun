@@ -27,7 +27,7 @@
                 <div class="table-responsive">
                     <table
                         id="dataNilaiTable"
-                        class="table align-middle table-striped table-hover table-bordered"
+                        class="table table-sm align-middle table-striped table-hover table-bordered"
                     >
                         <thead>
                             <tr>

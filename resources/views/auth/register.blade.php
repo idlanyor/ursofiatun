@@ -97,20 +97,20 @@
             <div class="header">TPQ Al - Falah</div>
             <form class="form-body" method="POST" action="{{ route('register') }}">
                 @csrf
-                <input type="text" name="nama" placeholder="Nama" class="form-control input-field"
+                <input type="text" name="nama" placeholder="Nama" class="form-control form-control-sm input-field"
                     value="{{ old('nama') }}">
                 <x-input-error :messages="$errors->get('nama')" class="error-message" />
 
-                <input type="text" name="username" placeholder="Username" class="form-control input-field"
+                <input type="text" name="username" placeholder="Username" class="form-control form-control-sm input-field"
                     value="{{ old('username') }}">
                 <x-input-error :messages="$errors->get('username')" class="error-message" />
 
-                <input type="password" name="password" placeholder="Password" class="form-control input-field"
+                <input type="password" name="password" placeholder="Password" class="form-control form-control-sm input-field"
                     value="{{ old('password') }}">
                 <x-input-error :messages="$errors->get('password')" class="error-message" />
 
                 <input type="password" name="password_confirmation" placeholder="Konfirmasi Password"
-                    class="form-control input-field" value="{{ old('password_confirmation') }}">
+                    class="form-control form-control-sm input-field" value="{{ old('password_confirmation') }}">
                 <x-input-error :messages="$errors->get('password_confirmation')" class="error-message" />
 
                 <button type="submit" class="sigin-btn">Daftar</button>

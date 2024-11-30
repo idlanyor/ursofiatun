@@ -15,7 +15,7 @@
                         <div class="mb-3 form-floating">
                             <input
                                 type="text"
-                                class="form-control"
+                                class="form-control form-control-sm"
                                 id="floatingInputnamaKegiatan"
                                 required
                             >
@@ -26,7 +26,7 @@
                         <div class="form-floating">
                             <input
                                 type="text"
-                                class="form-control"
+                                class="form-control form-control-sm"
                                 id="penanggungJawabC"
                                 required
                             >
@@ -39,7 +39,7 @@
                         <div class="mb-3 form-floating">
                             <input
                                 type="text"
-                                class="form-control"
+                                class="form-control form-control-sm"
                                 id="floatingInput"
                                 name="tanggal_pelaksanaan"
                                 required
@@ -51,7 +51,7 @@
                         <div class="form-floating">
                             <input
                                 list="floatingSelect"
-                                class="form-control"
+                                class="form-control form-control-sm"
                                 id="floatingInput"
                                 name="periode"
                                 required

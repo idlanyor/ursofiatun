@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="nama_kelas" id="nama_kelas"
+                                <input type="text" class="form-control form-control-sm" name="nama_kelas" id="nama_kelas"
                                     placeholder="Nama Kelas" required>
                                 <label for="nama_kelas">Nama Kelas</label>
                                 <div class="invalid-feedback"></div>

@@ -6,7 +6,7 @@
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5>Absensi Harian Kelas {{ $kelas->nama_kelas }}</h5>
             <div class="d-flex gap-2">
-                <input type="date" id="tanggal" class="form-control" value="{{ $tanggal }}" max="{{ date('Y-m-d') }}">
+                <input type="date" id="tanggal" class="form-control form-control-sm" value="{{ $tanggal }}" max="{{ date('Y-m-d') }}">
                 <button class="btn btn-sm btn-primary" onclick="loadAbsensi()">Tampilkan</button>
                 <div class="dropdown">
                     <button class="btn btn-sm btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown">
@@ -45,7 +45,7 @@
                 <input type="hidden" name="id_absensi_kelas" value="{{ $absensiKelas->id_absensi_kelas }}">
 
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-sm table-bordered">
                         <thead>
                             <tr>
                                 <th width="5%">No</th>
@@ -86,7 +86,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control form-control-sm"
                                            name="keterangan[{{ $santri->id_santri }}]"
                                            value="{{ $absensiData->where('id_santri', $santri->id_santri)->first()?->keterangan ?? '' }}"
                                            placeholder="Tambahkan keterangan jika perlu">

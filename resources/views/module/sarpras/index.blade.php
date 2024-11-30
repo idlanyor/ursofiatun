@@ -15,7 +15,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="dataSarprasTable" class="table align-middle table-striped table-hover table-bordered">
+                    <table id="dataSarprasTable" class="table table-sm align-middle table-striped table-hover table-bordered">
                         <thead>
                             <tr>
                                 <th class="text-center" style="white-space: nowrap;">#</th>

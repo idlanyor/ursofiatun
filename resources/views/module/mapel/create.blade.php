@@ -12,17 +12,17 @@
                     <form id="mapelForm" action="{{ route('matapelajaran.store') }}" method="POST">
                         @csrf
                         <div class="mb-3 form-floating">
-                            <input type="text" class="form-control" name="kode_mapel" id="kode_mapel"
+                            <input type="text" class="form-control form-control-sm" name="kode_mapel" id="kode_mapel"
                                 placeholder="Kode Mata Pelajaran">
                             <label for="kode_mapel">Kode Mata Pelajaran</label>
                         </div>
                         <div class="mb-3 form-floating">
-                            <input type="text" class="form-control" name="nama_mapel" id="nama_mapel"
+                            <input type="text" class="form-control form-control-sm" name="nama_mapel" id="nama_mapel"
                                 placeholder="Nama Mata Pelajaran">
                             <label for="nama_mapel">Nama Mata Pelajaran</label>
                         </div>
                         <div class="mb-3 form-floating">
-                            <select class="form-control" name="guru_id" id="guru_id">
+                            <select class="form-control form-control-sm" name="guru_id" id="guru_id">
                                 <option value="" disabled selected>Pilih Guru</option>
                                 @foreach ($guru as $guru)
                                     <option value="{{ $guru->id_guru }}">{{ $guru->nama }}</option>
@@ -31,7 +31,7 @@
                             <label for="guru_id">Guru</label>
                         </div>
                         <div class="mb-3 form-floating">
-                            <select class="form-control" name="kelas_id" id="kelas_id">
+                            <select class="form-control form-control-sm" name="kelas_id" id="kelas_id">
                                 <option value="" disabled selected>Pilih Kelas</option>
                                 @foreach ($kelas as $kelas)
                                     <option value="{{ $kelas->id_kelas }}">{{ $kelas->nama_kelas }}</option>

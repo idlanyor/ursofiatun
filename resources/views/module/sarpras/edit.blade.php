@@ -11,17 +11,17 @@
                     @csrf
                     @method('PUT')
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="nama_barang" id="editNamaBarang"
+                        <input type="text" class="form-control form-control-sm" name="nama_barang" id="editNamaBarang"
                             placeholder="Nama barang">
                         <label for="editNamaBarang">Nama barang</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="date" class="form-control" name="tanggal_pengadaan" id="editTglPengadaan"
+                        <input type="date" class="form-control form-control-sm" name="tanggal_pengadaan" id="editTglPengadaan"
                             placeholder="Tanggal Pengadaan">
                         <label for="editTglPengadaan">Tanggal Pengadaan</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <select class="form-control" name="kondisi" id="editKondisi" required>
+                        <select class="form-control form-control-sm" name="kondisi" id="editKondisi" required>
                             <option value="" disabled>Pilih Kondisi</option>
                             <option value="baik">Baik</option>
                             <option value="rusak">Rusak</option>
@@ -29,7 +29,7 @@
                         <label for="editKondisi">Kondisi</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="number" class="form-control" name="jumlah" id="editJumlah"
+                        <input type="number" class="form-control form-control-sm" name="jumlah" id="editJumlah"
                             placeholder="Jumlah">
                         <label for="editJumlah">Jumlah</label>
                     </div>

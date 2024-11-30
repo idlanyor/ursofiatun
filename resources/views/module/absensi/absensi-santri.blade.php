@@ -43,7 +43,7 @@
                     @csrf
                     <div id="tableContainer" class="table-responsive">
                         <input type="hidden" name="absensi_kelas_id" value="{{ $absensiKelasBulan->id }}">
-                        <table id="dataAbsensiTable" class="table align-middle table-striped table-hover table-bordered">
+                        <table id="dataAbsensiTable" class="table table-sm align-middle table-striped table-hover table-bordered">
                             <thead>
                                 <tr>
                                     <th>Nama Santri</th>

@@ -5,7 +5,7 @@
     <div class="card-body">
         <div class="table-responsive">
 
-            <table class="table align-middle table-striped table-hover table-bordered">
+            <table class="table table-sm align-middle table-striped table-hover table-bordered">
                 <thead>
                     <tr>
                         <th>#</th>

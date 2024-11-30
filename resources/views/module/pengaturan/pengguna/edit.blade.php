@@ -13,54 +13,54 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="nama" id="editNama"
+                                <input type="text" class="form-control form-control-sm" name="nama" id="editNama"
                                     placeholder="Nama">
                                 <label for="editNama">Nama</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" name="email" id="editEmail"
+                                <input type="email" class="form-control form-control-sm" name="email" id="editEmail"
                                     placeholder="Email">
                                 <label for="editEmail">Email</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="username" id="editUsername"
+                                <input type="text" class="form-control form-control-sm" name="username" id="editUsername"
                                     placeholder="Username">
                                 <label for="editUsername">Username</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="alamat" id="editAlamat"
+                                <input type="text" class="form-control form-control-sm" name="alamat" id="editAlamat"
                                     placeholder="Alamat">
                                 <label for="editAlamat">Alamat</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="notelp" id="editNotelp"
+                                <input type="text" class="form-control form-control-sm" name="notelp" id="editNotelp"
                                     placeholder="No. Telepon">
                                 <label for="editNotelp">No. Telepon</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="soc_website" id="editWebsite"
+                                <input type="text" class="form-control form-control-sm" name="soc_website" id="editWebsite"
                                     placeholder="Website">
                                 <label for="editWebsite">Website</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="soc_github" id="editGithub"
+                                <input type="text" class="form-control form-control-sm" name="soc_github" id="editGithub"
                                     placeholder="Github">
                                 <label for="editGithub">Github</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="soc_x" id="editX"
+                                <input type="text" class="form-control form-control-sm" name="soc_x" id="editX"
                                     placeholder="X/Twitter">
                                 <label for="editX">X/Twitter</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="soc_ig" id="editInstagram"
+                                <input type="text" class="form-control form-control-sm" name="soc_ig" id="editInstagram"
                                     placeholder="Instagram">
                                 <label for="editInstagram">Instagram</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="soc_fb" id="editFacebook"
+                                <input type="text" class="form-control form-control-sm" name="soc_fb" id="editFacebook"
                                     placeholder="Facebook">
                                 <label for="editFacebook">Facebook</label>
                             </div>

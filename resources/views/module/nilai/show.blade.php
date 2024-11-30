@@ -9,19 +9,19 @@
             <div class="modal-body">
                 <form id="showForm">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="ulangan_1" id="showUlangan1" placeholder="Ulangan 1" readonly>
+                        <input type="text" class="form-control form-control-sm" name="ulangan_1" id="showUlangan1" placeholder="Ulangan 1" readonly>
                         <label for="showUlangan1">Ulangan 1</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="ulangan_2" id="showUlangan2" placeholder="Ulangan 2" readonly>
+                        <input type="text" class="form-control form-control-sm" name="ulangan_2" id="showUlangan2" placeholder="Ulangan 2" readonly>
                         <label for="showUlangan2">Ulangan 2</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="ulangan_3" id="showUlangan3" placeholder="Ulangan 3" readonly>
+                        <input type="text" class="form-control form-control-sm" name="ulangan_3" id="showUlangan3" placeholder="Ulangan 3" readonly>
                         <label for="showUlangan3">Ulangan 3</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <select class="form-control" name="mapel_id" id="showMapel" disabled>
+                        <select class="form-control form-control-sm" name="mapel_id" id="showMapel" disabled>
                             <option value="" disabled>Pilih Mata Pelajaran</option>
                             @foreach($mapel as $mapel)
                                 <option value="{{ $mapel->id }}">{{ $mapel->nama_mapel }}</option>

@@ -11,25 +11,25 @@
                     @csrf
                     @method('PUT')
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="nama" id="editNama" placeholder="Nama Santri">
+                        <input type="text" class="form-control form-control-sm" name="nama" id="editNama" placeholder="Nama Santri">
                         <label for="editNama">Nama Santri</label>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="tempat_lahir" id="editTempatLahir" placeholder="Tempat Lahir">
+                                <input type="text" class="form-control form-control-sm" name="tempat_lahir" id="editTempatLahir" placeholder="Tempat Lahir">
                                 <label for="editTempatLahir">Tempat Lahir</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="date" class="form-control" name="tanggal_lahir" id="editTanggalLahir" placeholder="Tanggal Lahir">
+                                <input type="date" class="form-control form-control-sm" name="tanggal_lahir" id="editTanggalLahir" placeholder="Tanggal Lahir">
                                 <label for="editTanggalLahir">Tanggal Lahir</label>
                             </div>
                         </div>
                     </div>
                     <div class="form-floating mb-3">
-                        <select class="form-control" name="jenis_kelamin" id="editJenisKelamin" required>
+                        <select class="form-control form-control-sm" name="jenis_kelamin" id="editJenisKelamin" required>
                             <option value="" disabled>Pilih Jenis Kelamin</option>
                             <option value="L">Laki-laki</option>
                             <option value="P">Perempuan</option>
@@ -39,19 +39,19 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="orang_tua" id="editOrangTua" placeholder="Orang Tua">
+                                <input type="text" class="form-control form-control-sm" name="orang_tua" id="editOrangTua" placeholder="Orang Tua">
                                 <label for="editOrangTua">Orang Tua</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" name="telepon" id="editTelepon" placeholder="Telepon">
+                                <input type="text" class="form-control form-control-sm" name="telepon" id="editTelepon" placeholder="Telepon">
                                 <label for="editTelepon">Telepon</label>
                             </div>
                         </div>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="alamat" id="editAlamat" placeholder="Alamat">
+                        <input type="text" class="form-control form-control-sm" name="alamat" id="editAlamat" placeholder="Alamat">
                         <label for="editAlamat">Alamat</label>
                     </div>
                     <div class="modal-footer">

@@ -10,7 +10,7 @@
                 <form id="guruForm" action="{{ route('guru.store') }}" method="POST">
                     @csrf
                     <div class="mb-3 form-floating">
-                        <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama"
+                        <input type="text" class="form-control form-control-sm @error('nama') is-invalid @enderror" name="nama"
                             id="nama" placeholder="Nama Guru" value="{{ old('nama') }}">
                         <label for="nama">Nama Guru</label>
                         @error('nama')
@@ -22,7 +22,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3 form-floating">
-                                <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror"
+                                <input type="text" class="form-control form-control-sm @error('tempat_lahir') is-invalid @enderror"
                                     name="tempat_lahir" id="tempat_lahir" placeholder="Tempat Lahir"
                                     value="{{ old('tempat_lahir') }}">
                                 <label for="tempat_lahir">Tempat Lahir</label>
@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3 form-floating">
-                                <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror"
+                                <input type="date" class="form-control form-control-sm @error('tanggal_lahir') is-invalid @enderror"
                                     name="tanggal_lahir" id="tanggal_lahir" placeholder="Tanggal Lahir"
                                     value="{{ old('tanggal_lahir') }}">
                                 <label for="tanggal_lahir">Tanggal Lahir</label>
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="mb-3 form-floating">
-                        <select class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin"
+                        <select class="form-control form-control-sm @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin"
                             id="jenis_kelamin">
                             <option value="" disabled selected>Pilih Jenis Kelamin</option>
                             <option value="L" {{ old('jenis_kelamin') == 'L' ? 'selected' : '' }}>Laki-laki</option>
@@ -64,7 +64,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3 form-floating">
-                                <input type="text" class="form-control @error('alamat') is-invalid @enderror"
+                                <input type="text" class="form-control form-control-sm @error('alamat') is-invalid @enderror"
                                     name="alamat" id="alamat" placeholder="Alamat" value="{{ old('alamat') }}">
                                 <label for="alamat">Alamat</label>
                                 @error('alamat')
@@ -76,7 +76,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3 form-floating">
-                                <input type="text" class="form-control @error('telepon') is-invalid @enderror"
+                                <input type="text" class="form-control form-control-sm @error('telepon') is-invalid @enderror"
                                     name="telepon" id="telepon" placeholder="Telepon" value="{{ old('telepon') }}">
                                 <label for="telepon">Telepon</label>
                                 @error('telepon')

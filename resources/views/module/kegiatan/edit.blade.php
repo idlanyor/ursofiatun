@@ -14,13 +14,14 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3 form-floating">
-                                <input type="text" class="form-control" id="namaKegiatanEdit" name="nama_kegiatan">
+                                <input type="text" class="form-control form-control-sm" id="namaKegiatanEdit"
+                                    name="nama_kegiatan">
                                 <label for="namaKegiatanEdit">Nama Kegiatan</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3 form-floating">
-                                <input type="text" class="form-control" id="penanggungJawabEdit"
+                                <input type="text" class="form-control form-control-sm" id="penanggungJawabEdit"
                                     name="penanggung_jawab" required>
                                 <label for="penanggungJawabEdit">Penanggung Jawab</label>
                             </div>
@@ -29,14 +30,15 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3 form-floating">
-                                <input type="date" class="form-control" id="tanggalPelaksanaanEdit"
+                                <input type="date" class="form-control form-control-sm" id="tanggalPelaksanaanEdit"
                                     name="tanggal_pelaksanaan" required>
                                 <label for="tanggalPelaksanaanEdit">Tanggal Pelaksanaan</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3 form-floating">
-                                <select class="form-control" id="tahunAjaranEdit" name="id_tahun_ajaran" required>
+                                <select class="form-control form-control-sm" id="tahunAjaranEdit" name="id_tahun_ajaran"
+                                    required>
                                     @foreach ($kegiatan as $k)
                                         <option value="{{ $k->tahunAjaran->id_tahun_ajaran }}">
                                             {{ $k->tahunAjaran->tahun_mulai }} -
@@ -50,12 +52,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mb-3 form-floating">
-                                <select class="form-control" id="periodeEdit" name="periode" required>
-                                    <option value="Mingguan">Mingguan</option>
-                                    <option value="Bulanan">Bulanan</option>
-                                    <option value="Tahunan">Tahunan</option>
-                                </select>
-                                <label for="periodeEdit">Periode</label>
+                                <div id="editPeriode"></div>
                             </div>
                         </div>
                     </div>
@@ -89,6 +86,7 @@
                     editKegiatanForm.setAttribute('action', `/kegiatan/${id}`);
                     axios.get(`/kegiatan/${id}`).then(response => {
                             var data = response.data;
+                            // console.log(data.periode)
                             document.getElementById('namaKegiatanEdit').value = data
                                 .nama_kegiatan;
                             document.getElementById('penanggungJawabEdit').value = data
@@ -97,9 +95,16 @@
                                 .id_tahun_ajaran;
                             document.getElementById('tanggalPelaksanaanEdit').value = data
                                 .tanggal_pelaksanaan.split(' ')[0];
-                            document.getElementById('periodeEdit').value = data.periode;
+                            // document.getElementById('periodeEdit').value = data.periode;
+                            let periodeEdit = document.getElementById('editPeriode');
+                            periodeEdit.innerHTML = `<select class="form-control form-control-sm" name="periode" required>
+                    <option value="Mingguan" ${data.periode === 'Mingguan' ? 'selected' : ''}> Mingguan</option>
+                    <option value="Bulanan" ${data.periode === 'Bulanan' ? 'selected' : ''}> Bulanan</option>
+                    <option value="Tahunan" ${data.periode === 'Tahunan' ? 'selected' : ''}> Tahunan</option>
+                </select>`;
                         })
                         .catch(error => {
+                            console.log(error)
                             console.error('Terjadi kesalahan saat mengambil data kegiatan:',
                                 error);
                             alert('Terjadi kesalahan saat mengambil data kegiatan.');

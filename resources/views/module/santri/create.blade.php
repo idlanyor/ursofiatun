@@ -16,7 +16,7 @@
                     <div class="mb-3 form-floating">
                         <input
                             type="text"
-                            class="form-control"
+                            class="form-control form-control-sm"
                             name="nama"
                             id="nama"
                             placeholder="Nama Santri"
@@ -29,7 +29,7 @@
                             <div class="mb-3 form-floating">
                                 <input
                                     type="text"
-                                    class="form-control"
+                                    class="form-control form-control-sm"
                                     name="tempat_lahir"
                                     id="tempat_lahir"
                                     placeholder="Tempat Lahir"
@@ -42,7 +42,7 @@
                             <div class="mb-3 form-floating">
                                 <input
                                     type="date"
-                                    class="form-control"
+                                    class="form-control form-control-sm"
                                     name="tanggal_lahir"
                                     id="tanggal_lahir"
                                     placeholder="Tanggal Lahir"
@@ -54,7 +54,7 @@
                     </div>
                     <div class="mb-3 form-floating">
                         <select
-                            class="form-control"
+                            class="form-control form-control-sm"
                             name="jenis_kelamin"
                             id="jenis_kelamin"
                             required
@@ -74,7 +74,7 @@
                             <div class="mb-3 form-floating">
                                 <input
                                     type="text"
-                                    class="form-control"
+                                    class="form-control form-control-sm"
                                     name="orang_tua"
                                     id="orang_tua"
                                     placeholder="Orang Tua"
@@ -86,7 +86,7 @@
                             <div class="mb-3 form-floating">
                                 <input
                                     type="text"
-                                    class="form-control"
+                                    class="form-control form-control-sm"
                                     name="telepon"
                                     id="telepon"
                                     placeholder="Telepon"
@@ -98,7 +98,7 @@
                     <div class="mb-3 form-floating">
                         <input
                             type="text"
-                            class="form-control"
+                            class="form-control form-control-sm"
                             name="alamat"
                             id="alamat"
                             placeholder="Alamat"
@@ -107,7 +107,7 @@
                     </div>
                     <div class="mb-3 form-floating">
                         <select
-                            class="form-control"
+                            class="form-control form-control-sm"
                             name="id_kelas"
                             id="id_kelas"
                             required

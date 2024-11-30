@@ -18,7 +18,7 @@
                 <div class="table-responsive">
                     <table
                         id="dataKelasTable"
-                        class="table align-middle table-striped table-hover table-bordered"
+                        class="table table-sm align-middle table-striped table-hover table-bordered"
                     >
                         <thead>
                             <th>#</th>

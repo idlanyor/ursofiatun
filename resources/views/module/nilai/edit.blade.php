@@ -11,22 +11,22 @@
                     @csrf
                     @method('PUT')
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="ulangan_1" id="editUlangan1"
+                        <input type="text" class="form-control form-control-sm" name="ulangan_1" id="editUlangan1"
                             placeholder="Nilai Ulangan 1">
                         <label for="editUlangan1">Nilai Ulangan 1</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="ulangan_2" id="editUlangan2"
+                        <input type="text" class="form-control form-control-sm" name="ulangan_2" id="editUlangan2"
                             placeholder="Nilai Ulangan 2">
                         <label for="editUlangan2">Nilai Ulangan 2</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="ulangan_3" id="editUlangan3"
+                        <input type="text" class="form-control form-control-sm" name="ulangan_3" id="editUlangan3"
                             placeholder="Nilai Ulangan 3">
                         <label for="editUlangan3">Nilai Ulangan 3</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <select class="form-control" name="mapel_id" id="editMapel" required>
+                        <select class="form-control form-control-sm" name="mapel_id" id="editMapel" required>
                             <option value="" disabled>Pilih Mata Pelajaran</option>
                             @foreach ($mapel as $m)
                                 <option value="{{ $m->id }}">{{ $m->nama_mapel }}</option>
@@ -35,7 +35,7 @@
                         <label for="editMapel">Mata Pelajaran</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <select class="form-control" name="santri_id" id="editSantri" required>
+                        <select class="form-control form-control-sm" name="santri_id" id="editSantri" required>
                             <option value="" disabled>Pilih Santri</option>
                             @foreach ($santri as $s)
                                 <option value="{{ $s->id_santri }}">{{ $s->nama }}</option>

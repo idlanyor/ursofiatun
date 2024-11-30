@@ -15,7 +15,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive-xl">
-                    <table class="table text-center align-middle table-striped table-hover table-bordered">
+                    <table class="table table-sm text-center align-middle table-striped table-hover table-bordered">
                         <thead>
                             <tr>
                                 <th>#</th>

@@ -14,7 +14,8 @@
                     <div class="mb-2 mt-3 d-flex justify-content-center">
                         <button type="button" data-bs-toggle="modal" data-bs-target="#updateProfileModal"
                             class="btn btn-sm btn-primary">Perbarui Profil</button>
-
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#updatePasswordModal"
+                            class=" mx-1 btn btn-sm btn-danger">Ubah Password</button>
                     </div>
                 </div>
             </div>
@@ -90,7 +91,7 @@
                 </div>
             </div>
             {{-- update password --}}
-            {{-- <div class="row">
+            <div class="row">
                 <div class="col-md-12">
                     <div class="mb-4 card mb-md-0">
                         <div class="card-body">
@@ -104,31 +105,29 @@
                                 </p>
                             </header>
 
-                            <form id="updatePasswordForm" class="mt-4">
+                            <form action="{{ route('update-password') }}" method="POST">
                                 @csrf
-                                @method('put')
 
                                 <div class="mb-3">
-                                    <label for="current_password"
-                                        class="form-label">{{ __('Kata Sandi Saat Ini') }}</label>
-                                    <input id="current_password" name="current_password" type="password"
-                                        class="form-control" autocomplete="current-password">
-                                    <div class="mt-2 text-danger" id="current_password_error"></div>
+                                    <label for="old_password" class="form-label">{{ __('Kata Sandi Saat Ini') }}</label>
+                                    <input id="old_password" name="old_password" type="password"
+                                        class="form-control form-control-sm" autocomplete="current-password">
+                                    <div class="mt-2 text-danger" id="old_password_error"></div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="password" class="form-label">{{ __('Kata Sandi Baru') }}</label>
-                                    <input id="password" name="password" type="password" class="form-control"
-                                        autocomplete="new-password">
-                                    <div class="mt-2 text-danger" id="password_error"></div>
+                                    <label for="new_password" class="form-label">{{ __('Kata Sandi Baru') }}</label>
+                                    <input id="new_password" name="new_password" type="password"
+                                        class="form-control form-control-sm" autocomplete="new-password">
+                                    <div class="mt-2 text-danger" id="new_password_error"></div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="password_confirmation"
+                                    <label for="new_password_confirmation"
                                         class="form-label">{{ __('Konfirmasi Kata Sandi') }}</label>
-                                    <input id="password_confirmation" name="password_confirmation" type="password"
-                                        class="form-control" autocomplete="new-password">
-                                    <div class="mt-2 text-danger" id="password_confirmation_error"></div>
+                                    <input id="new_password_confirmation" name="new_password_confirmation" type="password"
+                                        class="form-control form-control-sm" autocomplete="new-password">
+                                    <div class="mt-2 text-danger" id="new_password_confirmation_error"></div>
                                 </div>
 
                                 <div class="gap-4 d-flex align-items-center">
@@ -141,13 +140,13 @@
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
         </div>
     </div>
 
     <!-- Modal Perbarui Profil -->
-    <div class="modal fade" id="updateProfileModal" tabindex="-1" aria-labelledby="updateProfileModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="updateProfileModal" data-bs-backdrop="static" tabindex="-1"
+        aria-labelledby="updateProfileModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -161,57 +160,58 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" name="nama" id="nama"
-                                        value="{{ Auth::user()->nama }}" placeholder="Nama">
+                                    <input type="text" class="form-control form-control-sm" name="nama"
+                                        id="nama" value="{{ Auth::user()->nama }}" placeholder="Nama">
                                     <label for="nama">Nama Lengkap</label>
                                     <div class="text-danger mt-1" id="nama_error"></div>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" name="email" id="email"
-                                        value="{{ Auth::user()->email }}" placeholder="Email">
+                                    <input type="email" class="form-control form-control-sm" name="email"
+                                        id="email" value="{{ Auth::user()->email }}" placeholder="Email">
                                     <label for="email">Email</label>
                                     <div class="text-danger mt-1" id="email_error"></div>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" name="notelp" id="notelp"
-                                        value="{{ Auth::user()->notelp }}" placeholder="No. Telepon">
+                                    <input type="text" class="form-control form-control-sm" name="notelp"
+                                        id="notelp" value="{{ Auth::user()->notelp }}" placeholder="No. Telepon">
                                     <label for="notelp">No. Telepon</label>
                                     <div class="text-danger mt-1" id="notelp_error"></div>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <textarea class="form-control" id="alamat" name="alamat" placeholder="Alamat" style="height: 100px">{{ Auth::user()->alamat }}</textarea>
+                                    <textarea class="form-control form-control-sm" id="alamat" name="alamat" placeholder="Alamat"
+                                        style="height: 100px">{{ Auth::user()->alamat }}</textarea>
                                     <label for="alamat">Alamat</label>
                                     <div class="text-danger mt-1" id="alamat_error"></div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" name="soc_website" id="soc_website"
-                                        value="{{ Auth::user()->soc_website }}" placeholder="Website">
+                                    <input type="text" class="form-control form-control-sm" name="soc_website"
+                                        id="soc_website" value="{{ Auth::user()->soc_website }}" placeholder="Website">
                                     <label for="soc_website">Website</label>
                                     <div class="text-danger mt-1" id="soc_website_error"></div>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" name="soc_github" id="soc_github"
-                                        value="{{ Auth::user()->soc_github }}" placeholder="Github">
+                                    <input type="text" class="form-control form-control-sm" name="soc_github"
+                                        id="soc_github" value="{{ Auth::user()->soc_github }}" placeholder="Github">
                                     <label for="soc_github">Github</label>
                                     <div class="text-danger mt-1" id="soc_github_error"></div>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" name="soc_x" id="soc_x"
-                                        value="{{ Auth::user()->soc_x }}" placeholder="X/Twitter">
+                                    <input type="text" class="form-control form-control-sm" name="soc_x"
+                                        id="soc_x" value="{{ Auth::user()->soc_x }}" placeholder="X/Twitter">
                                     <label for="soc_x">X/Twitter</label>
                                     <div class="text-danger mt-1" id="soc_x_error"></div>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" name="soc_ig" id="soc_ig"
-                                        value="{{ Auth::user()->soc_ig }}" placeholder="Instagram">
+                                    <input type="text" class="form-control form-control-sm" name="soc_ig"
+                                        id="soc_ig" value="{{ Auth::user()->soc_ig }}" placeholder="Instagram">
                                     <label for="soc_ig">Instagram</label>
                                     <div class="text-danger mt-1" id="soc_ig_error"></div>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" name="soc_fb" id="soc_fb"
-                                        value="{{ Auth::user()->soc_fb }}" placeholder="Facebook">
+                                    <input type="text" class="form-control form-control-sm" name="soc_fb"
+                                        id="soc_fb" value="{{ Auth::user()->soc_fb }}" placeholder="Facebook">
                                     <label for="soc_fb">Facebook</label>
                                     <div class="text-danger mt-1" id="soc_fb_error"></div>
                                 </div>
@@ -226,15 +226,44 @@
             </div>
         </div>
     </div>
+    {{-- Modal Update Password  --}}
+    <div class="modal fade" id="updatePasswordModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="updatePasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="updatePasswordForm">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="updatePasswordModalLabel">Ganti Password</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input class="form-control form-control-sm form-control-sm" name="old_password" type="password"
+                            placeholder="Password Baru" aria-label="Password Baru">
+                        <input class="form-control form-control-sm form-control-sm" name="new_password" type="password"
+                            placeholder="Password Baru" aria-label="Password Baru">
+                        <input class="form-control form-control-sm form-control-sm" name="new_password_confirmation"
+                            type="password" placeholder="Konfirmasi Password Baru" aria-label="Konfirmasi Password Baru">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         let id = {{ Js::from(Auth::user()->id_user) }}
-        console.log('isd', id)
+        // console.log('isd', id)
         document.addEventListener('DOMContentLoaded', function() {
             const updateProfileForm = document.getElementById('updateProfileForm');
             const updatePasswordForm = document.getElementById('updatePasswordForm');
             const updateProfileModal = new bootstrap.Modal(document.getElementById('updateProfileModal'));
+            const updatePasswordModal = new bootstrap.Modal(document.getElementById('updatePasswordModal'));
 
             updateProfileForm.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -270,20 +299,23 @@
             updatePasswordForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const formData = new FormData(updatePasswordForm);
-                var id = updatePasswordForm.getAttribute('action').split('/').pop();
 
-                axios.post(`/pengaturan/pengguna/${id}`, formData, {
+                axios.post(`/update-password`, formData, {
                         headers: {
                             'X-CSRF-TOKEN': formData.get('_token'),
                             'X-HTTP-Method-Override': 'PUT'
                         }
                     })
                     .then(response => {
-                        document.getElementById('success_message').style.display = 'block';
-                        updatePasswordForm.reset();
-                        setTimeout(() => {
-                            document.getElementById('success_message').style.display = 'none';
-                        }, 3000);
+                        console.log('resdat', response.data)
+                        if (response.data?.message) {
+                            toastr.success(response.data.message);
+                            // updatePasswordModal.hide();
+                            window.location.reload();
+                        }
+                        if (response.data?.error) {
+                            toastr.error(response.data.detail)
+                        }
                     })
                     .catch(error => {
                         if (error.response && error.response.status === 422) {
@@ -295,7 +327,7 @@
                                 }
                             });
                         } else {
-                            toastr.error('Terjadi kesalahan saat memperbarui kata sandi.');
+                            toastr.error('Terjadi kesalahan saat memperbarui password.');
                         }
                     });
             });

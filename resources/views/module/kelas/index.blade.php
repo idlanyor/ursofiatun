@@ -15,7 +15,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-xl">
-                        <table id="dataKelasTable" class="table align-middle table-striped table-hover table-bordered">
+                        <table id="dataKelasTable" class="table table-sm align-middle table-striped table-hover table-bordered">
                             <thead>
                                 <tr>
                                     <th style="width: 150px">#</th>

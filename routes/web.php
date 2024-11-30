@@ -134,7 +134,8 @@ Route::middleware(['auth', CheckUserStatus::class])->group(function () {
         ]);
         Route::put('/pengguna/{id}/update-status', [UserController::class, 'updateStatus'])->name('user.update.status');
     });
-
+    
+    Route::put('/update-password', [UserController::class, 'updatePassword'])->name('update-password');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

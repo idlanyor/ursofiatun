@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
@@ -155,7 +156,7 @@ class UserController extends Controller
                 $rules['notelp'] = 'nullable|string';
             }
             if ($request->has('username')) {
-                $rules['username'] = 'required|string|unique:users,username,'.$id.',id_user';
+                $rules['username'] = 'required|string|unique:users,username,' . $id . ',id_user';
             }
             if ($request->has('role')) {
                 $rules['role'] = 'required|string|in:admin,pengurus';
@@ -211,6 +212,32 @@ class UserController extends Controller
         } catch (\Exception $e) {
             Log::error('Error deleting santri: ' . $e->getMessage());
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus data santri.'], 500);
+        }
+    }
+    public function updatePassword(Request $request)
+    {
+        try {
+            # Validasi
+            $request->validate([
+                'old_password' => 'required',
+                'new_password' => 'required|confirmed',
+            ]);
+
+            # Cocokkan Password Lama
+            if (!Hash::check($request->old_password, Auth::user()->password)) {
+                return response()->json(['error' => 'Password lama tidak sesuai!', 'detail' => 'Password lama tidak sesuai!']);
+            }
+
+            # Perbarui Password Baru
+            $user = User::find(Auth::user()->id_user);
+            $user->update([
+                'password' => Hash::make($request->new_password)
+            ]);
+
+            return response()->json(['message' => 'Password Berhasil diubah']);
+        } catch (\Exception $e) {
+            Log::error('Error updating password: ' . $e->getMessage());
+            return response()->json(['error' => 'Terjadi kesalahan saat mengubah password.', 'detail' => $e->getMessage()]);
         }
     }
 }

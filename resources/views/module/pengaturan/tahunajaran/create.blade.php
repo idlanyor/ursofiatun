@@ -15,7 +15,7 @@
                             <div class="form-floating mb-3">
                                 <input
                                     type="text"
-                                    class="form-control"
+                                    class="form-control form-control-sm"
                                     name="tahun_mulai"
                                     id="tahun_mulai"
                                     placeholder="Tahun Mulai"
@@ -28,7 +28,7 @@
                             <div class="form-floating mb-3">
                                 <input
                                     type="text"
-                                    class="form-control"
+                                    class="form-control form-control-sm"
                                     name="tahun_akhir"
                                     id="tahun_akhir"
                                     placeholder="Tahun Akhir"

@@ -35,7 +35,7 @@
 
                         <div class="mt-3 form-group">
                             <label for="password" class="form-label">{{ __('Password') }}</label>
-                            <input type="password" id="password" name="password" class="form-control"
+                            <input type="password" id="password" name="password" class="form-control form-control-sm"
                                 placeholder="{{ __('Password') }}">
                             @error('password')
                                 <div class="mt-2 text-danger">{{ $message }}</div>

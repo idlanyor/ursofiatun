@@ -27,7 +27,7 @@
                     <div class="form-floating mb-3">
                         <input
                             type="text"
-                            class="form-control"
+                            class="form-control form-control-sm"
                             name="kode_mapel"
                             id="editKodeMapel"
                             placeholder="Kode Mata Pelajaran"
@@ -37,7 +37,7 @@
                     <div class="form-floating mb-3">
                         <input
                             type="text"
-                            class="form-control"
+                            class="form-control form-control-sm"
                             name="nama_mapel"
                             id="editNamaMapel"
                             placeholder="Nama Mata Pelajaran"
@@ -46,7 +46,7 @@
                     </div>
                     <div class="form-floating mb-3">
                         <select
-                            class="form-control"
+                            class="form-control form-control-sm"
                             name="guru_id"
                             id="editGuruId"
                             required
@@ -64,7 +64,7 @@
                     <div class="form-floating mb-3">
 
                         <select
-                            class="form-control"
+                            class="form-control form-control-sm"
                             name="kelas_id"
                             id="editKelasId"
                             required
