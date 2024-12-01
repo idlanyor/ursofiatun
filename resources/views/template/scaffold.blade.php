@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link rel="stylesheet" href="{{ asset('dist/bs5.css') }}" href="{{ asset('dist/bs4.css') }}">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css"> --}}
     <link href="{{ asset('dist/sbadmin.css') }}" rel="stylesheet">
     <!-- Toastr CSS -->
     <link rel="stylesheet" href="{{ asset('dist/toastr.css') }}">
