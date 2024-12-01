@@ -33,7 +33,8 @@
                     var id = this.getAttribute('data-id');
                     var destroySarprasForm = document.getElementById('destroySarprasForm');
                     destroySarprasForm.setAttribute('action', `/sarpras/${id}`);
-                    var deleteSarprasModal = new bootstrap.Modal(document.getElementById('deleteSarprasModal'));
+                    var deleteSarprasModal = new bootstrap.Modal(document.getElementById(
+                        'deleteSarprasModal'));
                     deleteSarprasModal.show();
                 });
             });
@@ -46,16 +47,17 @@
                 if (actionUrl) {
                     axios.delete(actionUrl, {
                             headers: {
-                                'X-CSRF-TOKEN': destroySarprasForm.querySelector('input[name="_token"]').value
+                                'X-CSRF-TOKEN': destroySarprasForm.querySelector('input[name="_token"]')
+                                    .value
                             }
                         })
                         .then(response => {
                             var data = response.data;
-                            if (data.success) {
-                                toastr.success(data.success);
+                            if (data.message) {
+                                toastr.success(data.message);
                                 location.reload();
                             } else {
-                                toastr.error('Terjadi kesalahan: ' + (data.error || 'Unknown error'));
+                                toastr.error(data.error);
                             }
                         })
                         .catch(error => {

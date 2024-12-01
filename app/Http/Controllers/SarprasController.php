@@ -67,18 +67,22 @@ class SarprasController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validator = Validator::make($request->all(), [
-            'nama_barang' => 'string|max:255',
-            'tanggal_pengadaan' => 'date',
-            'kondisi' => 'in:baik,rusak',
-            'jumlah' => 'integer',
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+        try {
+            $validator = Validator::make($request->all(), [
+                'nama_barang' => 'string|max:255',
+                'tanggal_pengadaan' => 'date',
+                'kondisi' => 'in:baik,rusak',
+                'jumlah' => 'integer',
+            ]);
+            if ($validator->fails()) {
+                return response()->json(['errors' => $validator->errors()], 422);
+            }
+            $sarpras = Sarpras::find($id);
+            $sarpras->update($validator->validated());
+            return response()->json(['message' => 'Data Sarana Prasarana berhasil diperbarui', 'sarpras' => $sarpras], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Terjadi kesalahan saat memperbarui data'], 500);
         }
-        $sarpras = Sarpras::find($id);
-        $sarpras->update($validator->validated());
-        return response()->json(['message' => 'Data Sarana Prasarana berhasil diperbarui', 'sarpras' => $sarpras], 200);
     }
 
     /**
@@ -86,8 +90,12 @@ class SarprasController extends Controller
      */
     public function destroy(string $id)
     {
-        $sarpras = Sarpras::find($id);
-        $sarpras->delete();
-        return response()->json(['message' => 'Data Sarana Prasarana berhasil dihapus'], 200);
+        try {
+            $sarpras = Sarpras::findOrFail($id);
+            $sarpras->delete();
+            return response()->json(['message' => 'Data Sarana Prasarana berhasil dihapus', 'sarpras' => $sarpras], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Terjadi kesalahan saat menghapus data'], 500);
+        }
     }
 }

@@ -304,21 +304,28 @@ class AbsensiController extends Controller
         $bulan = $request->query('bulan', date('m'));
         $tahun = $request->query('tahun', date('Y'));
         $format = $request->query('format', 'xlsx');
-
         $namaBulan = Carbon::createFromDate($tahun, $bulan, 1)->locale('id')->format('F');
         $namaKelas = Kelas::find($id_kelas)->nama_kelas;
         $fileName = "Absensi Kelas {$namaKelas} - {$namaBulan} {$tahun}";
 
         if ($format === 'pdf') {
+
+            $jumlahHari = Carbon::createFromDate($tahun, $bulan, 1)->daysInMonth;
             $export = new AbsensiExport($id_kelas, $bulan, $tahun);
             $data = [
                 'absensi' => $export->collection(),
                 'kelas' => $namaKelas,
                 'bulan' => $namaBulan,
-                'tahun' => $tahun
+                'tahun' => $tahun,
+                'jumlahHari' => $jumlahHari
             ];
 
-            $pdf = PDF::loadView('module.absensi.pdf', $data);
+            $pdf = PDF::loadView('pdf.absensi', $data)->setPaper([0, 0, 595.276, 935.433], 'landscape')
+                ->setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
+                ->setOption('margin-top', 5)
+                ->setOption('margin-bottom', 5)
+                ->setOption('margin-left', 5)
+                ->setOption('margin-right', 5);
             return $pdf->download($fileName . '.pdf');
         }
 

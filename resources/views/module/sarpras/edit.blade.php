@@ -10,17 +10,17 @@
                 <form id="editForm">
                     @csrf
                     @method('PUT')
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control form-control-sm" name="nama_barang" id="editNamaBarang"
-                            placeholder="Nama barang">
+                    <div class="mb-3 form-floating">
+                        <input type="text" class="form-control form-control-sm" name="nama_barang"
+                            id="editNamaBarang" placeholder="Nama barang">
                         <label for="editNamaBarang">Nama barang</label>
                     </div>
-                    <div class="form-floating mb-3">
-                        <input type="date" class="form-control form-control-sm" name="tanggal_pengadaan" id="editTglPengadaan"
-                            placeholder="Tanggal Pengadaan">
+                    <div class="mb-3 form-floating">
+                        <input type="date" class="form-control form-control-sm" name="tanggal_pengadaan"
+                            id="editTglPengadaan" placeholder="Tanggal Pengadaan">
                         <label for="editTglPengadaan">Tanggal Pengadaan</label>
                     </div>
-                    <div class="form-floating mb-3">
+                    <div class="mb-3 form-floating">
                         <select class="form-control form-control-sm" name="kondisi" id="editKondisi" required>
                             <option value="" disabled>Pilih Kondisi</option>
                             <option value="baik">Baik</option>
@@ -28,7 +28,7 @@
                         </select>
                         <label for="editKondisi">Kondisi</label>
                     </div>
-                    <div class="form-floating mb-3">
+                    <div class="mb-3 form-floating">
                         <input type="number" class="form-control form-control-sm" name="jumlah" id="editJumlah"
                             placeholder="Jumlah">
                         <label for="editJumlah">Jumlah</label>
@@ -57,7 +57,8 @@
                         var data = response.data;
                         console.log(data);
                         document.getElementById('editNamaBarang').value = data.nama_barang;
-                        document.getElementById('editTglPengadaan').value = data.tanggal_pengadaan;
+                        document.getElementById('editTglPengadaan').value = data
+                            .tanggal_pengadaan;
                         document.getElementById('editKondisi').value = data.kondisi;
                         document.getElementById('editJumlah').value = data.jumlah;
                         editForm.setAttribute('action', `/sarpras/${id}`);
@@ -82,12 +83,13 @@
                 })
                 .then(response => {
                     var data = response.data;
-                    if (data.success) {
-                        toastr.success(data.success)
+                    if (data.message) {
+                        toastr.success(data.message)
                         location.reload();
-                    } else {
-                        toastr.error('Terjadi kesalahan: ' + (data.error || 'Unknown error'));
+                    }else{
+                        toastr.error(data.error)
                     }
+
                 })
                 .catch(error => {
                     if (error.response && error.response.status === 422) {
