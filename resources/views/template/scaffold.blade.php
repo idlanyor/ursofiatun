@@ -30,6 +30,12 @@
             white-space: nowrap;
             text-align: center
         }
+        table{
+            color : black !important;
+        }
+        h1,h2,h3,h4,h5,h6{
+            color : black !important;
+        }
     </style>
     @yield('style')
     @stack('style')

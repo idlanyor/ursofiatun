@@ -10,7 +10,7 @@
 @endsection
 @section('content')
     <div class="col-md-12">
-        <div class="card">
+        <div class="card text-black">
             <div class="card-header d-flex justify-content-between">
                 <h5>Data Guru</h5>
                 <div class="d-flex gap-2">
@@ -36,7 +36,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="dataGuruTable"class="table table-sm align-middle table-striped table-hover table-bordered">
+                    <table id="dataGuruTable"class="table table-sm text-black align-middle table-striped table-hover table-bordered">
                         <thead>
                             <tr>
                                 <th>#</th>
