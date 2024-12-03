@@ -38,6 +38,7 @@
                     deleteSarprasModal.show();
                 });
             });
+            
             // Handle form submission for deleting
             document.getElementById('destroySarprasForm').addEventListener('submit', function(event) {
                 event.preventDefault();

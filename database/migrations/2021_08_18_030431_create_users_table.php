@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('notelp')->default('Tidak Ada/Belum Diatur');
             $table->string('username')->unique();
             $table->string('password');
+            $table->string('foto_profil')->nullable(true);
             $table->enum('role', ['admin', 'pengurus']);
             $table->enum('status', ['aktif', 'pending', 'nonaktif'])->default('pending');
         });

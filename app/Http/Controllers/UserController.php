@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -238,6 +238,25 @@ class UserController extends Controller
         } catch (\Exception $e) {
             Log::error('Error updating password: ' . $e->getMessage());
             return response()->json(['error' => 'Terjadi kesalahan saat mengubah password.', 'detail' => $e->getMessage()]);
+        }
+    }
+    public function updateFoto(Request $request)
+    {
+        try {
+
+            $validatedData = $request->validate([
+                'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $user = User::find(Auth::user()->id_user);
+            $file = $validatedData['foto'];
+            $filename = $file->store('public/images');
+            $user->update([
+                'foto_profil' => Str::replaceFirst('public', 'storage', $filename)
+            ]);
+            return response()->json(['message' => 'Foto profil berhasil diperbarui.']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Terjadi kesalahan saat mengganti foto profil', 'detail' => $e->getMessage()]);
         }
     }
 }
